@@ -87,6 +87,12 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:30px 0;color:var
 [data-theme="dark"] .qsugg span{background:#1c1c1f}
 body[data-lang="zh"] .para .en{display:none}
 body[data-lang="en"] .para .zh{display:none}
+.pfig{margin:20px 0;text-align:center}
+.pfig img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff}
+.pfig figcaption{font-size:13px;color:var(--sub);margin-top:8px;text-align:left;line-height:1.6}
+.pfig figcaption .lang-zh{display:block;margin-top:2px}
+.peq{overflow-x:auto;padding:6px 0;margin:6px 0}
+body[data-lang="zh"] .lang-en{display:none}body[data-lang="en"] .lang-zh{display:none}
 .navspace{margin-left:auto}.navtools{display:flex;gap:8px;align-items:center}
 .hicon{min-width:38px;height:38px;border:1px solid var(--line);background:var(--surface);border-radius:10px;display:grid;place-items:center;cursor:pointer;color:var(--ink);font-size:13px;font-weight:650;padding:0 10px}
 .hicon:hover{background:var(--surface2)}.hicon svg{width:17px;height:17px}
@@ -94,6 +100,8 @@ body[data-lang="en"] .para .zh{display:none}
 .sharebtn{font-size:14px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:7px 14px;cursor:pointer;color:var(--ink);font-weight:600}
 @media(max-width:680px){.cards2{grid-template-columns:1fr}.nav .links{gap:16px}.hero h1{font-size:34px}}
 </style>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'},options:{enableMenu:false}};</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
 <header><div class="nav">
@@ -257,13 +265,17 @@ function vPerson(pid){
   <div class="grid" style="margin-top:14px">${ps.map(paperCard).join('')||'<p class="sub">暂无</p>'}</div>
  </section></div>${footer()}`;
 }
+function renderItem(it){
+ if(it.t==='fig')return `<figure class="pfig"><img loading="lazy" src="${it.src}" alt="figure"><figcaption><span class="lang-en">${esc(it.capEn||'')}</span><span class="lang-zh">${esc(it.capZh||'')}</span></figcaption></figure>`;
+ if(it.t==='eq')return `<div class="peq">\\[${it.tex}\\]</div>`;
+ return `<div class="para"><div class="en">${esc(it.en)}</div><div class="zh">${esc(it.zh)}</div></div>`;}
 function ilist(arr,head){return `<div class="icard"><h4 style="color:var(--acc)">${head}</h4><ul style="margin:0;padding-left:18px">${(arr||[]).map(x=>`<li>${esc(x.en)}<span class="z">${esc(x.zh)}</span></li>`).join('')}</ul></div>`;}
 function vPaper(id){
  const p=PAPERS.find(x=>x.id===id); if(!p) return vHome();
  const pe=PEOPLE[p.pid]||{}; const ins=p.insights||{};
  const full=FULL_CACHE[id];
- const reader=full?full.full.map(s=>`<div class="sec-h">${esc(s.sec)}</div><div class="sec-hz">${esc(s.secZh||'')}</div>`+
-    s.paras.map(pa=>`<div class="para"><div class="en">${esc(pa.en)}</div><div class="zh">${esc(pa.zh)}</div></div>`).join('')).join('')
+ const reader=full?full.full.filter(s=>!/^abstract$/i.test(s.sec)).map(s=>`<div class="sec-h">${esc(s.sec)}</div><div class="sec-hz">${esc(s.secZh||'')}</div>`+
+    (s.items?s.items.map(renderItem).join(''):(s.paras||[]).map(pa=>renderItem({t:'para',en:pa.en,zh:pa.zh})).join('')) ).join('')
    :`<div class="skeleton" style="width:90%"></div><div class="skeleton" style="width:80%"></div><div class="skeleton" style="width:86%"></div>`;
  if(!full) ensureFull(id);
  return `<div class="wrap"><section>
@@ -360,6 +372,7 @@ function render(){
  else html=vHome();
  document.getElementById('app').innerHTML=html;
  window.scrollTo(0,0);
+ if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([document.getElementById('app')]).catch(()=>{});
 }
 if(localStorage.theme)document.documentElement.dataset.theme=localStorage.theme;
 if(localStorage.lang&&localStorage.lang!=='both')document.body.dataset.lang=localStorage.lang;

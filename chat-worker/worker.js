@@ -14,7 +14,8 @@ async function getJSON(path){ if(mem[path])return mem[path]; const url=`${DATA}/
   let r=await c.match(url); if(!r){ r=await fetch(url,{cf:{cacheTtl:600}}); if(r.ok)await c.put(url,r.clone()); }
   if(!r.ok)return null; const j=await r.json(); mem[path]=j; return j; }
 function paperContext(p){ let out=[`摘要: ${p.absEn||''}`],n=0;
-  (p.full||[]).forEach((s,i)=>{ const blk=`[#${i}] ${s.sec}\n`+(s.paras||[]).map(x=>x.en).join(' ')+'\n';
+  (p.full||[]).forEach((s,i)=>{ const txt=(s.items?s.items.filter(x=>x.t==='para').map(x=>x.en):(s.paras||[]).map(x=>x.en)).join(' ');
+    const blk=`[#${i}] ${s.sec}\n`+txt+'\n';
     if(n+blk.length<=MAX_CTX){ out.push(blk); n+=blk.length; } });
   return out.join('\n'); }
 async function dsOnce(env,messages,mx){ const r=await fetch('https://api.deepseek.com/chat/completions',{method:'POST',
