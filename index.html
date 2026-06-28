@@ -78,13 +78,16 @@ section{padding:46px 0}
 footer{border-top:1px solid var(--line);margin-top:40px;padding:30px 0;color:var(--sub);font-size:13px}
 .legal{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:16px;line-height:1.7}
 /* dark mode */
-[data-theme="dark"]{--ink:#f1f1f4;--sub:#9a9aa3;--line:#2a2a30;--bg:#0c0c0e;--surface:#161618;--surface2:#17181a;--acc:#4f9bff}
-[data-theme="dark"] header{background:rgba(18,18,20,.82)}
-[data-theme="dark"] .paper-card,[data-theme="dark"] .ppl-card,[data-theme="dark"] .icard,[data-theme="dark"] .askbox{background:#161719}
+[data-theme="dark"]{--ink:#f5f5f7;--sub:#a1a1a6;--line:#2a2a2c;--bg:#000;--surface:#1c1c1e;--surface2:#161618;--acc:#2997ff}
+[data-theme="dark"] header{background:rgba(20,20,22,.72)}
+[data-theme="dark"] .paper-card,[data-theme="dark"] .ppl-card,[data-theme="dark"] .icard,[data-theme="dark"] .askbox{background:#1c1c1e}
 [data-theme="dark"] .citebar{background:linear-gradient(100deg,#152034,#1d1830);border-color:#2a3550;color:#dfe4ee}
 [data-theme="dark"] .askbox input{background:#0e0e10;color:var(--ink);border-color:#2a2a30}
 [data-theme="dark"] .para .zh{color:#c9c9d0}
-[data-theme="dark"] .qsugg span{background:#1c1c1f}
+[data-theme="dark"] .qsugg span{background:#1c1c1e}
+[data-theme="dark"] .seg button.on{background:#3a3a3c}
+[data-theme="dark"] .sel-btn{box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.pfig img{background:#fff}
 body[data-lang="zh"] .para .en{display:none}
 body[data-lang="en"] .para .zh{display:none}
 .pfig{margin:20px 0;text-align:center}
@@ -93,9 +96,15 @@ body[data-lang="en"] .para .zh{display:none}
 .pfig figcaption .lang-zh{display:block;margin-top:2px}
 .peq{overflow-x:auto;padding:6px 0;margin:6px 0}
 body[data-lang="zh"] .lang-en{display:none}body[data-lang="en"] .lang-zh{display:none}
-.navspace{margin-left:auto}.navtools{display:flex;gap:8px;align-items:center}
-.hicon{min-width:38px;height:38px;border:1px solid var(--line);background:var(--surface);border-radius:10px;display:grid;place-items:center;cursor:pointer;color:var(--ink);font-size:13px;font-weight:650;padding:0 10px}
-.hicon:hover{background:var(--surface2)}.hicon svg{width:17px;height:17px}
+.navspace{margin-left:auto}.navtools{display:flex;gap:10px;align-items:center}
+.seg{display:inline-flex;background:var(--surface2);border-radius:9px;padding:2px}
+.seg button{border:none;background:transparent;font-family:inherit;font-size:12.5px;color:var(--sub);padding:5px 11px;border-radius:7px;cursor:pointer;font-weight:600;transition:.15s}
+.seg button.on{background:var(--bg);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.icon{width:38px;height:38px;border:none;background:transparent;border-radius:9px;display:grid;place-items:center;cursor:pointer;color:var(--sub);transition:.15s}
+.icon:hover{background:var(--surface2);color:var(--ink)}.icon svg{width:18px;height:18px}
+.sel-bar{position:absolute;display:none;align-items:center;gap:7px;z-index:130;transform:translateX(-50%)}
+.sel-btn{display:inline-flex;align-items:center;gap:6px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:980px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,.18);font-family:inherit;white-space:nowrap}
+.hl-locate{background:rgba(41,151,255,.22);border-radius:4px;box-shadow:0 0 0 3px rgba(41,151,255,.22);transition:background .4s}
 .orgchip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#fff;border-radius:7px;padding:3px 9px}
 .sharebtn{font-size:14px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:7px 14px;cursor:pointer;color:var(--ink);font-weight:600}
 @media(max-width:680px){.cards2{grid-template-columns:1fr}.nav .links{gap:16px}.hero h1{font-size:34px}}
@@ -109,11 +118,14 @@ body[data-lang="zh"] .lang-en{display:none}body[data-lang="en"] .lang-zh{display
   <div class="links"><a href="#/people">学者</a><a href="#/papers">论文</a><a href="#/orgs">机构</a><a href="#/ask">问 AI</a></div>
   <div class="navspace"></div>
   <div class="navtools">
-    <button class="hicon" id="langBtn" title="语言：双语 / 中 / EN" onclick="cycleLang()">双语</button>
-    <button class="hicon" title="深色 / 浅色" onclick="toggleTheme()"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="6"/><path d="M9 3a6 6 0 000 12z" fill="currentColor" stroke="none"/></svg></button>
+    <div class="seg" id="langSeg">
+      <button onclick="setLang('both')">双语</button><button onclick="setLang('zh')">中</button><button onclick="setLang('en')">EN</button>
+    </div>
+    <button class="icon" title="深色 / 浅色" aria-label="主题" onclick="toggleTheme()"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="6"/><path d="M9 3a6 6 0 000 12z" fill="currentColor" stroke="none"/></svg></button>
   </div>
 </div></header>
 <div id="app"></div>
+<div id="selBar" class="sel-bar" onmousedown="event.preventDefault()"><button class="sel-btn" id="shareSelBtn" onclick="shareSel()">分享所选</button></div>
 <script>
 /* ===== DATA ===== */
 const FIELDS={
@@ -269,12 +281,12 @@ function renderItem(it){
  if(it.t==='fig')return `<figure class="pfig"><img loading="lazy" src="${it.src}" alt="figure"><figcaption><span class="lang-en">${esc(it.capEn||'')}</span><span class="lang-zh">${esc(it.capZh||'')}</span></figcaption></figure>`;
  if(it.t==='eq')return `<div class="peq">\\[${it.tex}\\]</div>`;
  return `<div class="para"><div class="en">${esc(it.en)}</div><div class="zh">${esc(it.zh)}</div></div>`;}
-function ilist(arr,head){return `<div class="icard"><h4 style="color:var(--acc)">${head}</h4><ul style="margin:0;padding-left:18px">${(arr||[]).map(x=>`<li>${esc(x.en)}<span class="z">${esc(x.zh)}</span></li>`).join('')}</ul></div>`;}
+function ilist(arr,head){return `<div class="icard"><h4 style="color:var(--acc)">${head}</h4><ul style="margin:0;padding-left:18px">${(arr||[]).map(x=>`<li><span class="lang-en">${esc(x.en)}</span><span class="z lang-zh">${esc(x.zh)}</span></li>`).join('')}</ul></div>`;}
 function vPaper(id){
  const p=PAPERS.find(x=>x.id===id); if(!p) return vHome();
  const pe=PEOPLE[p.pid]||{}; const ins=p.insights||{};
  const full=FULL_CACHE[id];
- const reader=full?full.full.filter(s=>!/^abstract$/i.test(s.sec)).map(s=>`<div class="sec-h">${esc(s.sec)}</div><div class="sec-hz">${esc(s.secZh||'')}</div>`+
+ const reader=full?full.full.filter(s=>!/^abstract$/i.test(s.sec)).map((s,i)=>`<div class="sec-h" id="sec-${i}">${esc(s.sec)}</div><div class="sec-hz">${esc(s.secZh||'')}</div>`+
     (s.items?s.items.map(renderItem).join(''):(s.paras||[]).map(pa=>renderItem({t:'para',en:pa.en,zh:pa.zh})).join('')) ).join('')
    :`<div class="skeleton" style="width:90%"></div><div class="skeleton" style="width:80%"></div><div class="skeleton" style="width:86%"></div>`;
  if(!full) ensureFull(id);
@@ -349,9 +361,37 @@ function vOrg(o){o=decodeURIComponent(o);const ps=papersByOrg(o).sort((a,b)=>(b.
   <div class="grid" style="margin-top:18px">${ps.map(paperCard).join('')||'<p class="sub">暂无</p>'}</div>
  </section></div>${footer()}`;}
 function toggleTheme(){const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.theme=t;}
-function cycleLang(){const o=document.body.dataset.lang||'both';const nx={both:'zh',zh:'en',en:'both'}[o];
- if(nx==='both')delete document.body.dataset.lang;else document.body.dataset.lang=nx;localStorage.lang=nx;
- const b=document.getElementById('langBtn');if(b)b.textContent={both:'双语',zh:'中',en:'EN'}[nx];}
+function setLang(l){document.body.dataset.lang=l;localStorage.lang=l;syncSeg();}
+function syncSeg(){const lg=document.body.dataset.lang||'both';const seg=document.getElementById('langSeg');
+ if(seg){const m={both:0,zh:1,en:2};[...seg.children].forEach((b,i)=>b.classList.toggle('on',i===m[lg]));}}
+function inReader(node){let el=node&&(node.nodeType===3?node.parentElement:node);return !!(el&&el.closest&&el.closest('.reader'));}
+function selSecIndex(){const node=window.getSelection().anchorNode;if(!node)return -1;
+ let el=node.nodeType===3?node.parentElement:node;const unit=el&&el.closest?el.closest('.para,.pfig,.peq'):null;let p=unit||el;
+ while(p){if(p.classList&&p.classList.contains('sec-h')){const mm=(p.id||'').match(/sec-(\d+)/);return mm?+mm[1]:-1;}p=p.previousElementSibling;}return -1;}
+function selCheck(){const bar=document.getElementById('selBar');if(!bar)return;
+ const sel=window.getSelection();const text=(sel?sel.toString():'').trim();
+ if(text.length<3||!sel.anchorNode||!inReader(sel.anchorNode)){bar.style.display='none';return;}
+ const r=sel.getRangeAt(0).getBoundingClientRect();bar.style.display='flex';
+ bar.style.left=(window.scrollX+r.left+r.width/2)+'px';bar.style.top=(window.scrollY+r.top-44)+'px';
+ const b=document.getElementById('shareSelBtn');b.textContent='分享所选';b.dataset.text=text;b.dataset.sec=selSecIndex();}
+async function shareSel(){const b=document.getElementById('shareSelBtn');const text=((b&&b.dataset.text)||'').trim();if(!text)return;
+ const m=(location.hash||'').match(/#\/paper\/([^?]+)/);const id=m?decodeURIComponent(m[1]):'';const p=id&&PAPERS.find(x=>x.id===id);
+ const quote=text.length>80?text.slice(0,80)+'…':text;const who=p?`—— ${(PEOPLE[p.pid]||{}).zh||''}《${p.tZh||p.tEn}》`:'—— AI Paper';
+ let url=location.origin+location.pathname+'#/paper/'+id;const si=parseInt(b.dataset.sec,10);
+ if(id&&si>=0)url+='?at='+si+'&hl='+encodeURIComponent(text.slice(0,40));
+ const body=`「${quote}」\n${who}\n${url}`;
+ if(navigator.share){try{await navigator.share({title:'AI Paper',text:body});return;}catch(e){if(e&&e.name==='AbortError')return;}}
+ try{await navigator.clipboard.writeText(body);b.textContent='已复制';setTimeout(()=>b.textContent='分享所选',1500);}catch(e){b.textContent='复制失败';setTimeout(()=>b.textContent='分享所选',1500);}}
+let pendingLocate=null;
+function applyLocate(){if(!pendingLocate)return;const {id,at,hl}=pendingLocate;
+ if((location.hash||'').indexOf('/paper/'+id)<0){pendingLocate=null;return;}
+ if(!document.querySelector('.reader .para'))return;  // 逐字稿还没加载,等下次 render
+ pendingLocate=null;let target=at!=null?document.getElementById('sec-'+at):null;
+ if(hl){const base=decodeURIComponent(hl).replace(/\s/g,'');const els=[...document.querySelectorAll('.reader .para .en,.reader .para .zh')];
+  for(const L of [40,30,22,16,10]){const snip=base.slice(0,Math.min(L,base.length));if(snip.length<6)continue;
+   const hit=els.find(el=>el.textContent.replace(/\s/g,'').includes(snip));
+   if(hit){hit.classList.add('hl-locate');setTimeout(()=>hit.classList.remove('hl-locate'),4000);target=hit.closest('.para')||hit;break;}}}
+ if(target)setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'center'}),60);}
 async function sharePaper(id){const p=PAPERS.find(x=>x.id===id);if(!p)return;
  const url=location.origin+location.pathname+'#/paper/'+id;const text=`${p.tZh}｜${p.tEn}（arXiv:${p.arxiv}）`;
  try{if(navigator.share){await navigator.share({title:p.tZh,text,url});return;}}catch(e){if(e&&e.name==='AbortError')return;}
@@ -360,6 +400,7 @@ async function sharePaper(id){const p=PAPERS.find(x=>x.id===id);if(!p)return;
 function render(){
  const h=location.hash||'#/';const[path,query]=h.slice(2).split('?');
  const parts=path.split('/').filter(Boolean);const qp=query?new URLSearchParams(query):null;
+ if(parts[0]==='paper'&&qp&&(qp.get('at')!=null||qp.get('hl')))pendingLocate={id:decodeURIComponent(parts[1]),at:qp.get('at'),hl:qp.get('hl')};
  let html;
  if(!parts.length)html=vHome();
  else if(parts[0]==='person')html=vPerson(parts[1]);
@@ -371,12 +412,15 @@ function render(){
  else if(parts[0]==='ask')html=vAsk();
  else html=vHome();
  document.getElementById('app').innerHTML=html;
- window.scrollTo(0,0);
+ if(!pendingLocate)window.scrollTo(0,0);
  if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([document.getElementById('app')]).catch(()=>{});
+ applyLocate();
 }
 if(localStorage.theme)document.documentElement.dataset.theme=localStorage.theme;
-if(localStorage.lang&&localStorage.lang!=='both')document.body.dataset.lang=localStorage.lang;
-{const b=document.getElementById('langBtn');if(b)b.textContent={both:'双语',zh:'中',en:'EN'}[localStorage.lang||'both'];}
+if(localStorage.lang)document.body.dataset.lang=localStorage.lang;
+syncSeg();
+const selH=()=>setTimeout(selCheck,10);
+document.addEventListener('mouseup',selH);document.addEventListener('touchend',selH);
 addEventListener('hashchange',render);render();
 </script>
 </body>
