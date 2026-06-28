@@ -71,6 +71,9 @@ section{padding:46px 0}
 .back{color:var(--sub);font-size:14px;cursor:pointer;display:inline-block;margin-bottom:6px}
 .alink{color:var(--acc);font-weight:600}
 .citebar{margin-top:16px;background:linear-gradient(100deg,#eef5ff,#f6f0ff);border:1px solid #dfe7f5;border-radius:14px;padding:14px 18px;font-size:15px;color:#333}
+
+.citeico{display:inline-flex;align-items:center;gap:4px}
+.citeico svg{width:13px;height:13px;opacity:.65}
 .citebar .num{font-size:26px;font-weight:750;color:var(--acc);margin-right:6px;letter-spacing:-.01em}
 footer{border-top:1px solid var(--line);margin-top:40px;padding:30px 0;color:var(--sub);font-size:13px}
 .legal{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:16px;line-height:1.7}
@@ -172,7 +175,7 @@ function pplCard(pid){const p=PEOPLE[pid];const n=papersOf(pid).length;
  return `<div class="ppl-card" onclick="go('#/person/${pid}')">${av(pid)}<div class="n">${esc(p.en)}</div><div class="nz">${esc(p.zh)}</div><div class="ti">${esc(p.tiZh)}</div><div class="cnt">${n} 篇论文</div></div>`;}
 function paperCard(p){const pe=PEOPLE[p.pid]||{};
  return `<a class="paper-card" onclick="go('#/paper/${p.id}')"><div class="pt">${esc(p.tEn)}</div><div class="ptz">${esc(p.tZh)}</div>
-   <div class="meta"><span>${esc(pe.zh||'')}</span><span>arXiv:${p.arxiv}</span><span>${p.date}</span>${p.cites!=null?`<span>📈 被引 ${fmtCites(p.cites)}</span>`:''}${(p.fields||[]).map(ftag).join('')}</div></a>`;}
+   <div class="meta"><span>${esc(pe.zh||'')}</span><span>arXiv:${p.arxiv}</span><span>${p.date}</span>${p.cites!=null?`<span class="citeico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M16 8h5v5"/></svg>被引 ${fmtCites(p.cites)}</span>`:''}${(p.fields||[]).map(ftag).join('')}</div></a>`;}
 
 function vHome(){
  const latest=PAPERS.slice(0,5);
