@@ -246,10 +246,13 @@ function footer(){return `<footer><div class="wrap">
 
 /* ===== ASK (需部署 chat-worker；未配置则提示) ===== */
 async function ask(payload,box){
- if(!CHAT_PROXY){box.textContent="（问答需先部署 chat-worker 并在 index.html 填入 CHAT_PROXY；架构同 AI Podcast 站）";return;}
+ if(!CHAT_PROXY){box.textContent="（问答未配置）";return;}
  box.textContent="思考中…";
  try{const r=await fetch(CHAT_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  box.textContent=(await r.json()).answer||"（无回答）";}catch(e){box.textContent="出错了："+e;}
+  if(!r.ok){box.textContent="出错："+r.status+" "+(await r.text());return;}
+  const reader=r.body.getReader(),dec=new TextDecoder();box.textContent="";
+  for(;;){const{done,value}=await reader.read();if(done)break;box.textContent+=dec.decode(value,{stream:true});}
+ }catch(e){box.textContent="出错了："+e;}
 }
 function askPaper(id){const q=document.getElementById('q').value.trim();if(!q)return;
  const p=FULL_CACHE[id]||PAPERS.find(x=>x.id===id);
