@@ -46,7 +46,8 @@ section{padding:46px 0}
 .paper-card .pt{font-weight:650;font-size:18px}
 .paper-card .ptz{color:var(--sub);font-size:15px;margin-top:3px}
 .paper-card .meta{margin-top:10px;font-size:13px;color:var(--sub);display:flex;gap:12px;flex-wrap:wrap}
-.tag{font-size:12px;border-radius:7px;padding:3px 9px;color:#fff}
+.tag{font-size:12px;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:7px;padding:3px 10px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.tag .fdot{margin:0}
 .row{display:flex;gap:18px;align-items:center}
 .bigav{width:108px;height:108px;border-radius:50%;overflow:hidden;display:grid;place-items:center;color:#fff;font-weight:700;font-size:34px;background:linear-gradient(135deg,#9aa4b2,#6b7280);flex:none}
 .bigav img{width:100%;height:100%;object-fit:cover}
@@ -670,12 +671,12 @@ const orgColor=o=>ORG_C[o]||'#6e6e73';
 const papersByOrg=o=>PAPERS.filter(p=>p.org===o);
 const ORG_LOGO={"DeepSeek": "deepseek", "Moonshot AI": "moonshot", "Alibaba": "alibabagroup", "Zhipu AI": "zhipuai", "Stanford": "stanford", "01.AI": "01", "CMU": "cmu", "Microsoft": "microsoft", "Google DeepMind": "deepmind", "NVIDIA": "nvidia", "OpenAI": "openai", "Salesforce": "salesforce", "Google": "google", "Meta AI": "meta", "LMU Munich": "lmu", "UC Berkeley": "berkeley", "Allen Institute for AI": "allenai", "Imperial College": "imperial", "JKU Linz": "jku", "USI Lugano": "usi", "U. Amsterdam": "uva", "U. Toronto": "utoronto", "Oxford": "ox", "U. Montréal": "umontreal"};
 const orgLogo=(o,cls)=>ORG_LOGO[o]?`<img class="${cls||'orglogo'}" src="assets/orgs/${ORG_LOGO[o]}.png" alt="">`:'';
-const orgChip=o=>o?`<span class="orgchip">${orgLogo(o)}<span>${esc(o)}</span></span>`:'';
+const orgChip=o=>o?`<span class="orgchip" onclick="event.stopPropagation();go('#/org/'+encodeURIComponent('${o.replace(/'/g,"")}'))" style="cursor:pointer">${orgLogo(o)}<span>${esc(o)}</span></span>`:'';
 function orgList(){const m={};PAPERS.forEach(p=>{if(p.org)m[p.org]=(m[p.org]||0)+1;});return Object.entries(m).sort((a,b)=>b[1]-a[1]);}
 function pplOrder(){const k=Object.keys(PEOPLE);return k.slice().sort((a,b)=>papersOf(b).length-papersOf(a).length||k.indexOf(a)-k.indexOf(b));}
 function av(pid,cls){const p=PEOPLE[pid];if(PHOTOS.has(pid))return `<div class="${cls||'av'}"><img src="assets/people/${pid}.jpg" alt="${esc(p.en)}"></div>`;const cs=(p.fields||['deep-learning']).map(f=>(FIELDS[f]||{}).c||'#9aa4b2');const bg=`linear-gradient(140deg,${cs[0]},${cs[1]||cs[0]})`;return `<div class="${cls||'av'}" style="background:${bg}">${esc(p.init)}</div>`;}
 const fdot=f=>`<span class="fdot" style="background:${FIELDS[f].c}"></span>`;
-const ftag=f=>`<span class="tag" style="background:${FIELDS[f].c}">${FIELDS[f].zh}</span>`;
+const ftag=f=>`<span class="tag">${fdot(f)}${FIELDS[f].zh}</span>`;
 function go(h){location.hash=h;}
 
 /* ===== VIEWS ===== */
@@ -696,7 +697,7 @@ function vHome(){
  ${feat?`<div class="hero" style="max-width:1180px;margin:0 auto;padding:18px 24px 8px"><div class="hero-card">
    <div class="hero-art" style="background:linear-gradient(150deg,${fbg})">${av(feat.pid)}</div>
    <div class="hero-body">
-     <div class="eyebrow">本周精选 · Featured</div>
+     <div class="eyebrow">编辑推荐 · Editor&#39;s Pick</div>
      <h1>${esc(feat.tEn)}</h1>
      <div class="who">${esc(fp.en||'')} · ${esc(fp.zh||'')} &nbsp;|&nbsp; ${esc(feat.org||'')}</div>
      <div class="quote">“${esc(fq.en)}”</div>
