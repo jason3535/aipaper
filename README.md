@@ -3,7 +3,7 @@
 著名 AI 学者 × 里程碑论文 —— **逐段中英对照全文** + 图 / 公式 / 附录 + 核心贡献 + 被引数 + 论文问答。
 与 [AI Podcast](https://github.com/jason3535/aipodcast) 同一套阅读框架(skill `bilingual-reader-site`),把「人物 → 条目 → 双语全文 + Ask」复用到论文域。
 
-🌐 **在线**：[aipaper.jasonlin.tech](https://aipaper.jasonlin.tech) · **174 位学者 / 252 篇论文**(1600+ 图 / 1100+ 公式)
+🌐 **在线**：[aipaper.jasonlin.tech](https://aipaper.jasonlin.tech) · **191 位学者 / 313 篇论文**(2100+ 图 / 1300+ 公式)
 
 ## 功能
 
