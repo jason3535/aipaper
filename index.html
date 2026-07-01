@@ -930,7 +930,7 @@ async function ensureFull(id){
 function vOrgs(){const list=orgList();
  return `<div class="wrap"><section><div class="eyebrow">Organizations · 机构</div><h2 class="title">按机构看论文</h2>
   <p class="sub">${list.length} 家机构 · ${PAPERS.length} 篇论文，看每家产出的代表作。</p>
-  <div class="grid ppl-grid" style="margin-top:22px">${list.map(([o,n])=>`<div class="ppl-card" onclick="go('#/org/'+encodeURIComponent(${JSON.stringify(o)}))"><div class="av orgav" style="${ORG_LOGO[o]?'':'background:'+orgColor(o)+';font-size:18px'}">${ORG_LOGO[o]?orgLogo(o,'orgavimg'):esc(o.split(' ').map(w=>w[0]).join('').slice(0,3))}</div><div class="n">${esc(o)}</div><div class="cnt">${n} 篇论文</div></div>`).join('')}</div>
+  <div class="grid ppl-grid" style="margin-top:22px">${list.map(([o,n])=>`<div class="ppl-card" onclick="go('#/org/'+encodeURIComponent('${o.replace(/'/g,"")}'))"><div class="av orgav" style="${ORG_LOGO[o]?'':'background:'+orgColor(o)+';font-size:18px'}">${ORG_LOGO[o]?orgLogo(o,'orgavimg'):esc(o.split(' ').map(w=>w[0]).join('').slice(0,3))}</div><div class="n">${esc(o)}</div><div class="cnt">${n} 篇论文</div></div>`).join('')}</div>
  </section></div>${footer()}`;}
 function vOrg(o){o=decodeURIComponent(o);const ps=papersByOrg(o).sort((a,b)=>(b.cites||0)-(a.cites||0));
  return `<div class="wrap"><section><span class="back" onclick="go('#/orgs')">← 机构</span>
