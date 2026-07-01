@@ -116,6 +116,12 @@ body[data-lang="zh"] .lang-en{display:none}body[data-lang="en"] .lang-zh{display
 .orglogo{width:15px;height:15px;border-radius:3px;object-fit:contain;background:#fff}
 .orgav{overflow:hidden;background:#fff}
 .orgavimg{width:100%;height:100%;object-fit:contain;padding:14px;background:#fff}
+.orghead{display:flex;align-items:center;gap:16px;margin:14px 0 6px}
+.orgbadge{width:64px;height:64px;border-radius:16px;flex:none;display:grid;place-items:center;overflow:hidden;border:1px solid var(--line);box-sizing:border-box}
+.orgbadge img{width:100%;height:100%;object-fit:contain;padding:11px;box-sizing:border-box;background:#fff}
+.orgbadge span{color:#fff;font-weight:700;font-size:21px}
+.orghead h1{font-size:28px;margin:0;letter-spacing:-.02em;line-height:1.15}
+.orghead .sub{margin:5px 0 0;font-size:14px}
 .sharebtn{font-size:14px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:7px 14px;cursor:pointer;color:var(--ink);font-weight:600}
 @media(max-width:680px){.cards2{grid-template-columns:1fr}.nav .links{gap:16px}.hero h1{font-size:34px}}
 
@@ -934,7 +940,7 @@ function vOrgs(){const list=orgList();
  </section></div>${footer()}`;}
 function vOrg(o){o=decodeURIComponent(o);const ps=papersByOrg(o).sort((a,b)=>(b.cites||0)-(a.cites||0));
  return `<div class="wrap"><section><span class="back" onclick="go('#/orgs')">← 机构</span>
-  <div class="row" style="align-items:center;gap:14px;margin:10px 0 2px"><div class="av orgav" style="${ORG_LOGO[o]?'':'background:'+orgColor(o)+';font-size:18px'}">${ORG_LOGO[o]?orgLogo(o,'orgavimg'):esc(o.split(' ').map(w=>w[0]).join('').slice(0,3))}</div><div><h1 style="font-size:30px;margin:0">${esc(o)}</h1><p class="sub" style="margin:2px 0 0">${ps.length} 篇论文 · 按被引排序</p></div></div>
+  <div class="orghead"><div class="orgbadge" style="background:${ORG_LOGO[o]?'#fff':orgColor(o)}">${ORG_LOGO[o]?`<img src="assets/orgs/${ORG_LOGO[o]}.png" alt="">`:`<span>${esc(o.split(' ').map(w=>w[0]).join('').slice(0,3))}</span>`}</div><div style="min-width:0"><h1>${esc(o)}</h1><p class="sub">${ps.length} 篇论文 · 按被引排序</p></div></div>
   <div class="grid" style="margin-top:18px">${ps.map(paperCard).join('')||'<p class="sub">暂无</p>'}</div>
  </section></div>${footer()}`;}
 function toggleTheme(){const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.theme=t;}
