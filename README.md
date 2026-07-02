@@ -42,12 +42,17 @@ pipeline/               内容管线(见下)
 | `bulk_ingest.py` | 并行批量收录,直接产出富内容(图/公式/附录),最后一次性 merge |
 | `add_citations.py` | Semantic Scholar 按 arXiv id 补被引数 |
 | `build_index.js` | 重建 Ask / 检索目录 `data/index.json` |
+| `slim_index.py` | **首屏瘦身**:把内联 PAPERS 的 absEn/absZh/insights 剥掉(详情页从 data/<id>.json 懒加载),幂等 |
+| `build_share_pages.js` | 每篇论文生成静态分享页 `p/<id>/`(OG 卡片)+ `sitemap.xml` |
+| `gen_og.py` | 重生成品牌 OG 图 `assets/og.png` |
 
 ```bash
 # 单篇
 DEEPSEEK_API_KEY=sk-... python3 pipeline/add_paper.py --arxiv 1706.03762 --pid shazeer --fields nlp
 # 批量(JSON: [{pid,arxiv,fields,org}...])
 DEEPSEEK_API_KEY=sk-... python3 pipeline/bulk_ingest.py papers.json 5
+# 收录/更新后必跑(顺序):瘦身 → 分享页/站点地图 → Ask 目录
+python3 pipeline/slim_index.py && node pipeline/build_share_pages.js && node pipeline/build_index.js
 ```
 
 > `--pid` 须先在 `index.html` 的 PEOPLE 中;问答需部署 `chat-worker` 并把 workers.dev 地址填入 `index.html` 的 `CHAT_PROXY`。
