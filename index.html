@@ -115,7 +115,7 @@ body[data-lang="zh"] .lang-en{display:none}body[data-lang="en"] .lang-zh{display
 .seg button.on{background:var(--bg);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
 .icon{width:38px;height:38px;border:none;background:transparent;border-radius:9px;display:grid;place-items:center;cursor:pointer;color:var(--sub);transition:.15s}
 .icon:hover{background:var(--surface2);color:var(--ink)}.icon svg{width:18px;height:18px}
-.sel-bar{position:absolute;display:none;align-items:center;gap:7px;z-index:130;transform:translateX(-50%)}
+.sel-bar{position:absolute;display:none;align-items:center;gap:7px;z-index:10;transform:translateX(-50%)}
 .sel-btn{display:inline-flex;align-items:center;gap:6px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:980px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,.18);font-family:inherit;white-space:nowrap}
 .hl-locate{background:rgba(41,151,255,.22);border-radius:4px;box-shadow:0 0 0 3px rgba(41,151,255,.22);transition:background .4s}
 .orgchip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#fff;border-radius:7px;padding:3px 9px}
@@ -1113,6 +1113,7 @@ function recentAdd(id){let r=recentGet().filter(x=>x!==id);r.unshift(id);localSt
 /* ===== 阅读进度条 / 回到顶部 ===== */
 addEventListener('scroll',()=>{
  const bar=document.getElementById('readProgress'),tt=document.getElementById('toTop');
+ const sb=document.getElementById('selBar');if(sb&&sb.style.display!=='none')sb.style.display='none';
  const max=document.documentElement.scrollHeight-innerHeight;
  const onPaper=(location.hash||'').startsWith('#/paper/');
  if(bar)bar.style.width=(onPaper&&max>600)?(Math.min(1,scrollY/max)*100)+'%':'0';
