@@ -81,6 +81,26 @@ section{padding:46px 0}
 .askbox input{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px 15px;font-size:15px;font-family:inherit}
 .askbtn{margin-top:10px;background:var(--acc);color:#fff;border:none;border-radius:11px;padding:11px 20px;font-size:15px;font-weight:600;cursor:pointer}
 .ans{margin-top:14px;font-size:15px;white-space:pre-wrap;color:#222}
+.ans.md{white-space:normal}
+.ans.md .cmp{margin:0 0 9px}
+.ans.md .cmp:last-child,.ans.md>:last-child{margin-bottom:0}
+.ans.md .cmh{font-weight:700;line-height:1.35;margin:14px 0 7px}
+.ans.md .cmh:first-child{margin-top:0}
+.ans.md .cmh1{font-size:1.2em}
+.ans.md .cmh2{font-size:1.12em}
+.ans.md .cmh3{font-size:1.04em}
+.ans.md .cmh4{font-size:1em;color:var(--sub)}
+.ans.md .cml{margin:5px 0 9px;padding-left:1.4em}
+.ans.md .cml li{margin:3px 0}
+.ans.md .cml li::marker{color:var(--sub)}
+.ans.md .cmq{margin:7px 0;padding:2px 0 2px 12px;border-left:3px solid var(--line);color:var(--sub)}
+.ans.md .cmhr{border:none;border-top:1px solid var(--line);margin:13px 0}
+.ans.md .cpre{margin:9px 0;padding:11px 13px;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow-x:auto}
+.ans.md .cpre code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;line-height:1.5;white-space:pre}
+.ans.md .cinl{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:.5px 5px}
+.ans.md strong{font-weight:700}
+.ans.md em{font-style:italic}
+.ans.md a{color:var(--acc);text-decoration:underline;text-underline-offset:2px}
 .qsugg{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .qsugg span{font-size:13px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 13px;cursor:pointer;color:var(--sub)}
 .back{color:var(--sub);font-size:14px;cursor:pointer;display:inline-block;margin-bottom:6px}
@@ -991,13 +1011,34 @@ function footer(){return `<footer><div class="wrap">
  </div></footer>`;}
 
 /* ===== ASK (需部署 chat-worker；未配置则提示) ===== */
+function mdHtml(src){
+  const blocks=[];let s=esc(src||'');
+  s=s.replace(/```[a-zA-Z]*\n?([\s\S]*?)```/g,(_,c)=>{blocks.push('<pre class="cpre"><code>'+c.replace(/\n$/,'')+'</code></pre>');return '\u0000'+(blocks.length-1)+'\u0000';});
+  s=s.replace(/`([^`\n]+)`/g,(_,c)=>{blocks.push('<code class="cinl">'+c+'</code>');return '\u0000'+(blocks.length-1)+'\u0000';});
+  const lines=s.split('\n'),out=[];let list=null;
+  const closeL=()=>{if(list){out.push('</'+list+'>');list=null;}};
+  for(const line of lines){let m;
+    if(/^\u0000\d+\u0000$/.test(line)){closeL();out.push(line);continue;}
+    if(/^\s*$/.test(line)){closeL();continue;}
+    if(m=line.match(/^\s{0,3}(#{1,4})\s+(.*)$/)){closeL();out.push('<div class="cmh cmh'+m[1].length+'">'+m[2]+'</div>');continue;}
+    if(/^\s{0,3}([-*_])\1{2,}\s*$/.test(line)){closeL();out.push('<hr class="cmhr">');continue;}
+    if(m=line.match(/^\s{0,3}&gt;\s?(.*)$/)){closeL();out.push('<blockquote class="cmq">'+m[1]+'</blockquote>');continue;}
+    if(m=line.match(/^\s*[-*+]\s+(.*)$/)){if(list!=='ul'){closeL();out.push('<ul class="cml">');list='ul';}out.push('<li>'+m[1]+'</li>');continue;}
+    if(m=line.match(/^\s*\d+[.)]\s+(.*)$/)){if(list!=='ol'){closeL();out.push('<ol class="cml">');list='ol';}out.push('<li>'+m[1]+'</li>');continue;}
+    closeL();out.push('<p class="cmp">'+line+'</p>');}
+  closeL();s=out.join('');
+  s=s.replace(/\*\*([^\n]+?)\*\*/g,'<strong>$1</strong>')
+     .replace(/(^|[^*\w])\*([^*\n]+?)\*(?!\w)/g,'$1<em>$2</em>')
+     .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="nofollow noopener">$1</a>');
+  return s.replace(/\u0000(\d+)\u0000/g,(_,i)=>blocks[+i]);
+}
 async function ask(payload,box){
  if(!CHAT_PROXY){box.textContent="（问答未配置）";return;}
  box.textContent="思考中…";
  try{const r=await fetch(CHAT_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
   if(!r.ok){box.textContent="出错："+r.status+" "+(await r.text());return;}
-  const reader=r.body.getReader(),dec=new TextDecoder();box.textContent="";
-  for(;;){const{done,value}=await reader.read();if(done)break;box.textContent+=dec.decode(value,{stream:true});}
+  const reader=r.body.getReader(),dec=new TextDecoder();let buf="";box.textContent="";box.classList.add('md');
+  for(;;){const{done,value}=await reader.read();if(done)break;buf+=dec.decode(value,{stream:true});box.innerHTML=mdHtml(buf);}
  }catch(e){box.textContent="出错了："+e;}
 }
 function askPaper(id){const q=document.getElementById('q').value.trim();if(!q)return;
