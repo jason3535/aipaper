@@ -71,6 +71,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/abrohan/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/furuwei/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/feifei/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/alexwei/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/dieterfox/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/adefossez/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/hlightman/</loc></url>
@@ -107,11 +108,13 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/dario/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/baevski/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zhuangliu/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/askell/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zhendaxie/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jinghaozhou/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/kaiming/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/yejin/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ofirpress/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/tworek/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/abdelmohamed/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/abardes/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcaron/</loc></url>
@@ -130,6 +133,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/louyang/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/akatharo/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jbgrill/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/tombrown/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ncarion/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/gulati/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/izbeltagy/</loc></url>
@@ -163,6 +167,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/sruder/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/abbeel/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jshen/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/antonoglou/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/yunjeychoi/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/fhutter/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/hinton/</loc></url>
@@ -177,6 +182,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/jgilmer/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/arjovsky/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/junyanzhu/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/kendall/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/pisola/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/oriol/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/avdoord/</loc></url>
@@ -184,6 +190,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/jimmyba/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/tmikolov/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mdefferrard/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/justinjohnson/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/tianqi/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/dkingma/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/vmnih/</loc></url>
@@ -364,6 +371,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/furuwei-2307.08621/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/tridao-2307.08691/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/feifei-2307.05973/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/alexwei-2307.02483/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/rrombach-2307.01952/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/dieterfox-2306.14896/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/adefossez-2306.05284/</loc></url>
@@ -444,6 +452,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/zhuangliu-2201.03545/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/rrombach-2112.10752/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/openai-2112.09332/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/askell-2112.00861/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/ybai-2112.00861/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zhendaxie-2111.09886/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jinghaozhou-2111.07832/</loc></url>
@@ -451,6 +460,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/openai-2110.14168/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/yejin-2110.07574/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/ofirpress-2108.12409/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/tworek-2107.03374/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/nzeghidour-2107.03312/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/openai-2107.03374/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/wenhaiwang-2106.13797/</loc></url>
@@ -484,6 +494,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/jonathanho-2006.11239/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/mcaron-2006.09882/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jbgrill-2006.07733/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/tombrown-2005.14165/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/aradford-2005.14165/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/ncarion-2005.12872/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/gulati-2005.08100/</loc></url>
@@ -538,6 +549,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/sruder-1801.06146/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/abbeel-1801.01290/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jshen-1712.05884/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/antonoglou-1712.01815/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/demis-1712.01815/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/yunjeychoi-1711.09020/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/fhutter-1711.05101/</loc></url>
@@ -562,6 +574,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/abbeel-1703.06907/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/rgirshick-1703.06870/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jifengdai-1703.06211/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/kendall-1703.04977/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/finn-1703.03400/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/arjovsky-1701.07875/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/shazeer-1701.06538/</loc></url>
@@ -580,6 +593,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/dario-1606.06565/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/oriol-1606.04080/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/lcchen-1606.00915/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/justinjohnson-1603.08155/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/tianqi-1603.02754/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/dkingma-1602.07868/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/feifei-1602.07332/</loc></url>
