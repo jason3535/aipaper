@@ -3,7 +3,7 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 197 位学者 / 422 篇论文
+规模: 204 位学者 / 429 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
@@ -117,6 +117,7 @@
 - [Dirk Groeneveld / Dirk Groeneveld](https://aipaper.jasonlin.tech/pp/dirkgroeneveld/): Research Scientist, Allen Institute for AI (OLMo) — 1 篇
 - [Damai Dai / 代达劢](https://aipaper.jasonlin.tech/pp/damaidai/): Researcher, DeepSeek-AI (Peking University) — 1 篇
 - [Zipeng Fu / 付子鹏](https://aipaper.jasonlin.tech/pp/zfu/): PhD Researcher, Stanford University (Robot Learning) — 1 篇
+- [Alexander Wei / 亚历山大·魏](https://aipaper.jasonlin.tech/pp/alexwei/): Research, OpenAI — 1 篇
 - [Dieter Fox / 迪特·福克斯](https://aipaper.jasonlin.tech/pp/dieterfox/): Professor, University of Washington; Senior Director of Robotics, NVIDIA — 1 篇
 - [Hunter Lightman / 亨特·莱特曼](https://aipaper.jasonlin.tech/pp/hlightman/): Research Scientist, OpenAI — 1 篇
 - [Rafael Rafailov / 拉斐尔·拉法伊洛夫](https://aipaper.jasonlin.tech/pp/rrafailov/): PhD, Stanford University — 1 篇
@@ -126,7 +127,6 @@
 - [Maxime Oquab / 马克西姆·奥卡布](https://aipaper.jasonlin.tech/pp/moquab/): Research Scientist, Meta AI (FAIR) — 1 篇
 - [Cheng Chi / 迟程](https://aipaper.jasonlin.tech/pp/chengchi/): Researcher, Stanford / Columbia (Robotics) — 1 篇
 - [Lvmin Zhang / 张吕敏](https://aipaper.jasonlin.tech/pp/lvminzhang/): PhD student, Stanford University (ControlNet, Fooocus) — 1 篇
-- [Timo Schick / 蒂莫·席克](https://aipaper.jasonlin.tech/pp/timoschick/): Research scientist (ex-Meta AI / FAIR) — 1 篇
 
 ## 高被引论文 Most-cited papers
 - [Deep Residual Learning for Image Recognition](https://aipaper.jasonlin.tech/p/kaiming-1512.03385/) — Kaiming He, Microsoft, 被引 231533
