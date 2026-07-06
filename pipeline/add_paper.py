@@ -15,7 +15,8 @@ GLOSS=json.load(open(BASE/"glossary.json",encoding="utf-8")) if (BASE/"glossary.
 GT="\n".join(f"  {k} → {v}" for k,v in GLOSS.items() if not k.startswith("_"))
 KEY=os.environ.get("DEEPSEEK_API_KEY") or sys.exit("需要 DEEPSEEK_API_KEY")
 URL="https://api.deepseek.com/chat/completions"
-OP=urllib.request.build_opener(urllib.request.ProxyHandler({}))   # 绕系统代理
+OP=urllib.request.build_opener(urllib.request.ProxyHandler({}))   # 绕系统代理(DeepSeek 直连)
+OPX=urllib.request.build_opener(urllib.request.ProxyHandler({'http':'http://127.0.0.1:7890','https':'http://127.0.0.1:7890'}))  # arXiv/ar5iv 走代理(直连 IP 已被限)
 HDR={"User-Agent":"AIPaper/0.1 (research reader)"}
 
 def call(system,user,mx=8000):
@@ -31,7 +32,7 @@ def call(system,user,mx=8000):
     raise RuntimeError(str(last)[:120])
 
 def arxiv_meta(aid):
-    x=OP.open(urllib.request.Request(f"http://export.arxiv.org/api/query?id_list={aid}",headers=HDR),timeout=40).read().decode()
+    x=OPX.open(urllib.request.Request(f"http://export.arxiv.org/api/query?id_list={aid}",headers=HDR),timeout=40).read().decode()
     me=re.search(r"<entry>(.*?)</entry>",x,re.S); x=me.group(1) if me else x   # 只取条目,不要 feed 标题
     g=lambda t:(re.search(rf"<{t}>(.*?)</{t}>",x,re.S) or [None,""])[1]
     title=re.sub(r"\s+"," ",g("title")).strip()
@@ -43,7 +44,7 @@ def arxiv_meta(aid):
 
 def ar5iv_sections(aid):
     try:
-        html=OP.open(urllib.request.Request(f"https://ar5iv.org/abs/{aid}",headers=HDR),timeout=60).read().decode("utf-8","ignore")
+        html=OPX.open(urllib.request.Request(f"https://ar5iv.org/abs/{aid}",headers=HDR),timeout=60).read().decode("utf-8","ignore")
     except Exception as e:
         print("  ar5iv 失败,仅用摘要:",str(e)[:60],file=sys.stderr); return []
     # 顺序扫描:遇到 h2/h3 切节,收集其下的 ltx_p 段落

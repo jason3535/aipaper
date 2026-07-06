@@ -8,6 +8,7 @@ from concurrent.futures import ThreadPoolExecutor,as_completed
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent.parent; DATA=ROOT/"data"
 OP=urllib.request.build_opener(urllib.request.ProxyHandler({}))
+OPX=urllib.request.build_opener(urllib.request.ProxyHandler({'http':'http://127.0.0.1:7890','https':'http://127.0.0.1:7890'}))
 KEY=os.environ.get("DEEPSEEK_API_KEY") or sys.exit("需要 DEEPSEEK_API_KEY")
 IMG="https://ar5iv.labs.arxiv.org"
 clean=lambda s:re.sub(r"\s+"," ",re.sub(r"<[^>]+>","",s)).strip()
@@ -24,7 +25,7 @@ def call(system,user,mx=8000):
     return {}
 
 def rich_sections(aid):
-    html=OP.open(urllib.request.Request(f"https://ar5iv.org/abs/{aid}",headers={"User-Agent":"AIPaper/0.1"}),timeout=60).read().decode("utf-8","ignore")
+    html=OPX.open(urllib.request.Request(f"https://ar5iv.org/abs/{aid}",headers={"User-Agent":"AIPaper/0.1"}),timeout=60).read().decode("utf-8","ignore")
     # cut off bibliography/references onward (keep appendix which precedes it)
     cut=re.search(r'<(section|div)[^>]*class="[^"]*ltx_bibliography',html)
     if cut: html=html[:cut.start()]
