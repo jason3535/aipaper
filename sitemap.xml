@@ -2,8 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://aipaper.jasonlin.tech/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/#/orgs</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/bengio/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/deepseek/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/abbeel/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/yejin/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/tianqi/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/justinjohnson/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/songhan/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/lecun/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/tridao/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/demis/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/kaiming/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/leike/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jinzebai/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xingwusun/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jimfan/</loc></url>
@@ -45,7 +55,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/loubna/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/dayaguo/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/wenfengliang/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/songhan/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/pingluo/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/songyangliu/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rgirshick/</loc></url>
@@ -53,7 +62,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/svlevine/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/aradford/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/tkarras/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/tridao/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/keyutian/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/lindahua/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/haoyulu/</loc></url>
@@ -104,15 +112,12 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/pdhariwal/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/achowdhery/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jhoffmann/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/leike/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/dario/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/baevski/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zhuangliu/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/askell/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zhendaxie/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jinghaozhou/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/kaiming/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/yejin/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ofirpress/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/tworek/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/abdelmohamed/</loc></url>
@@ -121,7 +126,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/pvelickovic/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jianlinsu/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zeliu/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/lecun/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/chaojia/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/fedus/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xiangyuzhang/</loc></url>
@@ -165,7 +169,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/lcchen/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mbronstein/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/sruder/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/abbeel/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jshen/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/antonoglou/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/yunjeychoi/</loc></url>
@@ -190,8 +193,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/jimmyba/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/tmikolov/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mdefferrard/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/justinjohnson/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/tianqi/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/dkingma/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/vmnih/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/cszegedy/</loc></url>
@@ -203,12 +204,21 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/jsohldick/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mmirza/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ksimonyan/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/bengio/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jbruna/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jeffdean/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/bengio-2606.29657/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-dspark/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/abbeel-2606.19333/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/yejin-2606.15216/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/tianqi-2606.15323/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/justinjohnson-2606.13676/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/songhan-2606.04511/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/lecun-2605.26379/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2606.19348/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/tridao-2603.15569/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/demis-2602.10177/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/kaiming-2602.04770/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/leike-2601.04728/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/demis-2512.04797/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2512.02556/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jinzebai-2511.21631/</loc></url>
