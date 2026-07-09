@@ -3,19 +3,19 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 204 位学者 / 445 篇论文
+规模: 204 位学者 / 451 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
 - [DeepSeek-AI / 深度求索](https://aipaper.jasonlin.tech/pp/deepseek/): Frontier open-model lab, China — 14 篇
+- [OpenAI / OpenAI](https://aipaper.jasonlin.tech/pp/openai/): Frontier AI lab (GPT / DALL·E / Codex) — 12 篇
 - [Song Han / 韩松](https://aipaper.jasonlin.tech/pp/songhan/): Associate Professor, MIT — 11 篇
+- [Anthropic / Anthropic](https://aipaper.jasonlin.tech/pp/anthropic/): AI safety lab (Claude); interpretability & alignment — 11 篇
 - [Jie Tang / 唐杰](https://aipaper.jasonlin.tech/pp/jietang/): Professor, Tsinghua University; Zhipu AI / GLM — 9 篇
-- [OpenAI / OpenAI](https://aipaper.jasonlin.tech/pp/openai/): Frontier AI lab (GPT / DALL·E / Codex) — 9 篇
 - [Junyang Lin / 林俊旸](https://aipaper.jasonlin.tech/pp/junyanglin/): Lead, Qwen Team, Alibaba — 8 篇
 - [Zhilin Yang / 杨植麟](https://aipaper.jasonlin.tech/pp/zhilinyang/): Founder & CEO, Moonshot AI (Kimi); XLNet lead author — 8 篇
 - [Robin Rombach / 罗宾·罗姆巴赫](https://aipaper.jasonlin.tech/pp/rrombach/): Co-founder, Black Forest Labs (formerly Stability AI / CompVis) — 8 篇
 - [Aaron Grattafiori / Aaron Grattafiori](https://aipaper.jasonlin.tech/pp/aarongrattafiori/): Research Lead, Meta AI (Llama) — 8 篇
-- [Anthropic / Anthropic](https://aipaper.jasonlin.tech/pp/anthropic/): AI safety lab (Claude); interpretability & alignment — 8 篇
 - [Ross Girshick / 罗斯·吉尔希克](https://aipaper.jasonlin.tech/pp/rgirshick/): Research Scientist, Meta AI (FAIR) — 8 篇
 - [Alec Radford / 亚历克·拉德福德](https://aipaper.jasonlin.tech/pp/aradford/): Researcher, OpenAI (DCGAN, GPT, CLIP) — 8 篇
 - [Xingwu Sun / 孙兴武](https://aipaper.jasonlin.tech/pp/xingwusun/): Lead Researcher, Hunyuan Team, Tencent — 7 篇
