@@ -46,8 +46,9 @@ def parse_md(md, title_hint=""):
             if cur["paras"]: secs.append(cur)
             cur = {"sec": head, "paras": []}
             continue
-        if s.startswith("![") or s in ("---", "***", "___") or s.startswith(("|", ">")) \
-           or re.match(r"^\[[^\]]*\]\([^)]*\)$", s): continue
+        if s.startswith("![") or s in ("---", "***", "___") or s.startswith(("|", ">", "[](")) \
+           or re.match(r"^\[[^\]]*\]\([^)]*\)$", s) \
+           or re.search(r"twitter\.com/intent|linkedin\.com/share|facebook\.com/sharer|mailto:", s, re.I): continue
         t = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", s)
         t = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", t)          # 链接留文字
         t = re.sub(r"\*\*|__|`|^#+\s*|^>\s*", "", t).strip()
