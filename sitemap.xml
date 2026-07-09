@@ -55,6 +55,8 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/loubna/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/dayaguo/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/wenfengliang/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/openai/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/anthropic/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/pingluo/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/songyangliu/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rgirshick/</loc></url>
@@ -71,7 +73,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/zshao/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/dirkgroeneveld/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/damaidai/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/anthropic/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zfu/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/lianminzheng/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mahn/</loc></url>
@@ -92,7 +93,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/deyaopeng/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/moquab/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xiaohuazhai/</loc></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/openai/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/leizhangidea/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/chengchi/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/yangsong/</loc></url>
@@ -298,7 +298,10 @@
   <url><loc>https://aipaper.jasonlin.tech/p/xingwusun-2501.02423/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/wenfengliang-2412.19437/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/junnanli-2412.16256/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/openai-deliberative-alignment/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/anyang-2412.15115/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-building-effective-agents/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-alignment-faking/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2412.10302/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/songhan-2412.04468/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2411.07975/</loc></url>
@@ -332,6 +335,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/tkarras-2406.02507/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/tridao-2405.21060/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2405.14333/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-mapping-mind/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/wenfengliang-2405.04434/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/songhan-2405.04532/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/sebastienbubeck-2404.14219/</loc></url>
@@ -358,6 +362,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/wenhaiwang-2312.14238/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xinlongwang-2312.13286/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/shazeer-2312.11805/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/openai-weak-to-strong/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/lianminzheng-2312.07104/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/tkarras-2312.02696/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/tridao-2312.00752/</loc></url>
@@ -395,6 +400,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/shunyuyao-2305.10601/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/junnanli-2305.06500/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/rgirshick-2305.05665/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/openai-explain-neurons/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/finn-2304.13705/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deyaopeng-2304.10592/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/haotianliu-2304.08485/</loc></url>
