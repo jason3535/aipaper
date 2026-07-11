@@ -76,6 +76,7 @@ def merge():
     h=h[:a]+"const PAPERS = "+json.dumps(P,ensure_ascii=False)+";\n/* PAPERS_END */"+h[b+len("/* PAPERS_END */"):]
     HTML.write_text(h,encoding="utf-8")
     print(f"merged {len(add)} papers -> index.html (total {len(P)})",file=sys.stderr)
+    import subprocess as _sp, sys as _sys, os as _os; _sp.run([_sys.executable, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "slim_index.py")], check=False)
 
 def main():
     if sys.argv[1]=="--merge": merge(); return
