@@ -61,6 +61,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/songyangliu/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rgirshick/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/morganeriviere/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/deepmind/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/svlevine/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/aradford/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/tkarras/</loc></url>
@@ -309,6 +310,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/songhan-2411.05007/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xingwusun-2411.02265/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/kblack-2410.24164/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-sabotage-evaluations/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/pingluo-2410.13848/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/songhan-2410.10733/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/songyangliu-2410.07864/</loc></url>
@@ -327,12 +329,14 @@
   <url><loc>https://aipaper.jasonlin.tech/p/rgirshick-2408.00714/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/morganeriviere-2408.00118/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/aarongrattafiori-2407.21783/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/deepmind-alphaproof-imo/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/junnanli-2407.15754/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/junyanglin-2407.10759/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/junyanglin-2407.10671/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jietang-2406.12793/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2406.11931/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/svlevine-2406.09246/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-claude-character/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/aradford-2406.04093/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/tkarras-2406.02507/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/tridao-2405.21060/</loc></url>
@@ -343,6 +347,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/songhan-2405.04532/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/sebastienbubeck-2404.14219/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/keyutian-2404.02905/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-many-shot-jailbreaking/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/lindahua-2403.17297/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/rrombach-2403.12015/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/rrombach-2403.12008/</loc></url>
@@ -356,6 +361,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/sarahooker-2402.07827/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zshao-2402.03300/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/dirkgroeneveld-2402.00838/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/openai-bio-threat-early-warning/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/dayaguo-2401.14196/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/damaidai-2401.06066/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/anthropic-2401.05566/</loc></url>
@@ -373,6 +379,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/rrombach-2311.15127/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jietang-2311.03079/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xinghangli-2311.01378/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/openai-frontier-risk-preparedness/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jimfan-2310.12931/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/aqjiang-2310.10631/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/mahn-2310.08864/</loc></url>
@@ -445,6 +452,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/jietang-2210.02414/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/anthropic-2209.10652/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/nzeghidour-2209.03143/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/openai-approach-to-alignment/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/anthropic-2209.07858/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jonathanho-2207.12598/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/anthropic-2207.05221/</loc></url>
@@ -504,6 +512,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/chaojia-2102.05918/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/fedus-2101.03961/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xiangyuzhang-2101.03697/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/deepmind-alphafold/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/yangsong-2011.13456/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/kaplan-2010.14701/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/adosovitskiy-2010.11929/</loc></url>
