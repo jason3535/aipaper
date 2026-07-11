@@ -21,6 +21,8 @@ def fetch_md(url):
     if r.headers.get("Content-Encoding") == "gzip": raw = gzip.decompress(raw)
     return raw.decode("utf-8", "ignore")
 
+# 已知坑:deepmind.google 的页面开头会带产品导航菜单(Genie/Gemini/Gemma 连写的短语段),
+# Jina 抓下来像正文。收录 DeepMind 后务必人工检查 full[0] 是否导航垃圾,是则整节删除并重建 absEn/absZh。
 STOP = re.compile(r"^#{1,4}\s+(related|footnotes?|references|acknowledg|read the|share|citation|appendix|more news|sign up|subscribe|policy memo|authors?|contributors?|further reading|explore more|стать)", re.I)
 
 def parse_md(md, title_hint=""):
@@ -98,6 +100,7 @@ def main():
     papers.sort(key=lambda p: p.get("date", ""), reverse=True)
     h = h[:ai] + "const PAPERS = " + json.dumps(papers, ensure_ascii=False) + ";\n/* PAPERS_END */" + h[bi + len("/* PAPERS_END */"):]
     HTML.write_text(h, encoding="utf-8")
+    import subprocess as _sp; _sp.run([sys.executable, str(ROOT / "pipeline" / "slim_index.py")], check=False)  # 首屏瘦身(剥重复字段)
     print(f"完成: {pid_id} | {len(secs)} 节 | 贡献{len(ins.get('contrib',[]))}/局限{len(ins.get('limits',[]))}", file=sys.stderr)
 
 if __name__ == "__main__":
