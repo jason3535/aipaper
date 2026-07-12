@@ -3,7 +3,7 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 205 位学者 / 473 篇论文
+规模: 206 位学者 / 479 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
@@ -26,6 +26,7 @@
 - [Tero Karras / 泰罗·卡拉斯](https://aipaper.jasonlin.tech/pp/tkarras/): Distinguished Research Scientist, NVIDIA Research — 7 篇
 - [Demis Hassabis / 杰米斯·哈萨比斯](https://aipaper.jasonlin.tech/pp/demis/): CEO, Google DeepMind — 6 篇
 - [Jim Fan / 范麟熙](https://aipaper.jasonlin.tech/pp/jimfan/): Senior Research Scientist, NVIDIA — 6 篇
+- [Sam Altman / 萨姆·奥特曼](https://aipaper.jasonlin.tech/pp/sam/): Co-founder & CEO, OpenAI — 6 篇
 - [Noam Shazeer / 诺姆·沙泽尔](https://aipaper.jasonlin.tech/pp/shazeer/): Co-lead, Google Gemini — 6 篇
 - [Xinlong Wang / 王鑫龙](https://aipaper.jasonlin.tech/pp/xinlongwang/): Research Scientist, BAAI (Beijing Academy of AI) — 6 篇
 - [Tri Dao / 特里·道](https://aipaper.jasonlin.tech/pp/tridao/): Chief Scientist, Together AI; Professor, Princeton — 5 篇
@@ -126,7 +127,6 @@
 - [Dieter Fox / 迪特·福克斯](https://aipaper.jasonlin.tech/pp/dieterfox/): Professor, University of Washington; Senior Director of Robotics, NVIDIA — 1 篇
 - [Hunter Lightman / 亨特·莱特曼](https://aipaper.jasonlin.tech/pp/hlightman/): Research Scientist, OpenAI — 1 篇
 - [Rafael Rafailov / 拉斐尔·拉法伊洛夫](https://aipaper.jasonlin.tech/pp/rrafailov/): PhD, Stanford University — 1 篇
-- [Joshua Ainslie / 约书亚·安斯利](https://aipaper.jasonlin.tech/pp/jainslie/): Research Engineer, Google DeepMind — 1 篇
 
 ## 高被引论文 Most-cited papers
 - [Deep Residual Learning for Image Recognition](https://aipaper.jasonlin.tech/p/kaiming-1512.03385/) — Kaiming He, Microsoft, 被引 231533
