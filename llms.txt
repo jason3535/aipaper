@@ -3,7 +3,7 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 205 位学者 / 470 篇论文
+规模: 205 位学者 / 473 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
@@ -11,6 +11,7 @@
 - [OpenAI / OpenAI](https://aipaper.jasonlin.tech/pp/openai/): Frontier AI lab (GPT / DALL·E / Codex) — 17 篇
 - [DeepSeek-AI / 深度求索](https://aipaper.jasonlin.tech/pp/deepseek/): Frontier open-model lab, China — 14 篇
 - [Song Han / 韩松](https://aipaper.jasonlin.tech/pp/songhan/): Associate Professor, MIT — 11 篇
+- [Dario Amodei / 达里奥·阿莫迪](https://aipaper.jasonlin.tech/pp/dario/): CEO, Anthropic — 9 篇
 - [Jie Tang / 唐杰](https://aipaper.jasonlin.tech/pp/jietang/): Professor, Tsinghua University; Zhipu AI / GLM — 9 篇
 - [Junyang Lin / 林俊旸](https://aipaper.jasonlin.tech/pp/junyanglin/): Lead, Qwen Team, Alibaba — 8 篇
 - [Zhilin Yang / 杨植麟](https://aipaper.jasonlin.tech/pp/zhilinyang/): Founder & CEO, Moonshot AI (Kimi); XLNet lead author — 8 篇
@@ -27,7 +28,6 @@
 - [Jim Fan / 范麟熙](https://aipaper.jasonlin.tech/pp/jimfan/): Senior Research Scientist, NVIDIA — 6 篇
 - [Noam Shazeer / 诺姆·沙泽尔](https://aipaper.jasonlin.tech/pp/shazeer/): Co-lead, Google Gemini — 6 篇
 - [Xinlong Wang / 王鑫龙](https://aipaper.jasonlin.tech/pp/xinlongwang/): Research Scientist, BAAI (Beijing Academy of AI) — 6 篇
-- [Dario Amodei / 达里奥·阿莫迪](https://aipaper.jasonlin.tech/pp/dario/): CEO, Anthropic — 6 篇
 - [Tri Dao / 特里·道](https://aipaper.jasonlin.tech/pp/tridao/): Chief Scientist, Together AI; Professor, Princeton — 5 篇
 - [Yu Gao / 高宇](https://aipaper.jasonlin.tech/pp/yugao/): ByteDance Seed, image & video generation — 5 篇
 - [Wenhai Wang / 王文海](https://aipaper.jasonlin.tech/pp/wenhaiwang/): Researcher (InternVL), Shanghai AI Lab / CUHK — 5 篇
