@@ -3,13 +3,13 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 205 位学者 / 459 篇论文
+规模: 205 位学者 / 470 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
-- [OpenAI / OpenAI](https://aipaper.jasonlin.tech/pp/openai/): Frontier AI lab (GPT / DALL·E / Codex) — 15 篇
+- [Anthropic / Anthropic](https://aipaper.jasonlin.tech/pp/anthropic/): AI safety lab (Claude); interpretability & alignment — 21 篇
+- [OpenAI / OpenAI](https://aipaper.jasonlin.tech/pp/openai/): Frontier AI lab (GPT / DALL·E / Codex) — 17 篇
 - [DeepSeek-AI / 深度求索](https://aipaper.jasonlin.tech/pp/deepseek/): Frontier open-model lab, China — 14 篇
-- [Anthropic / Anthropic](https://aipaper.jasonlin.tech/pp/anthropic/): AI safety lab (Claude); interpretability & alignment — 14 篇
 - [Song Han / 韩松](https://aipaper.jasonlin.tech/pp/songhan/): Associate Professor, MIT — 11 篇
 - [Jie Tang / 唐杰](https://aipaper.jasonlin.tech/pp/jietang/): Professor, Tsinghua University; Zhipu AI / GLM — 9 篇
 - [Junyang Lin / 林俊旸](https://aipaper.jasonlin.tech/pp/junyanglin/): Lead, Qwen Team, Alibaba — 8 篇
@@ -33,6 +33,7 @@
 - [Wenhai Wang / 王文海](https://aipaper.jasonlin.tech/pp/wenhaiwang/): Researcher (InternVL), Shanghai AI Lab / CUHK — 5 篇
 - [Yuntao Bai / 白云涛](https://aipaper.jasonlin.tech/pp/ybai/): Research Scientist, Anthropic — 5 篇
 - [Yejin Choi / 崔艺珍](https://aipaper.jasonlin.tech/pp/yejin/): Professor, Stanford University; Senior Director, NVIDIA — 4 篇
+- [Google DeepMind / 谷歌 DeepMind](https://aipaper.jasonlin.tech/pp/deepmind/): AI research lab (Gemini, AlphaFold, AlphaGo) — 4 篇
 - [Oriol Vinyals / 奥里奥尔·维尼亚尔斯](https://aipaper.jasonlin.tech/pp/oriol/): VP of Research, Google DeepMind; Gemini co-lead — 4 篇
 - [Yoshua Bengio / 约书亚·本吉奥](https://aipaper.jasonlin.tech/pp/bengio/): Professor, Mila / U. Montréal; Turing Award — 3 篇
 - [Pieter Abbeel / 彼得·阿贝尔](https://aipaper.jasonlin.tech/pp/abbeel/): Professor, UC Berkeley — 3 篇
@@ -64,7 +65,6 @@
 - [Daya Guo / 郭达雅](https://aipaper.jasonlin.tech/pp/dayaguo/): Research Scientist, DeepSeek-AI — 2 篇
 - [Wenfeng Liang / 梁文锋](https://aipaper.jasonlin.tech/pp/wenfengliang/): Founder & CEO, DeepSeek; High-Flyer — 2 篇
 - [Ping Luo / 罗平](https://aipaper.jasonlin.tech/pp/pingluo/): Associate Professor, The University of Hong Kong — 2 篇
-- [Google DeepMind / 谷歌 DeepMind](https://aipaper.jasonlin.tech/pp/deepmind/): AI research lab (Gemini, AlphaFold, AlphaGo) — 2 篇
 - [Sergey Levine / 谢尔盖·莱文](https://aipaper.jasonlin.tech/pp/svlevine/): Associate Professor, UC Berkeley; Co-founder, Physical Intelligence — 2 篇
 - [Lianmin Zheng / 郑怜悯](https://aipaper.jasonlin.tech/pp/lianminzheng/): ML Systems Researcher, Co-creator of vLLM and SGLang — 2 篇
 - [Michael Ahn / 迈克尔·安](https://aipaper.jasonlin.tech/pp/mahn/): Research Engineer, Google DeepMind Robotics — 2 篇
