@@ -86,10 +86,13 @@ ${pe.bioZh?`<p class="zh">${esc(pe.bioZh)}</p><p class="en">${esc(pe.bioEn||'')}
   pn++;
 });
 // sitemap
-const urls=[`${SITE}/`,`${SITE}/#/orgs`,...Object.keys(byPid).filter(pid=>PEOPLE[pid]).map(pid=>`${SITE}/pp/${pid}/`),...PAPERS.map(p=>`${SITE}/p/${p.id}/`)];
+const today=new Date().toISOString().slice(0,10);
+const urls=[[`${SITE}/`,today],
+  ...Object.keys(byPid).filter(pid=>PEOPLE[pid]).map(pid=>{const ds=byPid[pid].map(p=>(p.date||today)).sort().reverse();return [`${SITE}/pp/${pid}/`,(ds[0]||today).slice(0,10)];}),
+  ...PAPERS.map(p=>[`${SITE}/p/${p.id}/`,((p.date||today)+'').slice(0,10)])];
 fs.writeFileSync(path.join(ROOT,'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`+
-  urls.map(u=>`  <url><loc>${u}</loc></url>`).join('\n')+`\n</urlset>\n`);
+  urls.map(([u,d])=>`  <url><loc>${u}</loc><lastmod>${d}</lastmod></url>`).join('\n')+`\n</urlset>\n`);
 // llms.txt
 const scholars=Object.keys(byPid).filter(pid=>PEOPLE[pid]);
 const llms=`# AI Paper · 双语论文阅读站\n\n> 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.\n\n站点: ${SITE}/\n规模: ${scholars.length} 位学者 / ${PAPERS.length} 篇论文\n每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。\n\n## 学者 Scholars\n${scholars.sort((a,b)=>byPid[b].length-byPid[a].length).slice(0,120).map(pid=>{const pe=PEOPLE[pid];return `- [${pe.en}${pe.zh?' / '+pe.zh:''}](${SITE}/pp/${pid}/): ${(pe.tiEn||'').replace(/\n/g,' ')} — ${byPid[pid].length} 篇`;}).join('\n')}\n\n## 高被引论文 Most-cited papers\n${PAPERS.slice().filter(p=>p.cites!=null).sort((a,b)=>(b.cites||0)-(a.cites||0)).slice(0,50).map(p=>{const pe=PEOPLE[p.pid]||{};return `- [${p.tEn}](${SITE}/p/${p.id}/) — ${pe.en||''}, ${p.org||''}, 被引 ${p.cites}`;}).join('\n')}\n\n## 数据接口\n- sitemap: ${SITE}/sitemap.xml\n- 论文检索目录: ${SITE}/data/index.json\n`;
