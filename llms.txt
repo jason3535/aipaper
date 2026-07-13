@@ -26,7 +26,7 @@
 - [Tero Karras / 泰罗·卡拉斯](https://aipaper.jasonlin.tech/pp/tkarras/): Distinguished Research Scientist, NVIDIA Research — 7 篇
 - [Demis Hassabis / 杰米斯·哈萨比斯](https://aipaper.jasonlin.tech/pp/demis/): CEO, Google DeepMind — 6 篇
 - [Jim Fan / 范麟熙](https://aipaper.jasonlin.tech/pp/jimfan/): Senior Research Scientist, NVIDIA — 6 篇
-- [Sam Altman / 萨姆·奥特曼](https://aipaper.jasonlin.tech/pp/sam/): Co-founder & CEO, OpenAI — 6 篇
+- [Sam Altman / 萨姆·奥尔特曼](https://aipaper.jasonlin.tech/pp/sam/): Co-founder & CEO, OpenAI — 6 篇
 - [Noam Shazeer / 诺姆·沙泽尔](https://aipaper.jasonlin.tech/pp/shazeer/): Co-lead, Google Gemini — 6 篇
 - [Xinlong Wang / 王鑫龙](https://aipaper.jasonlin.tech/pp/xinlongwang/): Research Scientist, BAAI (Beijing Academy of AI) — 6 篇
 - [Tri Dao / 特里·道](https://aipaper.jasonlin.tech/pp/tridao/): Chief Scientist, Together AI; Professor, Princeton — 5 篇
@@ -79,9 +79,9 @@
 - [Chelsea Finn / 切尔西·芬恩](https://aipaper.jasonlin.tech/pp/finn/): Assistant Professor, Stanford; co-founder, Physical Intelligence — 2 篇
 - [Xiaohua Zhai / 翟晓华](https://aipaper.jasonlin.tech/pp/xiaohuazhai/): Research Scientist, Google DeepMind (SigLIP / vision-language) — 2 篇
 - [Lei Zhang / 张磊](https://aipaper.jasonlin.tech/pp/leizhangidea/): Chair Professor, HKUST(GZ); founding head of IDEA Research CVR; former Microsoft — 2 篇
-- [Danijar Hafner / 丹尼亚尔·哈夫纳](https://aipaper.jasonlin.tech/pp/dhafner/): Research Scientist, Google DeepMind (Dreamer) — 2 篇
+- [Danijar Hafner / 达尼亚尔·哈夫纳](https://aipaper.jasonlin.tech/pp/dhafner/): Research Scientist, Google DeepMind (Dreamer) — 2 篇
 - [Neil Zeghidour / 尼尔·泽吉杜尔](https://aipaper.jasonlin.tech/pp/nzeghidour/): Research Scientist; ex-Google DeepMind; neural audio codecs & AudioLM — 2 篇
-- [Jason Wei / 杰森·韦](https://aipaper.jasonlin.tech/pp/jasonwei/): Research Scientist, OpenAI — 2 篇
+- [Jason Wei / 杰森·魏](https://aipaper.jasonlin.tech/pp/jasonwei/): AI researcher (ex-OpenAI) — 2 篇
 - [Alexei Baevski / 阿列克谢·巴耶夫斯基](https://aipaper.jasonlin.tech/pp/baevski/): Research Scientist, Meta AI (FAIR) / co-founder, AI startup — 2 篇
 - [Mathilde Caron / 玛蒂尔德·卡龙](https://aipaper.jasonlin.tech/pp/mcaron/): Research Scientist, Google DeepMind (ex-Meta AI / Inria) — 2 篇
 - [Petar Veličković / 佩塔尔·韦利奇科维奇](https://aipaper.jasonlin.tech/pp/pvelickovic/): Staff Research Scientist, Google DeepMind; Affiliated Lecturer, University of Cambridge — 2 篇
