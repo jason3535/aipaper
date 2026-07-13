@@ -966,7 +966,7 @@ function vPerson(pid){
  </section></div>${footer()}`;
 }
 function renderItem(it){
- if(it.t==='fig')return `<figure class="pfig"><img loading="lazy" src="${it.src}" alt="figure" onerror="this.closest('figure').style.display='none'"><figcaption><span class="lang-en">${esc(it.capEn||'')}</span><span class="lang-zh">${esc(it.capZh||'')}</span></figcaption></figure>`;
+ if(it.t==='fig')return `<figure class="pfig"><img loading="lazy" src="${it.src}" alt="figure" data-orig="${it.origSrc||''}" onerror="if(this.dataset.orig&&this.src!==this.dataset.orig){this.src=this.dataset.orig;}else{this.closest('figure').style.display='none';}"><figcaption><span class="lang-en">${esc(it.capEn||'')}</span><span class="lang-zh">${esc(it.capZh||'')}</span></figcaption></figure>`;
  if(it.t==='eq')return `<div class="peq">\\[${it.tex}\\]</div>`;
  return `<div class="para"><div class="en">${esc(it.en)}</div><div class="zh">${esc(it.zh)}</div></div>`;}
 function ilist(arr,head){return `<div class="icard"><h4 style="color:var(--acc)">${head}</h4><ul style="margin:0;padding-left:18px">${(arr||[]).map(x=>`<li><span class="lang-en">${esc(x.en)}</span><span class="z lang-zh">${esc(x.zh)}</span></li>`).join('')}</ul></div>`;}
