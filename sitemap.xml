@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://aipaper.jasonlin.tech/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/#/orgs</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/satya/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/bengio/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/deepseek/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/abbeel/</loc></url>
@@ -208,9 +209,11 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/ksimonyan/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jbruna/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jeffdean/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/satya-reverse-information-paradox/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/bengio-2606.29657/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-dspark/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/abbeel-2606.19333/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/satya-frontier-ecosystem/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/yejin-2606.15216/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/tianqi-2606.15323/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/justinjohnson-2606.13676/</loc></url>
@@ -222,10 +225,12 @@
   <url><loc>https://aipaper.jasonlin.tech/p/kaiming-2602.04770/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/dario-adolescence-of-technology/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/leike-2601.04728/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/satya-looking-ahead-2026/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/demis-2512.04797/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2512.02556/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jinzebai-2511.21631/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xingwusun-2511.18870/</loc></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/satya-positive-sum/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jimfan-2511.00062/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2510.18234/</loc></url>
   <url><loc>https://aipaper.jasonlin.tech/p/anthropic-context-engineering/</loc></url>
