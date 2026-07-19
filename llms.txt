@@ -3,7 +3,7 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 207 位学者 / 483 篇论文
+规模: 212 位学者 / 503 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
@@ -11,36 +11,40 @@
 - [OpenAI / OpenAI](https://aipaper.jasonlin.tech/pp/openai/): Frontier AI lab (GPT / DALL·E / Codex) — 17 篇
 - [DeepSeek-AI / 深度求索](https://aipaper.jasonlin.tech/pp/deepseek/): Frontier open-model lab, China — 14 篇
 - [Song Han / 韩松](https://aipaper.jasonlin.tech/pp/songhan/): Associate Professor, MIT — 11 篇
+- [Jie Tang / 唐杰](https://aipaper.jasonlin.tech/pp/jietang/): Professor, Tsinghua University; Zhipu AI / GLM — 10 篇
+- [Junyang Lin / 林俊旸](https://aipaper.jasonlin.tech/pp/junyanglin/): Lead, Qwen Team, Alibaba — 9 篇
+- [Zhilin Yang / 杨植麟](https://aipaper.jasonlin.tech/pp/zhilinyang/): Founder & CEO, Moonshot AI (Kimi); XLNet lead author — 9 篇
 - [Dario Amodei / 达里奥·阿莫迪](https://aipaper.jasonlin.tech/pp/dario/): CEO, Anthropic — 9 篇
-- [Jie Tang / 唐杰](https://aipaper.jasonlin.tech/pp/jietang/): Professor, Tsinghua University; Zhipu AI / GLM — 9 篇
-- [Junyang Lin / 林俊旸](https://aipaper.jasonlin.tech/pp/junyanglin/): Lead, Qwen Team, Alibaba — 8 篇
-- [Zhilin Yang / 杨植麟](https://aipaper.jasonlin.tech/pp/zhilinyang/): Founder & CEO, Moonshot AI (Kimi); XLNet lead author — 8 篇
+- [Xingwu Sun / 孙兴武](https://aipaper.jasonlin.tech/pp/xingwusun/): Lead Researcher, Hunyuan Team, Tencent — 8 篇
+- [An Yang / 杨安](https://aipaper.jasonlin.tech/pp/anyang/): Researcher, Qwen Team, Alibaba — 8 篇
 - [Robin Rombach / 罗宾·罗姆巴赫](https://aipaper.jasonlin.tech/pp/rrombach/): Co-founder, Black Forest Labs (formerly Stability AI / CompVis) — 8 篇
 - [Aaron Grattafiori / Aaron Grattafiori](https://aipaper.jasonlin.tech/pp/aarongrattafiori/): Research Lead, Meta AI (Llama) — 8 篇
 - [Ross Girshick / 罗斯·吉尔希克](https://aipaper.jasonlin.tech/pp/rgirshick/): Research Scientist, Meta AI (FAIR) — 8 篇
 - [Alec Radford / 亚历克·拉德福德](https://aipaper.jasonlin.tech/pp/aradford/): Researcher, OpenAI (DCGAN, GPT, CLIP) — 8 篇
-- [Xingwu Sun / 孙兴武](https://aipaper.jasonlin.tech/pp/xingwusun/): Lead Researcher, Hunyuan Team, Tencent — 7 篇
 - [Albert Q. Jiang / 蒋启天](https://aipaper.jasonlin.tech/pp/aqjiang/): Research Scientist, Mistral AI — 7 篇
-- [An Yang / 杨安](https://aipaper.jasonlin.tech/pp/anyang/): Researcher, Qwen Team, Alibaba — 7 篇
 - [Junnan Li / 李俊男](https://aipaper.jasonlin.tech/pp/junnanli/): Research Scientist (BLIP/BLIP-2 author), formerly Salesforce Research — 7 篇
 - [Tero Karras / 泰罗·卡拉斯](https://aipaper.jasonlin.tech/pp/tkarras/): Distinguished Research Scientist, NVIDIA Research — 7 篇
+- [Yu Gao / 高宇](https://aipaper.jasonlin.tech/pp/yugao/): ByteDance Seed, image & video generation — 6 篇
 - [Demis Hassabis / 杰米斯·哈萨比斯](https://aipaper.jasonlin.tech/pp/demis/): CEO, Google DeepMind — 6 篇
 - [Jim Fan / 范麟熙](https://aipaper.jasonlin.tech/pp/jimfan/): Senior Research Scientist, NVIDIA — 6 篇
 - [Sam Altman / 萨姆·奥尔特曼](https://aipaper.jasonlin.tech/pp/sam/): Co-founder & CEO, OpenAI — 6 篇
 - [Noam Shazeer / 诺姆·沙泽尔](https://aipaper.jasonlin.tech/pp/shazeer/): Co-lead, Google Gemini — 6 篇
 - [Xinlong Wang / 王鑫龙](https://aipaper.jasonlin.tech/pp/xinlongwang/): Research Scientist, BAAI (Beijing Academy of AI) — 6 篇
 - [Tri Dao / 特里·道](https://aipaper.jasonlin.tech/pp/tridao/): Chief Scientist, Together AI; Professor, Princeton — 5 篇
-- [Yu Gao / 高宇](https://aipaper.jasonlin.tech/pp/yugao/): ByteDance Seed, image & video generation — 5 篇
 - [Wenhai Wang / 王文海](https://aipaper.jasonlin.tech/pp/wenhaiwang/): Researcher (InternVL), Shanghai AI Lab / CUHK — 5 篇
 - [Yuntao Bai / 白云涛](https://aipaper.jasonlin.tech/pp/ybai/): Research Scientist, Anthropic — 5 篇
 - [Satya Nadella / 萨提亚·纳德拉](https://aipaper.jasonlin.tech/pp/satya/): Chairman & CEO, Microsoft — 4 篇
 - [Yejin Choi / 崔艺珍](https://aipaper.jasonlin.tech/pp/yejin/): Professor, Stanford University; Senior Director, NVIDIA — 4 篇
+- [Junjie Yan / 闫俊杰](https://aipaper.jasonlin.tech/pp/yanjunjie/): Founder & CEO, MiniMax — 4 篇
+- [StepFun / 阶跃星辰](https://aipaper.jasonlin.tech/pp/stepfun/): StepFun, multimodal generation — 4 篇
 - [Google DeepMind / 谷歌 DeepMind](https://aipaper.jasonlin.tech/pp/deepmind/): AI research lab (Gemini, AlphaFold, AlphaGo) — 4 篇
 - [Oriol Vinyals / 奥里奥尔·维尼亚尔斯](https://aipaper.jasonlin.tech/pp/oriol/): VP of Research, Google DeepMind; Gemini co-lead — 4 篇
+- [Thomas Mesnard / Thomas Mesnard](https://aipaper.jasonlin.tech/pp/thomasmesnard/): Research Scientist, Google DeepMind (Gemma) — 3 篇
 - [Yoshua Bengio / 约书亚·本吉奥](https://aipaper.jasonlin.tech/pp/bengio/): Professor, Mila / U. Montréal; Turing Award — 3 篇
 - [Pieter Abbeel / 彼得·阿贝尔](https://aipaper.jasonlin.tech/pp/abbeel/): Professor, UC Berkeley — 3 篇
+- [Akhiad Bercovich / Akhiad Bercovich](https://aipaper.jasonlin.tech/pp/akhiadbercovich/): NVIDIA, efficient reasoning models — 3 篇
+- [Qiying Yu / 于琪颖](https://aipaper.jasonlin.tech/pp/qiyingyu/): ByteDance Seed / Tsinghua, RL for reasoning — 3 篇
 - [Kaiming He / 何恺明](https://aipaper.jasonlin.tech/pp/kaiming/): Professor, MIT (prev. FAIR) — 3 篇
-- [StepFun / 阶跃星辰](https://aipaper.jasonlin.tech/pp/stepfun/): StepFun, multimodal generation — 3 篇
 - [Sebastien Bubeck / Sebastien Bubeck](https://aipaper.jasonlin.tech/pp/sebastienbubeck/): VP AI; ex-Microsoft Research (Phi) — 3 篇
 - [Fei-Fei Li / 李飞飞](https://aipaper.jasonlin.tech/pp/feifei/): Co-founder, World Labs — 3 篇
 - [Yang Song / 宋飏](https://aipaper.jasonlin.tech/pp/yangsong/): Research Scientist, OpenAI (PhD, Stanford) — 3 篇
@@ -54,16 +58,15 @@
 - [Tianqi Chen / 陈天奇](https://aipaper.jasonlin.tech/pp/tianqi/): Assistant Professor, CMU — 2 篇
 - [Justin Johnson / 贾斯汀·约翰逊](https://aipaper.jasonlin.tech/pp/justinjohnson/): Co-founder, World Labs — 2 篇
 - [Yann LeCun / 杨立昆](https://aipaper.jasonlin.tech/pp/lecun/): Chief AI Scientist, Meta — 2 篇
+- [Dahua Lin / 林达华](https://aipaper.jasonlin.tech/pp/lindahua/): Professor, CUHK; Lead Scientist, Shanghai AI Laboratory (InternLM) — 2 篇
 - [Jan Leike / 扬·莱克](https://aipaper.jasonlin.tech/pp/leike/): Alignment Lead, Anthropic — 2 篇
+- [Xiaomi MiMo Team / 小米 MiMo 团队](https://aipaper.jasonlin.tech/pp/xiaomimimo/): Xiaomi LLM-Core, multimodal LLM — 2 篇
 - [Jinze Bai / 白金泽](https://aipaper.jasonlin.tech/pp/jinzebai/): Researcher (Qwen-VL lead author), Alibaba Qwen Team — 2 篇
-- [Akhiad Bercovich / Akhiad Bercovich](https://aipaper.jasonlin.tech/pp/akhiadbercovich/): NVIDIA, efficient reasoning models — 2 篇
 - [Xinghang Li / 李星航](https://aipaper.jasonlin.tech/pp/xinghangli/): Researcher, ByteDance Research (Robotics / VLA) — 2 篇
-- [Junjie Yan / 闫俊杰](https://aipaper.jasonlin.tech/pp/yanjunjie/): Founder & CEO, MiniMax — 2 篇
+- [Zhihao Du / 杜志浩](https://aipaper.jasonlin.tech/pp/zhihaodu/): Alibaba Tongyi Speech, scalable speech generation — 2 篇
 - [Kevin Black / 凯文·布莱克](https://aipaper.jasonlin.tech/pp/kblack/): Researcher, Physical Intelligence (pi) — 2 篇
 - [Gao Huang / 黄高](https://aipaper.jasonlin.tech/pp/gaohuang/): Associate Professor, Tsinghua University — 2 篇
-- [Qiying Yu / 于琪颖](https://aipaper.jasonlin.tech/pp/qiyingyu/): ByteDance Seed / Tsinghua, RL for reasoning — 2 篇
 - [Sara Hooker / Sara Hooker](https://aipaper.jasonlin.tech/pp/sarahooker/): Head of Cohere For AI — 2 篇
-- [Thomas Mesnard / Thomas Mesnard](https://aipaper.jasonlin.tech/pp/thomasmesnard/): Research Scientist, Google DeepMind (Gemma) — 2 篇
 - [Daya Guo / 郭达雅](https://aipaper.jasonlin.tech/pp/dayaguo/): Research Scientist, DeepSeek-AI — 2 篇
 - [Wenfeng Liang / 梁文锋](https://aipaper.jasonlin.tech/pp/wenfengliang/): Founder & CEO, DeepSeek; High-Flyer — 2 篇
 - [Ping Luo / 罗平](https://aipaper.jasonlin.tech/pp/pingluo/): Associate Professor, The University of Hong Kong — 2 篇
@@ -99,13 +102,15 @@
 - [Tomas Mikolov / 托马斯·米科洛夫](https://aipaper.jasonlin.tech/pp/tmikolov/): Research Scientist (word2vec creator); formerly Google, Facebook AI — 2 篇
 - [Diederik P. Kingma / 迪德里克·金马](https://aipaper.jasonlin.tech/pp/dkingma/): Research Scientist, Anthropic (prev. Google Brain, OpenAI) — 2 篇
 - [Andrej Karpathy / 安德烈·卡帕西](https://aipaper.jasonlin.tech/pp/karpathy/): Founder, Eureka Labs; ex-OpenAI, ex-Tesla AI — 2 篇
+- [Ali Hatamizadeh / 阿里·哈塔米扎德](https://aipaper.jasonlin.tech/pp/alihatamizadeh/): Senior Research Scientist, NVIDIA — 1 篇
+- [Jianfeng Gao / 高剑峰](https://aipaper.jasonlin.tech/pp/jianfenggao/): Distinguished Scientist & VP, Microsoft Research — 1 篇
+- [Haifeng Wang / 王海峰](https://aipaper.jasonlin.tech/pp/haifengwang/): CTO, Baidu — 1 篇
+- [Meituan LongCat Team / 美团 LongCat 团队](https://aipaper.jasonlin.tech/pp/meituan/): Frontier Model Team, Meituan — 1 篇
 - [Shiyin Lu / 卢诗音](https://aipaper.jasonlin.tech/pp/shiyinlu/): Alibaba AIDC-AI, multimodal LLM — 1 篇
 - [MiniCPM Team (OpenBMB) / MiniCPM Team (OpenBMB)](https://aipaper.jasonlin.tech/pp/minicpm/): OpenBMB / Tsinghua, on-device LLMs — 1 篇
 - [Bi Huo / 火碧](https://aipaper.jasonlin.tech/pp/bihuo/): rednote hi-lab, open MoE LLM — 1 篇
-- [Xiaomi MiMo Team / 小米 MiMo 团队](https://aipaper.jasonlin.tech/pp/xiaomimimo/): Xiaomi LLM-Core, multimodal LLM — 1 篇
 - [Mingjie Liu / 刘明杰](https://aipaper.jasonlin.tech/pp/mingjieliu/): NVIDIA, prolonged RL for reasoning — 1 篇
 - [Jujie He / 何巨杰](https://aipaper.jasonlin.tech/pp/jujiehe/): Skywork AI, open reasoning model — 1 篇
-- [Zhihao Du / 杜志浩](https://aipaper.jasonlin.tech/pp/zhihaodu/): Alibaba Tongyi Speech, scalable speech generation — 1 篇
 - [Chaorui Deng / 邓超瑞](https://aipaper.jasonlin.tech/pp/chaoruideng/): ByteDance Seed, unified multimodal understanding & generation — 1 篇
 - [Andrew Zhao / Andrew Zhao](https://aipaper.jasonlin.tech/pp/andrewzhao/): Tsinghua University, self-play reasoning — 1 篇
 - [Tongyi Wan Team / 通义万相团队](https://aipaper.jasonlin.tech/pp/wanteam/): Alibaba Tongyi Wanxiang, video generation — 1 篇
@@ -115,7 +120,6 @@
 - [Songming Liu / 刘松铭](https://aipaper.jasonlin.tech/pp/songyangliu/): PhD Researcher, Tsinghua University (TSAIL, Robotics Diffusion Models) — 1 篇
 - [Morgane Riviere / Morgane Riviere](https://aipaper.jasonlin.tech/pp/morganeriviere/): Research Scientist, Google DeepMind (Gemma 2) — 1 篇
 - [Keyu Tian / 田柯宇](https://aipaper.jasonlin.tech/pp/keyutian/): Researcher (Visual Autoregressive Modeling); Peking University / ByteDance — 1 篇
-- [Dahua Lin / 林达华](https://aipaper.jasonlin.tech/pp/lindahua/): Professor, CUHK; Lead Scientist, Shanghai AI Laboratory (InternLM) — 1 篇
 - [Haoyu Lu / 陆昊宇](https://aipaper.jasonlin.tech/pp/haoyulu/): Researcher, DeepSeek-AI — 1 篇
 - [Kai-Fu Lee / 李开复](https://aipaper.jasonlin.tech/pp/kaifulee/): Founder & CEO, 01.AI; Chairman, Sinovation Ventures — 1 篇
 - [Jake Bruce / 杰克·布鲁斯](https://aipaper.jasonlin.tech/pp/jakebruce/): Research scientist, Google DeepMind — 1 篇
@@ -123,10 +127,6 @@
 - [Zhihong Shao / 邵智宏](https://aipaper.jasonlin.tech/pp/zshao/): Research Scientist, DeepSeek-AI — 1 篇
 - [Dirk Groeneveld / Dirk Groeneveld](https://aipaper.jasonlin.tech/pp/dirkgroeneveld/): Research Scientist, Allen Institute for AI (OLMo) — 1 篇
 - [Damai Dai / 代达劢](https://aipaper.jasonlin.tech/pp/damaidai/): Researcher, DeepSeek-AI (Peking University) — 1 篇
-- [Zipeng Fu / 付子鹏](https://aipaper.jasonlin.tech/pp/zfu/): PhD Researcher, Stanford University (Robot Learning) — 1 篇
-- [Alexander Wei / 亚历山大·魏](https://aipaper.jasonlin.tech/pp/alexwei/): Research, OpenAI — 1 篇
-- [Dieter Fox / 迪特·福克斯](https://aipaper.jasonlin.tech/pp/dieterfox/): Professor, University of Washington; Senior Director of Robotics, NVIDIA — 1 篇
-- [Hunter Lightman / 亨特·莱特曼](https://aipaper.jasonlin.tech/pp/hlightman/): Research Scientist, OpenAI — 1 篇
 
 ## 高被引论文 Most-cited papers
 - [Deep Residual Learning for Image Recognition](https://aipaper.jasonlin.tech/p/kaiming-1512.03385/) — Kaiming He, Microsoft, 被引 231533

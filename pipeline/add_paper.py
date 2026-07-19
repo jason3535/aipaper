@@ -27,7 +27,12 @@ def call(system,user,mx=8000):
     for a in range(3):
         try:
             req=urllib.request.Request(URL,data=body,headers={"Content-Type":"application/json","Authorization":f"Bearer {KEY}"})
-            return json.loads(json.load(OP.open(req,timeout=180))["choices"][0]["message"]["content"])
+            content=json.load(OP.open(req,timeout=180))["choices"][0]["message"]["content"]
+            try:
+                return json.loads(content)
+            except json.JSONDecodeError:
+                # DeepSeek 常在数学论文译文里裸输出 LaTeX 反斜杠(\mathcal 等),把非法转义补成 \\
+                return json.loads(re.sub(r'\\(?![\\/"bfnrtu])', r'\\\\', content))
         except Exception as e: last=e; time.sleep(2+a*3)
     raise RuntimeError(str(last)[:120])
 
