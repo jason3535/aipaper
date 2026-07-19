@@ -3,7 +3,7 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 231 位学者 / 530 篇论文
+规模: 232 位学者 / 532 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
@@ -58,6 +58,7 @@
 - [Geoffrey Hinton / 杰弗里·辛顿](https://aipaper.jasonlin.tech/pp/hinton/): Professor Emeritus, U of Toronto — 3 篇
 - [Tsung-Yi Lin / 林宗毅](https://aipaper.jasonlin.tech/pp/tsungyilin/): Research Scientist, NVIDIA (formerly Google Brain, FAIR) — 3 篇
 - [Christian Szegedy / 克里斯蒂安·塞格迪](https://aipaper.jasonlin.tech/pp/cszegedy/): AI Researcher (xAI), formerly Google Brain — 3 篇
+- [Tony Fadell / 托尼·法德尔](https://aipaper.jasonlin.tech/pp/tonyfadell/): Principal, Build Collective · Father of the iPod — 2 篇
 - [Tianqi Chen / 陈天奇](https://aipaper.jasonlin.tech/pp/tianqi/): Assistant Professor, CMU — 2 篇
 - [Justin Johnson / 贾斯汀·约翰逊](https://aipaper.jasonlin.tech/pp/justinjohnson/): Co-founder, World Labs — 2 篇
 - [Yann LeCun / 杨立昆](https://aipaper.jasonlin.tech/pp/lecun/): Chief AI Scientist, Meta — 2 篇
@@ -126,7 +127,6 @@
 - [Bowen Jin / 金博文](https://aipaper.jasonlin.tech/pp/bowenjin/): UIUC, RL for search-augmented reasoning — 1 篇
 - [Ling Team (inclusionAI) / Ling Team (inclusionAI)](https://aipaper.jasonlin.tech/pp/antling/): Ant Group / inclusionAI, large MoE model — 1 篇
 - [Steve Yegge / 史蒂夫·耶格](https://aipaper.jasonlin.tech/pp/steveyegge/): Engineer & Writer · ex-Google, ex-Amazon — 1 篇
-- [Loubna Ben Allal / Loubna Ben Allal](https://aipaper.jasonlin.tech/pp/loubna/): Hugging Face, data-centric small LMs — 1 篇
 
 ## 高被引论文 Most-cited papers
 - [Deep Residual Learning for Image Recognition](https://aipaper.jasonlin.tech/p/kaiming-1512.03385/) — Kaiming He, Microsoft, 被引 231533
