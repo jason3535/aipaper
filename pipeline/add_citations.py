@@ -27,7 +27,7 @@ def main():
     papers,ai,bi=load_papers(h)
     only=set(sys.argv[1:])
     for p in papers:
-        if only and p["arxiv"] not in only and p["id"] not in only: continue
+        if only and p.get("arxiv") not in only and p["id"] not in only: continue
         c=ss_cites(p["arxiv"])
         if c is not None:
             p["cites"]=c
