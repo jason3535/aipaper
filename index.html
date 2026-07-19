@@ -259,6 +259,33 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
 .recent-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
 .recent-card .rt{font-size:14.5px;font-weight:600;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .recent-card .rs{font-size:12.5px;color:var(--sub);margin-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ===== 移动端优化(参照 AI Podcast) ===== */
+.links a{white-space:nowrap}
+.brand{white-space:nowrap}
+.seg button{white-space:nowrap}
+.hero-cov{display:none}
+@media(max-width:640px){
+  .nav{gap:10px}
+  .links{gap:13px;font-size:14px}
+  .hero-wrap{padding:10px 16px 0!important}
+  .hero-card{border-radius:18px;min-height:0;box-shadow:var(--shadow);border:1px solid var(--line)}
+  .hero-art{display:block;height:150px;padding:0}
+  .hero-art .av{position:absolute;right:16px;bottom:14px;width:62px;height:62px;font-size:23px;box-shadow:0 2px 10px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.25)}
+  .hero-cov{display:block;position:absolute;inset:0;z-index:1}
+  .hc-pod{position:absolute;top:14px;left:18px;right:92px;font-size:12px;color:#fff;font-weight:500;opacity:.95;display:flex;align-items:center;gap:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 2px rgba(0,0,0,.18)}
+  .hc-pod img{width:20px;height:20px;border-radius:6px;flex:none;background:#fff;object-fit:contain}
+  .hc-ct{position:absolute;left:18px;bottom:16px;max-width:58%;color:#fff}
+  .hc-ct b{display:block;font-size:15.5px;font-weight:600;line-height:1.2;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(0,0,0,.22)}
+  .hc-ct span{font-size:12px;opacity:.88;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+  .hero-body{padding:16px 18px 18px}
+  .hero-body h1{font-size:17px;line-height:1.35;margin:5px 0 4px;letter-spacing:-.01em}
+  .hero-body .who{display:none}
+  .hero-body .quote{display:none}
+  .hero-body .quote-zh{font-size:13.5px;line-height:1.6;margin:4px 0 14px}
+  .hero-body .eyebrow{font-size:11px}
+  .hero-body .btn{padding:9px 16px;font-size:13.5px}
+}
 </style>
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'},options:{enableMenu:false}};</script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
@@ -910,8 +937,8 @@ function vHome(){
  const fq={en:(feat&&feat.sEn)||c0.en||'',zh:(feat&&feat.sZh)||c0.zh||''};
  const fbg=(fp.fields||['deep-learning']).map(f=>(FIELDS[f]||{}).c||'#9aa4b2').join(',');
  return `
- ${feat?`<div class="hero" style="max-width:1180px;margin:0 auto;padding:18px 24px 8px"><div class="hero-card">
-   <div class="hero-art" style="background:linear-gradient(150deg,${fbg})">${av(feat.pid)}</div>
+ ${feat?`<div class="hero hero-wrap" style="max-width:1180px;margin:0 auto;padding:18px 24px 8px"><div class="hero-card">
+   <div class="hero-art" style="background:linear-gradient(150deg,${fbg})"><div class="hero-cov"><span class="hc-pod">${(()=>{const s=(typeof ORG_LOGO!=='undefined')?ORG_LOGO[feat.org]:'';return s?`<img src="assets/orgs/${s}.png" alt="">`:'';})()}${esc(feat.org||'')}</span><span class="hc-ct"><b>${esc(fp.en||'')}</b><span>${feat.date||''}</span></span></div>${av(feat.pid)}</div>
    <div class="hero-body">
      <div class="eyebrow">编辑推荐 · Editor&#39;s Pick</div>
      <h1>${esc(feat.tEn)}</h1>
