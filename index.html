@@ -290,6 +290,65 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
 .legal-note{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--surface-2,rgba(0,0,0,.03));line-height:1.7}
 .mcp-url{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:3px 8px;color:var(--ink);word-break:break-all;display:inline-flex;align-items:center;min-height:38px;box-sizing:border-box;margin:4px 6px 4px 0}
 .mcp-copy{font-family:inherit;font-size:12px;border:1px solid var(--line);background:var(--surface);color:var(--sub);border-radius:7px;padding:3px 11px;cursor:pointer;min-height:38px}
+
+/* 阅读状态 + 我的页(对齐 AI Podcast) */
+.paper-card{position:relative}
+.cover-badges{position:absolute;top:12px;right:12px;display:flex;gap:6px;z-index:2}
+.read-badge,.later-badge,.new-badge{font-size:11px;font-weight:600;border-radius:999px;padding:3px 9px;line-height:1.5}
+.read-badge{background:rgba(34,165,101,.14);color:#1a7f4e}
+.later-badge{background:rgba(240,145,58,.16);color:#b8690f}
+.new-badge{background:var(--acc);color:#fff}
+.paper-card.read .pt{opacity:.72}
+.rd-actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
+.rd-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:13.5px;font-family:inherit;cursor:pointer;min-height:38px}
+.rd-btn.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.st-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:16px 0 26px}
+.st-tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.st-tile .n{font-size:30px;font-weight:700;color:var(--acc);line-height:1.1}
+.st-tile .l{font-size:12px;color:var(--sub);margin-top:6px}
+.st-tile .s{font-size:11px;color:var(--sub2)}
+.st-h2{font-size:21px;font-weight:700;margin:26px 0 16px;letter-spacing:-.01em}
+.st-h3{font-size:15px;font-weight:600;margin:26px 0 12px}
+.st-empty{color:var(--sub);font-size:14px;margin-top:14px}
+.hm-wrap{overflow-x:auto;padding-bottom:6px}
+.hm{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,12px);gap:3px;width:max-content}
+.hm i{width:12px;height:12px;border-radius:3px;background:var(--surface);border:1px solid var(--line);box-sizing:border-box;display:block}
+.hm i[data-l="1"]{background:rgba(10,118,233,.25);border:none}
+.hm i[data-l="2"]{background:rgba(10,118,233,.45);border:none}
+.hm i[data-l="3"]{background:rgba(10,118,233,.7);border:none}
+.hm i[data-l="4"]{background:var(--acc);border:none}
+.hm-months{display:flex;width:max-content;margin-top:4px}
+.hm-months span{width:15px;font-size:10px;color:var(--sub2);white-space:nowrap}
+.hm-legend{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--sub2);margin-top:8px}
+.hm-legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.rk{display:flex;flex-direction:column;gap:10px;max-width:560px}
+.rk-row{display:flex;align-items:center;gap:10px}
+.rk-logo{width:26px;height:26px;border-radius:50%;object-fit:cover;flex:none;background:var(--surface)}
+.rk-ini{width:26px;height:26px;border-radius:50%;flex:none;background:var(--surface);color:var(--sub);font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:600}
+.rk-name{font-size:13px;width:150px;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk-bar{height:8px;border-radius:4px;background:var(--acc);min-width:8px}
+.rk-n{font-size:12px;color:var(--sub);flex:none}
+.shp-card{position:relative;margin-top:34px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px 22px 22px;max-width:560px;overflow:hidden}
+.shp-dots{position:absolute;top:20px;right:20px;display:flex;gap:7px}
+.shp-dots i{width:7px;height:7px;border-radius:50%}
+.shp-dots i:nth-child(1){background:var(--acc)}.shp-dots i:nth-child(2){background:#22a565}.shp-dots i:nth-child(3){background:#f0913a}.shp-dots i:nth-child(4){background:#7c5cf0}.shp-dots i:nth-child(5){background:#e0566f}
+.shp-t{color:var(--ink);font-size:20px;font-weight:700}
+.shp-s{color:var(--sub);font-size:13px;margin-top:6px}
+.shp-avs{display:flex;margin:16px 0 18px}
+.shp-avs img,.shp-avs span{width:40px;height:40px;border-radius:50%;border:2.5px solid var(--surface);margin-right:-10px;object-fit:cover;background:var(--line);color:var(--sub);font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.shp-btn{display:block;width:100%;padding:12px;border:none;border-radius:999px;background:var(--acc);color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+.rsi-modal{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)}
+.rsi-card{background:var(--bg);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-lg);width:min(440px,94vw);max-height:88vh;display:flex;flex-direction:column;overflow:hidden}
+.rsi-head{display:flex;align-items:flex-start;justify-content:space-between;padding:14px 18px 12px;border-bottom:1px solid var(--line)}
+.rsi-head b{font-size:15px}
+.rsi-head span{display:block;font-size:12px;color:var(--sub2);margin-top:2px}
+.rsi-x{border:none;background:transparent;font-size:22px;line-height:1;color:var(--sub2);cursor:pointer;padding:2px 6px}
+.rsi-body{overflow-y:auto;padding:16px;background:var(--surface)}
+.rsi-body img{display:block;width:100%;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.rsi-foot{display:flex;align-items:center;gap:10px;padding:12px 16px;border-top:1px solid var(--line)}
+.rsi-hint{font-size:12px;color:var(--sub2);margin-right:auto}
+.rsi-pri{background:var(--acc);color:#fff;border:none;border-radius:999px;padding:9px 18px;font-size:14px;text-decoration:none;cursor:pointer}
+.rsi-sec{background:transparent;color:var(--acc);border:1px solid var(--acc);border-radius:999px;padding:8px 16px;font-size:14px;cursor:pointer}
 </style>
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'},options:{enableMenu:false}};</script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
@@ -297,7 +356,7 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
 <body>
 <header><div class="nav">
   <a class="brand" href="#/"><span class="dot"></span>AI Paper</a>
-  <div class="links"><a href="#/people">学者</a><a href="#/papers">论文</a><a href="#/orgs">机构</a><a href="#/ask">问 AI</a></div>
+  <div class="links"><a href="#/people">学者</a><a href="#/papers">论文</a><a href="#/orgs">机构</a><a href="#/ask">问 AI</a><a href="#/mine">我的</a></div>
   <div class="navspace"></div>
   <div class="navtools">
     <button class="icon" title="搜索 ( / )" aria-label="搜索" onclick="openSearch()"><svg viewBox="0 0 18 18" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="5"/><line x1="11.6" y1="11.6" x2="15.5" y2="15.5"/></svg></button>
@@ -946,8 +1005,151 @@ function go(h){location.hash=h;}
 function pplCard(pid){const p=PEOPLE[pid];const n=papersOf(pid).length;
  return `<a class="ppl-card" href="#/person/${pid}">${av(pid)}<div class="n">${esc(p.en)}</div><div class="nz">${esc(p.zh)}</div><div class="ti">${esc(p.tiZh)}</div><div class="cnt">${n} 篇论文</div></a>`;}
 function paperCard(p){const pe=PEOPLE[p.pid]||{};const isOrg=pe.en&&p.org&&(pe.en===p.org||pe.zh===p.org);
- return `<a class="paper-card" href="#/paper/${p.id}"><div class="pt">${esc(p.tEn)}</div><div class="ptz">${esc(p.tZh)}</div>
+ return `<a class="paper-card${readHas(p.id)?' read':''}${laterHas(p.id)?' later':''}" data-id="${p.id}" href="#/paper/${p.id}"><span class="cover-badges">${readHas(p.id)?'<span class="read-badge">✓ 已读</span>':(laterHas(p.id)?'<span class="later-badge">★ 待读</span>':(isNew(p)?'<span class="new-badge">NEW</span>':''))}</span><div class="pt">${esc(p.tEn)}</div><div class="ptz">${esc(p.tZh)}</div>
    <div class="meta">${isOrg?'':`<span>${esc(pe.zh||'')}</span>`}${p.arxiv?`<span>arXiv:${p.arxiv}</span>`:`<span class="artbadge">文章</span><span>${esc(p.srcLabel||'PDF')}</span>`}<span>${p.date}</span>${isOrg?orgChip(p.org):orgChip(p.org)}${p.cites!=null?`<span class="citeico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M16 8h5v5"/></svg>被引 ${fmtCites(p.cites)}</span>`:''}${(p.fields||[]).map(ftag).join('')}</div></a>`;}
+
+
+/* ===== 「我的」页:阅读统计 + 热力图 + 学者排行 + 已读长图(对齐 AI Podcast) ===== */
+function readStats(){
+  const ids=[...readGet()];
+  const ps=ids.map(id=>PAPERS.find(p=>p.id===id)).filter(Boolean);
+  const totalMin=ps.reduce((s,p)=>s+readMin(p),0);
+  const authors={};ps.forEach(p=>{const k=(PEOPLE[p.pid]||{}).zh||(PEOPLE[p.pid]||{}).en||'?';authors[k]=(authors[k]||0)+1;});
+  return {ps,totalMin,ppl:new Set(ps.map(p=>p.pid)).size,authors,streak:rlogStreak()};
+}
+function sharePromoHtml(st,hrs){
+  const ups=[...new Set(st.ps.map(p=>p.pid))];const mx=Math.min(7,ups.length);let avs='';
+  for(let i=0;i<mx;i++){const pid=ups[i];const pe=PEOPLE[pid]||{};
+    avs+=(typeof PHOTOS!=='undefined'&&PHOTOS.has(pid))?`<img src="assets/people/${pid}.jpg" alt="" loading="lazy">`:`<span>${pe.init||'?'}</span>`;}
+  if(ups.length>mx)avs+=`<span>+${ups.length-mx}</span>`;
+  return `<div class="shp-card">
+    <div class="shp-dots"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="shp-t">我读完了 ${st.ps.length} 篇论文</div>
+    <div class="shp-s">累计约 ${hrs} 小时 · 覆盖 ${st.ppl} 位学者${st.streak.cur>1?' · 连续 '+st.streak.cur+' 天':''}</div>
+    <div class="shp-avs">${avs}</div>
+    <button class="shp-btn" onclick="readShareImage()">生成长图并分享</button>
+  </div>`;
+}
+function mineLaterHtml(){
+  const ids=laterGet().map(id=>PAPERS.find(p=>p.id===id)).filter(Boolean);
+  if(!ids.length)return `<div class="st-h2" style="margin-top:52px">我的待读</div><div class="st-empty">还没有待读论文。在论文页点「稍后读」即可收藏到这里。</div>`;
+  return `<div class="st-h2" style="margin-top:52px">我的待读 · ${ids.length}</div><div class="grid" style="margin-top:14px">${ids.map(paperCard).join('')}</div>`;
+}
+function vMine(){
+  const st=readStats();
+  if(!st.ps.length)return `<div class="wrap"><section style="min-height:50vh;padding:30px 0"><div class="eyebrow">My Space · 我的</div><h2 class="title">我的</h2><div class="st-h2">我的数据</div><div class="st-empty">还没有读完的论文——打开一篇读到底会自动标记已读，统计从此开始累计。</div>${mineLaterHtml()}</section></div>`;
+  const hrs=Math.round(st.totalMin/6)/10;
+  const g=rlogGet();const day=86400000;const today=new Date();today.setHours(0,0,0,0);
+  const end=today.getTime()+(6-today.getDay())*day;
+  const LAUNCH=new Date('2026-06-01T00:00:00');const launchSun=LAUNCH.getTime()-LAUNCH.getDay()*day;
+  const cols=Math.max(1,Math.min(26,Math.ceil((end-launchSun+day)/(7*day))));
+  let cells='';const colMon=[];
+  for(let w=cols-1;w>=0;w--){const t0=end-(w*7+6)*day;colMon.push(new Date(t0).getMonth()+1);
+    for(let r=0;r<7;r++){const t=end-(w*7+(6-r))*day;
+      if(t>today.getTime()){cells+='<i style="visibility:hidden"></i>';continue;}
+      const d=new Date(t);const k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      const m=g[k]||0;const l=m<=0?0:m<20?1:m<45?2:m<90?3:4;
+      cells+=`<i data-l="${l}" title="${k} · ${m} 分钟"></i>`;}}
+  let mons='';for(let i=0;i<colMon.length;i++){const show=i===0?(colMon.length<2||colMon[1]===colMon[0]):colMon[i]!==colMon[i-1];mons+=`<span>${show?colMon[i]+'月':''}</span>`;}
+  const top=Object.entries(st.authors).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const mx=top.length?top[0][1]:1;
+  const rows=top.map(([name,n])=>{
+    const pid=Object.keys(PEOPLE).find(k=>(PEOPLE[k].zh===name||PEOPLE[k].en===name));
+    const ic=(pid&&typeof PHOTOS!=='undefined'&&PHOTOS.has(pid))?`<img class="rk-logo" src="assets/people/${pid}.jpg" alt="">`:`<span class="rk-ini">${(name||'?').slice(0,2)}</span>`;
+    return `<div class="rk-row">${ic}<span class="rk-name">${esc(name)}</span><span class="rk-bar" style="width:${Math.round(n/mx*220)}px"></span><span class="rk-n">${n} 篇</span></div>`;}).join('');
+  return `<div class="wrap"><section style="padding:30px 0">
+    <div class="eyebrow">My Space · 我的</div><h2 class="title">我的</h2>
+    <div class="st-h2">我的数据</div>
+    <div class="st-tiles">
+      <div class="st-tile"><div class="n">${st.ps.length}</div><div class="l">已读论文</div></div>
+      <div class="st-tile"><div class="n">${hrs}</div><div class="l">累计小时</div></div>
+      <div class="st-tile"><div class="n">${st.streak.cur}</div><div class="l">连续天数</div><div class="s">最长 ${st.streak.max} 天</div></div>
+      <div class="st-tile"><div class="n">${st.ppl}</div><div class="l">覆盖学者</div></div>
+    </div>
+    <div class="st-h3">阅读热力图</div>
+    <div class="hm-wrap"><div class="hm">${cells}</div><div class="hm-months">${mons}</div></div>
+    <div class="hm-legend">少 <i style="background:var(--surface);border:1px solid var(--line)"></i><i style="background:rgba(10,118,233,.25)"></i><i style="background:rgba(10,118,233,.45)"></i><i style="background:rgba(10,118,233,.7)"></i><i style="background:var(--acc)"></i> 多 · 每日阅读分钟数</div>
+    <div class="st-h3">学者排行 · 我读得最多的</div>
+    <div class="rk">${rows||'<div class="st-empty">暂无</div>'}</div>
+    ${sharePromoHtml(st,hrs)}
+    ${mineLaterHtml()}
+  </section></div>`;
+}
+/* 已读长图 */
+async function readShareImage(){
+  const st=readStats();const ps=st.ps.slice().reverse();
+  if(!ps.length){alert('还没有已读论文——打开一篇读到底会自动标记已读，再来生成吧。');return;}
+  const shown=ps.slice(0,40),more=ps.length-shown.length;
+  const hrs=Math.round(st.totalMin/6)/10;
+  const imgs={};
+  await Promise.all([...new Set(shown.map(p=>p.pid))].map(pid=>new Promise(res=>{
+    if(typeof PHOTOS==='undefined'||!PHOTOS.has(pid))return res();
+    const im=new Image();im.onload=()=>{imgs[pid]=im;res()};im.onerror=()=>res();im.src='assets/people/'+pid+'.jpg';})));
+  const qr=await new Promise(res=>{const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src='assets/qr.png';});
+  const W=750,pad=44,rowH=94,headH=330,footH=190;
+  const H=headH+shown.length*rowH+(more>0?54:12)+footH;
+  const cv=document.createElement('canvas');cv.width=W*2;cv.height=H*2;
+  const x=cv.getContext('2d');x.scale(2,2);
+  const F='-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB",sans-serif';
+  x.fillStyle='#0d0d12';x.fillRect(0,0,W,H);
+  ['#0a76e9','#22a565','#f0913a','#7c5cf0','#e0566f'].forEach((c,i)=>{x.beginPath();x.arc(W-40-i*26,40,5,0,7);x.fillStyle=c;x.fill();});
+  x.fillStyle='#fff';x.font='700 30px '+F;x.fillText('AI Paper · AI 论文',pad,72);
+  x.fillStyle='rgba(255,255,255,.55)';x.font='400 15px '+F;x.fillText('著名学者的代表论文与长文 · 中英对照全文阅读',pad,100);
+  x.fillStyle='#2997ff';x.font='700 40px '+F;x.fillText('我读完了 '+ps.length+' 篇',pad,164);
+  x.fillStyle='rgba(255,255,255,.85)';x.font='400 17px '+F;
+  x.fillText('累计约 '+hrs+' 小时 · 覆盖 '+st.ppl+' 位学者'+(st.streak.cur>1?' · 连续 '+st.streak.cur+' 天':''),pad,196);
+  {const ups=[...new Set(shown.map(p=>p.pid))];const av=44,ov=30,cy=266;let sx=pad;const maxAv=Math.min(10,ups.length);
+   const ring=cx=>{x.strokeStyle='#0d0d12';x.lineWidth=3;x.beginPath();x.arc(cx,cy,av/2+1,0,7);x.stroke();x.lineWidth=1;};
+   for(let i=0;i<maxAv;i++){const pid=ups[i];
+     x.save();x.beginPath();x.arc(sx+av/2,cy,av/2,0,7);x.clip();
+     if(imgs[pid])x.drawImage(imgs[pid],sx,cy-av/2,av,av);
+     else{x.fillStyle='#26262e';x.fillRect(sx,cy-av/2,av,av);x.fillStyle='rgba(255,255,255,.8)';x.font='600 15px '+F;x.textAlign='center';x.fillText((PEOPLE[pid]&&PEOPLE[pid].init)||'?',sx+av/2,cy+5);x.textAlign='left';}
+     x.restore();ring(sx+av/2);sx+=ov;}
+   if(ups.length>maxAv){x.fillStyle='#26262e';x.beginPath();x.arc(sx+av/2,cy,av/2,0,7);x.fill();
+     x.fillStyle='rgba(255,255,255,.85)';x.font='600 13px '+F;x.textAlign='center';x.fillText('+'+(ups.length-maxAv),sx+av/2,cy+5);x.textAlign='left';ring(sx+av/2);}}
+  x.strokeStyle='rgba(255,255,255,.12)';x.beginPath();x.moveTo(pad,headH-24);x.lineTo(W-pad,headH-24);x.stroke();
+  const ell=(t,mw,f)=>{x.font=f;if(x.measureText(t).width<=mw)return t;while(t.length&&x.measureText(t+'…').width>mw)t=t.slice(0,-1);return t+'…';};
+  shown.forEach((p,i)=>{
+    const y=headH+i*rowH,pe=PEOPLE[p.pid]||{};
+    const ax=pad,ay=y+8,as=56;
+    x.save();x.beginPath();x.arc(ax+as/2,ay+as/2,as/2,0,7);x.clip();
+    if(imgs[p.pid])x.drawImage(imgs[p.pid],ax,ay,as,as);
+    else{x.fillStyle='#26262e';x.fillRect(ax,ay,as,as);x.fillStyle='rgba(255,255,255,.8)';x.font='600 20px '+F;x.textAlign='center';x.fillText(pe.init||'?',ax+as/2,ay+as/2+7);x.textAlign='left';}
+    x.restore();
+    const tx=pad+as+18,tw=W-pad-(pad+as+18);
+    x.fillStyle='#fff';x.font='600 17px '+F;x.fillText(ell(p.tZh||p.tEn,tw,'600 17px '+F),tx,y+32);
+    x.fillStyle='rgba(255,255,255,.5)';x.font='400 13px '+F;
+    x.fillText(ell((pe.zh||pe.en||'')+' · '+(p.org||'')+' · '+(p.date||''),tw,'400 13px '+F),tx,y+56);
+    if(i<shown.length-1){x.strokeStyle='rgba(255,255,255,.07)';x.beginPath();x.moveTo(tx,y+rowH-8);x.lineTo(W-pad,y+rowH-8);x.stroke();}
+  });
+  let fy=headH+shown.length*rowH;
+  if(more>0){x.fillStyle='rgba(255,255,255,.45)';x.font='400 14px '+F;x.fillText('… 还有 '+more+' 篇已读',pad,fy+26);fy+=54;}else fy+=12;
+  x.strokeStyle='rgba(255,255,255,.12)';x.beginPath();x.moveTo(pad,fy+8);x.lineTo(W-pad,fy+8);x.stroke();
+  if(qr){x.fillStyle='#fff';x.fillRect(W-pad-104,fy+32,104,104);x.drawImage(qr,W-pad-100,fy+36,96,96);}
+  x.fillStyle='#fff';x.font='700 19px '+F;x.fillText('aipaper.jasonlin.tech',pad,fy+66);
+  x.fillStyle='rgba(255,255,255,.55)';x.font='400 14px '+F;
+  x.fillText('逐段双语 · 核心贡献 · AI 问答 · 免费阅读',pad,fy+94);
+  x.fillText(qr?'长按识别二维码，一起来读':'长按保存图片分享给朋友',pad,fy+120);
+  const url=cv.toDataURL('image/jpeg',.92);
+  const m=document.createElement('div');m.className='rsi-modal';
+  m.innerHTML='<div class="rsi-card">'+
+    '<div class="rsi-head"><div><b>我的已读论文</b><span>'+ps.length+' 篇 · 约 '+hrs+' 小时</span></div>'+
+    '<button class="rsi-x" onclick="this.closest(\'.rsi-modal\').remove()" aria-label="关闭">×</button></div>'+
+    '<div class="rsi-body"><img src="'+url+'" alt="已读论文长图"></div>'+
+    '<div class="rsi-foot"><span class="rsi-hint">微信长按图片保存 / 转发</span>'+
+    '<a class="rsi-pri" download="my-ai-paper.jpg" href="'+url+'">保存图片</a>'+
+    (navigator.share?'<button class="rsi-sec" onclick="rsiShare(this)">分享</button>':'')+'</div></div>';
+  m.addEventListener('click',ev=>{if(ev.target===m)m.remove();});
+  document.body.appendChild(m);
+  try{track('share_img')}catch(e){}
+}
+async function rsiShare(btn){try{
+  const img=btn.closest('.rsi-modal').querySelector('img');
+  const blob=await (await fetch(img.src)).blob();
+  const file=new File([blob],'my-ai-paper.jpg',{type:'image/jpeg'});
+  if(navigator.canShare&&navigator.canShare({files:[file]}))await navigator.share({files:[file],title:'我的已读 AI 论文'});
+  else await navigator.share({title:'我的已读 AI 论文',url:'https://aipaper.jasonlin.tech'});
+}catch(e){}}
 
 function vHome(){
  const latest=PAPERS.slice(0,5);
@@ -1049,6 +1251,7 @@ function vPaper(id){
   <h1 style="font-size:33px;margin:12px 0 2px;letter-spacing:-.02em;line-height:1.12">${esc(p.tEn)}</h1>
   <div class="sub" style="font-size:19px;color:var(--ink)">${esc(p.tZh)}</div>
   <div style="margin-top:12px">${(p.fields||[]).map(ftag).join(' ')}</div>
+  <div class="rd-actions"><button class="rd-btn${readHas(p.id)?' on':''}" id="readBtn" onclick="toggleRead('${p.id}')">${readHas(p.id)?'已读 ✓':'标记已读'}</button><button class="rd-btn${laterHas(p.id)?' on':''}" id="laterBtn" onclick="toggleLater('${p.id}')">${laterHas(p.id)?'已加入待读 ★':'稍后读'}</button></div>
   ${p.cites!=null?`<div class="citebar"><span class="num">${fmtCites(p.cites)}</span> 次被引用 · <span style="color:var(--sub)">学术影响力(Semantic Scholar)</span></div>`:''}
   <div class="cards2">${full||p.insights?ilist(ins.contrib,'核心贡献 · Key Contributions')+ilist(ins.limits,'局限与边界 · Limitations'):`<div class="icard"><div class="skeleton" style="width:88%"></div><div class="skeleton" style="width:72%"></div></div><div class="icard"><div class="skeleton" style="width:84%"></div><div class="skeleton" style="width:66%"></div></div>`}</div>
   <h3 style="margin-top:30px">摘要 · Abstract</h3>
@@ -1168,6 +1371,10 @@ function syncSeg(){const lg=document.body.dataset.lang||'both',sz=document.body.
  const ss=document.getElementById('sizeSeg');if(ss){const m={s:0,m:1,l:2};[...ss.children].forEach((b,i)=>b.classList.toggle('on',i===m[sz]));}}
 let _spyTick=false;
 addEventListener('scroll',()=>{
+ try{const _hp=(location.hash||'').match(/^#\/paper\/(.+?)(\?|$)/);
+   if(_hp){const _id=decodeURIComponent(_hp[1]);
+     const _sc=document.documentElement;const _pct=(_sc.scrollTop+innerHeight)/_sc.scrollHeight;
+     if(_pct>0.92&&!readHas(_id))readMark(_id,true);}}catch(_){}
  if(_spyTick)return;_spyTick=true;
  requestAnimationFrame(()=>{_spyTick=false;
   const heads=document.querySelectorAll('.reader .sec-h');if(!heads.length)return;
@@ -1275,6 +1482,59 @@ addEventListener('visibilitychange',()=>{
   if(onHome&&cur!==_recentSnap){const sy=scrollY;render();scrollTo(0,sy);}
   _recentSnap=cur;
 });
+
+/* ===== 阅读状态(对齐 AI Podcast):已读 / 稍后读 / 每日阅读日志 ===== */
+function readGet(){try{const r=JSON.parse(localStorage.readPapers||'[]');return new Set(Array.isArray(r)?r:[])}catch(e){return new Set()}}
+function readHas(id){return readGet().has(id);}
+function readMark(id,on){const s=readGet();const had=s.has(id);if(on===false)s.delete(id);else s.add(id);
+  if(s.has(id)!==had){localStorage.readPapers=JSON.stringify([...s]);syncReadUI(id);
+    const _p=PAPERS.find(x=>x.id===id);rlogAdd(s.has(id)?readMin(_p):-readMin(_p));
+    if(typeof syncTouch==='function')syncTouch();}
+  if(on!==false)laterMark(id,false);}
+function toggleRead(id){readMark(id,!readHas(id));}
+function readMin(p){if(!p)return 12;const n=(p.cites!=null?18:12);return n;}   /* 论文没有时长,按篇估读 12-18 分钟 */
+function syncReadUI(id){const on=readHas(id);
+  const b=document.getElementById('readBtn');if(b){b.classList.toggle('on',on);b.textContent=on?'已读 ✓':'标记已读';}
+  document.querySelectorAll('.paper-card[data-id="'+id+'"]').forEach(c=>c.classList.toggle('read',on));}
+function laterGet(){try{const r=JSON.parse(localStorage.laterPapers||'[]');return Array.isArray(r)?r:[]}catch(e){return[]}}
+function laterHas(id){return laterGet().includes(id);}
+function laterMark(id,on){let a=laterGet();const had=a.includes(id);
+  a=on===false?a.filter(x=>x!==id):(had?a:[id,...a]);
+  if(a.length!==laterGet().length){localStorage.laterPapers=JSON.stringify(a);
+    const b=document.getElementById('laterBtn');if(b){b.classList.toggle('on',laterHas(id));b.textContent=laterHas(id)?'已加入待读 ★':'稍后读';}
+    document.querySelectorAll('.paper-card[data-id="'+id+'"]').forEach(c=>c.classList.toggle('later',laterHas(id)));
+    if(typeof syncTouch==='function')syncTouch();}}
+function toggleLater(id){laterMark(id,!laterHas(id));}
+function rlogGet(){try{const r=JSON.parse(localStorage.readLogPaper||'{}');return r&&typeof r==='object'?r:{}}catch(e){return{}}}
+function rlogAdd(min){if(!min)return;const d=new Date(),k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  const g=rlogGet();g[k]=Math.max(0,(g[k]||0)+min);if(!g[k])delete g[k];localStorage.readLogPaper=JSON.stringify(g);}
+function rlogStreak(){const g=rlogGet();const day=86400000;const today=new Date();today.setHours(0,0,0,0);
+  const has=t=>{const d=new Date(t);return g[d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')]>0;};
+  let cur=0,t=today.getTime();if(!has(t))t-=day;
+  while(has(t)){cur++;t-=day;}
+  const ks=Object.keys(g).filter(k=>g[k]>0).sort();let run=0,max=0,prev=null;
+  ks.forEach(k=>{const t2=new Date(k+'T00:00:00').getTime();run=(prev!==null&&t2-prev===day)?run+1:1;prev=t2;if(run>max)max=run;});
+  return {cur,max};}
+function rlogLocalMerge(){const g=rlogGet();let add=0;
+  recentGet().forEach(id=>{const p=PAPERS.find(x=>x.id===id);if(!p)return;});
+  return add;}
+/* 新收录徽标:最近 14 天内 date */
+function isNew(p){if(!p||!p.date)return false;const t=new Date(p.date+'T00:00:00').getTime();return Date.now()-t<14*86400000;}
+
+/* ===== 匿名访问统计(与 AI Podcast 同款,自有 D1;无 Cookie、不收集个人信息) ===== */
+const STATS_URL='https://stats.jasonlin.tech';
+const _dev=/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)?'mobile':'desktop';
+const _ref=(()=>{try{return document.referrer?new URL(document.referrer).host:''}catch(_){return ''}})();
+let _lastView=null;
+function track(type,path){try{
+  const p='paper:'+(path||(location.hash.replace(/^#/,'').split('?')[0]||'/'));
+  const body=JSON.stringify({type,path:p,ua:_dev,ref:_ref,sid:(localStorage.syncCode?_sidHash():'')});
+  if(navigator.sendBeacon)navigator.sendBeacon(STATS_URL,new Blob([body],{type:'text/plain'}));
+  else fetch(STATS_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body,keepalive:true});
+}catch(_){}}
+function _sidHash(){try{return (localStorage.statsSid||'')}catch(_){return ''}}
+function trackView(){const p=location.hash.replace(/^#/,'').split('?')[0]||'/';if(p===_lastView)return;_lastView=p;track('view');}
+
 function recentAdd(id){let r=recentGet().filter(x=>x!==id);r.unshift(id);localStorage.recentPapers=JSON.stringify(r.slice(0,6));_recentSnap=localStorage.recentPapers;if(typeof syncTouch==='function')syncTouch();}
 
 /* ===== 多设备同步(与 AI Podcast 共用同步码;数据按站隔离 ns=paper) ===== */
@@ -1284,8 +1544,15 @@ async function syncFetch(path,opts){let last;
   throw last instanceof Error?last:new Error('sync unreachable');}
 function syncCode(){return localStorage.syncCode||'';}
 function syncGen(){const A='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';let c='';const buf=new Uint8Array(20);crypto.getRandomValues(buf);for(const b of buf)c+=A[b%32];return c;}
-function syncCollect(){return{recent:recentGet(),prefs:{size:localStorage.size||'',lang:localStorage.lang||'',order:localStorage.order||'',theme:localStorage.theme||'',t:+localStorage.prefsT||0},t:Date.now()};}
+function syncCollect(){return{recent:recentGet(),read:[...readGet()],later:laterGet(),rlog:rlogGet(),prefs:{size:localStorage.size||'',lang:localStorage.lang||'',order:localStorage.order||'',theme:localStorage.theme||'',t:+localStorage.prefsT||0},t:Date.now()};}
 function syncMerge(r){if(!r||typeof r!=='object')return false;let changed=false;
+  {const s=readGet();const b=s.size;(r.read||[]).forEach(x=>s.add(x));
+   if(s.size!==b){localStorage.readPapers=JSON.stringify([...s]);changed=true;}}
+  {const a=new Set(laterGet());const b=a.size;(r.later||[]).forEach(x=>a.add(x));
+   if(a.size!==b){localStorage.laterPapers=JSON.stringify([...a]);changed=true;}}
+  {const rl=r.rlog;if(rl&&typeof rl==='object'){const g=rlogGet();let ch=false;
+    Object.keys(rl).forEach(k=>{const v=+rl[k]||0;if(v>(g[k]||0)){g[k]=v;ch=true;}});
+    if(ch){localStorage.readLogPaper=JSON.stringify(g);changed=true;}}}
   const cur=recentGet();const merged=[...cur];(r.recent||[]).forEach(id=>{if(!merged.includes(id))merged.push(id);});
   if(merged.length!==cur.length){localStorage.recentPapers=JSON.stringify(merged.slice(0,12));changed=true;}
   const pf=r.prefs||{};if(pf.t&&pf.t>(+localStorage.prefsT||0)){['size','lang','order','theme'].forEach(k=>{if(pf[k])localStorage[k]=pf[k];});localStorage.prefsT=pf.t;changed=true;}
@@ -1334,9 +1601,11 @@ function render(){
  else if(parts[0]==='orgs')html=vOrgs();
  else if(parts[0]==='org')html=vOrg(parts[1]);
  else if(parts[0]==='ask')html=vAsk();
+ else if(parts[0]==='mine'||parts[0]==='stats')html=vMine();
  else html=vHome();
  document.getElementById('app').innerHTML=html;
  placeAsk();
+ try{trackView()}catch(_){}
  if(!pendingLocate)window.scrollTo(0,0);
  if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([document.getElementById('app')]).catch(()=>{});
  applyLocate(); syncSeg();
