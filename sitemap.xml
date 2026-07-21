@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-07-21</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/chrisolah/</loc><lastmod>Tue,</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xiaomimimo/</loc><lastmod>2026-07-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/demis/</loc><lastmod>2026-07-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xingwusun/</loc><lastmod>2026-07-14</lastmod></url>
@@ -226,6 +225,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/tschaul/</loc><lastmod>2015-11-18</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/tlillicrap/</loc><lastmod>2015-09-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rsennrich/</loc><lastmod>2015-08-31</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/chrisolah/</loc><lastmod>2015-08-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/oronneberger/</loc><lastmod>2015-05-18</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jsohldick/</loc><lastmod>2015-03-12</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/timurban/</loc><lastmod>2015-01-22</lastmod></url>
@@ -233,7 +233,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/ksimonyan/</loc><lastmod>2014-09-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jbruna/</loc><lastmod>2013-12-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jeffdean/</loc><lastmod>2013-01-16</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/p/chrisolah-understanding-lstms/</loc><lastmod>Tue,</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xiaomimimo-2607.15330/</loc><lastmod>2026-07-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/demis-frontier-ai-framework/</loc><lastmod>2026-07-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xingwusun-2607.12894/</loc><lastmod>2026-07-14</lastmod></url>
@@ -740,6 +739,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/hvanhasselt-1509.06461/</loc><lastmod>2015-09-22</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/tlillicrap-1509.02971/</loc><lastmod>2015-09-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/rsennrich-1508.07909/</loc><lastmod>2015-08-31</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/chrisolah-understanding-lstms/</loc><lastmod>2015-08-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/oriol-1506.03134/</loc><lastmod>2015-06-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jredmon-1506.02640/</loc><lastmod>2015-06-08</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/karpathy-1506.02078/</loc><lastmod>2015-06-05</lastmod></url>
