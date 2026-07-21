@@ -106,7 +106,6 @@
 - [Martin Arjovsky / 马丁·阿尔约夫斯基](https://aipaper.jasonlin.tech/pp/arjovsky/): Research Scientist; GAN training theory (Wasserstein GAN) — 2 篇
 - [Tomas Mikolov / 托马斯·米科洛夫](https://aipaper.jasonlin.tech/pp/tmikolov/): Research Scientist (word2vec creator); formerly Google, Facebook AI — 2 篇
 - [Diederik P. Kingma / 迪德里克·金马](https://aipaper.jasonlin.tech/pp/dkingma/): Research Scientist, Anthropic (prev. Google Brain, OpenAI) — 2 篇
-- [Chris Olah / 克里斯·奥拉](https://aipaper.jasonlin.tech/pp/chrisolah/): Co-founder, Anthropic · Interpretability — 1 篇
 - [Ali Hatamizadeh / 阿里·哈塔米扎德](https://aipaper.jasonlin.tech/pp/alihatamizadeh/): Senior Research Scientist, NVIDIA — 1 篇
 - [Citrini Research / Citrini Research](https://aipaper.jasonlin.tech/pp/citrini/): Thematic Investment Research — 1 篇
 - [Matt Shumer / 马特·舒默](https://aipaper.jasonlin.tech/pp/mattshumer/): Co-founder & CEO, HyperWrite — 1 篇
@@ -127,6 +126,7 @@
 - [Bowen Jin / 金博文](https://aipaper.jasonlin.tech/pp/bowenjin/): UIUC, RL for search-augmented reasoning — 1 篇
 - [Ling Team (inclusionAI) / Ling Team (inclusionAI)](https://aipaper.jasonlin.tech/pp/antling/): Ant Group / inclusionAI, large MoE model — 1 篇
 - [Steve Yegge / 史蒂夫·耶格](https://aipaper.jasonlin.tech/pp/steveyegge/): Engineer & Writer · ex-Google, ex-Amazon — 1 篇
+- [Loubna Ben Allal / Loubna Ben Allal](https://aipaper.jasonlin.tech/pp/loubna/): Hugging Face, data-centric small LMs — 1 篇
 
 ## 高被引论文 Most-cited papers
 - [Deep Residual Learning for Image Recognition](https://aipaper.jasonlin.tech/p/kaiming-1512.03385/) — Kaiming He, Microsoft, 被引 231533
