@@ -20,7 +20,7 @@ OPX=urllib.request.build_opener(urllib.request.ProxyHandler({'http':'http://127.
 HDR={"User-Agent":"AIPaper/0.1 (research reader)"}
 
 def call(system,user,mx=8000):
-    body=json.dumps({"model":"deepseek-chat","messages":[{"role":"system","content":system},
+    body=json.dumps({"model":"deepseek-v4-flash","messages":[{"role":"system","content":system},
         {"role":"user","content":user}],"response_format":{"type":"json_object"},
         "max_tokens":mx,"temperature":0.2}).encode()
     last=None
@@ -118,7 +118,7 @@ def main():
         futs={ex.submit(translate_section,s):i for i,s in enumerate(secs)}
         for f in as_completed(futs): full[futs[f]]=f.result()
     ctx=title+"\n"+summ+"\n"+" ".join(p["en"] for s in full for p in s["paras"])[:60000]
-    ins=call(INS_SYS,ctx,mx=4000); m=meta_zh(title,summ)
+    ins=call(INS_SYS,ctx,mx=6000); m=meta_zh(title,summ)
     fields=[x.strip() for x in a.fields.split(",") if x.strip()]
     pid=a.pid; pid_id=f"{pid}-{aid}"
     paper={"id":pid_id,"pid":pid,"arxiv":aid,"date":pub,"venue":cat,"fields":fields,
