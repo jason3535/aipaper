@@ -14,7 +14,7 @@ IMG="https://ar5iv.labs.arxiv.org"
 clean=lambda s:re.sub(r"\s+"," ",re.sub(r"<[^>]+>","",s)).strip()
 
 def call(system,user,mx=8000):
-    body=json.dumps({"model":"deepseek-chat","messages":[{"role":"system","content":system},{"role":"user","content":user}],
+    body=json.dumps({"model":"deepseek-v4-flash","messages":[{"role":"system","content":system},{"role":"user","content":user}],
         "response_format":{"type":"json_object"},"max_tokens":mx,"temperature":0.2}).encode()
     for a in range(3):
         try:
