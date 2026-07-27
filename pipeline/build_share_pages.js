@@ -54,7 +54,11 @@ ${(d.absZh||p.sZh||d.absEn||p.sEn)?`<h2>摘要 · Abstract</h2><p class="zh">${e
 ${contrib.length?`<h2>核心贡献 · Key contributions</h2><ul>${li(contrib)}</ul>`:''}
 ${limits.length?`<h2>局限 · Limitations</h2><ul>${li(limits)}</ul>`:''}
 ${secs.length?`<h2>论文章节 · Sections（共 ${secs.length}）</h2><ul>${secs.map(s=>`<li><span class="zh">${esc(s.zh)}</span> <span class="en">${esc(s.en)}</span></li>`).join('')}</ul>`:''}
-<p style="margin-top:26px"><a class="cta" href="${hash}">阅读逐段中英对照全文 →</a></p>`;
+<p style="margin-top:26px"><a class="cta" href="${hash}">阅读逐段中英对照全文 →</a></p>
+<script>(function(){var q=location.search.replace(/^\\?/,'');var h=${JSON.stringify(hash)}+(q?'?'+q:'');
+document.querySelectorAll('a.cta').forEach(function(a){a.href=h});
+// 真人访客直达 SPA 详情页;爬虫(SEO/OG 卡片)留在本静态页
+if(!/bot|spider|crawl|slurp|preview|fetch|embed|facebookexternalhit|whatsapp\\//i.test(navigator.userAgent))location.replace(h);})()</script>`;
   const art={"@context":"https://schema.org","@type":"ScholarlyArticle",headline:p.tEn,alternativeHeadline:p.tZh,name:p.tEn,url,datePublished:p.date,inLanguage:["en","zh"],abstract:d.absEn||p.sEn||p.sZh,description:p.sEn||p.sZh,keywords:(p.fields||[]).join(', '),author:{"@type":"Person",name:pe.en,jobTitle:pe.tiEn,url:person},isPartOf:{"@type":"WebSite",name:"AI Paper",url:SITE}};
   if(p.org)art.sourceOrganization={"@type":"Organization",name:p.org};
   if(srcUrl)art.sameAs=srcUrl;
