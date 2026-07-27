@@ -58,12 +58,32 @@ def parse_md(md, title_hint=""):
     if cur["paras"]: secs.append(cur)
     return title, pub, secs
 
+# ---- 反向模式(中文原生内容):中文原文 → 英文译文 ----
+TR_SYS_REV = """你是专业译者。输入是一篇中文文章某一节的若干中文段落(JSON 数组)。
+逐段译成准确、通顺、地道的英文,**与输入等长、一一对应**。保留专有名词(人名/公司/产品,如 DeepSeek、AGI、AGI)。
+另给该节的英文小标题 secEn。只输出 JSON:{"secEn":"...","en":["para1 English","para2 English",...]}"""
+
+def translate_section_rev(sec):
+    """中文段落 → 英文;返回 sec(英文标题)/secZh(中文原标题)/paras[{en:英译, zh:中文原文}]。"""
+    paras = sec["paras"]
+    if not paras: return {"sec": sec["sec"], "secZh": sec["sec"], "paras": []}
+    r = call(TR_SYS_REV, f"节标题: {sec['sec']}\n段落: " + json.dumps(paras, ensure_ascii=False), mx=8000)
+    en = r.get("en", [])
+    if len(en) != len(paras): en = (en + [""] * len(paras))[:len(paras)]
+    return {"sec": r.get("secEn", sec["sec"]), "secZh": sec["sec"],
+            "paras": [{"en": e, "zh": z} for e, z in zip(en, paras)]}
+
+def meta_rev(zh_title, en_abs):
+    return call('你是编辑,输入一篇中文文章的中文标题与其英文摘要,产出 JSON:{"tEn":"精炼英文标题","sEn":"一句话英文核心 takeaway","sZh":"一句话中文核心 takeaway"}。只输出 JSON。',
+                f"中文标题: {zh_title}\n英文摘要: {en_abs}")
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--url", required=True); ap.add_argument("--pid", required=True)
     ap.add_argument("--fields", required=True); ap.add_argument("--org", default="")
     ap.add_argument("--label", default=""); ap.add_argument("--slug", default="")
     ap.add_argument("--title", default=""); ap.add_argument("--date", default="")
+    ap.add_argument("--reverse", action="store_true", help="中文原生内容:中文原文→英文译文(默认英文→中文)")
     a = ap.parse_args()
     url = a.url.strip()
     slug = a.slug or re.sub(r"[^a-z0-9-]", "", url.rstrip("/").split("/")[-1].lower())[:48]
@@ -75,20 +95,27 @@ def main():
     print(f"   标题: {title[:60]} | {pub} | {len(secs)} 节 / {sum(len(s['paras']) for s in secs)} 段", file=sys.stderr)
     if sum(len(s["paras"]) for s in secs) < 3:
         sys.exit("  ✗ 正文过短,抓取可能失败,放弃")
-    print(f"[2/4] 逐段翻译", file=sys.stderr)
+    print(f"[2/4] 逐段翻译{'(中→英 反向)' if a.reverse else '(英→中)'}", file=sys.stderr)
+    tf = translate_section_rev if a.reverse else translate_section
     full = [None] * len(secs)
     with ThreadPoolExecutor(max_workers=5) as ex:
-        futs = {ex.submit(translate_section, s): i for i, s in enumerate(secs)}
+        futs = {ex.submit(tf, s): i for i, s in enumerate(secs)}
         for f in as_completed(futs): full[futs[f]] = f.result()
     print(f"[3/4] 贡献/局限 + 元信息", file=sys.stderr)
     absEn = " ".join(p["en"] for p in full[0]["paras"][:3])[:1200]
     ctx = title + "\n" + absEn + "\n" + " ".join(p["en"] for s in full for p in s["paras"])[:60000]
-    ins = call(INS_SYS, ctx, mx=4000)
-    m = meta_zh(title, absEn)
+    ins = call(INS_SYS, ctx, mx=6000)
     fields = [x.strip() for x in a.fields.split(",") if x.strip()]
+    if a.reverse:   # 中文原生:title 是中文,tEn 需生成,absZh=中文原文
+        absZh = " ".join(p["zh"] for p in full[0]["paras"][:3])[:1200]
+        m = meta_rev(title, absEn)
+        tEn, tZh = m.get("tEn", title), title
+    else:
+        absZh = None; m = meta_zh(title, absEn); tEn, tZh = title, m.get("tZh", title)
     paper = {"id": pid_id, "pid": a.pid, "date": pub, "venue": a.label or "Research",
-             "org": a.org, "fields": fields, "tEn": title, "tZh": m.get("tZh", title),
-             "sEn": m.get("sEn", ""), "sZh": m.get("sZh", ""), "absEn": absEn, "absZh": m.get("absZh", ""),
+             "org": a.org, "fields": fields, "tEn": tEn, "tZh": tZh,
+             "sEn": m.get("sEn", ""), "sZh": m.get("sZh", ""), "absEn": absEn,
+             "absZh": absZh if a.reverse else m.get("absZh", ""),
              "insights": ins, "srcUrl": url, "srcLabel": a.label or a.org or "Article"}
     print(f"[4/4] 写 data/{pid_id}.json + index.html", file=sys.stderr)
     json.dump({**paper, "authors": [a.org] if a.org else [], "full": full},
