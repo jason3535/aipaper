@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-07-27</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/wenfengliang/</loc><lastmod>2026-07-23</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xiaomimimo/</loc><lastmod>2026-07-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/demis/</loc><lastmod>2026-07-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xingwusun/</loc><lastmod>2026-07-14</lastmod></url>
@@ -80,6 +79,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/dayaguo/</loc><lastmod>2025-01-22</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2025-01-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/chiphuyen/</loc><lastmod>2025-01-07</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/wenfengliang/</loc><lastmod>2024-12-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/pingluo/</loc><lastmod>2024-10-17</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/songyangliu/</loc><lastmod>2024-10-10</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rgirshick/</loc><lastmod>2024-08-01</lastmod></url>
@@ -234,7 +234,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/ksimonyan/</loc><lastmod>2014-09-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jbruna/</loc><lastmod>2013-12-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jeffdean/</loc><lastmod>2013-01-16</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/p/wenfengliang-investor-meeting-2026/</loc><lastmod>2026-07-23</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xiaomimimo-2607.15330/</loc><lastmod>2026-07-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/demis-frontier-ai-framework/</loc><lastmod>2026-07-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xingwusun-2607.12894/</loc><lastmod>2026-07-14</lastmod></url>
