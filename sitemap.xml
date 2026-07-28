@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-07-27</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-07-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xiaomimimo/</loc><lastmod>2026-07-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/demis/</loc><lastmod>2026-07-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xingwusun/</loc><lastmod>2026-07-14</lastmod></url>
@@ -234,6 +234,8 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/ksimonyan/</loc><lastmod>2014-09-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jbruna/</loc><lastmod>2013-12-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jeffdean/</loc><lastmod>2013-01-16</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xiaomimimo-2607.15330/</loc><lastmod>2026-07-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/demis-frontier-ai-framework/</loc><lastmod>2026-07-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xingwusun-2607.12894/</loc><lastmod>2026-07-14</lastmod></url>
@@ -771,5 +773,10 @@
   <url><loc>https://aipaper.jasonlin.tech/p/rgirshick-1311.2524/</loc><lastmod>2013-11-11</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/tmikolov-1310.4546/</loc><lastmod>2013-10-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jeffdean-1301.3781/</loc><lastmod>2013-01-16</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/ilya-alexnet-2012/</loc><lastmod>2012-12-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/hinton-1207.0580/</loc><lastmod>2012-07-03</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/hinton-deep-belief-nets-2006/</loc><lastmod>2006-07-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/hinton-boltzmann-machine-1985/</loc><lastmod>1985-03-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/rosenblatt-perceptron-1958/</loc><lastmod>1958-11-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/mcculloch-mcculloch-pitts-1943/</loc><lastmod>1943-12-01</lastmod></url>
 </urlset>
