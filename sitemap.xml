@@ -234,6 +234,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/ksimonyan/</loc><lastmod>2014-09-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jbruna/</loc><lastmod>2013-12-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jeffdean/</loc><lastmod>2013-01-16</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xiaomimimo-2607.15330/</loc><lastmod>2026-07-16</lastmod></url>
@@ -776,7 +777,10 @@
   <url><loc>https://aipaper.jasonlin.tech/p/ilya-alexnet-2012/</loc><lastmod>2012-12-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/hinton-1207.0580/</loc><lastmod>2012-07-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/hinton-deep-belief-nets-2006/</loc><lastmod>2006-07-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/shochreiter-lstm-1997/</loc><lastmod>1997-11-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/hinton-backprop-1986/</loc><lastmod>1986-01-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/hinton-boltzmann-machine-1985/</loc><lastmod>1985-03-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/hopfield-hopfield-1982/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/rosenblatt-perceptron-1958/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/mcculloch-mcculloch-pitts-1943/</loc><lastmod>1943-12-01</lastmod></url>
 </urlset>

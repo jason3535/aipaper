@@ -81,10 +81,16 @@ TR_SYS=f"""你是 AI 论文的专业译者。输入是一篇 AI 论文某一节�
 def translate_section(sec):
     paras=sec["paras"]
     if not paras: return {"sec":sec["sec"],"secZh":sec["sec"],"paras":[]}
-    r=call(TR_SYS,f"节标题: {sec['sec']}\n段落: "+json.dumps(paras,ensure_ascii=False),mx=8000)
-    zh=r.get("zh",[]);
-    if len(zh)!=len(paras): zh=(zh+[""]*len(paras))[:len(paras)]
-    return {"sec":sec["sec"],"secZh":r.get("secZh",sec["sec"]),"paras":[{"en":e,"zh":z} for e,z in zip(paras,zh)]}
+    # 分节差的 PDF 会出现「一节几十上百段」,一次翻译会超 token 被截断(JSON 报错)。按 25 段分批。
+    BATCH=10; zh=[]; secZh=None
+    for i in range(0,len(paras),BATCH):
+        chunk=paras[i:i+BATCH]
+        r=call(TR_SYS,f"节标题: {sec['sec']}\n段落: "+json.dumps(chunk,ensure_ascii=False),mx=8000)
+        if secZh is None: secZh=r.get("secZh",sec["sec"])
+        z=r.get("zh",[])
+        if len(z)!=len(chunk): z=(z+[""]*len(chunk))[:len(chunk)]
+        zh.extend(z)
+    return {"sec":sec["sec"],"secZh":secZh or sec["sec"],"paras":[{"en":e,"zh":z} for e,z in zip(paras,zh)]}
 
 INS_SYS=f"""你是 AI 论文编辑。读论文标题、摘要与正文,提炼两组要点,输出 JSON:
 {{"contrib":[{{"en":"...","zh":"..."}}],"limits":[{{"en":"...","zh":"..."}}]}}
