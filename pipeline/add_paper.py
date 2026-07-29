@@ -129,7 +129,8 @@ def main():
     pid=a.pid; pid_id=f"{pid}-{aid}"
     paper={"id":pid_id,"pid":pid,"arxiv":aid,"date":pub,"venue":cat,"fields":fields,
            "tEn":title,"tZh":m.get("tZh",title),"sEn":m.get("sEn",""),"sZh":m.get("sZh",""),
-           "absEn":summ,"absZh":m.get("absZh",""),"insights":ins}
+           "absEn":summ,"absZh":m.get("absZh",""),"insights":ins,
+           "addedAt":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())}   # 收录时间戳(首页按此排最新)
     print(f"[4/4] 写 data/{pid_id}.json + index.html",file=sys.stderr)
     json.dump({**paper,"authors":authors,"full":full},open(ROOT/"data"/f"{pid_id}.json","w"),ensure_ascii=False)
     h=HTML.read_text(encoding="utf-8")
