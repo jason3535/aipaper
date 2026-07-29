@@ -116,7 +116,8 @@ def main():
              "org": a.org, "fields": fields, "tEn": tEn, "tZh": tZh,
              "sEn": m.get("sEn", ""), "sZh": m.get("sZh", ""), "absEn": absEn,
              "absZh": absZh if a.reverse else m.get("absZh", ""),
-             "insights": ins, "srcUrl": url, "srcLabel": a.label or a.org or "Article"}
+             "insights": ins, "srcUrl": url, "srcLabel": a.label or a.org or "Article",
+             "addedAt": __import__("time").strftime("%Y-%m-%dT%H:%M:%SZ", __import__("time").gmtime())}
     print(f"[4/4] 写 data/{pid_id}.json + index.html", file=sys.stderr)
     json.dump({**paper, "authors": [a.org] if a.org else [], "full": full},
               open(ROOT / "data" / f"{pid_id}.json", "w"), ensure_ascii=False)
