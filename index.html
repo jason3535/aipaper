@@ -390,6 +390,7 @@ const FIELDS={
  'efficiency':{en:'Efficiency / Systems',zh:'高效 / 系统',c:'var(--f-eff)'},
  'generative':{en:'Generative Models',zh:'生成模型',c:'var(--f-gen)'},
  'safety':{en:'Safety / Alignment',zh:'对齐与安全',c:'#e2564a'},
+ 'robotics':{en:'Robotics / Embodied',zh:'机器人 / 具身',c:'#5aa867'},
 };
 const PEOPLE={
 'hopfield':{en:'John Hopfield',zh:'约翰·霍普菲尔德',init:'JH',tiEn:'Physicist; Hopfield networks (1982); 2024 Nobel Prize in Physics',tiZh:'物理学家；Hopfield 网络(1982)；2024 年诺贝尔物理学奖',fields:['deep-learning'],bioEn:'A physicist who in 1982 showed that networks of simple units with symmetric connections have emergent collective computational abilities, storing memories as stable attractor states. Shared the 2024 Nobel Prize in Physics for foundational work on neural networks.',bioZh:'物理学家。1982 年证明对称连接的简单单元网络具有涌现的集体计算能力，把记忆存为稳定的吸引子状态。因神经网络的奠基性工作获 2024 年诺贝尔物理学奖。'},
@@ -1004,8 +1005,8 @@ const PAPER_GRAPH={"shazeer":"shazeer","christiano":"christiano","demis":"hassab
 const PAPER2POD={abbeel:'abbeel',achowdhery:'chowdhery',albertgu:'albertgu',alexwei:'alexwei',antonoglou:'antonoglou',askell:'askell',bengio:'bengio',chrisolah:'olah',christiano:'christiano',dario:'dario',demis:'demis',dhafner:'hafner',fedus:'fedus',feifei:'feifei',finn:'finn',hinton:'hinton',ilya:'ilya',jasonwei:'jasonwei',jeffdean:'jeffdean',jimfan:'jimfan',jleskovec:'jureleskovec',justinjohnson:'justinjohnson',kaplan:'kaplan',karpathy:'karpathy',kendall:'kendall',kokotajlo:'kokotajlo',lecun:'lecun',leike:'leike',nathanlambert:'lambert',oriol:'oriol',richsutton:'sutton',sam:'altman',satya:'satya',schulman:'schulman',sermon:'ermon',shazeer:'shazeer',simonwillison:'simonwillison',svlevine:'slevine',tombrown:'tombrown',tonyfadell:'fadell',tridao:'tridao',tworek:'tworek',yejin:'yejin'};
 function pplOrder(){const k=Object.keys(PEOPLE).filter(p=>!ORG_ENTITIES.has(p));return k.slice().sort((a,b)=>papersOf(b).length-papersOf(a).length||k.indexOf(a)-k.indexOf(b));}
 function av(pid,cls){const p=PEOPLE[pid];if(PHOTOS.has(pid))return `<div class="${cls||'av'}"><img src="assets/people/${pid}.jpg" alt="${esc(p.en)}"></div>`;const cs=(p.fields||['deep-learning']).map(f=>(FIELDS[f]||{}).c||'#9aa4b2');const bg=`linear-gradient(140deg,${cs[0]},${cs[1]||cs[0]})`;return `<div class="${cls||'av'}" style="background:${bg}">${esc(p.init)}</div>`;}
-const fdot=f=>`<span class="fdot" style="background:${FIELDS[f].c}"></span>`;
-const ftag=f=>`<span class="tag">${fdot(f)}${FIELDS[f].zh}</span>`;
+const fdot=f=>`<span class="fdot" style="background:${(FIELDS[f]||{}).c||'var(--sub)'}"></span>`;
+const ftag=f=>`<span class="tag">${fdot(f)}${(FIELDS[f]||{}).zh||f}</span>`;
 function go(h){location.hash=h;}
 
 /* ===== VIEWS ===== */
