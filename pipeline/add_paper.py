@@ -72,25 +72,32 @@ def ar5iv_sections(aid):
         out.append(s)
     return out
 
-TR_SYS=f"""你是 AI 论文的专业译者。输入是一篇 AI 论文某一节的若干英文段落(JSON 数组)。
-逐段译成准确、通顺的学术中文,**与输入等长、一一对应**。保留术语英文缩写(如 Transformer、attention、GPU),数学符号照搬。严格用术语表。
-另给该节的中文小标题 secZh。只输出 JSON:{{"secZh":"...","zh":["第1段中文","第2段中文",...]}}
+TR_SYS=f"""你是 AI 论文的专业编辑兼译者。输入是一篇论文某一节的若干段落(JSON 数组),可能来自 PDF 抽取——单词常被空格打散、数学公式常被 OCR 错乱。对每一段做两件事,与输入段落**一一对应、等长**:
+1) en:清理并重构英文原文——修复被打散的单词(如 "act i vat i on"→"activation")、还原通顺英文;数学公式重构为规范 LaTeX。
+2) zh:译成准确通顺的学术中文,保留术语英文缩写(Transformer、attention、GPU 等)。
+可用 Markdown(如 **强调**、列表)组织结构。严格用术语表。
+**公式铁律(务必遵守)**:LaTeX 里的反斜杠 \\ 一律用符号 ⟐ 代替,绝不出现真正的反斜杠。行内公式包在 ⟐( ... ⟐),独立公式包在 ⟐[ ... ⟐]。命令也用 ⟐:如 ⟐frac{{a}}{{b}}、⟐sum、⟐alpha、⟐beta、⟐theta、⟐nabla、⟐partial。示例:能量写成 ⟐(E = -⟐sum_{{i<j}} w_{{ij}} s_i s_j⟐)。
+只输出 JSON:{{"secZh":"该节中文小标题","en":["清理后英文1",...],"zh":["中文1",...]}}
 术语表:
 {GT}"""
 
 def translate_section(sec):
     paras=sec["paras"]
     if not paras: return {"sec":sec["sec"],"secZh":sec["sec"],"paras":[]}
-    # 分节差的 PDF 会出现「一节几十上百段」,一次翻译会超 token 被截断(JSON 报错)。按 25 段分批。
-    BATCH=10; zh=[]; secZh=None
+    # 分节差的 PDF 会出现「一节几十上百段」,一次翻译会超 token 被截断(JSON 报错)。按 10 段分批。
+    # en 也重新清理(修 PDF 打散/公式转 LaTeX),故同时收集 en_out。
+    BATCH=5; en_out=[]; zh=[]; secZh=None   # 同时输出清理后 en + zh + LaTeX,输出量大,故批次降到 5、mx 提到 12000
     for i in range(0,len(paras),BATCH):
         chunk=paras[i:i+BATCH]
-        r=call(TR_SYS,f"节标题: {sec['sec']}\n段落: "+json.dumps(chunk,ensure_ascii=False),mx=8000)
+        r=call(TR_SYS,f"节标题: {sec['sec']}\n段落: "+json.dumps(chunk,ensure_ascii=False),mx=12000)
         if secZh is None: secZh=r.get("secZh",sec["sec"])
-        z=r.get("zh",[])
+        en=r.get("en",[]); z=r.get("zh",[])
+        if len(en)!=len(chunk): en=(en+chunk)[:len(chunk)]   # 清理失败回退原文
         if len(z)!=len(chunk): z=(z+[""]*len(chunk))[:len(chunk)]
-        zh.extend(z)
-    return {"sec":sec["sec"],"secZh":secZh or sec["sec"],"paras":[{"en":e,"zh":z} for e,z in zip(paras,zh)]}
+        en=[(x or "").replace("⟐","\\") for x in en]   # 占位符还原为反斜杠(避开 JSON 转义吞字)
+        z=[(x or "").replace("⟐","\\") for x in z]
+        en_out.extend(en); zh.extend(z)
+    return {"sec":sec["sec"],"secZh":secZh or sec["sec"],"paras":[{"en":e,"zh":z} for e,z in zip(en_out,zh)]}
 
 INS_SYS=f"""你是 AI 论文编辑。读论文标题、摘要与正文,提炼两组要点,输出 JSON:
 {{"contrib":[{{"en":"...","zh":"..."}}],"limits":[{{"en":"...","zh":"..."}}]}}
