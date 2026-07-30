@@ -6,7 +6,14 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Thu, 30 Jul 2026 01:24:23 -0000</lastBuildDate>
+  <lastBuildDate>Thu, 30 Jul 2026 15:57:03 -0000</lastBuildDate>
+  <item>
+    <title>Mamba：具有选择性状态空间的线性时间序列建模 — cs.LG</title>
+    <link>https://aipaper.jasonlin.tech/p/tridao-2312.00752/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/tridao-2312.00752/</guid>
+    <pubDate>Thu, 30 Jul 2026 15:57:03 -0000</pubDate>
+    <description>Mamba通过选择性状态空间实现线性时间序列建模，在语言、音频和基因组学等多个模态上的效率和性能均超越Transformer。</description>
+  </item>
   <item>
     <title>梁文锋 4 小时投资人会议实录：持续说不，DeepSeek 不做下一个 BAT — DeepSeek</title>
     <link>https://aipaper.jasonlin.tech/p/wenfengliang-investor-meeting-2026/</link>
@@ -209,13 +216,6 @@
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/stephenwolfram-what-is-chatgpt-doing/</guid>
     <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
     <description>ChatGPT通过从海量人类书写数据中学习统计模式，并利用名为Transformer的神经网络架构来生成文本。</description>
-  </item>
-  <item>
-    <title>规模假设 — Gwern.net</title>
-    <link>https://aipaper.jasonlin.tech/p/gwern-scaling-hypothesis/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/gwern-scaling-hypothesis/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>神经网络吸收数据和计算，随着问题变难而泛化并变得更贝叶斯，即使在微不足道的规模下也能展现新能力。</description>
   </item>
 </channel>
 </rss>

@@ -11,6 +11,7 @@ import argparse, json, os, re, sys, time, urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 BASE=Path(__file__).resolve().parent; ROOT=BASE.parent; HTML=ROOT/"index.html"
+sys.path.insert(0, str(BASE)); import arxiv_html   # arXiv 原生 HTML 提取(含显示公式+图)
 GLOSS=json.load(open(BASE/"glossary.json",encoding="utf-8")) if (BASE/"glossary.json").exists() else {}
 GT="\n".join(f"  {k} → {v}" for k,v in GLOSS.items() if not k.startswith("_"))
 KEY=os.environ.get("DEEPSEEK_API_KEY") or sys.exit("需要 DEEPSEEK_API_KEY")
@@ -81,6 +82,28 @@ TR_SYS=f"""你是 AI 论文的专业编辑兼译者。输入是一篇论文某�
 术语表:
 {GT}"""
 
+def translate_items(sec):
+    """arxiv HTML 路径:翻译 para item,eq/fig item 原位保留。返回 {sec,secZh,items:[...]}"""
+    items=sec["items"]
+    para_idx=[i for i,it in enumerate(items) if it.get("t")=="para"]
+    texts=[items[i]["en"] for i in para_idx]
+    if not texts:
+        return {"sec":sec["sec"],"secZh":sec["sec"],"items":items}
+    BATCH=5; en_out=[]; zh=[]; secZh=None
+    for i in range(0,len(texts),BATCH):
+        chunk=texts[i:i+BATCH]
+        r=call(TR_SYS,f"节标题: {sec['sec']}\n段落: "+json.dumps(chunk,ensure_ascii=False),mx=12000)
+        if secZh is None: secZh=r.get("secZh",sec["sec"])
+        en=r.get("en",[]); z=r.get("zh",[])
+        if len(en)!=len(chunk): en=(en+chunk)[:len(chunk)]
+        if len(z)!=len(chunk): z=(z+[""]*len(chunk))[:len(chunk)]
+        en_out.extend([(x or "").replace("⟐","\\") for x in en])
+        zh.extend([(x or "").replace("⟐","\\") for x in z])
+    out=[dict(it) for it in items]
+    for k,i in enumerate(para_idx):
+        out[i]={"t":"para","en":en_out[k],"zh":zh[k]}
+    return {"sec":sec["sec"],"secZh":secZh or sec["sec"],"items":out}
+
 def translate_section(sec):
     paras=sec["paras"]
     if not paras: return {"sec":sec["sec"],"secZh":sec["sec"],"paras":[]}
@@ -120,17 +143,25 @@ def main():
     ap.add_argument("--arxiv",required=True); ap.add_argument("--pid",required=True)
     ap.add_argument("--fields",required=True)
     a=ap.parse_args(); aid=a.arxiv.strip()
+    pid=a.pid; pid_id=f"{pid}-{aid}"
     print(f"[1/4] arXiv 元数据 {aid}",file=sys.stderr)
     title,summ,pub,authors,cat=arxiv_meta(aid)
-    print(f"[2/4] ar5iv 正文",file=sys.stderr)
-    secs=ar5iv_sections(aid)
-    print(f"   {len(secs)} 节 / {sum(len(s['paras']) for s in secs)} 段",file=sys.stderr)
+    figdir=str(ROOT/"assets"/"paperfigs"/pid_id)
+    print(f"[2/4] arXiv 原生 HTML 正文(含显示公式+图)",file=sys.stderr)
+    secs=arxiv_html.extract(aid,figdir=figdir); use_items=bool(secs)
+    if not secs:
+        print("   arxiv HTML 无 → 退回 ar5iv",file=sys.stderr); secs=ar5iv_sections(aid)
+    if not secs:
+        print("   ⚠️ 无正文源(arxiv HTML/ar5iv 均无),仅摘要;老论文需 PDF 兜底",file=sys.stderr); secs=[]
+    cnt=sum(len(s.get('items',s.get('paras',[]))) for s in secs)
+    print(f"   {len(secs)} 节 / {cnt} 块(items={use_items})",file=sys.stderr)
     print(f"[3/4] 逐段翻译 + 贡献/局限 + 元信息",file=sys.stderr)
-    full=[None]*len(secs)
+    full=[None]*len(secs); tr=translate_items if use_items else translate_section
     with ThreadPoolExecutor(max_workers=5) as ex:
-        futs={ex.submit(translate_section,s):i for i,s in enumerate(secs)}
+        futs={ex.submit(tr,s):i for i,s in enumerate(secs)}
         for f in as_completed(futs): full[futs[f]]=f.result()
-    ctx=title+"\n"+summ+"\n"+" ".join(p["en"] for s in full for p in s["paras"])[:60000]
+    para_ens=lambda s:[it["en"] for it in s.get("items",[]) if it.get("t")=="para"] or [p["en"] for p in s.get("paras",[])]
+    ctx=title+"\n"+summ+"\n"+" ".join(e for s in full for e in para_ens(s))[:60000]
     ins=call(INS_SYS,ctx,mx=6000); m=meta_zh(title,summ)
     fields=[x.strip() for x in a.fields.split(",") if x.strip()]
     pid=a.pid; pid_id=f"{pid}-{aid}"
