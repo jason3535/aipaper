@@ -1322,8 +1322,7 @@ function vPaper(id){
  ${hasToc?`<div class="read-wrap"><nav class="toc"><div class="toc-h">目录 · Contents</div>${tocItems}</nav><div class="rcol">${rcol}${recoBlock(p,full)}</div><aside class="askside" id="askDesk"></aside></div>
  <button class="toc-fab" onclick="toggleTocSheet()">目录</button>
  <div class="toc-sheet" id="tocSheet" onclick="if(event.target===this)toggleTocSheet()"><div class="panel"><div class="sh-h">目录 · Contents</div>${tocItems}</div></div>`
- :`<div class="read-wrap read-wrap-notoc"><div class="rcol" style="padding-top:24px">${rcol}${recoBlock(p,full)}</div><aside class="askside" id="askDesk"></aside></div>`}
- ${footer()}`;
+ :`<div class="read-wrap read-wrap-notoc"><div class="rcol" style="padding-top:24px">${rcol}${recoBlock(p,full)}</div><aside class="askside" id="askDesk"></aside></div>`}`;
 }
 function askBox(p,ins){
  const qs=((ins||p.insights||{}).contrib||[]).slice(0,2).map(x=>x.zh);
