@@ -67,11 +67,16 @@ def translate_section_rev(sec):
     """中文段落 → 英文;返回 sec(英文标题)/secZh(中文原标题)/paras[{en:英译, zh:中文原文}]。"""
     paras = sec["paras"]
     if not paras: return {"sec": sec["sec"], "secZh": sec["sec"], "paras": []}
-    r = call(TR_SYS_REV, f"节标题: {sec['sec']}\n段落: " + json.dumps(paras, ensure_ascii=False), mx=8000)
-    en = r.get("en", [])
-    if len(en) != len(paras): en = (en + [""] * len(paras))[:len(paras)]
-    return {"sec": r.get("secEn", sec["sec"]), "secZh": sec["sec"],
-            "paras": [{"en": e, "zh": z} for e, z in zip(en, paras)]}
+    BATCH = 8; en_out = []; secEn = None   # 分节差/长实录会出现一节上百段,分批防超 token 截断
+    for i in range(0, len(paras), BATCH):
+        chunk = paras[i:i+BATCH]
+        r = call(TR_SYS_REV, f"节标题: {sec['sec']}\n段落: " + json.dumps(chunk, ensure_ascii=False), mx=12000)
+        if secEn is None: secEn = r.get("secEn", sec["sec"])
+        en = r.get("en", [])
+        if len(en) != len(chunk): en = (en + [""] * len(chunk))[:len(chunk)]
+        en_out.extend(en)
+    return {"sec": secEn or sec["sec"], "secZh": sec["sec"],
+            "paras": [{"en": e, "zh": z} for e, z in zip(en_out, paras)]}
 
 def meta_rev(zh_title, en_abs):
     return call('你是编辑,输入一篇中文文章的中文标题与其英文摘要,产出 JSON:{"tEn":"精炼英文标题","sEn":"一句话英文核心 takeaway","sZh":"一句话中文核心 takeaway"}。只输出 JSON。',
