@@ -215,6 +215,14 @@ body[data-lang="zh"] .sec-h .sz,body[data-lang="zh"] .toc-i .sz{display:inline}
 body[data-order="zh"] .para{display:flex;flex-direction:column}
 body[data-order="zh"] .para .en{order:2;color:var(--sub)}
 body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
+/* ===== 正文可读性优化(2026-07-30):窄栏(长行伤阅读)+ 去每段分割线(200+段像表格)+ 加大行距 + 段间距分组 ===== */
+.rcol{max-width:720px}
+.para{padding:0;border-bottom:none;margin:0 0 20px}
+.para .en,.para .zh{line-height:1.8}
+.para .cmp{margin:0 0 9px}
+.para .cmp:last-child{margin-bottom:0}
+.sec-h{margin:40px 0 5px}
+.sec-hz{margin:0 0 16px}
 .toc-fab{display:none;position:fixed;right:18px;bottom:22px;z-index:96;align-items:center;gap:7px;background:var(--ink);color:var(--bg);border:none;border-radius:980px;padding:11px 18px;font-size:14px;font-weight:500;cursor:pointer;box-shadow:var(--shadow-lg)}
 .toc-sheet{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.35);backdrop-filter:blur(4px);display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .22s}
 .toc-sheet.on{opacity:1;pointer-events:auto}
