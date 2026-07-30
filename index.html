@@ -18,9 +18,9 @@
 <meta name="twitter:description" content="著名 AI 学者与他们的代表论文，逐段中英对照全文 + 核心贡献，还能针对论文内容直接问 AI。">
 <meta name="twitter:image" content="https://aipaper.jasonlin.tech/assets/og.png">
 <style>
-:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--bg:#fff;--surface:#f5f5f7;--surface2:#fafafa;--acc:#0a76e9;
---f-dl:#5b8def;--f-nlp:#7c5cf0;--f-vision:#e0699f;--f-rl:#f0913a;--f-eff:#22a565;--f-gen:#e0566f;
---sub2:#86868b;--nav:rgba(251,251,253,.72);--shadow:0 4px 24px rgba(20,22,30,.08);--shadow-lg:0 12px 40px rgba(20,22,30,.13);--serif:ui-serif,'New York',Georgia,'Songti SC',serif;--han:'PingFang SC','Songti SC',-apple-system,sans-serif;--read-scale:1;}
+:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#d2d2d7;--bg:#fff;--surface:#f5f5f7;--surface2:#fafafa;--acc:#0066cc;
+--f-dl:#0a84ff;--f-nlp:#5e5ce6;--f-vision:#30d158;--f-rl:#ff9f0a;--f-eff:#64d2ff;--f-gen:#ff375f;--f-safety:#ff453a;--f-robotics:#bf5af2;
+--sub2:#86868b;--nav:rgba(251,251,253,.72);--shadow:0 4px 24px rgba(0,0,0,.06);--shadow-lg:0 12px 40px rgba(0,0,0,.10);--serif:ui-serif,'New York',Georgia,'Songti SC',serif;--han:'PingFang SC','Songti SC',-apple-system,sans-serif;--read-scale:1;}
 [data-size="s"]{--read-scale:.9}[data-size="m"]{--read-scale:1}[data-size="l"]{--read-scale:1.18}
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,system-ui,"PingFang SC","Hiragino Sans GB",sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.6}
@@ -47,14 +47,14 @@ section{padding:46px 0}
 .grid{display:grid;gap:16px}
 .ppl-grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
 .ppl-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:22px 18px;text-align:center;cursor:pointer;transition:.15s}
-.ppl-card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(20,22,30,.08)}
+.ppl-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .av{width:84px;height:84px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-weight:700;color:#fff;font-size:26px;overflow:hidden;background:linear-gradient(135deg,#9aa4b2,#6b7280)}
 .av img{width:100%;height:100%;object-fit:cover}
 .ppl-card .n{font-weight:650}.ppl-card .nz{color:var(--sub);font-size:14px}
 .ppl-card .ti{color:var(--sub);font-size:12.5px;margin-top:6px;min-height:32px}
 .ppl-card .cnt{margin-top:10px;font-size:12px;color:var(--acc);font-weight:600}
 .paper-card{display:block;background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:20px 22px;cursor:pointer;transition:.15s}
-.paper-card:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(20,22,30,.07)}
+.paper-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .paper-card .pt{font-weight:650;font-size:18px}
 .paper-card .ptz{color:var(--sub);font-size:15px;margin-top:3px}
 .paper-card .meta{margin-top:10px;font-size:13px;color:var(--sub);display:flex;gap:12px;flex-wrap:wrap}
@@ -397,8 +397,8 @@ const FIELDS={
  'rl':{en:'Reinforcement Learning',zh:'强化学习',c:'var(--f-rl)'},
  'efficiency':{en:'Efficiency / Systems',zh:'高效 / 系统',c:'var(--f-eff)'},
  'generative':{en:'Generative Models',zh:'生成模型',c:'var(--f-gen)'},
- 'safety':{en:'Safety / Alignment',zh:'对齐与安全',c:'#e2564a'},
- 'robotics':{en:'Robotics / Embodied',zh:'机器人 / 具身',c:'#5aa867'},
+ 'safety':{en:'Safety / Alignment',zh:'对齐与安全',c:'var(--f-safety)'},
+ 'robotics':{en:'Robotics / Embodied',zh:'机器人 / 具身',c:'var(--f-robotics)'},
 };
 const PEOPLE={
 'hopfield':{en:'John Hopfield',zh:'约翰·霍普菲尔德',init:'JH',tiEn:'Physicist; Hopfield networks (1982); 2024 Nobel Prize in Physics',tiZh:'物理学家；Hopfield 网络(1982)；2024 年诺贝尔物理学奖',fields:['deep-learning'],bioEn:'A physicist who in 1982 showed that networks of simple units with symmetric connections have emergent collective computational abilities, storing memories as stable attractor states. Shared the 2024 Nobel Prize in Physics for foundational work on neural networks.',bioZh:'物理学家。1982 年证明对称连接的简单单元网络具有涌现的集体计算能力，把记忆存为稳定的吸引子状态。因神经网络的奠基性工作获 2024 年诺贝尔物理学奖。'},
