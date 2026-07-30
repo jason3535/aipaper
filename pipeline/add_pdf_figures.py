@@ -21,13 +21,23 @@ def extract(pid, pdf_url):
     dst.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as td:
         pdf = os.path.join(td, "p.pdf")
-        try:
-            data = OPX.open(urllib.request.Request(pdf_url, headers={"User-Agent": "Mozilla/5.0"}), timeout=90).read()
-        except Exception:
-            data = urllib.request.urlopen(pdf_url, timeout=90).read()
-        open(pdf, "wb").write(data)
+        UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 "
+              "(KHTML, like Gecko) Version/17.0 Safari/605.1.15")   # 完整浏览器 UA:绕过 upenn/PNAS 等 403
+        subprocess.run(["curl", "-sL", "--noproxy", "*", "-A", UA, "-o", pdf, "--max-time", "90", pdf_url], check=False)
+        if not os.path.exists(pdf) or os.path.getsize(pdf) < 5000:
+            print(f"  {pid}: PDF 下载失败(可能 403/被封)"); return []
         # -list 拿每张图的页码/尺寸,过滤小图/长条
         lst = subprocess.run(["pdfimages", "-list", pdf], capture_output=True, text=True).stdout.splitlines()
+        # 扫描版检测:若多张图都是整页大图(>1500px 且尺寸高度雷同),说明是扫描件,提不出独立插图,整体跳过
+        dims = []
+        for ln in lst[2:]:
+            f = ln.split()
+            if len(f) >= 5:
+                try: dims.append((int(f[3]), int(f[4])))
+                except ValueError: pass
+        big = [d for d in dims if max(d) > 1500]
+        if len(big) >= 6 and len(big) >= 0.6 * len(dims):
+            print(f"  {pid}: 疑似扫描版({len(big)} 张整页大图),跳过(提不出独立插图)"); return []
         keep = []
         for ln in lst[2:]:
             f = ln.split()
