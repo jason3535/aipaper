@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>AI Paper · 双语论文全文</title>
+  <link>https://aipaper.jasonlin.tech/</link>
+  <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
+  <language>zh-cn</language>
+  <lastBuildDate>Thu, 30 Jul 2026 01:24:23 -0000</lastBuildDate>
+  <item>
+    <title>梁文锋 4 小时投资人会议实录：持续说不，DeepSeek 不做下一个 BAT — DeepSeek</title>
+    <link>https://aipaper.jasonlin.tech/p/wenfengliang-investor-meeting-2026/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/wenfengliang-investor-meeting-2026/</guid>
+    <pubDate>Thu, 30 Jul 2026 01:24:23 -0000</pubDate>
+    <description>梁文锋在4小时投资人会议上持续强调，DeepSeek不会成为下一个BAT。</description>
+  </item>
+  <item>
+    <title>使用深度卷积神经网络的ImageNet分类 — NeurIPS (2012)</title>
+    <link>https://aipaper.jasonlin.tech/p/ilya-alexnet-2012/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/ilya-alexnet-2012/</guid>
+    <pubDate>Wed, 29 Jul 2026 16:30:55 -0000</pubDate>
+    <description>一个具有6000万参数的深度CNN在ImageNet上取得了最优结果，采用非饱和神经元、高效GPU实现和dropout减少过拟合。</description>
+  </item>
+  <item>
+    <title>长短期记忆 — Neural Computation (1997)</title>
+    <link>https://aipaper.jasonlin.tech/p/shochreiter-lstm-1997/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/shochreiter-lstm-1997/</guid>
+    <pubDate>Wed, 29 Jul 2026 16:28:22 -0000</pubDate>
+    <description>LSTM通过恒定误差流桥接长时间延迟，解决了以往循环网络无法解决的复杂任务。</description>
+  </item>
+  <item>
+    <title>通过误差传播学习内部表示 — PDP, MIT Press (1986)</title>
+    <link>https://aipaper.jasonlin.tech/p/hinton-backprop-1986/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/hinton-backprop-1986/</guid>
+    <pubDate>Wed, 29 Jul 2026 16:11:20 -0000</pubDate>
+    <description>误差传播使得具有隐藏单元的多层网络能够学习。</description>
+  </item>
+  <item>
+    <title>一种深度信念网络的快速学习算法 — Neural Computation (2006)</title>
+    <link>https://aipaper.jasonlin.tech/p/hinton-deep-belief-nets-2006/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/hinton-deep-belief-nets-2006/</guid>
+    <pubDate>Wed, 29 Jul 2026 15:56:25 -0000</pubDate>
+    <description>本文提出了一种用于深度信念网络的快速学习算法。</description>
+  </item>
+  <item>
+    <title>具有涌现集体计算能力的神经网络与物理系统 — PNAS (1982)</title>
+    <link>https://aipaper.jasonlin.tech/p/hopfield-hopfield-1982/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/hopfield-hopfield-1982/</guid>
+    <pubDate>Wed, 29 Jul 2026 15:54:01 -0000</pubDate>
+    <description>神经网络和物理系统通过大量简单组件的集体行为涌现出有用的计算能力。</description>
+  </item>
+  <item>
+    <title>感知器：大脑中信息存储与组织的概率模型 — Psychological Review (1958)</title>
+    <link>https://aipaper.jasonlin.tech/p/rosenblatt-perceptron-1958/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/rosenblatt-perceptron-1958/</guid>
+    <pubDate>Wed, 29 Jul 2026 15:43:09 -0000</pubDate>
+    <description>本文探讨信息如何存储以及存储信息如何影响大脑中的识别，提出了感知器作为概率模型。</description>
+  </item>
+  <item>
+    <title>神经活动中内在思想的逻辑演算 — Bull. Math. Biophysics (1943)</title>
+    <link>https://aipaper.jasonlin.tech/p/mcculloch-mcculloch-pitts-1943/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/mcculloch-mcculloch-pitts-1943/</guid>
+    <pubDate>Wed, 29 Jul 2026 15:37:14 -0000</pubDate>
+    <description>由于神经活动的全或无特性，神经事件及其关系可以用命题逻辑来处理。</description>
+  </item>
+  <item>
+    <title>玻尔兹曼机的学习算法 — Cognitive Science (1985)</title>
+    <link>https://aipaper.jasonlin.tech/p/hinton-boltzmann-machine-1985/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/hinton-boltzmann-machine-1985/</guid>
+    <pubDate>Wed, 29 Jul 2026 15:22:17 -0000</pubDate>
+    <description>基于统计力学的并行搜索方法导出了玻尔兹曼机中连接强度的学习规则。</description>
+  </item>
+  <item>
+    <title>基于TrueSkill的LLM排序 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/p/thariq-sorting/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/thariq-sorting/</guid>
+    <pubDate>Sat, 25 Jul 2026 14:03:47 -0000</pubDate>
+    <description>LLM结合TrueSkill可通过带置信区间的两两比较有效排序大数据集。</description>
+  </item>
+  <item>
+    <title>开发者应该关心可解释性吗？ — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/p/thariq-interpretability/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/thariq-interpretability/</guid>
+    <pubDate>Sat, 25 Jul 2026 14:03:47 -0000</pubDate>
+    <description>可解释性能够捕捉无法用言语描述的风格、减少RLHF需求、实现低成本分类，但存在使模型偏离分布和误解特征的风险。</description>
+  </item>
+  <item>
+    <title>小米机器人-1：基于超过10万小时真实世界轨迹的视觉-语言-动作模型规模化 — Xiaomi</title>
+    <link>https://aipaper.jasonlin.tech/p/xiaomimimo-2607.15330/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/xiaomimimo-2607.15330/</guid>
+    <pubDate>Tue, 21 Jul 2026 14:56:01 -0000</pubDate>
+    <description>小米机器人-1是一个基础视觉-语言-动作模型，通过超过10万小时真实世界轨迹的预训练和高效后训练，在多个基准上达到最先进水平。</description>
+  </item>
+  <item>
+    <title>Hy-Embodied-VLM-1.0：高效的物理世界智能体 — Tencent Hunyuan</title>
+    <link>https://aipaper.jasonlin.tech/p/xingwusun-2607.12894/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/xingwusun-2607.12894/</guid>
+    <pubDate>Tue, 21 Jul 2026 14:56:01 -0000</pubDate>
+    <description>Hy-Embodied-VLM-1.0 在38个基准测试中的19个上取得同规模最佳性能，仅激活3B参数。</description>
+  </item>
+  <item>
+    <title>sqlite-utils 4.0rc2：主要由Claude Fable编写 — Simon Willison's Weblog</title>
+    <link>https://aipaper.jasonlin.tech/p/simonwillison-sqlite-utils-fable/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/simonwillison-sqlite-utils-fable/</guid>
+    <pubDate>Tue, 21 Jul 2026 14:56:01 -0000</pubDate>
+    <description>sqlite-utils 4.0rc2，主要由Claude Fable编写</description>
+  </item>
+  <item>
+    <title>利用工程实现自我提升 — Thinking Machines Lab</title>
+    <link>https://aipaper.jasonlin.tech/p/lilianweng-harness-engineering/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/lilianweng-harness-engineering/</guid>
+    <pubDate>Tue, 21 Jul 2026 14:56:01 -0000</pubDate>
+    <description>工程原理可应用于个人发展，实现系统性的自我提升。</description>
+  </item>
+  <item>
+    <title>谁将拥有你不可避免的AI助手？ — Build Collective</title>
+    <link>https://aipaper.jasonlin.tech/p/tonyfadell-ai-assistant-winner/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/tonyfadell-ai-assistant-winner/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:49:28 -0000</pubDate>
+    <description>AI助手的归属权将成为科技公司争夺的关键战场。</description>
+  </item>
+  <item>
+    <title>我从史蒂夫·乔布斯学到的讲故事技巧 — Build Collective</title>
+    <link>https://aipaper.jasonlin.tech/p/tonyfadell-jobs-storytelling-lessons/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/tonyfadell-jobs-storytelling-lessons/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:49:28 -0000</pubDate>
+    <description>一个好的产品故事包含三个要素：事实、情感和清晰的叙事。</description>
+  </item>
+  <item>
+    <title>2025：大语言模型之年 — Simon Willison's Weblog</title>
+    <link>https://aipaper.jasonlin.tech/p/simonwillison-2025-year-in-llms/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/simonwillison-2025-year-in-llms/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>2025年是大语言模型的关键之年，在推理、多模态能力和智能体工作流方面取得突破。</description>
+  </item>
+  <item>
+    <title>为什么我认为AGI不会很快到来 — Dwarkesh Blog</title>
+    <link>https://aipaper.jasonlin.tech/p/dwarkeshpatel-agi-timelines-june-2025/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/dwarkeshpatel-agi-timelines-june-2025/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>由于当前AI方法的根本局限性，AGI不会很快实现。</description>
+  </item>
+  <item>
+    <title>AI 2027 — AI Futures Project</title>
+    <link>https://aipaper.jasonlin.tech/p/kokotajlo-ai-2027/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/kokotajlo-ai-2027/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>我们预测，未来十年超级人工智能的影响将超过工业革命。</description>
+  </item>
+  <item>
+    <title>AI作为正常技术 — Princeton</title>
+    <link>https://aipaper.jasonlin.tech/p/arvindnarayanan-ai-as-normal-technology/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/arvindnarayanan-ai-as-normal-technology/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>AI应被视为一种正常技术，而非神奇或特殊的力量。</description>
+  </item>
+  <item>
+    <title>下半场 — OpenAI</title>
+    <link>https://aipaper.jasonlin.tech/p/shunyuyao-the-second-half/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/shunyuyao-the-second-half/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>AI的下半场将从解决问题转向定义问题，评估变得更加重要。</description>
+  </item>
+  <item>
+    <title>初级开发者的复仇 — Sourcegraph</title>
+    <link>https://aipaper.jasonlin.tech/p/steveyegge-revenge-of-the-junior-developer/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/steveyegge-revenge-of-the-junior-developer/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>初级开发者正通过利用AI工具和新平台在科技行业重新获得话语权。</description>
+  </item>
+  <item>
+    <title>DeepSeek R1 复制 o1 的秘诀 — Allen Institute for AI</title>
+    <link>https://aipaper.jasonlin.tech/p/nathanlambert-deepseek-r1-recipe/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/nathanlambert-deepseek-r1-recipe/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>DeepSeek R1 揭示了复制 OpenAI o1 模型的秘诀。</description>
+  </item>
+  <item>
+    <title>智能体 — Chip Huyen Blog</title>
+    <link>https://aipaper.jasonlin.tech/p/chiphuyen-agents/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/chiphuyen-agents/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>智能体被视为AI的终极目标，基础模型使其能够实现前所未有的自主应用。</description>
+  </item>
+  <item>
+    <title>情境意识 I：从 GPT-4 到 AGI — Situational Awareness</title>
+    <link>https://aipaper.jasonlin.tech/p/leopold-from-gpt4-to-agi/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/leopold-from-gpt4-to-agi/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>本文概述了从 GPT-4 到 AGI 再到超级智能的路径，重点关注数量级提升和智能爆炸。</description>
+  </item>
+  <item>
+    <title>锯齿前沿的半人马与赛博格 — Wharton</title>
+    <link>https://aipaper.jasonlin.tech/p/ethanmollick-centaurs-and-cyborgs/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/ethanmollick-centaurs-and-cyborgs/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>探讨人工智能对工作、教育和生活的影响。</description>
+  </item>
+  <item>
+    <title>AI安全核心观点 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/p/anthropic-core-views-on-ai-safety/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/anthropic-core-views-on-ai-safety/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>AI的影响可能堪比工业革命和科学革命，且可能在未来十年内到来，因此亟需开展安全研究。</description>
+  </item>
+  <item>
+    <title>ChatGPT在做什么……以及它为什么有效？ — Wolfram Research</title>
+    <link>https://aipaper.jasonlin.tech/p/stephenwolfram-what-is-chatgpt-doing/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/stephenwolfram-what-is-chatgpt-doing/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>ChatGPT通过从海量人类书写数据中学习统计模式，并利用名为Transformer的神经网络架构来生成文本。</description>
+  </item>
+  <item>
+    <title>规模假设 — Gwern.net</title>
+    <link>https://aipaper.jasonlin.tech/p/gwern-scaling-hypothesis/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/gwern-scaling-hypothesis/</guid>
+    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
+    <description>神经网络吸收数据和计算，随着问题变难而泛化并变得更贝叶斯，即使在微不足道的规模下也能展现新能力。</description>
+  </item>
+</channel>
+</rss>
