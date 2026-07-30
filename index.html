@@ -1234,10 +1234,16 @@ function vPerson(pid){
   <div class="grid" style="margin-top:14px">${ps.map(paperCard).join('')||'<p class="sub">暂无</p>'}</div>
  </section></div>${footer()}`;
 }
+function mdMath(t){
+  if(!t)return '';
+  const math=[];
+  t=String(t).replace(/\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)/g,function(m){math.push(m);return '\u0002'+(math.length-1)+'\u0002';});
+  return mdHtml(t).replace(/\u0002(\d+)\u0002/g,function(_,i){return math[+i];});
+}
 function renderItem(it){
  if(it.t==='fig')return `<figure class="pfig"><img loading="lazy" src="${it.src}" alt="figure" data-orig="${it.origSrc||''}" onerror="if(this.dataset.orig&&this.src!==this.dataset.orig){this.src=this.dataset.orig;}else{this.closest('figure').style.display='none';}"><figcaption><span class="lang-en">${esc(it.capEn||'')}</span><span class="lang-zh">${esc(it.capZh||'')}</span></figcaption></figure>`;
  if(it.t==='eq')return `<div class="peq">\\[${it.tex}\\]</div>`;
- return `<div class="para"><div class="en">${mdHtml(it.en)}</div><div class="zh">${mdHtml(it.zh)}</div></div>`;}
+ return `<div class="para"><div class="en">${mdMath(it.en)}</div><div class="zh">${mdMath(it.zh)}</div></div>`;}
 function ilist(arr,head){return `<div class="icard"><h4 style="color:var(--acc)">${head}</h4><ul style="margin:0;padding-left:18px">${(arr||[]).map(x=>`<li><span class="lang-en">${esc(x.en)}</span><span class="z lang-zh">${esc(x.zh)}</span></li>`).join('')}</ul></div>`;}
 function vPaper(id){
  const p=PAPERS.find(x=>x.id===id); if(!p) return vHome();
