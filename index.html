@@ -273,7 +273,7 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
 .nav .kbd{display:none;font-size:11px;color:var(--sub2);border:1px solid var(--line);border-radius:5px;padding:1px 5px;margin-left:6px}
 @media(min-width:760px){.nav .kbd{display:inline-block}}
 /* ---------- 阅读进度条 / 回到顶部 ---------- */
-#readProgress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--acc);z-index:300;transition:width .1s linear;pointer-events:none}
+
 .totop{position:fixed;right:20px;bottom:86px;width:42px;height:42px;border-radius:50%;background:var(--bg);border:1px solid var(--line);box-shadow:var(--shadow);display:grid;place-items:center;cursor:pointer;color:var(--sub);z-index:60;opacity:0;pointer-events:none;transition:opacity .25s}
 .totop.on{opacity:1;pointer-events:auto}
 .totop:hover{color:var(--ink)}
@@ -394,7 +394,7 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
     <button class="icon" title="深色 / 浅色" aria-label="主题" onclick="toggleTheme()"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="6"/><path d="M9 3a6 6 0 000 12z" fill="currentColor" stroke="none"/></svg></button>
   </div>
 </div></header>
-<div id="readProgress"></div>
+
 <div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
   <div class="search-panel">
     <div class="si-wrap">
@@ -1679,13 +1679,10 @@ function syncPanelRefresh(){const el=document.getElementById('syncPanel');if(el)
 addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&syncCode()&&Date.now()-_syncLastPull>60000)syncPull();});
 setTimeout(()=>{if(syncCode())syncPull();},800);
 
-/* ===== 阅读进度条 / 回到顶部 ===== */
+/* ===== 回到顶部 / 划词栏隐藏(进度条改用 read-bar 里的 readProg) ===== */
 addEventListener('scroll',()=>{
- const bar=document.getElementById('readProgress'),tt=document.getElementById('toTop');
+ const tt=document.getElementById('toTop');
  const sb=document.getElementById('selBar');if(sb&&sb.style.display!=='none')sb.style.display='none';
- const max=document.documentElement.scrollHeight-innerHeight;
- const onPaper=(location.hash||'').startsWith('#/paper/');
- if(bar)bar.style.width=(onPaper&&max>600)?(Math.min(1,scrollY/max)*100)+'%':'0';
  if(tt)tt.classList.toggle('on',scrollY>900);
 },{passive:true});
 /* ===== ROUTER ===== */
