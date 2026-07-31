@@ -109,6 +109,24 @@ def pdf_sections(aid):
             buf.append(ln.strip())
     flush_buf()
     if cur["paras"]: secs.append(cur)
+    # 参考文献砍除:很多 PDF 没有独立 References 标题(直接接正文后)。用引文特征识别并砍掉末尾一连串引文段。
+    CITE_PATS=[r"\bpp\.\s*\d", r"arXiv:\s*\d", r"\bet\s+al", r"\bvol\.\s*\d", r"\bdoi:",
+               r"\bIn\s+Proc", r"\bIn\s+Int", r"\bIn\s+Adv", r"Conf\.\s", r"Trans\.\s",
+               r"NeurIPS|ICML|CVPR|ICLR|ECCV|EMNLP"]
+    def is_cite(p):
+        if not re.search(r"(19|20)\d{2}", p): return False
+        return any(re.search(x, p) for x in CITE_PATS)
+    for s in secs:
+        ps=s["paras"]
+        # 从末尾往前砍连续引文(允许中间夹 1 个非引文,避免误停)
+        cut=len(ps); miss=0
+        for i in range(len(ps)-1,-1,-1):
+            if is_cite(ps[i]): cut=i; miss=0
+            else:
+                miss+=1
+                if miss>=2: break
+        if cut<len(ps) and (len(ps)-cut)>=3:   # 至少连着 3 段引文才认定为参考文献区
+            s["paras"]=ps[:cut]
     out=[]
     for s in secs:
         if re.match(r"\s*(references|acknowledg|bibliography)",s["sec"],re.I): break
