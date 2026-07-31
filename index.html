@@ -306,14 +306,17 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
 /* 阅读状态 + 我的页(对齐 AI Podcast) */
 .paper-card{position:relative}
 .cover-badges{position:absolute;top:12px;right:12px;display:flex;gap:6px;z-index:2}
-.read-badge,.later-badge,.new-badge{font-size:11px;font-weight:600;border-radius:999px;padding:3px 9px;line-height:1.5}
-.read-badge{background:rgba(34,165,101,.14);color:#1a7f4e}
-.later-badge{background:rgba(240,145,58,.16);color:#b8690f}
-.new-badge{background:var(--acc);color:#fff}
+.read-badge,.later-badge,.new-badge,.prog-badge{display:inline-flex;align-items:center;font-size:11px;font-weight:600;border-radius:999px;padding:3px 9px;line-height:1.5;color:#fff}
+.read-badge{background:rgba(20,140,90,.94)}
+.later-badge{background:rgba(255,159,10,.95)}
+.new-badge{background:var(--acc)}
+.prog-badge{background:rgba(0,113,227,.92)}
 .paper-card.read .pt{opacity:.72}
 .rd-actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
 .rd-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:13.5px;font-family:inherit;cursor:pointer;min-height:38px}
 .rd-btn.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.rd-btn.readbtn.on{background:rgba(20,140,90,.14);border-color:rgba(20,140,90,.4);color:#0a7d4a}
+.rd-btn.laterbtn.on{background:rgba(255,159,10,.14);border-color:rgba(255,159,10,.45);color:#b8690f}
 .st-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:16px 0 26px}
 .st-tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
 .st-tile .n{font-size:30px;font-weight:700;color:var(--acc);line-height:1.1}
@@ -1050,7 +1053,8 @@ function recoBlock(p,full){if(!full)return "<div id=\"readEnd\" aria-hidden=\"tr
  const ns=nextReads(p);
  return (ns.length?`<div class="eyebrow" style="margin-top:56px">Up next · 接着读</div><div class="reco-grid" style="margin-top:16px">${ns.map(paperCard).join("")}</div>`:"")+"<div id=\"readEnd\" aria-hidden=\"true\"></div>";}
 function paperCard(p){const pe=PEOPLE[p.pid]||{};const isOrg=pe.en&&p.org&&(pe.en===p.org||pe.zh===p.org);
- return `<a class="paper-card${readHas(p.id)?' read':''}${laterHas(p.id)?' later':''}" data-id="${p.id}" href="#/paper/${p.id}"><span class="cover-badges">${readHas(p.id)?'<span class="read-badge">✓ 已读</span>':(laterHas(p.id)?'<span class="later-badge">★ 待读</span>':(isNew(p)?'<span class="new-badge">NEW</span>':''))}</span><div class="pt">${esc(p.tEn)}</div><div class="ptz">${esc(p.tZh)}</div>
+ const rp=!readHas(p.id)&&readPosGet()[p.id];const prog=(rp&&rp.s>0&&rp.n)?`<span class="prog-badge">读到 ${Math.min(rp.s+1,rp.n)}/${rp.n} 章</span>`:'';
+ return `<a class="paper-card${readHas(p.id)?' read':''}${laterHas(p.id)?' later':''}" data-id="${p.id}" href="#/paper/${p.id}"><span class="cover-badges">${readHas(p.id)?'<span class="read-badge">✓ 已读</span>':prog||(laterHas(p.id)?'<span class="later-badge">★ 待读</span>':(isNew(p)?'<span class="new-badge">NEW</span>':''))}</span><div class="pt">${esc(p.tEn)}</div><div class="ptz">${esc(p.tZh)}</div>
    <div class="meta">${isOrg?'':`<span>${esc(pe.zh||'')}</span>`}${p.arxiv?`<span>arXiv:${p.arxiv}</span>`:`<span class="artbadge">文章</span><span>${esc(p.srcLabel||'PDF')}</span>`}<span>${p.date}</span>${isOrg?orgChip(p.org):orgChip(p.org)}${p.cites!=null?`<span class="citeico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M16 8h5v5"/></svg>被引 ${fmtCites(p.cites)}</span>`:''}${(p.fields||[]).map(ftag).join('')}</div></a>`;}
 
 
@@ -1309,7 +1313,7 @@ function vPaper(id){
   <h1 style="font-size:33px;margin:12px 0 2px;letter-spacing:-.02em;line-height:1.12">${esc(p.tEn)}</h1>
   <div class="sub" style="font-size:19px;color:var(--ink)">${esc(p.tZh)}</div>
   <div style="margin-top:12px">${(p.fields||[]).map(ftag).join(' ')}</div>
-  <div class="rd-actions"><button class="rd-btn${readHas(p.id)?' on':''}" id="readBtn" onclick="toggleRead('${p.id}')">${readHas(p.id)?'已读 ✓':'标记已读'}</button><button class="rd-btn${laterHas(p.id)?' on':''}" id="laterBtn" onclick="toggleLater('${p.id}')">${laterHas(p.id)?'已加入待读 ★':'稍后读'}</button>${PAPER2POD[p.pid]?`<a class="rd-btn xsite-inline" href="https://aipodcast.jasonlin.tech/#/person/${PAPER2POD[p.pid]}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg>听 TA 的播客</a>`:''}</div>
+  <div class="rd-actions"><button class="rd-btn readbtn${readHas(p.id)?' on':''}" id="readBtn" onclick="toggleRead('${p.id}')">${readHas(p.id)?'已读 ✓':'标记已读'}</button><button class="rd-btn laterbtn${laterHas(p.id)?' on':''}" id="laterBtn" onclick="toggleLater('${p.id}')">${laterHas(p.id)?'已加入待读 ★':'稍后读'}</button>${PAPER2POD[p.pid]?`<a class="rd-btn xsite-inline" href="https://aipodcast.jasonlin.tech/#/person/${PAPER2POD[p.pid]}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg>听 TA 的播客</a>`:''}</div>
   ${p.cites!=null?`<div class="citebar"><span class="num">${fmtCites(p.cites)}</span> 次被引用 · <span style="color:var(--sub)">学术影响力(Semantic Scholar)</span></div>`:''}
   <div class="cards2">${full||p.insights?ilist(ins.contrib,'核心贡献 · Key Contributions')+ilist(ins.limits,'局限与边界 · Limitations'):`<div class="icard"><div class="skeleton" style="width:88%"></div><div class="skeleton" style="width:72%"></div></div><div class="icard"><div class="skeleton" style="width:84%"></div><div class="skeleton" style="width:66%"></div></div>`}</div>
   <h3 style="margin-top:30px">摘要 · Abstract</h3>
