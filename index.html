@@ -58,6 +58,12 @@ section{padding:46px 0}
 .ppl-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .av{width:84px;height:84px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-weight:700;color:#fff;font-size:26px;overflow:hidden;background:linear-gradient(135deg,#9aa4b2,#6b7280)}
 .av img{width:100%;height:100%;object-fit:cover}
+.info{display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:var(--sub);font-size:13px;margin-bottom:6px}
+.info .who{display:inline-flex;align-items:center;gap:8px;color:var(--ink);cursor:pointer;font-weight:500;font-size:14px}
+.info .who:hover{color:var(--acc)}
+.info .sep{color:var(--sub2);opacity:.55}
+.av-xs{width:30px;height:30px;border-radius:50%;overflow:hidden;display:grid;place-items:center;color:#fff;font-weight:700;font-size:12px;background:linear-gradient(135deg,#9aa4b2,#6b7280);flex:0 0 auto}
+.av-xs img{width:100%;height:100%;object-fit:cover}
 .ppl-card .n{font-weight:650}.ppl-card .nz{color:var(--sub);font-size:14px}
 .ppl-card .ti{color:var(--sub);font-size:12.5px;margin-top:6px;min-height:32px}
 .ppl-card .cnt{margin-top:10px;font-size:12px;color:var(--acc);font-weight:600}
@@ -1314,12 +1320,15 @@ function vPaper(id){
  if(!full) ensureFull(id);
  const ord=document.body.dataset.order==='zh'?'译文在前':'原文在前';
  const rcol=`
-  <div class="meta" style="color:var(--sub);font-size:14px;display:flex;align-items:center;gap:9px;flex-wrap:wrap">
-   ${orgChip(p.org)}${(pe.en===p.org||pe.zh===p.org)?'':`<span onclick="go('#/person/${p.pid}')" style="cursor:pointer;color:var(--ink);font-weight:500">${esc(pe.en||'')} · ${esc(pe.zh||'')}</span><span>·</span>`}
-   ${p.arxiv?`<a class="alink" href="https://arxiv.org/abs/${p.arxiv}" target="_blank">arXiv:${p.arxiv} ↗</a>`:`<a class="alink" href="${p.srcUrl||'#'}" target="_blank">${esc(p.srcLabel||'PDF')} ↗</a>`}<span>·</span><span>${p.date}</span>${hasToc?`<span>·</span><span>${secs.length} 章</span>`:''}</div>
-  <h1 style="font-size:33px;margin:12px 0 2px;letter-spacing:-.02em;line-height:1.12">${esc(p.tEn)}</h1>
-  <div class="sub" style="font-size:19px;color:var(--ink)">${esc(p.tZh)}</div>
-  <div style="margin-top:12px">${(p.fields||[]).map(ftag).join(' ')}</div>
+  <h1 style="font-size:33px;margin:0 0 3px;letter-spacing:-.02em;line-height:1.14">${esc(p.tEn)}</h1>
+  <div class="sub" style="font-size:19px;color:var(--ink);margin-bottom:15px">${esc(p.tZh)}</div>
+  <div class="info">
+   <span class="who" onclick="go('#/person/${p.pid}')">${av(p.pid,'av-xs')}<span>${esc(pe.en||'')}${pe.zh?' · '+esc(pe.zh):''}</span></span>
+   ${(p.org&&pe.en!==p.org&&pe.zh!==p.org)?`<span class="sep">·</span>${orgChip(p.org)}`:''}
+   <span class="sep">·</span>${p.arxiv?`<a class="alink" href="https://arxiv.org/abs/${p.arxiv}" target="_blank">arXiv:${p.arxiv} ↗</a>`:`<a class="alink" href="${p.srcUrl||'#'}" target="_blank">${esc(p.srcLabel||'PDF')} ↗</a>`}
+   <span class="sep">·</span><span>${p.date}</span>${hasToc?`<span class="sep">·</span><span>${secs.length} 章</span>`:''}
+   <span class="sep">·</span>${(p.fields||[]).map(ftag).join(' ')}
+  </div>
   <div class="rd-actions">${PAPER2POD[p.pid]?`<a class="rd-btn xsite-inline" href="https://aipodcast.jasonlin.tech/#/person/${PAPER2POD[p.pid]}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg>听 TA 的播客</a>`:''}</div>
   ${p.cites!=null?`<div class="citebar"><span class="num">${fmtCites(p.cites)}</span> 次被引用 · <span style="color:var(--sub)">学术影响力(Semantic Scholar)</span></div>`:''}
   <div class="cards2">${full||p.insights?ilist(ins.contrib,'核心贡献 · Key Contributions')+ilist(ins.limits,'局限与边界 · Limitations'):`<div class="icard"><div class="skeleton" style="width:88%"></div><div class="skeleton" style="width:72%"></div></div><div class="icard"><div class="skeleton" style="width:84%"></div><div class="skeleton" style="width:66%"></div></div>`}</div>
