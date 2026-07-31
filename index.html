@@ -49,6 +49,10 @@ section{padding:46px 0}
 .rv{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
 .rv.rv-in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+.mine-marks{margin-top:12px;display:flex;flex-direction:column;gap:16px}.mk-group{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--surface)}.mk-gt{font-weight:650;font-size:15px;cursor:pointer;margin-bottom:8px}.mk-gt:hover{color:var(--acc)}.mk-item{display:flex;gap:8px;align-items:flex-start;padding:5px 0;border-top:1px solid var(--line)}.mk-item:first-of-type{border-top:none}.mk-qt{flex:1;font-size:14px;color:var(--sub);line-height:1.6;cursor:pointer}.mk-qt:hover{color:var(--ink)}.mk-x{border:none;background:transparent;color:var(--sub2);font-size:18px;line-height:1;cursor:pointer;padding:0 4px}.mk-x:hover{color:#e2564a}
+.mk{background:rgba(255,214,10,.4);border-radius:2px;cursor:pointer;transition:background .15s}
+.mk:hover{background:rgba(255,159,10,.55)}
+[data-theme="dark"] .mk{background:rgba(255,214,10,.3)}
 .ppl-grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
 .ppl-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:22px 18px;text-align:center;cursor:pointer;transition:.15s}
 .ppl-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
@@ -397,7 +401,7 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
 </div>
 <button class="totop" id="toTop" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6-6 6 6"/></svg></button>
 <div id="app"></div>
-<div id="selBar" class="sel-bar" onmousedown="event.preventDefault()"><button class="sel-btn" id="shareSelBtn" onclick="shareSel()">分享所选</button></div>
+<div id="selBar" class="sel-bar" onmousedown="event.preventDefault()"><button class="sel-btn" onclick="markSel()">标记</button><button class="sel-btn" id="shareSelBtn" onclick="shareSel()">分享所选</button></div>
 <script>
 /* ===== DATA ===== */
 const FIELDS={
@@ -1089,7 +1093,7 @@ function mineLaterHtml(){
 }
 function vMine(){
   const st=readStats();
-  if(!st.ps.length)return `<div class="wrap"><section style="min-height:50vh;padding:30px 0"><div class="eyebrow">My Space · 我的</div><h2 class="title">我的</h2><div class="st-h2">我的数据</div><div class="st-empty">还没有读完的论文——打开一篇读到底会自动标记已读，统计从此开始累计。</div>${mineLaterHtml()}</section></div>`;
+  if(!st.ps.length)return `<div class="wrap"><section style="min-height:50vh;padding:30px 0"><div class="eyebrow">My Space · 我的</div><h2 class="title">我的</h2><div class="st-h2">我的数据</div><div class="st-empty">还没有读完的论文——打开一篇读到底会自动标记已读，统计从此开始累计。</div>${mineLaterHtml()}${mineMarksHtml()}</section></div>`;
   const hrs=Math.round(st.totalMin/6)/10;
   const g=rlogGet();const day=86400000;const today=new Date();today.setHours(0,0,0,0);
   const end=today.getTime()+(6-today.getDay())*day;
@@ -1124,7 +1128,7 @@ function vMine(){
     <div class="st-h3">学者排行 · 我读得最多的</div>
     <div class="rk">${rows||'<div class="st-empty">暂无</div>'}</div>
     ${sharePromoHtml(st,hrs)}
-    ${mineLaterHtml()}
+    ${mineLaterHtml()}${mineMarksHtml()}
   </section></div>`;
 }
 /* 已读长图 */
@@ -1464,6 +1468,26 @@ function inReader(node){let el=node&&(node.nodeType===3?node.parentElement:node)
 function selSecIndex(){const node=window.getSelection().anchorNode;if(!node)return -1;
  let el=node.nodeType===3?node.parentElement:node;const unit=el&&el.closest?el.closest('.para,.pfig,.peq'):null;let p=unit||el;
  while(p){if(p.classList&&p.classList.contains('sec-h')){const mm=(p.id||'').match(/sec-(\d+)/);return mm?+mm[1]:-1;}p=p.previousElementSibling;}return -1;}
+/* ===== 划词标记(高亮),照 aipodcast:localStorage.paperMarks={id:[{sec,pi,lang,s,e,text}]} ===== */
+function mkGet(){try{const x=JSON.parse(localStorage.paperMarks||'{}');return x&&typeof x==='object'?x:{}}catch(e){return{}}}
+function mkSave(x){try{localStorage.paperMarks=JSON.stringify(x)}catch(_){}if(typeof syncTouch==='function')syncTouch();}
+function mkCount(){return Object.values(mkGet()).reduce((n,a)=>n+(a?a.length:0),0);}
+function mkPid(){const m=(location.hash||'').match(/#\/paper\/([^?]+)/);return m?decodeURIComponent(m[1]):'';}
+function mkNodeAt(el,off){const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let n,acc=0;while(n=w.nextNode()){const len=n.nodeValue.length;if(off<=acc+len)return[n,off-acc];acc+=len;}return[null,0];}
+function mkOffIn(el,container,off){const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let n,sum=0;while(n=w.nextNode()){if(n===container)return sum+off;sum+=n.nodeValue.length;}return sum;}
+function mkTag(){const rd=document.querySelector('.reader');if(!rd)return;let sec=0,pi=0;rd.querySelectorAll('.sec-h,.para').forEach(el=>{if(el.classList.contains('sec-h')){sec=+((el.id||'sec-0').replace('sec-',''))||0;pi=0;return;}el.dataset.sec=sec;el.dataset.pi=pi++;});}
+function mkWrap(el,s,e,idx){const[sn,so]=mkNodeAt(el,s),[en,eo]=mkNodeAt(el,e);if(!sn||!en)return;try{const r=document.createRange();r.setStart(sn,so);r.setEnd(en,eo);const sp=document.createElement('span');sp.className='mk';sp.dataset.mi=idx;sp.title='点击移除标记';sp.addEventListener('click',ev=>{ev.stopPropagation();mkRemove(mkPid(),+sp.dataset.mi);});r.surroundContents(sp);}catch(_){}}
+function mkApply(){const pid=mkPid();if(!pid)return;mkTag();const rd=document.querySelector('.reader');if(!rd)return;const marks=mkGet()[pid]||[];marks.forEach((m,idx)=>{const para=rd.querySelector('.para[data-sec="'+m.sec+'"][data-pi="'+m.pi+'"]');if(!para)return;const side=para.querySelector('.'+m.lang);if(side)mkWrap(side,m.s,m.e,idx);});}
+function markSel(){const sel=window.getSelection();const text=(sel?sel.toString():'').trim();if(text.length<2||!sel.anchorNode||!inReader(sel.anchorNode)){mkHideSel();return;}const pid=mkPid();if(!pid){mkHideSel();return;}mkTag();let a=sel.anchorNode.nodeType===3?sel.anchorNode.parentElement:sel.anchorNode;const side=a&&a.closest?a.closest('.para .en,.para .zh'):null;if(!side){mkHideSel();return;}const lang=side.classList.contains('en')?'en':'zh';const para=side.closest('.para');if(!para){mkHideSel();return;}const sec=+para.dataset.sec,pi=+para.dataset.pi;const r=sel.getRangeAt(0);let s=mkOffIn(side,r.startContainer,r.startOffset),e=mkOffIn(side,r.endContainer,r.endOffset);if(s>e){const t=s;s=e;e=t;}if(e-s<1){mkHideSel();return;}const st=mkGet();const arr=st[pid]||(st[pid]=[]);if(arr.some(h=>h.sec===sec&&h.pi===pi&&h.lang===lang&&!(e<=h.s||s>=h.e))){mkHideSel();return;}arr.push({sec,pi,lang,s,e,text:text.slice(0,300),ts:Date.now()});mkSave(st);mkHideSel();const y=scrollY;render();scrollTo(0,y);}
+function mkRemove(pid,idx){const st=mkGet(),arr=st[pid]||[];if(arr[idx]){arr.splice(idx,1);if(!arr.length)delete st[pid];mkSave(st);const y=scrollY;render();scrollTo(0,y);}}
+function mkHideSel(){const b=document.getElementById('selBar');if(b)b.style.display='none';try{const s=window.getSelection();s&&s.removeAllRanges&&s.removeAllRanges();}catch(_){}}
+function mkJump(pid,sec,text){pendingLocate={id:pid,at:sec,hl:text||''};go('#/paper/'+pid);}
+function mineMarksHtml(){const mm=mkGet();const pids=Object.keys(mm).filter(id=>mm[id]&&mm[id].length&&PAPERS.find(p=>p.id===id));if(!pids.length)return '';
+ let h=`<div class="st-h2" style="margin-top:34px">我的标记 · ${mkCount()}</div><div class="mine-marks">`;
+ pids.forEach(pid=>{const p=PAPERS.find(x=>x.id===pid);h+=`<div class="mk-group"><div class="mk-gt" onclick="go('#/paper/${pid}')">${esc(p.tZh||p.tEn)}</div>`;
+  (mm[pid]||[]).forEach((m,idx)=>{const t=(m.text||'').replace(/\\/g,'').replace(/'/g,'’');h+=`<div class="mk-item"><span class="mk-qt" onclick="mkJump('${pid}',${m.sec},'${esc(t).replace(/"/g,'&quot;')}')">“${esc(m.text)}”</span><button class="mk-x" onclick="mkRemove('${pid}',${idx})" title="移除标记">×</button></div>`;});
+  h+=`</div>`;});
+ return h+'</div>';}
 function selCheck(){const bar=document.getElementById('selBar');if(!bar)return;
  const sel=window.getSelection();const text=(sel?sel.toString():'').trim();
  if(text.length<3||!sel.anchorNode||!inReader(sel.anchorNode)){bar.style.display='none';return;}
@@ -1687,7 +1711,8 @@ function render(){
  if(parts[0]==='paper'&&!pendingLocate){const _pid=decodeURIComponent(parts[1]);const rp=readPosGet()[_pid];if(rp&&rp.s>0&&!readHas(_pid))pendingLocate={id:_pid,at:rp.s,hl:''};}  // 无分享锚点时回到上次读到的章节
  try{trackView()}catch(_){}
  if(!pendingLocate)window.scrollTo(0,0);
- if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([document.getElementById('app')]).catch(()=>{});
+ if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([document.getElementById('app')]).then(()=>{if(parts[0]==='paper')mkApply();}).catch(()=>{});
+ else if(parts[0]==='paper')mkApply();
  applyLocate(); syncSeg();
 }
 if(localStorage.theme)document.documentElement.dataset.theme=localStorage.theme;
