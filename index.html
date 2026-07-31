@@ -94,6 +94,16 @@ section{padding:46px 0}
 .askbox{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
 .askbox input{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px 15px;font-size:15px;font-family:inherit;background:var(--bg);color:var(--ink)}
 .askbtn{margin-top:10px;background:var(--acc);color:#fff;border:none;border-radius:11px;padding:11px 20px;font-size:15px;font-weight:600;cursor:pointer}
+.chat-thread{display:flex;flex-direction:column;gap:10px;max-height:min(52vh,440px);overflow-y:auto;margin-bottom:12px}
+.chat-thread:empty{display:none}
+.cmsg{font-size:14.5px;line-height:1.65;padding:9px 13px;border-radius:14px;max-width:88%;word-break:break-word}
+.cmsg.cu{align-self:flex-end;background:var(--acc);color:#fff;border-bottom-right-radius:4px}
+.cmsg.ca{align-self:flex-start;background:var(--surface2);color:var(--ink);border:1px solid var(--line);border-bottom-left-radius:4px}
+.cmsg.ca.md{white-space:normal}
+.cdots{color:var(--sub2)}
+.chat-in{display:flex;gap:8px;align-items:center}
+.chat-in input{flex:1}
+.chat-in .askbtn{margin-top:0;flex:0 0 auto;border-radius:12px}
 .ans{margin-top:14px;font-size:15px;white-space:pre-wrap;color:var(--ink)}
 .ans.md{white-space:normal}
 .ans.md .cmp{margin:0 0 9px}
@@ -1357,11 +1367,10 @@ function vPaper(id){
 }
 function askBox(p,ins){
  const qs=((ins||p.insights||{}).contrib||[]).slice(0,2).map(x=>x.zh);
- return `<div class="askbox"><div style="font-weight:650;margin-bottom:6px">针对这篇论文问 AI</div>
-  <input id="q" placeholder="例如：FlashAttention 为什么更快？" onkeydown="if(event.key==='Enter')askPaper('${p.id}')">
+ return `<div class="askbox"><div style="font-weight:650;margin-bottom:10px">针对这篇论文问 AI</div>
+  <div class="chat-thread" id="chatThread">${renderPThread(p.id)}</div>
   <div class="qsugg">${qs.map(q=>`<span data-pid="${p.id}" onclick="sugAsk(this)">${esc(q)}</span>`).join('')}</div>
-  <button class="askbtn" onclick="askPaper('${p.id}')">提问</button>
-  <div class="ans" id="ans"></div></div>`;
+  <div class="chat-in"><input id="q" placeholder="例如：FlashAttention 为什么更快？" onkeydown="if(event.key==='Enter')askPaper('${p.id}')"><button class="askbtn" onclick="askPaper('${p.id}')">发送</button></div></div>`;
 }
 function vAsk(){
  return `<div class="wrap"><section><div class="eyebrow">Ask · 问 AI</div><h2 class="title">问遍全站论文</h2>
@@ -1418,9 +1427,27 @@ async function ask(payload,box){
  finally{_asking=false;}
 }
 function sugAsk(el){const q=document.getElementById('q');if(q){q.value=el.textContent;askPaper(el.dataset.pid);}}
-function askPaper(id){const q=document.getElementById('q').value.trim();if(!q)return;
- const p=FULL_CACHE[id]||PAPERS.find(x=>x.id===id);
- ask({mode:'paper',q,id,title:p.tEn},document.getElementById('ans'));}
+const PCHAT={};  // 多轮对话(照 aipodcast):{论文id:[{role,content}]}
+function renderPThread(id){return (PCHAT[id]||[]).map(m=>m.role==='user'?`<div class="cmsg cu">${esc(m.content)}</div>`:`<div class="cmsg ca${m.content&&m.content!=='…'?' md':''}">${(!m.content||m.content==='…')?'<span class="cdots">思考中…</span>':citeLinks(mdHtml(m.content))}</div>`).join('');}
+async function askPaper(id){
+ const inp=document.getElementById('q');const q=(inp?inp.value:'').trim();if(!q)return;
+ if(!CHAT_PROXY){alert('问答未配置');return;}
+ if(_asking)return;
+ const p=FULL_CACHE[id]||PAPERS.find(x=>x.id===id)||{};
+ PCHAT[id]=PCHAT[id]||[];
+ const hist=PCHAT[id].filter(m=>m.content&&m.content!=='…').slice(-4).map(m=>({role:m.role,content:m.content}));
+ PCHAT[id].push({role:'user',content:q},{role:'assistant',content:'…'});
+ if(inp)inp.value='';
+ const ai=PCHAT[id].length-1;const thread=document.getElementById('chatThread');
+ const refresh=()=>{if(thread){thread.innerHTML=renderPThread(id);thread.scrollTop=thread.scrollHeight;}};
+ refresh();_asking=true;
+ try{
+  const r=await fetch(CHAT_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:'paper',q:q.slice(0,500),id,title:p.tEn,history:hist})});
+  if(!r.ok){PCHAT[id][ai].content='出错：'+r.status;refresh();return;}
+  const reader=r.body.getReader(),dec=new TextDecoder();let buf='';
+  for(;;){const{done,value}=await reader.read();if(done)break;buf+=dec.decode(value,{stream:true});PCHAT[id][ai].content=buf;refresh();}
+ }catch(e){PCHAT[id][ai].content='出错了：'+e;refresh();}
+ finally{_asking=false;}}
 function askAll(){const q=document.getElementById('q').value.trim();if(!q)return;
  ask({mode:'all',q},document.getElementById('ans'));}
 
