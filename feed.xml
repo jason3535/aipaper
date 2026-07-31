@@ -6,216 +6,216 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Thu, 30 Jul 2026 15:57:03 -0000</lastBuildDate>
+  <lastBuildDate>Fri, 31 Jul 2026 01:05:53 -0000</lastBuildDate>
   <item>
-    <title>Mamba：具有选择性状态空间的线性时间序列建模 — cs.LG</title>
-    <link>https://aipaper.jasonlin.tech/p/tridao-2312.00752/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/tridao-2312.00752/</guid>
-    <pubDate>Thu, 30 Jul 2026 15:57:03 -0000</pubDate>
-    <description>Mamba通过选择性状态空间实现线性时间序列建模，在语言、音频和基因组学等多个模态上的效率和性能均超越Transformer。</description>
+    <title>RoboBrain 2.0 技术报告 — cs.RO</title>
+    <link>https://aipaper.jasonlin.tech/p/xinlongwang-2507.02029/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/xinlongwang-2507.02029/</guid>
+    <pubDate>Fri, 31 Jul 2026 01:05:53 -0000</pubDate>
+    <description>RoboBrain 2.0 的7B和32B变体在空间和时间具身推理基准测试中取得领先结果。</description>
   </item>
   <item>
-    <title>梁文锋 4 小时投资人会议实录：持续说不，DeepSeek 不做下一个 BAT — DeepSeek</title>
-    <link>https://aipaper.jasonlin.tech/p/wenfengliang-investor-meeting-2026/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/wenfengliang-investor-meeting-2026/</guid>
-    <pubDate>Thu, 30 Jul 2026 01:24:23 -0000</pubDate>
-    <description>梁文锋在4小时投资人会议上持续强调，DeepSeek不会成为下一个BAT。</description>
+    <title>Emu3：下一个标记预测就足够了 — cs.CV</title>
+    <link>https://aipaper.jasonlin.tech/p/xinlongwang-2409.18869/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/xinlongwang-2409.18869/</guid>
+    <pubDate>Fri, 31 Jul 2026 01:00:05 -0000</pubDate>
+    <description>Emu3证明纯下一个标记预测，无需扩散或组合架构，就能在多模态生成和感知任务上达到领先水平，甚至超越SDXL和LLaVA-1.6等专用模型。</description>
   </item>
   <item>
-    <title>使用深度卷积神经网络的ImageNet分类 — NeurIPS (2012)</title>
-    <link>https://aipaper.jasonlin.tech/p/ilya-alexnet-2012/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/ilya-alexnet-2012/</guid>
-    <pubDate>Wed, 29 Jul 2026 16:30:55 -0000</pubDate>
-    <description>一个具有6000万参数的深度CNN在ImageNet上取得了最优结果，采用非饱和神经元、高效GPU实现和dropout减少过拟合。</description>
-  </item>
-  <item>
-    <title>长短期记忆 — Neural Computation (1997)</title>
-    <link>https://aipaper.jasonlin.tech/p/shochreiter-lstm-1997/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/shochreiter-lstm-1997/</guid>
-    <pubDate>Wed, 29 Jul 2026 16:28:22 -0000</pubDate>
-    <description>LSTM通过恒定误差流桥接长时间延迟，解决了以往循环网络无法解决的复杂任务。</description>
-  </item>
-  <item>
-    <title>通过误差传播学习内部表示 — PDP, MIT Press (1986)</title>
-    <link>https://aipaper.jasonlin.tech/p/hinton-backprop-1986/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/hinton-backprop-1986/</guid>
-    <pubDate>Wed, 29 Jul 2026 16:11:20 -0000</pubDate>
-    <description>误差传播使得具有隐藏单元的多层网络能够学习。</description>
-  </item>
-  <item>
-    <title>一种深度信念网络的快速学习算法 — Neural Computation (2006)</title>
-    <link>https://aipaper.jasonlin.tech/p/hinton-deep-belief-nets-2006/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/hinton-deep-belief-nets-2006/</guid>
-    <pubDate>Wed, 29 Jul 2026 15:56:25 -0000</pubDate>
-    <description>本文提出了一种用于深度信念网络的快速学习算法。</description>
-  </item>
-  <item>
-    <title>具有涌现集体计算能力的神经网络与物理系统 — PNAS (1982)</title>
-    <link>https://aipaper.jasonlin.tech/p/hopfield-hopfield-1982/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/hopfield-hopfield-1982/</guid>
-    <pubDate>Wed, 29 Jul 2026 15:54:01 -0000</pubDate>
-    <description>神经网络和物理系统通过大量简单组件的集体行为涌现出有用的计算能力。</description>
-  </item>
-  <item>
-    <title>感知器：大脑中信息存储与组织的概率模型 — Psychological Review (1958)</title>
-    <link>https://aipaper.jasonlin.tech/p/rosenblatt-perceptron-1958/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/rosenblatt-perceptron-1958/</guid>
-    <pubDate>Wed, 29 Jul 2026 15:43:09 -0000</pubDate>
-    <description>本文探讨信息如何存储以及存储信息如何影响大脑中的识别，提出了感知器作为概率模型。</description>
-  </item>
-  <item>
-    <title>神经活动中内在思想的逻辑演算 — Bull. Math. Biophysics (1943)</title>
-    <link>https://aipaper.jasonlin.tech/p/mcculloch-mcculloch-pitts-1943/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/mcculloch-mcculloch-pitts-1943/</guid>
-    <pubDate>Wed, 29 Jul 2026 15:37:14 -0000</pubDate>
-    <description>由于神经活动的全或无特性，神经事件及其关系可以用命题逻辑来处理。</description>
-  </item>
-  <item>
-    <title>玻尔兹曼机的学习算法 — Cognitive Science (1985)</title>
-    <link>https://aipaper.jasonlin.tech/p/hinton-boltzmann-machine-1985/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/hinton-boltzmann-machine-1985/</guid>
-    <pubDate>Wed, 29 Jul 2026 15:22:17 -0000</pubDate>
-    <description>基于统计力学的并行搜索方法导出了玻尔兹曼机中连接强度的学习规则。</description>
-  </item>
-  <item>
-    <title>基于TrueSkill的LLM排序 — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/p/thariq-sorting/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/thariq-sorting/</guid>
-    <pubDate>Sat, 25 Jul 2026 14:03:47 -0000</pubDate>
-    <description>LLM结合TrueSkill可通过带置信区间的两两比较有效排序大数据集。</description>
-  </item>
-  <item>
-    <title>开发者应该关心可解释性吗？ — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/p/thariq-interpretability/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/thariq-interpretability/</guid>
-    <pubDate>Sat, 25 Jul 2026 14:03:47 -0000</pubDate>
-    <description>可解释性能够捕捉无法用言语描述的风格、减少RLHF需求、实现低成本分类，但存在使模型偏离分布和误解特征的风险。</description>
-  </item>
-  <item>
-    <title>小米机器人-1：基于超过10万小时真实世界轨迹的视觉-语言-动作模型规模化 — Xiaomi</title>
-    <link>https://aipaper.jasonlin.tech/p/xiaomimimo-2607.15330/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/xiaomimimo-2607.15330/</guid>
-    <pubDate>Tue, 21 Jul 2026 14:56:01 -0000</pubDate>
-    <description>小米机器人-1是一个基础视觉-语言-动作模型，通过超过10万小时真实世界轨迹的预训练和高效后训练，在多个基准上达到最先进水平。</description>
-  </item>
-  <item>
-    <title>Hy-Embodied-VLM-1.0：高效的物理世界智能体 — Tencent Hunyuan</title>
+    <title>Hy-Embodied-VLM-1.0：高效的物理世界智能体 — cs.CV</title>
     <link>https://aipaper.jasonlin.tech/p/xingwusun-2607.12894/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/xingwusun-2607.12894/</guid>
-    <pubDate>Tue, 21 Jul 2026 14:56:01 -0000</pubDate>
-    <description>Hy-Embodied-VLM-1.0 在38个基准测试中的19个上取得同规模最佳性能，仅激活3B参数。</description>
+    <pubDate>Fri, 31 Jul 2026 00:58:28 -0000</pubDate>
+    <description>Hy-Embodied-VLM-1.0是一个高效的具身基础模型，在38个基准测试中的19个上取得最佳性能，仅激活3B参数。</description>
   </item>
   <item>
-    <title>sqlite-utils 4.0rc2：主要由Claude Fable编写 — Simon Willison's Weblog</title>
-    <link>https://aipaper.jasonlin.tech/p/simonwillison-sqlite-utils-fable/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/simonwillison-sqlite-utils-fable/</guid>
-    <pubDate>Tue, 21 Jul 2026 14:56:01 -0000</pubDate>
-    <description>sqlite-utils 4.0rc2，主要由Claude Fable编写</description>
+    <title>小米机器人-1：基于超过10万小时真实世界轨迹的视觉-语言-动作模型缩放 — cs.RO</title>
+    <link>https://aipaper.jasonlin.tech/p/xiaomimimo-2607.15330/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/xiaomimimo-2607.15330/</guid>
+    <pubDate>Fri, 31 Jul 2026 00:56:04 -0000</pubDate>
+    <description>小米机器人-1是在10万小时真实世界轨迹上预训练的VLA模型，通过后训练实现高效适应，在多个基准上达到最优。</description>
   </item>
   <item>
-    <title>利用工程实现自我提升 — Thinking Machines Lab</title>
-    <link>https://aipaper.jasonlin.tech/p/lilianweng-harness-engineering/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/lilianweng-harness-engineering/</guid>
-    <pubDate>Tue, 21 Jul 2026 14:56:01 -0000</pubDate>
-    <description>工程原理可应用于个人发展，实现系统性的自我提升。</description>
+    <title>语言图像预训练的Sigmoid损失函数 — cs.CV</title>
+    <link>https://aipaper.jasonlin.tech/p/xiaohuazhai-2303.15343/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/xiaohuazhai-2303.15343/</guid>
+    <pubDate>Fri, 31 Jul 2026 00:54:21 -0000</pubDate>
+    <description>提出的Sigmoid损失（SigLIP）用于语言-图像预训练，优于标准对比学习，适用于大小批量大小，计算量小且精度高。</description>
   </item>
   <item>
-    <title>谁将拥有你不可避免的AI助手？ — Build Collective</title>
-    <link>https://aipaper.jasonlin.tech/p/tonyfadell-ai-assistant-winner/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/tonyfadell-ai-assistant-winner/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:49:28 -0000</pubDate>
-    <description>AI助手的归属权将成为科技公司争夺的关键战场。</description>
+    <title>分析与改进扩散模型的训练动态 — cs.CV</title>
+    <link>https://aipaper.jasonlin.tech/p/tkarras-2312.02696/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/tkarras-2312.02696/</guid>
+    <pubDate>Thu, 30 Jul 2026 19:30:39 -0000</pubDate>
+    <description>我们识别并纠正了扩散模型训练中的不均匀动态，通过重新设计网络层保持激活和权重幅度，在ImageNet-512上实现1.81 FID，并提出了一种事后EMA调优方法。</description>
   </item>
   <item>
-    <title>我从史蒂夫·乔布斯学到的讲故事技巧 — Build Collective</title>
-    <link>https://aipaper.jasonlin.tech/p/tonyfadell-jobs-storytelling-lessons/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/tonyfadell-jobs-storytelling-lessons/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:49:28 -0000</pubDate>
-    <description>一个好的产品故事包含三个要素：事实、情感和清晰的叙事。</description>
+    <title>Gemma 4 技术报告 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/p/thomasmesnard-2607.02770/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/thomasmesnard-2607.02770/</guid>
+    <pubDate>Thu, 30 Jul 2026 19:18:46 -0000</pubDate>
+    <description>Gemma 4 是新一代开源重量级多模态语言模型，在效率、推理和多模态能力上显著提升，可与更大规模的先进模型媲美。</description>
   </item>
   <item>
-    <title>2025：大语言模型之年 — Simon Willison's Weblog</title>
-    <link>https://aipaper.jasonlin.tech/p/simonwillison-2025-year-in-llms/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/simonwillison-2025-year-in-llms/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>2025年是大语言模型的关键之年，在推理、多模态能力和智能体工作流方面取得突破。</description>
+    <title>Gemini：一个高度能干的多模态模型家族 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/p/shazeer-2312.11805/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/shazeer-2312.11805/</guid>
+    <pubDate>Thu, 30 Jul 2026 19:17:12 -0000</pubDate>
+    <description>Gemini Ultra是首个在MMLU上达到人类专家水平的模型，并在32个基准测试中的30个上取得了新最优。</description>
   </item>
   <item>
-    <title>为什么我认为AGI不会很快到来 — Dwarkesh Blog</title>
-    <link>https://aipaper.jasonlin.tech/p/dwarkeshpatel-agi-timelines-june-2025/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/dwarkeshpatel-agi-timelines-june-2025/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>由于当前AI方法的根本局限性，AGI不会很快实现。</description>
+    <title>Phi-4-reasoning技术报告 — cs.AI</title>
+    <link>https://aipaper.jasonlin.tech/p/sebastienbubeck-2504.21318/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sebastienbubeck-2504.21318/</guid>
+    <pubDate>Thu, 30 Jul 2026 19:11:43 -0000</pubDate>
+    <description>Phi-4-reasoning是一个140亿参数的推理模型，通过精心数据筛选和强化学习，性能超越更大的开源模型，接近DeepSeek-R1。</description>
   </item>
   <item>
-    <title>AI 2027 — AI Futures Project</title>
-    <link>https://aipaper.jasonlin.tech/p/kokotajlo-ai-2027/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/kokotajlo-ai-2027/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>我们预测，未来十年超级人工智能的影响将超过工业革命。</description>
+    <title>近端策略优化算法 — cs.LG</title>
+    <link>https://aipaper.jasonlin.tech/p/schulman-1707.06347/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/schulman-1707.06347/</guid>
+    <pubDate>Thu, 30 Jul 2026 19:08:33 -0000</pubDate>
+    <description>我们提出了一种新的策略梯度方法家族——近端策略优化（PPO），它比信任区域策略优化更简单、更通用，且样本复杂度更低。</description>
   </item>
   <item>
-    <title>AI作为正常技术 — Princeton</title>
-    <link>https://aipaper.jasonlin.tech/p/arvindnarayanan-ai-as-normal-technology/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/arvindnarayanan-ai-as-normal-technology/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>AI应被视为一种正常技术，而非神奇或特殊的力量。</description>
+    <title>基于子词单元的罕见词神经机器翻译 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/p/rsennrich-1508.07909/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/rsennrich-1508.07909/</guid>
+    <pubDate>Thu, 30 Jul 2026 18:51:41 -0000</pubDate>
+    <description>将罕见词和未知词编码为子词单元序列，使NMT模型能够进行开放词汇翻译，在英德和英俄翻译任务上分别提升1.1和1.3 BLEU。</description>
   </item>
   <item>
-    <title>下半场 — OpenAI</title>
-    <link>https://aipaper.jasonlin.tech/p/shunyuyao-the-second-half/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/shunyuyao-the-second-half/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>AI的下半场将从解决问题转向定义问题，评估变得更加重要。</description>
+    <title>Qwen2.5-Omni技术报告 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/p/junyanglin-2503.20215/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/junyanglin-2503.20215/</guid>
+    <pubDate>Thu, 30 Jul 2026 18:36:50 -0000</pubDate>
+    <description>Qwen2.5-Omni是一个端到端多模态模型，能够从多种输入中流式生成文本和语音，在Omni-Bench上达到最先进性能，且文本与语音指令遵循能力相当。</description>
   </item>
   <item>
-    <title>初级开发者的复仇 — Sourcegraph</title>
-    <link>https://aipaper.jasonlin.tech/p/steveyegge-revenge-of-the-junior-developer/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/steveyegge-revenge-of-the-junior-developer/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>初级开发者正通过利用AI工具和新平台在科技行业重新获得话语权。</description>
+    <title>Qwen2.5-VL 技术报告 — cs.CV</title>
+    <link>https://aipaper.jasonlin.tech/p/junyanglin-2502.13923/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/junyanglin-2502.13923/</guid>
+    <pubDate>Thu, 30 Jul 2026 18:34:32 -0000</pubDate>
+    <description>Qwen2.5-VL在视觉理解、定位和文档解析方面达到业界领先水平，通过动态分辨率和时间编码支持长达数小时的视频处理。</description>
   </item>
   <item>
-    <title>DeepSeek R1 复制 o1 的秘诀 — Allen Institute for AI</title>
-    <link>https://aipaper.jasonlin.tech/p/nathanlambert-deepseek-r1-recipe/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/nathanlambert-deepseek-r1-recipe/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>DeepSeek R1 揭示了复制 OpenAI o1 模型的秘诀。</description>
+    <title>ImageBind：一个嵌入空间绑定所有 — cs.CV</title>
+    <link>https://aipaper.jasonlin.tech/p/rgirshick-2305.05665/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/rgirshick-2305.05665/</guid>
+    <pubDate>Thu, 30 Jul 2026 18:28:22 -0000</pubDate>
+    <description>ImageBind仅使用图像配对数据学习六种模态的联合嵌入，实现了零样本跨模态迁移。</description>
   </item>
   <item>
-    <title>智能体 — Chip Huyen Blog</title>
-    <link>https://aipaper.jasonlin.tech/p/chiphuyen-agents/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/chiphuyen-agents/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>智能体被视为AI的终极目标，基础模型使其能够实现前所未有的自主应用。</description>
+    <title>理解深度学习需要重新思考泛化 — cs.LG</title>
+    <link>https://aipaper.jasonlin.tech/p/oriol-1611.03530/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/oriol-1611.03530/</guid>
+    <pubDate>Thu, 30 Jul 2026 17:57:28 -0000</pubDate>
+    <description>大型神经网络可以拟合随机标签和噪声，挑战了传统的泛化观点。</description>
   </item>
   <item>
-    <title>情境意识 I：从 GPT-4 到 AGI — Situational Awareness</title>
-    <link>https://aipaper.jasonlin.tech/p/leopold-from-gpt4-to-agi/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/leopold-from-gpt4-to-agi/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>本文概述了从 GPT-4 到 AGI 再到超级智能的路径，重点关注数量级提升和智能爆炸。</description>
+    <title>几何深度学习：超越欧几里得数据 — cs.CV</title>
+    <link>https://aipaper.jasonlin.tech/p/mbronstein-1611.08097/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/mbronstein-1611.08097/</guid>
+    <pubDate>Thu, 30 Jul 2026 17:55:38 -0000</pubDate>
+    <description>几何深度学习将深度神经网络扩展到图、流形等非欧几里得域。</description>
   </item>
   <item>
-    <title>锯齿前沿的半人马与赛博格 — Wharton</title>
-    <link>https://aipaper.jasonlin.tech/p/ethanmollick-centaurs-and-cyborgs/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/ethanmollick-centaurs-and-cyborgs/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>探讨人工智能对工作、教育和生活的影响。</description>
+    <title>后见经验回放 — cs.LG</title>
+    <link>https://aipaper.jasonlin.tech/p/mandrychow-1707.01495/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/mandrychow-1707.01495/</guid>
+    <pubDate>Thu, 30 Jul 2026 17:49:05 -0000</pubDate>
+    <description>后见经验回放实现了从稀疏二元奖励中的样本高效学习，无需进行奖励工程。</description>
   </item>
   <item>
-    <title>AI安全核心观点 — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/p/anthropic-core-views-on-ai-safety/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/anthropic-core-views-on-ai-safety/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>AI的影响可能堪比工业革命和科学革命，且可能在未来十年内到来，因此亟需开展安全研究。</description>
+    <title>Qwen-Image 技术报告 — cs.CV</title>
+    <link>https://aipaper.jasonlin.tech/p/junyanglin-2508.02324/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/junyanglin-2508.02324/</guid>
+    <pubDate>Thu, 30 Jul 2026 17:45:49 -0000</pubDate>
+    <description>Qwen-Image通过全面的数据流水线和渐进式训练策略，在复杂文本渲染和精确图像编辑方面取得了显著进展。</description>
   </item>
   <item>
-    <title>ChatGPT在做什么……以及它为什么有效？ — Wolfram Research</title>
-    <link>https://aipaper.jasonlin.tech/p/stephenwolfram-what-is-chatgpt-doing/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/stephenwolfram-what-is-chatgpt-doing/</guid>
-    <pubDate>Sun, 19 Jul 2026 09:25:48 -0000</pubDate>
-    <description>ChatGPT通过从海量人类书写数据中学习统计模式，并利用名为Transformer的神经网络架构来生成文本。</description>
+    <title>Qwen3-VL技术报告 — cs.CV</title>
+    <link>https://aipaper.jasonlin.tech/p/jinzebai-2511.21631/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/jinzebai-2511.21631/</guid>
+    <pubDate>Thu, 30 Jul 2026 17:16:35 -0000</pubDate>
+    <description>Qwen3-VL在多项多模态基准测试中取得领先性能，原生支持256K令牌上下文，并引入了增强推理和架构升级。</description>
+  </item>
+  <item>
+    <title>使用视频基础模型进行物理AI世界模拟 — cs.CV</title>
+    <link>https://aipaper.jasonlin.tech/p/jimfan-2511.00062/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/jimfan-2511.00062/</guid>
+    <pubDate>Thu, 30 Jul 2026 17:10:51 -0000</pubDate>
+    <description>Cosmos-Predict2.5和Cosmos-Transfer2.5是开源的世界基础模型，统一了文本/图像/视频到世界的生成，实现了卓越的视频质量和指令对齐，为机器人技术提供了可靠的合成数据和闭环模拟。</description>
+  </item>
+  <item>
+    <title>CogVideoX: 带专家Transformer的文本到视频扩散模型 — cs.CV</title>
+    <link>https://aipaper.jasonlin.tech/p/jietang-2408.06072/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/jietang-2408.06072/</guid>
+    <pubDate>Thu, 30 Jul 2026 17:03:38 -0000</pubDate>
+    <description>CogVideoX通过3D VAE实现时空压缩、带自适应层归一化的专家Transformer实现深度文本-视频融合、以及多分辨率训练生成连贯长视频，达到文本到视频生成的领先水平。</description>
+  </item>
+  <item>
+    <title>Adam：一种随机优化方法 — cs.LG</title>
+    <link>https://aipaper.jasonlin.tech/p/dkingma-1412.6980/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/dkingma-1412.6980/</guid>
+    <pubDate>Thu, 30 Jul 2026 16:58:48 -0000</pubDate>
+    <description>Adam是一种基于低阶矩自适应估计的高效随机优化算法。</description>
+  </item>
+  <item>
+    <title>Gemini 1.5：解锁跨数百万token上下文的 multimodal 理解 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/p/demis-2403.05530/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/demis-2403.05530/</guid>
+    <pubDate>Thu, 30 Jul 2026 16:54:52 -0000</pubDate>
+    <description>Gemini 1.5模型在长上下文（高达1000万token）上实现近乎完美的召回，并在多项基准测试中匹配或超越先前最先进的性能。</description>
+  </item>
+  <item>
+    <title>DeepSeek-V4：迈向高效百万令牌上下文智能 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/p/deepseek-2606.19348/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/deepseek-2606.19348/</guid>
+    <pubDate>Thu, 30 Jul 2026 16:49:03 -0000</pubDate>
+    <description>DeepSeek-V4系列包含两个支持百万令牌上下文的MoE语言模型，通过混合注意力、mHC连接和Muon优化器实现高效长上下文推理。</description>
+  </item>
+  <item>
+    <title>改进的Wasserstein GAN训练方法 — cs.LG</title>
+    <link>https://aipaper.jasonlin.tech/p/arjovsky-1704.00028/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/arjovsky-1704.00028/</guid>
+    <pubDate>Thu, 30 Jul 2026 16:43:18 -0000</pubDate>
+    <description>我们提出对判别器关于输入的梯度范数进行惩罚，从而稳定GAN训练，避免WGAN中权重裁剪导致的问题。</description>
+  </item>
+  <item>
+    <title>Qwen2.5-1M技术报告 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/p/anyang-2501.15383/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/anyang-2501.15383/</guid>
+    <pubDate>Thu, 30 Jul 2026 16:38:47 -0000</pubDate>
+    <description>Qwen2.5-1M将上下文扩展至百万token，并通过优化推理框架实现3-7倍加速。</description>
+  </item>
+  <item>
+    <title>Qwen2.5技术报告 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/p/anyang-2412.15115/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/anyang-2412.15115/</guid>
+    <pubDate>Thu, 30 Jul 2026 16:35:40 -0000</pubDate>
+    <description>Qwen2.5通过18万亿tokens预训练和百万级微调及多阶段强化学习，性能达到顶尖，与5倍参数量的模型竞争。</description>
+  </item>
+  <item>
+    <title>Qwen技术报告 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/p/anyang-2309.16609/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/anyang-2309.16609/</guid>
+    <pubDate>Thu, 30 Jul 2026 16:33:39 -0000</pubDate>
+    <description>Qwen是一个全面的LLM系列，在包括对话、代码和数学任务上表现优异。</description>
+  </item>
+  <item>
+    <title>叠加的玩具模型 — cs.LG</title>
+    <link>https://aipaper.jasonlin.tech/p/anthropic-2209.10652/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/anthropic-2209.10652/</guid>
+    <pubDate>Thu, 30 Jul 2026 16:28:32 -0000</pubDate>
+    <description>神经网络中的多义性源于在叠加中存储稀疏特征，通过一个具有相变、与多面体几何和对抗样本关联的玩具模型得以证明。</description>
+  </item>
+  <item>
+    <title>NVIDIA Nemotron Nano 2：一种准确高效、基于Mamba-Transformer混合架构的推理模型 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/p/akhiadbercovich-2508.14444/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/akhiadbercovich-2508.14444/</guid>
+    <pubDate>Thu, 30 Jul 2026 16:23:37 -0000</pubDate>
+    <description>Nemotron-Nano-9B-v2在准确性上与同类模型相当或更优，同时推理吞吐量提升高达6倍。</description>
   </item>
 </channel>
 </rss>
