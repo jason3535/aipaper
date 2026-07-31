@@ -131,7 +131,7 @@
 ## 高被引论文 Most-cited papers
 - [Deep Residual Learning for Image Recognition](https://aipaper.jasonlin.tech/p/kaiming-1512.03385/) — Kaiming He, Microsoft, 被引 231533
 - [Attention Is All You Need](https://aipaper.jasonlin.tech/p/shazeer-1706.03762/) — Noam Shazeer, Google, 被引 183094
-- [Adam: A Method for Stochastic Optimization](https://aipaper.jasonlin.tech/p/dkingma-1412.6980/) — Diederik P. Kingma, U. Amsterdam, 被引 167990
+- [Adam: A Method for Stochastic Optimization](https://aipaper.jasonlin.tech/p/dkingma-1412.6980/) — Diederik P. Kingma, , 被引 167990
 - [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://aipaper.jasonlin.tech/p/jdevlin-1810.04805/) — Jacob Devlin, Google, 被引 117033
 - [Very Deep Convolutional Networks for Large-Scale Image Recognition](https://aipaper.jasonlin.tech/p/ksimonyan-1409.1556/) — Karen Simonyan, Oxford, 被引 112467
 - [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://aipaper.jasonlin.tech/p/oronneberger-1505.04597/) — Olaf Ronneberger, University of Freiburg, 被引 97700
@@ -157,7 +157,7 @@
 - [RoBERTa: A Robustly Optimized BERT Pretraining Approach](https://aipaper.jasonlin.tech/p/yinhanliu-1907.11692/) — Yinhan Liu, Meta AI, 被引 30241
 - [Neural Machine Translation by Jointly Learning to Align and Translate](https://aipaper.jasonlin.tech/p/bengio-1409.0473/) — Yoshua Bengio, U. Montréal, 被引 29639
 - [Rich feature hierarchies for accurate object detection and semantic segmentation](https://aipaper.jasonlin.tech/p/rgirshick-1311.2524/) — Ross Girshick, UC Berkeley, 被引 29100
-- [Proximal Policy Optimization Algorithms](https://aipaper.jasonlin.tech/p/schulman-1707.06347/) — John Schulman, OpenAI, 被引 28997
+- [Proximal Policy Optimization Algorithms](https://aipaper.jasonlin.tech/p/schulman-1707.06347/) — John Schulman, , 被引 28997
 - [Fast R-CNN](https://aipaper.jasonlin.tech/p/rgirshick-1504.08083/) — Ross Girshick, Microsoft, 被引 28618
 - [Feature Pyramid Networks for Object Detection](https://aipaper.jasonlin.tech/p/tsungyilin-1612.03144/) — Tsung-Yi Lin, Meta AI, 被引 27238
 - [Graph Attention Networks](https://aipaper.jasonlin.tech/p/pvelickovic-1710.10903/) — Petar Veličković, U. Cambridge, 被引 26967
