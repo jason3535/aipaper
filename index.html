@@ -46,6 +46,9 @@ section{padding:46px 0}
 .fdot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:1px}
 .grid{display:grid;gap:16px}
 .reco-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.rv.rv-in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 .ppl-grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
 .ppl-card{background:var(--surface2);border:1px solid var(--line);border-radius:18px;padding:22px 18px;text-align:center;cursor:pointer;transition:.15s}
 .ppl-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
@@ -1646,6 +1649,11 @@ function initReadMark(id){const end=document.getElementById('readEnd');if(!end||
  if(document.querySelector('.rcol .skeleton'))return;                 // 全文加载中,等加载完 render 再设
  if(document.documentElement.scrollHeight<=innerHeight+400)return;    // 不足以滚动的短页,交给手动标记
  const io=new IntersectionObserver(es=>{es.forEach(x=>{if(x.isIntersecting){readMark(id,true);io.disconnect();}})},{rootMargin:'0px 0px -8% 0px'});io.observe(end);}
+function observeReveals(){ // 滚动淡入(照 aipodcast):只盯首页/列表的 section,阅读器正文在 .rcol 不受影响
+ if(!('IntersectionObserver'in window))return;
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('rv-in');io.unobserve(e.target);}}),{threshold:0,rootMargin:'0px 0px -6% 0px'});
+ document.querySelectorAll('#app > .wrap > section:not(.rv), #app .hero-wrap:not(.rv)').forEach(el=>{el.classList.add('rv');io.observe(el);});
+}
 function render(){
  const h=location.hash||'#/';const[path,query]=h.slice(2).split('?');
  const parts=path.split('/').filter(Boolean);const qp=query?new URLSearchParams(query):null;
@@ -1663,6 +1671,7 @@ function render(){
  else html=vHome();
  document.getElementById('app').innerHTML=html;
  placeAsk();
+ observeReveals();
  if(parts[0]==='paper')initReadMark(decodeURIComponent(parts[1]));
  if(parts[0]==='paper'&&!pendingLocate){const _pid=decodeURIComponent(parts[1]);const rp=readPosGet()[_pid];if(rp&&rp.s>0&&!readHas(_pid))pendingLocate={id:_pid,at:rp.s,hl:''};}  // 无分享锚点时回到上次读到的章节
  try{trackView()}catch(_){}
