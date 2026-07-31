@@ -227,7 +227,10 @@ def main():
         for f in as_completed(futs): full[futs[f]]=f.result()
     para_ens=lambda s:[it["en"] for it in s.get("items",[]) if it.get("t")=="para"] or [p["en"] for p in s.get("paras",[])]
     ctx=title+"\n"+summ+"\n"+" ".join(e for s in full for e in para_ens(s))[:60000]
-    ins=call(INS_SYS,ctx,mx=6000); m=meta_zh(title,summ)
+    try: ins=call(INS_SYS,ctx,mx=6000)
+    except Exception: ins={"contrib":[],"limits":[]}    # 限流失败不拖垮整篇(正文已译好,别丢)
+    try: m=meta_zh(title,summ)
+    except Exception: m={}
     fields=[x.strip() for x in a.fields.split(",") if x.strip()]
     pid=a.pid; pid_id=f"{pid}-{aid}"
     paper={"id":pid_id,"pid":pid,"arxiv":aid,"date":pub,"venue":cat,"fields":fields,
