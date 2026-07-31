@@ -1340,11 +1340,11 @@ function vAsk(){
  </section></div>${footer()}`;
 }
 function footer(){return `<footer><div class="wrap">
-  <div class="legal-note" style="margin-bottom:14px"><b>姊妹站</b> — 同一批人物，三种读法：<a href="https://aipodcast.jasonlin.tech" target="_blank" rel="noopener" style="color:var(--acc)">AI Podcast</a>（他们的长访谈，双语全文）· <a href="https://ai.jasonlin.tech" target="_blank" rel="noopener" style="color:var(--acc)">AI 学者图谱</a>（谁和谁共事、师承、合创）。阅读记录用同一个同步码互通。</div>
-  <div class="legal-note" style="margin-bottom:14px"><b>接入 AI 助手 · MCP</b> — 全站 ${PAPERS.length} 篇论文双语全文，可接入 Claude、Cursor 等做问答（与 AI Podcast 共用同一端点）。只读、免费、无需 key。<div style="margin-top:9px"><span class="mcp-url">https://mcp.jasonlin.tech/mcp</span><button class="mcp-copy" onclick="navigator.clipboard&&navigator.clipboard.writeText('https://mcp.jasonlin.tech/mcp');this.textContent='已复制'">复制</button></div></div>
+  <div class="legal-note" style="margin-bottom:14px"><b>姊妹站</b> · <a href="https://aipodcast.jasonlin.tech" target="_blank" rel="noopener" style="color:var(--acc)">AI Podcast</a> 访谈 · <a href="https://ai.jasonlin.tech" target="_blank" rel="noopener" style="color:var(--acc)">AI 学者图谱</a> 关系网，同步码通用。</div>
+  <div class="legal-note" style="margin-bottom:14px"><b>MCP</b> · 接入 Claude、Cursor 问答，与 AI Podcast 同端点。<div style="margin-top:9px"><span class="mcp-url">https://mcp.jasonlin.tech/mcp</span><button class="mcp-copy" onclick="navigator.clipboard&&navigator.clipboard.writeText('https://mcp.jasonlin.tech/mcp');this.textContent='已复制'">复制</button></div></div>
   ${syncPanelHtml()}
-  <div>AI Paper · 双语论文阅读站 — 著名学者的代表论文，逐段中英对照 + 核心贡献 + 论文问答。<a href="/feed.xml" style="color:var(--acc)">📡 RSS 订阅</a></div>
-  <div class="legal">本站论文正文/摘要论文版权归原作者与 arXiv（多为 CC-BY/arXiv 非独占许可）；机构官网文章版权归 Anthropic/OpenAI/Google DeepMind 等原机构所有，本站仅节选展示双语译文并注明原文链接，作学习与研究用途；如权利人要求即下架（<a href="mailto:linzheng3535@gmail.com?subject=AI%20Paper%20Takedown" style="color:var(--acc)">linzheng3535@gmail.com</a>）。译文由 AI 生成，仅供参考，以原文为准。</div>
+  <div>${PAPERS.length} 篇论文，逐段中英对照。<a href="/feed.xml" style="color:var(--acc)">RSS</a></div>
+  <div class="legal">版权归原作者、arXiv 及各机构，本站仅作学习研究用，以原文为准；下架请联系 <a href="mailto:linzheng3535@gmail.com?subject=AI%20Paper%20Takedown" style="color:var(--acc)">linzheng3535@gmail.com</a>。</div>
  </div></footer>`;}
 
 /* ===== ASK (需部署 chat-worker；未配置则提示) ===== */
@@ -1622,7 +1622,7 @@ async function syncJoin(code){code=(code||'').toUpperCase().replace(/[^A-Z2-7]/g
   localStorage.syncCode=code;await syncPull();await syncPush();syncPanelRefresh();}
 function syncOff(){localStorage.removeItem('syncCode');localStorage.removeItem('syncT');syncPanelRefresh();}
 function syncPanelHtml(){const c=syncCode();
-  return `<div class="legal-note" id="syncPanel" style="margin-top:14px"><b>多设备同步</b> — 与 AI Podcast 共用同一个同步码：在任一站开启后，把码粘到另一台设备或另一个站即可同步阅读记录与偏好。无账号、无 Cookie。<div style="margin-top:9px">${c?`<span class="mcp-url">${c}</span><button class="mcp-copy" onclick="navigator.clipboard&&navigator.clipboard.writeText('${c}');this.textContent='已复制'">复制</button> <button class="mcp-copy" onclick="syncOff()">关闭同步</button>`:`<button class="mcp-copy" onclick="syncOn()">开启同步</button> 或 <input id="syncIn" placeholder="输入同步码" style="font-family:inherit;font-size:16px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);width:200px;min-height:38px;box-sizing:border-box" onkeydown="if(event.key==='Enter')syncJoin(this.value)"> <button class="mcp-copy" onclick="syncJoin(document.getElementById('syncIn').value)">加入</button>`}</div></div>`;}
+  return `<div class="legal-note" id="syncPanel" style="margin-top:14px"><b>多设备同步</b> · 把同步码粘到另一台设备或 AI Podcast 即可互通阅读记录，无账号、无 Cookie。<div style="margin-top:9px">${c?`<span class="mcp-url">${c}</span><button class="mcp-copy" onclick="navigator.clipboard&&navigator.clipboard.writeText('${c}');this.textContent='已复制'">复制</button> <button class="mcp-copy" onclick="syncOff()">关闭同步</button>`:`<button class="mcp-copy" onclick="syncOn()">开启同步</button> 或 <input id="syncIn" placeholder="输入同步码" style="font-family:inherit;font-size:16px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);width:200px;min-height:38px;box-sizing:border-box" onkeydown="if(event.key==='Enter')syncJoin(this.value)"> <button class="mcp-copy" onclick="syncJoin(document.getElementById('syncIn').value)">加入</button>`}</div></div>`;}
 function syncPanelRefresh(){const el=document.getElementById('syncPanel');if(el)el.outerHTML=syncPanelHtml();}
 addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&syncCode()&&Date.now()-_syncLastPull>60000)syncPull();});
 setTimeout(()=>{if(syncCode())syncPull();},800);

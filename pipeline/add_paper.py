@@ -113,7 +113,15 @@ def pdf_sections(aid):
     for s in secs:
         if re.match(r"\s*(references|acknowledg|bibliography)",s["sec"],re.I): break
         if s["paras"]: out.append(s)
-    return out
+    # 超大论文(150页级)段落数千,单次翻译必超时。截取前 CAP 段核心正文(保证能完成),并标注。
+    CAP=180; tot=0; capped=[]
+    for s in out:
+        if tot>=CAP: break
+        take=s["paras"][:CAP-tot]; tot+=len(take)
+        capped.append({"sec":s["sec"],"paras":take})
+    if tot<sum(len(s["paras"]) for s in out):
+        capped.append({"sec":"Note","paras":[f"[This is a very long paper; the reader shows the first {tot} paragraphs of the main text. See the original PDF for the full content.]"]})
+    return capped
 
 TR_SYS=f"""你是 AI 论文的专业编辑兼译者。输入是一篇论文某一节的若干段落(JSON 数组),可能来自 PDF 抽取——单词常被空格打散、数学公式常被 OCR 错乱。对每一段做两件事,与输入段落**一一对应、等长**:
 1) en:清理并重构英文原文——修复被打散的单词(如 "act i vat i on"→"activation")、还原通顺英文;数学公式重构为规范 LaTeX。
@@ -133,9 +141,12 @@ def translate_items(sec):
         return {"sec":sec["sec"],"secZh":sec["sec"],"items":items}
     BATCH=5; chunks=[texts[i:i+BATCH] for i in range(0,len(texts),BATCH)]
     res=[None]*len(chunks)
-    with ThreadPoolExecutor(max_workers=8) as ex:   # 节内批次并行(大节提速)
+    with ThreadPoolExecutor(max_workers=5) as ex:   # 节内批次并行(大节提速)
         futs={ex.submit(call,TR_SYS,f"节标题: {sec['sec']}\n段落: "+json.dumps(c,ensure_ascii=False),12000):ci for ci,c in enumerate(chunks)}
-        for f in as_completed(futs): res[futs[f]]=f.result()
+        for f in as_completed(futs):
+            ci=futs[f]
+            try: res[ci]=f.result()
+            except Exception: res[ci]={"en":chunks[ci],"zh":[""]*len(chunks[ci])}   # 单批失败回退原文,不拖垮整篇
     en_out=[]; zh=[]; secZh=None
     for ci,r in enumerate(res):
         chunk=chunks[ci]
@@ -157,9 +168,12 @@ def translate_section(sec):
     # en 也重新清理(修 PDF 打散/公式转 LaTeX),故同时收集 en_out。
     BATCH=5; chunks=[paras[i:i+BATCH] for i in range(0,len(paras),BATCH)]   # 批次并行,大节提速
     res=[None]*len(chunks)
-    with ThreadPoolExecutor(max_workers=8) as ex:
+    with ThreadPoolExecutor(max_workers=5) as ex:
         futs={ex.submit(call,TR_SYS,f"节标题: {sec['sec']}\n段落: "+json.dumps(c,ensure_ascii=False),12000):ci for ci,c in enumerate(chunks)}
-        for f in as_completed(futs): res[futs[f]]=f.result()
+        for f in as_completed(futs):
+            ci=futs[f]
+            try: res[ci]=f.result()
+            except Exception: res[ci]={"en":chunks[ci],"zh":[""]*len(chunks[ci])}   # 单批失败回退原文,不拖垮整篇
     en_out=[]; zh=[]; secZh=None
     for ci,r in enumerate(res):
         chunk=chunks[ci]
