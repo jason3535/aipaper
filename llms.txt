@@ -3,20 +3,20 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 236 位学者 / 547 篇论文
+规模: 237 位学者 / 554 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
 - [Anthropic / Anthropic](https://aipaper.jasonlin.tech/pp/anthropic/): AI safety lab (Claude); interpretability & alignment — 22 篇
 - [OpenAI / OpenAI](https://aipaper.jasonlin.tech/pp/openai/): Frontier AI lab (GPT / DALL·E / Codex) — 17 篇
 - [DeepSeek-AI / 深度求索](https://aipaper.jasonlin.tech/pp/deepseek/): Frontier open-model lab, China — 14 篇
-- [Song Han / 韩松](https://aipaper.jasonlin.tech/pp/songhan/): Associate Professor, MIT — 11 篇
+- [Song Han / 韩松](https://aipaper.jasonlin.tech/pp/songhan/): Associate Professor, MIT — 12 篇
+- [Zhilin Yang / 杨植麟](https://aipaper.jasonlin.tech/pp/zhilinyang/): Founder & CEO, Moonshot AI (Kimi); XLNet lead author — 10 篇
 - [Jie Tang / 唐杰](https://aipaper.jasonlin.tech/pp/jietang/): Professor, Tsinghua University; Zhipu AI / GLM — 10 篇
+- [An Yang / 杨安](https://aipaper.jasonlin.tech/pp/anyang/): Researcher, Qwen Team, Alibaba — 9 篇
 - [Xingwu Sun / 孙兴武](https://aipaper.jasonlin.tech/pp/xingwusun/): Lead Researcher, Hunyuan Team, Tencent — 9 篇
 - [Junyang Lin / 林俊旸](https://aipaper.jasonlin.tech/pp/junyanglin/): Lead, Qwen Team, Alibaba — 9 篇
-- [Zhilin Yang / 杨植麟](https://aipaper.jasonlin.tech/pp/zhilinyang/): Founder & CEO, Moonshot AI (Kimi); XLNet lead author — 9 篇
 - [Dario Amodei / 达里奥·阿莫迪](https://aipaper.jasonlin.tech/pp/dario/): CEO, Anthropic — 9 篇
-- [An Yang / 杨安](https://aipaper.jasonlin.tech/pp/anyang/): Researcher, Qwen Team, Alibaba — 8 篇
 - [Robin Rombach / 罗宾·罗姆巴赫](https://aipaper.jasonlin.tech/pp/rrombach/): Co-founder, Black Forest Labs (formerly Stability AI / CompVis) — 8 篇
 - [Aaron Grattafiori / Aaron Grattafiori](https://aipaper.jasonlin.tech/pp/aarongrattafiori/): Research Lead, Meta AI (Llama) — 8 篇
 - [Ross Girshick / 罗斯·吉尔希克](https://aipaper.jasonlin.tech/pp/rgirshick/): Research Scientist, Meta AI (FAIR) — 8 篇
@@ -42,6 +42,7 @@
 - [Google DeepMind / 谷歌 DeepMind](https://aipaper.jasonlin.tech/pp/deepmind/): AI research lab (Gemini, AlphaFold, AlphaGo) — 4 篇
 - [Ilya Sutskever / 伊利亚·苏茨克维尔](https://aipaper.jasonlin.tech/pp/ilya/): Co-founder, SSI (prev. Chief Scientist, OpenAI) — 4 篇
 - [Oriol Vinyals / 奥里奥尔·维尼亚尔斯](https://aipaper.jasonlin.tech/pp/oriol/): VP of Research, Google DeepMind; Gemini co-lead — 4 篇
+- [Simon Willison / 西蒙·威利森](https://aipaper.jasonlin.tech/pp/simonwillison/): Creator of Datasette · Independent Researcher — 3 篇
 - [Xiaomi MiMo Team / 小米 MiMo 团队](https://aipaper.jasonlin.tech/pp/xiaomimimo/): Xiaomi LLM-Core, multimodal LLM — 3 篇
 - [Lilian Weng / 翁荔](https://aipaper.jasonlin.tech/pp/lilianweng/): Co-founder, Thinking Machines Lab · ex-VP, OpenAI — 3 篇
 - [Thomas Mesnard / Thomas Mesnard](https://aipaper.jasonlin.tech/pp/thomasmesnard/): Research Scientist, Google DeepMind (Gemma) — 3 篇
@@ -61,8 +62,9 @@
 - [Joseph Redmon / 约瑟夫·雷德蒙](https://aipaper.jasonlin.tech/pp/jredmon/): Creator of YOLO, formerly University of Washington — 3 篇
 - [Tsung-Yi Lin / 林宗毅](https://aipaper.jasonlin.tech/pp/tsungyilin/): Research Scientist, NVIDIA (formerly Google Brain, FAIR) — 3 篇
 - [Christian Szegedy / 克里斯蒂安·塞格迪](https://aipaper.jasonlin.tech/pp/cszegedy/): AI Researcher (xAI), formerly Google Brain — 3 篇
+- [Ethan Mollick / 伊桑·莫利克](https://aipaper.jasonlin.tech/pp/ethanmollick/): Professor, Wharton School — 2 篇
+- [Nathan Lambert / 内森·兰伯特](https://aipaper.jasonlin.tech/pp/nathanlambert/): Post-training Lead, Allen Institute for AI — 2 篇
 - [Tony Fadell / 托尼·法德尔](https://aipaper.jasonlin.tech/pp/tonyfadell/): Principal, Build Collective · Father of the iPod — 2 篇
-- [Simon Willison / 西蒙·威利森](https://aipaper.jasonlin.tech/pp/simonwillison/): Creator of Datasette · Independent Researcher — 2 篇
 - [Tianqi Chen / 陈天奇](https://aipaper.jasonlin.tech/pp/tianqi/): Assistant Professor, CMU — 2 篇
 - [Justin Johnson / 贾斯汀·约翰逊](https://aipaper.jasonlin.tech/pp/justinjohnson/): Co-founder, World Labs — 2 篇
 - [Yann LeCun / 杨立昆](https://aipaper.jasonlin.tech/pp/lecun/): Chief AI Scientist, Meta — 2 篇
@@ -108,6 +110,7 @@
 - [Martin Arjovsky / 马丁·阿尔约夫斯基](https://aipaper.jasonlin.tech/pp/arjovsky/): Research Scientist; GAN training theory (Wasserstein GAN) — 2 篇
 - [Tomas Mikolov / 托马斯·米科洛夫](https://aipaper.jasonlin.tech/pp/tmikolov/): Research Scientist (word2vec creator); formerly Google, Facebook AI — 2 篇
 - [Diederik P. Kingma / 迪德里克·金马](https://aipaper.jasonlin.tech/pp/dkingma/): Research Scientist, Anthropic (prev. Google Brain, OpenAI) — 2 篇
+- [Zvi Mowshowitz / 兹维·莫绍维茨](https://aipaper.jasonlin.tech/pp/zvi/): Writer, Don't Worry About the Vase — 1 篇
 - [Ali Hatamizadeh / 阿里·哈塔米扎德](https://aipaper.jasonlin.tech/pp/alihatamizadeh/): Senior Research Scientist, NVIDIA — 1 篇
 - [Citrini Research / Citrini Research](https://aipaper.jasonlin.tech/pp/citrini/): Thematic Investment Research — 1 篇
 - [Matt Shumer / 马特·舒默](https://aipaper.jasonlin.tech/pp/mattshumer/): Co-founder & CEO, HyperWrite — 1 篇
@@ -124,9 +127,6 @@
 - [Andrew Zhao / Andrew Zhao](https://aipaper.jasonlin.tech/pp/andrewzhao/): Tsinghua University, self-play reasoning — 1 篇
 - [Daniel Kokotajlo / 丹尼尔·科科塔伊洛](https://aipaper.jasonlin.tech/pp/kokotajlo/): Director, AI Futures Project · ex-OpenAI — 1 篇
 - [Arvind Narayanan / 阿尔温德·纳拉亚南](https://aipaper.jasonlin.tech/pp/arvindnarayanan/): Professor, Princeton · AI Snake Oil — 1 篇
-- [Tongyi Wan Team / 通义万相团队](https://aipaper.jasonlin.tech/pp/wanteam/): Alibaba Tongyi Wanxiang, video generation — 1 篇
-- [Bowen Jin / 金博文](https://aipaper.jasonlin.tech/pp/bowenjin/): UIUC, RL for search-augmented reasoning — 1 篇
-- [Ling Team (inclusionAI) / Ling Team (inclusionAI)](https://aipaper.jasonlin.tech/pp/antling/): Ant Group / inclusionAI, large MoE model — 1 篇
 
 ## 高被引论文 Most-cited papers
 - [Deep Residual Learning for Image Recognition](https://aipaper.jasonlin.tech/p/kaiming-1512.03385/) — Kaiming He, Microsoft, 被引 231533
