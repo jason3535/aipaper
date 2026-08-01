@@ -6,26 +6,39 @@ import json, sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from add_paper import call, TR_SYS
 
+import re as _re
+def _is_prose(en):
+    """判断段落是否为真正的散文(值得翻译)。纯公式/表格/数字网格/参数转储
+    翻译无意义,且 DeepSeek 对其常返回空响应触发大量重试拖慢整体——直接跳过。"""
+    en=(en or "").strip()
+    if not en: return False
+    words=_re.findall(r'[A-Za-z]{3,}', en)
+    alpha=sum(c.isalpha() or c.isspace() for c in en)/max(len(en),1)
+    return len(words)>=8 and alpha>0.5
+
 def fill(fid):
     f=f"data/{fid}.json"
     d=json.load(open(f,encoding="utf-8"))
-    total=filled=0
+    total=filled=skipped=0
     for s in d.get("full",[]):
         key="items" if "items" in s else "paras"
         arr=s.get(key,[])
-        # items 结构:只补 t==para;paras 结构:全是段落
+        # items 结构:只补 t==para;paras 结构:全是段落。仅翻散文,公式/表格碎片跳过
         if key=="items":
-            targets=[(i,it) for i,it in enumerate(arr) if it.get("t")=="para" and not (it.get("zh","") or "").strip()]
+            cand=[(i,it) for i,it in enumerate(arr) if it.get("t")=="para" and not (it.get("zh","") or "").strip()]
         else:
-            targets=[(i,it) for i,it in enumerate(arr) if not (it.get("zh","") or "").strip()]
+            cand=[(i,it) for i,it in enumerate(arr) if not (it.get("zh","") or "").strip()]
+        targets=[(i,it) for i,it in cand if _is_prose(it.get("en",""))]
+        skipped+=len(cand)-len(targets)
         total+=len(targets)
         def apply(chunk, r):
             nonlocal filled
             en=r.get("en",[]); zh=r.get("zh",[]); n=0
             for j,(idx,it) in enumerate(chunk):
                 if j<len(zh) and zh[j].strip():
-                    it["zh"]=zh[j]
-                    if j<len(en) and en[j].strip(): it["en"]=en[j]
+                    # ⟐ 是 TR_SYS 里 LaTeX 反斜杠的占位符,写回前必须还原(与 add_paper 一致)
+                    it["zh"]=zh[j].replace("⟐","\\")
+                    if j<len(en) and en[j].strip(): it["en"]=en[j].replace("⟐","\\")
                     filled+=1; n+=1
             return n
         for b in range(0,len(targets),3):   # 小 chunk(3)减少单段公式拖垮整批
@@ -45,7 +58,7 @@ def fill(fid):
                     except Exception as e:
                         print(f"  单段失败 {fid}:", str(e)[:40], file=sys.stderr)
     json.dump(d, open(f,"w",encoding="utf-8"), ensure_ascii=False)
-    print(f"{fid}: 补翻 {filled}/{total}", file=sys.stderr)
+    print(f"{fid}: 补翻 {filled}/{total} (跳过公式碎片 {skipped})", file=sys.stderr)
     return filled
 
 if __name__=="__main__":
