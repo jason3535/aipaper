@@ -86,7 +86,8 @@ def pdf_sections(aid):
         except Exception as e:
             print("  PDF 下载失败:",str(e)[:60],file=sys.stderr); return []
         if os.path.getsize(pdf)<5000: return []
-        txt=subprocess.run(["pdftotext","-nopgbrk",pdf,"-"],capture_output=True,text=True).stdout
+        # -layout 保留双栏阅读顺序(默认模式会把左右栏逐行交错成乱码)
+        txt=subprocess.run(["pdftotext","-layout","-nopgbrk",pdf,"-"],capture_output=True,text=True).stdout
     # 合并断行(连字符续行 + 普通换行→空格),按空行分段
     txt=re.sub(r"-\n(\w)",r"\1",txt)
     lines=txt.split("\n")
@@ -229,11 +230,13 @@ def main():
     title,summ,pub,authors,cat=arxiv_meta(aid)
     figdir=str(ROOT/"assets"/"paperfigs"/pid_id)
     print(f"[2/4] arXiv 原生 HTML 正文(含显示公式+图)",file=sys.stderr)
+    def _nparas(ss):
+        return sum(len(x.get('items',x.get('paras',[]))) for x in (ss or []))
     secs=arxiv_html.extract(aid,figdir=figdir); use_items=bool(secs)
-    if not secs:
-        print("   arxiv HTML 无 → 退回 ar5iv",file=sys.stderr); secs=ar5iv_sections(aid)
-    if not secs:
-        print("   ar5iv 无 → PDF 兜底(pdftotext)",file=sys.stderr); secs=pdf_sections(aid)
+    if _nparas(secs)<6:   # arXiv HTML 无/占位页 → 退回 ar5iv
+        print("   arxiv HTML 无 → 退回 ar5iv",file=sys.stderr); secs=ar5iv_sections(aid); use_items=False
+    if _nparas(secs)<6:   # ar5iv 也是占位页(<6段) → PDF 兜底
+        print("   ar5iv 无正文 → PDF 兜底(pdftotext)",file=sys.stderr); secs=pdf_sections(aid); use_items=False
     if not secs:
         print("   ⚠️ 所有正文源均失败,仅摘要",file=sys.stderr); secs=[]
     cnt=sum(len(s.get('items',s.get('paras',[]))) for s in secs)
