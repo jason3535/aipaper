@@ -224,6 +224,7 @@ def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--arxiv",required=True); ap.add_argument("--pid",required=True)
     ap.add_argument("--fields",required=True)
+    ap.add_argument("--force-pdf",action="store_true",help="跳过HTML/ar5iv直接PDF抽正文(HTML为残缺页时用)")
     a=ap.parse_args(); aid=a.arxiv.strip()
     pid=a.pid; pid_id=f"{pid}-{aid}"
     print(f"[1/4] arXiv 元数据 {aid}",file=sys.stderr)
@@ -232,11 +233,14 @@ def main():
     print(f"[2/4] arXiv 原生 HTML 正文(含显示公式+图)",file=sys.stderr)
     def _nparas(ss):
         return sum(len(x.get('items',x.get('paras',[]))) for x in (ss or []))
-    secs=arxiv_html.extract(aid,figdir=figdir); use_items=bool(secs)
-    if _nparas(secs)<6:   # arXiv HTML 无/占位页 → 退回 ar5iv
-        print("   arxiv HTML 无 → 退回 ar5iv",file=sys.stderr); secs=ar5iv_sections(aid); use_items=False
-    if _nparas(secs)<6:   # ar5iv 也是占位页(<6段) → PDF 兜底
-        print("   ar5iv 无正文 → PDF 兜底(pdftotext)",file=sys.stderr); secs=pdf_sections(aid); use_items=False
+    if a.force_pdf:   # HTML 为残缺页(只含部分节)时强制 PDF
+        print("   --force-pdf → 直接 PDF 抽正文",file=sys.stderr); secs=pdf_sections(aid); use_items=False
+    else:
+        secs=arxiv_html.extract(aid,figdir=figdir); use_items=bool(secs)
+        if _nparas(secs)<6:   # arXiv HTML 无/占位页 → 退回 ar5iv
+            print("   arxiv HTML 无 → 退回 ar5iv",file=sys.stderr); secs=ar5iv_sections(aid); use_items=False
+        if _nparas(secs)<6:   # ar5iv 也是占位页(<6段) → PDF 兜底
+            print("   ar5iv 无正文 → PDF 兜底(pdftotext)",file=sys.stderr); secs=pdf_sections(aid); use_items=False
     if not secs:
         print("   ⚠️ 所有正文源均失败,仅摘要",file=sys.stderr); secs=[]
     cnt=sum(len(s.get('items',s.get('paras',[]))) for s in secs)
