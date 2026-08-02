@@ -417,6 +417,13 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
 .rc-top{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .rc-top .av-xs{width:32px;height:32px;font-size:12px;flex:0 0 auto}
 .rc-nm{font-size:12.5px;font-weight:600;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* 移动端防横向滑动:根因修复 + 兜底 */
+html,body{overflow-x:clip;max-width:100%}
+.para .en,.para .zh,.reader{overflow-wrap:anywhere;word-break:break-word}
+mjx-container[display="true"],.mjx-container{max-width:100%!important;overflow-x:auto;overflow-y:hidden}
+.reader table{display:block;max-width:100%;overflow-x:auto}
+.reader img,.reader pre{max-width:100%}
 </style>
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macros:{bm:['\\boldsymbol{#1}',1],argmin:['\\operatorname*{arg\\,min}'],argmax:['\\operatorname*{arg\\,max}'],bx:'\\mathbf{x}',mathsfit:['\\mathsf{#1}',1]}},svg:{fontCache:'global'},options:{enableMenu:false}};</script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
