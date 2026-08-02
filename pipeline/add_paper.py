@@ -78,13 +78,17 @@ def pdf_sections(aid):
     正文会有 PDF 抽取的常见毛病(单词打散/公式乱),交给 translate_section 的 TR_SYS 清理重构。"""
     import subprocess, tempfile
     url=f"https://arxiv.org/pdf/{aid}"
+    local=os.environ.get("PDF_LOCAL")   # arXiv 限流/超时时可用已下好的本地 PDF
     with tempfile.TemporaryDirectory() as td:
         pdf=os.path.join(td,"p.pdf")
-        try:
-            data=OPX.open(urllib.request.Request(url,headers=HDR),timeout=90).read()
-            open(pdf,"wb").write(data)
-        except Exception as e:
-            print("  PDF 下载失败:",str(e)[:60],file=sys.stderr); return []
+        if local and os.path.getsize(local)>5000:
+            print(f"  用本地 PDF: {local}",file=sys.stderr); pdf=local
+        else:
+            try:
+                data=OPX.open(urllib.request.Request(url,headers=HDR),timeout=90).read()
+                open(pdf,"wb").write(data)
+            except Exception as e:
+                print("  PDF 下载失败:",str(e)[:60],file=sys.stderr); return []
         if os.path.getsize(pdf)<5000: return []
         # -layout 保留双栏阅读顺序(默认模式会把左右栏逐行交错成乱码)
         txt=subprocess.run(["pdftotext","-layout","-nopgbrk",pdf,"-"],capture_output=True,text=True).stdout
