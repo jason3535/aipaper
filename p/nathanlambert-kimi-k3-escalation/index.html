@@ -2,17 +2,26 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kimi K3：开放权重的升级 · 内森·兰伯特 — AI Paper</title>
 <meta name="description" content="Kimi K3 标志着开放权重 AI 的重大升级，提供无炒作的前沿洞察。｜核心贡献：Kimi K3 是 2.8T 参数的开放权重前沿模型，在公开指数中名列前茅，并将中美模型能力差距缩短到 3–5 个月。">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <link rel="canonical" href="https://aipaper.jasonlin.tech/p/nathanlambert-kimi-k3-escalation/">
+<link rel="alternate" hreflang="zh" href="https://aipaper.jasonlin.tech/p/nathanlambert-kimi-k3-escalation/"><link rel="alternate" hreflang="en" href="https://aipaper.jasonlin.tech/p/nathanlambert-kimi-k3-escalation/"><link rel="alternate" hreflang="x-default" href="https://aipaper.jasonlin.tech/p/nathanlambert-kimi-k3-escalation/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="AI Paper · 双语论文阅读站">
+<meta property="og:locale" content="zh_CN"><meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="Kimi K3：开放权重的升级 · 内森·兰伯特 — AI Paper">
 <meta property="og:description" content="Kimi K3 标志着开放权重 AI 的重大升级，提供无炒作的前沿洞察。｜核心贡献：Kimi K3 是 2.8T 参数的开放权重前沿模型，在公开指数中名列前茅，并将中美模型能力差距缩短到 3–5 个月。">
 <meta property="og:image" content="https://aipaper.jasonlin.tech/assets/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Kimi K3：开放权重的升级 · 内森·兰伯特 — AI Paper">
 <meta property="og:url" content="https://aipaper.jasonlin.tech/p/nathanlambert-kimi-k3-escalation/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kimi K3：开放权重的升级 · 内森·兰伯特 — AI Paper">
 <meta name="twitter:description" content="Kimi K3 标志着开放权重 AI 的重大升级，提供无炒作的前沿洞察。｜核心贡献：Kimi K3 是 2.8T 参数的开放权重前沿模型，在公开指数中名列前茅，并将中美模型能力差距缩短到 3–5 个月。">
 <meta name="twitter:image" content="https://aipaper.jasonlin.tech/assets/og.png">
+<meta name="keywords" content="内森·兰伯特,Nathan Lambert,nlp,Allen Institute for AI,AI论文,双语论文,deep learning,机器学习">
+<meta name="author" content="Nathan Lambert">
+<meta property="article:published_time" content="2026-07-20">
+<meta property="article:author" content="Nathan Lambert">
+<meta property="article:tag" content="nlp">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Kimi K3: The open-weights escalation","alternativeHeadline":"Kimi K3：开放权重的升级","name":"Kimi K3: The open-weights escalation","url":"https://aipaper.jasonlin.tech/p/nathanlambert-kimi-k3-escalation/","datePublished":"2026-07-20","inLanguage":["en","zh"],"abstract":"The cutting edge of AI, from inside the frontier AI labs, minus the hype. The border between high-level and technical thinking. Read by leading engineers, researchers, and investors. By subscribing, you agree Substack's Terms of Use, and acknowledge its Information Collection Notice and Privacy Policy.","description":"Kimi K3 marks a major escalation in open-weights AI, delivering frontier insights without hype.","keywords":"nlp","author":{"@type":"Person","name":"Nathan Lambert","jobTitle":"Post-training Lead, Allen Institute for AI","url":"https://aipaper.jasonlin.tech/pp/nathanlambert/"},"isPartOf":{"@type":"WebSite","name":"AI Paper","url":"https://aipaper.jasonlin.tech"},"sourceOrganization":{"@type":"Organization","name":"Allen Institute for AI"},"sameAs":"https://www.interconnects.ai/p/kimi-k3-the-open-weights-escalation"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Paper","item":"https://aipaper.jasonlin.tech/"},{"@type":"ListItem","position":2,"name":"内森·兰伯特","item":"https://aipaper.jasonlin.tech/pp/nathanlambert/"},{"@type":"ListItem","position":3,"name":"Kimi K3：开放权重的升级","item":"https://aipaper.jasonlin.tech/p/nathanlambert-kimi-k3-escalation/"}]}</script>
 <style>:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}</style></head><body><div class="wrap"><nav class="bc"><a href="https://aipaper.jasonlin.tech/">AI Paper</a> › <a href="https://aipaper.jasonlin.tech/pp/nathanlambert/">内森·兰伯特</a> › 论文</nav>

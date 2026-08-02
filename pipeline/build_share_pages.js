@@ -10,22 +10,26 @@ const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&g
 const jl=o=>`<script type="application/ld+json">${JSON.stringify(o).replace(/</g,'\\u003c')}</script>`;
 const full=id=>{try{return JSON.parse(fs.readFileSync(path.join(ROOT,'data',id+'.json'),'utf8'));}catch(e){return{};}};
 const CSS=`:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}`;
-const page=(title,desc,url,ogtype,bodyHtml,ld)=>`<!doctype html><html lang="zh"><head><meta charset="utf-8">
+const page=(title,desc,url,ogtype,bodyHtml,ld,extra='')=>`<!doctype html><html lang="zh"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title}</title>
 <meta name="description" content="${desc}">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <link rel="canonical" href="${url}">
+<link rel="alternate" hreflang="zh" href="${url}"><link rel="alternate" hreflang="en" href="${url}"><link rel="alternate" hreflang="x-default" href="${url}">
 <meta property="og:type" content="${ogtype}">
 <meta property="og:site_name" content="AI Paper · 双语论文阅读站">
+<meta property="og:locale" content="zh_CN"><meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${desc}">
 <meta property="og:image" content="${SITE}/assets/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${title}">
 <meta property="og:url" content="${url}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${desc}">
 <meta name="twitter:image" content="${SITE}/assets/og.png">
-${ld.map(jl).join('\n')}
+${extra}${ld.map(jl).join('\n')}
 <style>${CSS}</style></head><body><div class="wrap">${bodyHtml}
 <footer>© AI Paper · <a href="${SITE}/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架(linzheng3535@gmail.com)。</footer>
 </div></body></html>`;
@@ -65,7 +69,14 @@ if(!/bot|spider|crawl|slurp|preview|fetch|embed|facebookexternalhit|whatsapp\\//
   if(p.cites!=null)art.interactionStatistic={"@type":"InteractionCounter",interactionType:"https://schema.org/CiteAction",userInteractionCount:p.cites};
   const ld=[art,{"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"AI Paper",item:SITE+"/"},{"@type":"ListItem",position:2,name:pe.zh||pe.en||'',item:person},{"@type":"ListItem",position:3,name:p.tZh||p.tEn,item:url}]}];
   fs.mkdirSync(path.join(PDIR,p.id),{recursive:true});
-  fs.writeFileSync(path.join(PDIR,p.id,'index.html'),page(title,desc,url,'article',body,ld));
+  const kw=[pe.zh,pe.en,...(p.fields||[]),p.org,p.arxiv?'arXiv:'+p.arxiv:'','AI论文','双语论文','deep learning','机器学习'].filter(Boolean).join(',');
+  const extra=`<meta name="keywords" content="${esc(kw)}">
+<meta name="author" content="${esc(pe.en||pe.zh||'')}">
+<meta property="article:published_time" content="${p.date||''}">
+<meta property="article:author" content="${esc(pe.en||'')}">
+${(p.fields||[]).map(f=>`<meta property="article:tag" content="${esc(f)}">`).join('')}
+`;
+  fs.writeFileSync(path.join(PDIR,p.id,'index.html'),page(title,desc,url,'article',body,ld,extra));
   n++;
 });
 // 学者/实体 hub 页
@@ -86,7 +97,9 @@ ${pe.bioZh?`<p class="zh">${esc(pe.bioZh)}</p><p class="en">${esc(pe.bioEn||'')}
     {"@context":"https://schema.org","@type":"ItemList",itemListElement:ps.map((p,i)=>({"@type":"ListItem",position:i+1,url:`${SITE}/p/${p.id}/`,name:p.tEn}))},
     {"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"AI Paper",item:SITE+"/"},{"@type":"ListItem",position:2,name:pe.zh||pe.en||'',item:url}]}];
   fs.mkdirSync(path.join(HDIR,pid),{recursive:true});
-  fs.writeFileSync(path.join(HDIR,pid,'index.html'),page(title,desc,url,'profile',body,ld));
+  const hkw=[pe.zh,pe.en,pe.tiZh,pe.tiEn,...new Set(ps.flatMap(p=>p.fields||[])),'AI学者','代表论文','researcher','deep learning'].filter(Boolean).join(',');
+  const hextra=`<meta name="keywords" content="${esc(hkw)}">\n<meta name="author" content="${esc(pe.en||'')}">\n`;
+  fs.writeFileSync(path.join(HDIR,pid,'index.html'),page(title,desc,url,'profile',body,ld,hextra));
   pn++;
 });
 // sitemap
