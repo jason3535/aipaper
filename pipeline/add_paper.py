@@ -21,7 +21,7 @@ OPX=urllib.request.build_opener(urllib.request.ProxyHandler({'http':'http://127.
 HDR={"User-Agent":"AIPaper/0.1 (research reader)"}
 
 def call(system,user,mx=8000):
-    body=json.dumps({"model":"deepseek-v4-flash","messages":[{"role":"system","content":system},
+    body=json.dumps({"model":"deepseek-chat","messages":[{"role":"system","content":system},
         {"role":"user","content":user}],"response_format":{"type":"json_object"},
         "max_tokens":mx,"temperature":0.2}).encode()
     last=None
