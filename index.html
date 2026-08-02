@@ -307,6 +307,11 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
 .seg button{white-space:nowrap}
 .hero-cov{display:none}
 @media(max-width:640px){
+  .read-bar .rb-drop{display:none}
+  .rb-more{display:inline-flex;min-width:44px;min-height:38px}
+  .read-bar.rb-open .rb-drop{display:flex;position:absolute;top:calc(100% + 8px);right:10px;z-index:95;flex-wrap:wrap;gap:9px;max-width:calc(100vw - 20px);justify-content:flex-end;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:11px;box-shadow:var(--shadow-lg)}
+  .read-bar.rb-open .rb-more{background:var(--ink);color:var(--bg)}
+
   .nav{gap:10px}
   .links{gap:13px;font-size:14px}
   .hero-wrap{padding:10px 16px 0!important}
@@ -405,7 +410,8 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
   .home-ppl{grid-template-columns:repeat(2,1fr)!important;gap:10px}
   .home-ppl .ppl-card:nth-child(n+18){display:none}
   .home-ppl a.ppl-card.ppl-more{display:flex}
-  .nav{gap:12px;padding:0 4px}
+  .nav{gap:12px;padding:0 12px;height:52px}
+  .read-bar{top:52px}
   .links{gap:14px;font-size:13.5px;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;flex-wrap:nowrap;scrollbar-width:none}
   .links::-webkit-scrollbar{display:none}
   .links a{padding:11px 1px}
@@ -424,6 +430,10 @@ html,body{overflow-x:clip;max-width:100%}
 mjx-container[display="true"],.mjx-container{max-width:100%!important;overflow-x:auto;overflow-y:hidden}
 .reader table{display:block;max-width:100%;overflow-x:auto}
 .reader img,.reader pre{max-width:100%}
+
+/* 阅读操作栏:移动端收进下拉(参照 aipodcast) */
+.rb-drop{display:contents}
+.rb-more{display:none;border:none;background:var(--surface2);color:var(--ink);font-size:17px;line-height:1;padding:7px 12px;border-radius:9px;cursor:pointer;font-family:inherit;align-items:center;justify-content:center}
 </style>
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macros:{bm:['\\boldsymbol{#1}',1],argmin:['\\operatorname*{arg\\,min}'],argmax:['\\operatorname*{arg\\,max}'],bx:'\\mathbf{x}',mathsfit:['\\mathsf{#1}',1]}},svg:{fontCache:'global'},options:{enableMenu:false}};</script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
@@ -1397,12 +1407,15 @@ function vPaper(id){
    <div class="read-prog" id="readProg"></div>
    <div class="back" onclick="history.back()">‹ <b>${esc(pe.zh||'')}${(p.org&&pe.zh!==p.org&&pe.en!==p.org)?' · '+esc(p.org):''}</b></div>
    <div class="tools">
-     <div class="seg" id="sizeSeg"><button onclick="setSize('s')">小</button><button onclick="setSize('m')">中</button><button onclick="setSize('l')">大</button></div>
      <div class="seg" id="langSeg"><button onclick="setLang('en')">EN</button><button onclick="setLang('zh')">中</button><button onclick="setLang('both')">双语</button></div>
+     <div class="rb-drop" id="rbDrop">
+     <div class="seg" id="sizeSeg"><button onclick="setSize('s')">小</button><button onclick="setSize('m')">中</button><button onclick="setSize('l')">大</button></div>
      <button id="orderBtn" class="ordbtn" onclick="toggleOrder()"><span class="ol">${ord}</span><span class="olx">${ord[0]}</span></button>
      <button class="ordbtn" onclick="copyShare('${p.id}')">分享</button>
       <button id="readBtn" class="ordbtn readbtn${readHas(p.id)?' on':''}" onclick="toggleRead('${p.id}')">${readHas(p.id)?'已读 ✓':'已读'}</button>
       <button id="laterBtn" class="ordbtn laterbtn${laterHas(p.id)?' on':''}" onclick="toggleLater('${p.id}')">${laterHas(p.id)?'待读 ★':'稍后读'}</button>
+     </div>
+     <button class="rb-more" onclick="rbToggle(event)" aria-label="更多操作">⋯</button>
    </div>
  </div>
  ${hasToc?`<div class="read-wrap"><nav class="toc"><div class="toc-h">目录 · Contents</div>${tocItems}</nav><div class="rcol">${rcol}${recoBlock(p,full)}</div><aside class="askside" id="askDesk"></aside></div>
@@ -1518,6 +1531,8 @@ function vOrg(o){o=decodeURIComponent(o);const ps=papersByOrg(o).sort((a,b)=>(b.
 function toggleTheme(){const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.theme=t;}
 function setLang(l){document.body.dataset.lang=l;localStorage.lang=l;syncSeg();}
 function setSize(s){document.body.dataset.size=s;localStorage.size=s;syncSeg();}
+function rbToggle(ev){if(ev)ev.stopPropagation();const b=document.querySelector('.read-bar');if(b)b.classList.toggle('rb-open');}
+addEventListener('click',e=>{const b=document.querySelector('.read-bar.rb-open');if(b&&!b.contains(e.target))b.classList.remove('rb-open');});
 function toggleOrder(){const o=document.body.dataset.order==='zh'?'en':'zh';document.body.dataset.order=o;localStorage.order=o;const b=document.querySelector('#orderBtn .ol');if(b)b.textContent=o==='zh'?'译文在前':'原文在前';}
 function syncSeg(){const lg=document.body.dataset.lang||'both',sz=document.body.dataset.size||'m';
  const ls=document.getElementById('langSeg');if(ls){const m={en:0,zh:1,both:2};[...ls.children].forEach((b,i)=>b.classList.toggle('on',i===m[lg]));}
