@@ -411,9 +411,6 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
 .rc-top{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .rc-top .av-xs{width:32px;height:32px;font-size:12px;flex:0 0 auto}
 .rc-nm{font-size:12.5px;font-weight:600;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pc-auth{display:flex;align-items:center;gap:9px;margin-bottom:12px}
-.pc-auth .av-xs{width:34px;height:34px;font-size:13px;flex:0 0 auto}
-.pc-nm{font-size:13px;font-weight:600;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 </style>
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macros:{bm:['\\boldsymbol{#1}',1],argmin:['\\operatorname*{arg\\,min}'],argmax:['\\operatorname*{arg\\,max}'],bx:'\\mathbf{x}',mathsfit:['\\mathsf{#1}',1]}},svg:{fontCache:'global'},options:{enableMenu:false}};</script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
@@ -1100,11 +1097,10 @@ function nextReads(p){
 function recoBlock(p,full){if(!full)return "<div id=\"readEnd\" aria-hidden=\"true\"></div>";
  const ns=nextReads(p);
  return (ns.length?`<div class="eyebrow" style="margin-top:56px">Up next · 接着读</div><div class="reco-grid" style="margin-top:16px">${ns.map(paperCard).join("")}</div>`:"")+"<div id=\"readEnd\" aria-hidden=\"true\"></div>";}
-function paperCard(p,hideAv){const pe=PEOPLE[p.pid]||{};const isOrg=pe.en&&p.org&&(pe.en===p.org||pe.zh===p.org);
- const authHtml=hideAv?'':`<div class="pc-auth">${av(p.pid,'av-xs')}<span class="pc-nm">${esc(pe.zh||pe.en||'')}</span></div>`;
+function paperCard(p){const pe=PEOPLE[p.pid]||{};const isOrg=pe.en&&p.org&&(pe.en===p.org||pe.zh===p.org);
  const rp=!readHas(p.id)&&readPosGet()[p.id];const prog=(rp&&rp.s>0&&rp.n)?`<span class="prog-badge">读到 ${Math.min(rp.s+1,rp.n)}/${rp.n} 章</span>`:'';
- return `<a class="paper-card${readHas(p.id)?' read':''}${laterHas(p.id)?' later':''}" data-id="${p.id}" href="#/paper/${p.id}"><span class="cover-badges">${readHas(p.id)?'<span class="read-badge">✓ 已读</span>':prog||(laterHas(p.id)?'<span class="later-badge">★ 待读</span>':(isNew(p)?'<span class="new-badge">NEW</span>':''))}</span>${authHtml}<div class="pt">${esc(p.tEn)}</div><div class="ptz">${esc(p.tZh)}</div>
-   <div class="meta">${p.arxiv?`<span>arXiv:${p.arxiv}</span>`:`<span class="artbadge">文章</span><span>${esc(p.srcLabel||'PDF')}</span>`}<span>${p.date}</span>${isOrg?orgChip(p.org):orgChip(p.org)}${p.cites!=null?`<span class="citeico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M16 8h5v5"/></svg>被引 ${fmtCites(p.cites)}</span>`:''}${(p.fields||[]).map(ftag).join('')}</div></a>`;}
+ return `<a class="paper-card${readHas(p.id)?' read':''}${laterHas(p.id)?' later':''}" data-id="${p.id}" href="#/paper/${p.id}"><span class="cover-badges">${readHas(p.id)?'<span class="read-badge">✓ 已读</span>':prog||(laterHas(p.id)?'<span class="later-badge">★ 待读</span>':(isNew(p)?'<span class="new-badge">NEW</span>':''))}</span><div class="pt">${esc(p.tEn)}</div><div class="ptz">${esc(p.tZh)}</div>
+   <div class="meta">${isOrg?'':`<span>${esc(pe.zh||'')}</span>`}${p.arxiv?`<span>arXiv:${p.arxiv}</span>`:`<span class="artbadge">文章</span><span>${esc(p.srcLabel||'PDF')}</span>`}<span>${p.date}</span>${isOrg?orgChip(p.org):orgChip(p.org)}${p.cites!=null?`<span class="citeico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M16 8h5v5"/></svg>被引 ${fmtCites(p.cites)}</span>`:''}${(p.fields||[]).map(ftag).join('')}</div></a>`;}
 
 
 /* ===== 「我的」页:阅读统计 + 热力图 + 学者排行 + 已读长图(对齐 AI Podcast) ===== */
@@ -1326,7 +1322,7 @@ function vPerson(pid){
   <p class="bio">${esc(p.bioEn)}</p><p class="bioz">${esc(p.bioZh)}</p>
   ${PAPER_GRAPH[pid]?`<a class="xlink" href="https://ai.jasonlin.tech/?node=${PAPER_GRAPH[pid]}" target="_blank" rel="noopener" style="margin-right:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6.5" r="2.1"/><circle cx="18" cy="8" r="2.1"/><circle cx="10.5" cy="18" r="2.1"/><path d="M8 7l7.9 1M8.1 8l1.8 8"/></svg>在关系图谱中查看</a>`:''}${PAPER2POD[pid]?`<a class="xlink" href="https://aipodcast.jasonlin.tech/#/person/${PAPER2POD[pid]}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-1a9 9 0 0 1 18 0v1"/><rect x="3" y="13.5" width="4" height="6.5" rx="1.6"/><rect x="17" y="13.5" width="4" height="6.5" rx="1.6"/></svg>在 AI 播客中收听访谈</a>`:''}
   <h3 style="margin-top:30px">代表论文 · ${ps.length}</h3>
-  <div class="grid" style="margin-top:14px">${ps.map(p=>paperCard(p,true)).join('')||'<p class="sub">暂无</p>'}</div>
+  <div class="grid" style="margin-top:14px">${ps.map(paperCard).join('')||'<p class="sub">暂无</p>'}</div>
  </section></div>${footer()}`;
 }
 function cleanZh(t){
