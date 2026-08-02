@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/karpathy/</loc><lastmod>Fri,</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-07-31</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/anyang/</loc><lastmod>2026-07-30</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/songhan/</loc><lastmod>2026-07-30</lastmod></url>
@@ -34,7 +35,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/tridao/</loc><lastmod>2026-03-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/citrini/</loc><lastmod>2026-02-22</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jietang/</loc><lastmod>2026-02-17</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/karpathy/</loc><lastmod>2026-02-12</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/stepfun/</loc><lastmod>2026-02-11</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mattshumer/</loc><lastmod>2026-02-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jianfenggao/</loc><lastmod>2026-02-05</lastmod></url>
@@ -78,6 +78,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/antling/</loc><lastmod>2025-03-07</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/steveyegge/</loc><lastmod>2025-03-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/thariq/</loc><lastmod>2025-02-11</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2025-02-05</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/loubna/</loc><lastmod>2025-02-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/openai/</loc><lastmod>2025-02-02</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/dayaguo/</loc><lastmod>2025-01-22</lastmod></url>
@@ -100,6 +101,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/damaidai/</loc><lastmod>2024-01-11</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zfu/</loc><lastmod>2024-01-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/lianminzheng/</loc><lastmod>2023-12-12</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/jasonwei/</loc><lastmod>2023-11-24</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mahn/</loc><lastmod>2023-10-13</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/haotianliu/</loc><lastmod>2023-10-05</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/abrohan/</loc><lastmod>2023-07-28</lastmod></url>
@@ -131,7 +133,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hwchung/</loc><lastmod>2022-10-20</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/nzeghidour/</loc><lastmod>2022-09-07</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jonathanho/</loc><lastmod>2022-07-26</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/jasonwei/</loc><lastmod>2022-06-15</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/csaharia/</loc><lastmod>2022-05-23</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jbalayrac/</loc><lastmod>2022-04-29</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/pdhariwal/</loc><lastmod>2022-04-13</lastmod></url>
@@ -238,6 +239,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/karpathy-recipe/</loc><lastmod>Fri,</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-stateless-mcp/</loc><lastmod>2026-07-31</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/anyang-2607.28227/</loc><lastmod>2026-07-30</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/songhan-2607.28449/</loc><lastmod>2026-07-30</lastmod></url>
@@ -383,6 +385,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/stepfun-2502.11946/</loc><lastmod>2025-02-17</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2502.11089/</loc><lastmod>2025-02-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/thariq-sorting/</loc><lastmod>2025-02-11</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/sebastianraschka-understanding-reasoning-llms/</loc><lastmod>2025-02-05</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/loubna-2502.02737/</loc><lastmod>2025-02-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/openai-deep-research/</loc><lastmod>2025-02-02</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/sam-three-observations/</loc><lastmod>2025-02-01</lastmod></url>
@@ -481,6 +484,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/tridao-2312.00752/</loc><lastmod>2023-12-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/rrombach-2311.17042/</loc><lastmod>2023-11-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/rrombach-2311.15127/</loc><lastmod>2023-11-25</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/jasonwei-some-intuitions-about-large-language-models/</loc><lastmod>2023-11-24</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jietang-2311.03079/</loc><lastmod>2023-11-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xinghangli-2311.01378/</loc><lastmod>2023-11-02</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/openai-frontier-risk-preparedness/</loc><lastmod>2023-10-26</lastmod></url>
@@ -538,6 +542,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/lvminzhang-2302.05543/</loc><lastmod>2023-02-10</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/timoschick-2302.04761/</loc><lastmod>2023-02-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/junnanli-2301.12597/</loc><lastmod>2023-01-30</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/lilianweng-2023-01-27-the-transformer-family-v2/</loc><lastmod>2023-01-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/massran-2301.08243/</loc><lastmod>2023-01-19</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/dhafner-2301.04104/</loc><lastmod>2023-01-10</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/remilam-2212.12794/</loc><lastmod>2022-12-24</lastmod></url>

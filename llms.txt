@@ -3,7 +3,7 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 237 位学者 / 554 篇论文
+规模: 238 位学者 / 558 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
@@ -31,20 +31,20 @@
 - [Noam Shazeer / 诺姆·沙泽尔](https://aipaper.jasonlin.tech/pp/shazeer/): Co-lead, Google Gemini — 6 篇
 - [Xinlong Wang / 王鑫龙](https://aipaper.jasonlin.tech/pp/xinlongwang/): Research Scientist, BAAI (Beijing Academy of AI) — 6 篇
 - [Geoffrey Hinton / 杰弗里·辛顿](https://aipaper.jasonlin.tech/pp/hinton/): Professor Emeritus, U of Toronto — 6 篇
+- [Andrej Karpathy / 安德烈·卡帕西](https://aipaper.jasonlin.tech/pp/karpathy/): Founder, Eureka Labs; ex-OpenAI, ex-Tesla AI — 5 篇
 - [Tri Dao / 特里·道](https://aipaper.jasonlin.tech/pp/tridao/): Chief Scientist, Together AI; Professor, Princeton — 5 篇
 - [Wenhai Wang / 王文海](https://aipaper.jasonlin.tech/pp/wenhaiwang/): Researcher (InternVL), Shanghai AI Lab / CUHK — 5 篇
 - [Yuntao Bai / 白云涛](https://aipaper.jasonlin.tech/pp/ybai/): Research Scientist, Anthropic — 5 篇
 - [Satya Nadella / 萨提亚·纳德拉](https://aipaper.jasonlin.tech/pp/satya/): Chairman & CEO, Microsoft — 4 篇
+- [Lilian Weng / 翁荔](https://aipaper.jasonlin.tech/pp/lilianweng/): Co-founder, Thinking Machines Lab · ex-VP, OpenAI — 4 篇
 - [Yejin Choi / 崔艺珍](https://aipaper.jasonlin.tech/pp/yejin/): Professor, Stanford University; Senior Director, NVIDIA — 4 篇
 - [Junjie Yan / 闫俊杰](https://aipaper.jasonlin.tech/pp/yanjunjie/): Founder & CEO, MiniMax — 4 篇
-- [Andrej Karpathy / 安德烈·卡帕西](https://aipaper.jasonlin.tech/pp/karpathy/): Founder, Eureka Labs; ex-OpenAI, ex-Tesla AI — 4 篇
 - [StepFun / 阶跃星辰](https://aipaper.jasonlin.tech/pp/stepfun/): StepFun, multimodal generation — 4 篇
 - [Google DeepMind / 谷歌 DeepMind](https://aipaper.jasonlin.tech/pp/deepmind/): AI research lab (Gemini, AlphaFold, AlphaGo) — 4 篇
 - [Ilya Sutskever / 伊利亚·苏茨克维尔](https://aipaper.jasonlin.tech/pp/ilya/): Co-founder, SSI (prev. Chief Scientist, OpenAI) — 4 篇
 - [Oriol Vinyals / 奥里奥尔·维尼亚尔斯](https://aipaper.jasonlin.tech/pp/oriol/): VP of Research, Google DeepMind; Gemini co-lead — 4 篇
 - [Simon Willison / 西蒙·威利森](https://aipaper.jasonlin.tech/pp/simonwillison/): Creator of Datasette · Independent Researcher — 3 篇
 - [Xiaomi MiMo Team / 小米 MiMo 团队](https://aipaper.jasonlin.tech/pp/xiaomimimo/): Xiaomi LLM-Core, multimodal LLM — 3 篇
-- [Lilian Weng / 翁荔](https://aipaper.jasonlin.tech/pp/lilianweng/): Co-founder, Thinking Machines Lab · ex-VP, OpenAI — 3 篇
 - [Thomas Mesnard / Thomas Mesnard](https://aipaper.jasonlin.tech/pp/thomasmesnard/): Research Scientist, Google DeepMind (Gemma) — 3 篇
 - [Yoshua Bengio / 约书亚·本吉奥](https://aipaper.jasonlin.tech/pp/bengio/): Professor, Mila / U. Montréal; Turing Award — 3 篇
 - [Pieter Abbeel / 彼得·阿贝尔](https://aipaper.jasonlin.tech/pp/abbeel/): Professor, UC Berkeley — 3 篇
@@ -55,6 +55,7 @@
 - [Kaiming He / 何恺明](https://aipaper.jasonlin.tech/pp/kaiming/): Professor, MIT (prev. FAIR) — 3 篇
 - [Sebastien Bubeck / Sebastien Bubeck](https://aipaper.jasonlin.tech/pp/sebastienbubeck/): VP AI; ex-Microsoft Research (Phi) — 3 篇
 - [Shunyu Yao / 姚顺雨](https://aipaper.jasonlin.tech/pp/shunyuyao/): Researcher, OpenAI (PhD, Princeton) — 3 篇
+- [Jason Wei / 杰森·魏](https://aipaper.jasonlin.tech/pp/jasonwei/): AI researcher (ex-OpenAI) — 3 篇
 - [Fei-Fei Li / 李飞飞](https://aipaper.jasonlin.tech/pp/feifei/): Co-founder, World Labs — 3 篇
 - [Yang Song / 宋飏](https://aipaper.jasonlin.tech/pp/yangsong/): Research Scientist, OpenAI (PhD, Stanford) — 3 篇
 - [Jonathan Ho / 乔纳森·何](https://aipaper.jasonlin.tech/pp/jonathanho/): Researcher, OpenAI (formerly Google Brain) — 3 篇
@@ -92,7 +93,6 @@
 - [Lei Zhang / 张磊](https://aipaper.jasonlin.tech/pp/leizhangidea/): Chair Professor, HKUST(GZ); founding head of IDEA Research CVR; former Microsoft — 2 篇
 - [Danijar Hafner / 达尼亚尔·哈夫纳](https://aipaper.jasonlin.tech/pp/dhafner/): Research Scientist, Google DeepMind (Dreamer) — 2 篇
 - [Neil Zeghidour / 尼尔·泽吉杜尔](https://aipaper.jasonlin.tech/pp/nzeghidour/): Research Scientist; ex-Google DeepMind; neural audio codecs & AudioLM — 2 篇
-- [Jason Wei / 杰森·魏](https://aipaper.jasonlin.tech/pp/jasonwei/): AI researcher (ex-OpenAI) — 2 篇
 - [Alexei Baevski / 阿列克谢·巴耶夫斯基](https://aipaper.jasonlin.tech/pp/baevski/): Research Scientist, Meta AI (FAIR) / co-founder, AI startup — 2 篇
 - [Mathilde Caron / 玛蒂尔德·卡龙](https://aipaper.jasonlin.tech/pp/mcaron/): Research Scientist, Google DeepMind (ex-Meta AI / Inria) — 2 篇
 - [Petar Veličković / 佩塔尔·韦利奇科维奇](https://aipaper.jasonlin.tech/pp/pvelickovic/): Staff Research Scientist, Google DeepMind; Affiliated Lecturer, University of Cambridge — 2 篇
