@@ -96,7 +96,8 @@ def pdf_sections(aid):
     txt=re.sub(r"-\n(\w)",r"\1",txt)
     lines=txt.split("\n")
     secs=[]; cur={"sec":"Abstract","paras":[]}; buf=[]
-    HEAD=re.compile(r"^\s*(\d{1,2}(?:\.\d{1,2})?)\.?\s+([A-Z][A-Za-z].{2,50})\s*$")
+    # 第2字符允许空格:兼容 ICLR/NeurIPS 小型大写标题(pdftotext 出成 "I NTRODUCTION")
+    HEAD=re.compile(r"^\s*(\d{1,2}(?:\.\d{1,2})?)\.?\s+([A-Z][A-Za-z ].{1,50})\s*$")
     def flush_buf():
         if buf:
             p=re.sub(r"\s+"," "," ".join(buf)).strip()
