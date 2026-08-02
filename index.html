@@ -140,6 +140,7 @@ section{padding:46px 0}
 .citeico svg{width:13px;height:13px;opacity:.65}
 .citebar .num{font-size:26px;font-weight:750;color:var(--acc);margin-right:6px;letter-spacing:-.01em}
 footer{border-top:1px solid var(--line);margin-top:40px;padding:40px 0 60px;color:var(--sub2);font-size:13px;line-height:1.7}
+body[data-route="person"] footer{border-top:none}
 footer a{color:var(--sub);text-decoration:underline;text-underline-offset:2px}
 /* dark mode */
 [data-theme="dark"]{--ink:#f5f5f7;--sub:#a1a1a6;--sub2:#8e8e93;--line:#2a2a2c;--bg:#000;--surface:#1c1c1e;--surface2:#161618;--acc:#2997ff;--nav:rgba(20,20,22,.72);--shadow-lg:0 12px 40px rgba(0,0,0,.6)}
@@ -1819,6 +1820,7 @@ function render(){
  else if(parts[0]==='ask')html=vAsk();
  else if(parts[0]==='mine'||parts[0]==='stats')html=vMine();
  else html=vHome();
+ document.body.dataset.route=parts[0]||'home';
  document.getElementById('app').innerHTML=html;
  placeAsk();
  observeReveals();
