@@ -2,17 +2,26 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DeepSeek R1 复制 o1 的秘诀 · 内森·兰伯特 — AI Paper</title>
 <meta name="description" content="DeepSeek R1 揭示了复制 OpenAI o1 模型的秘诀。｜核心贡献：DeepSeek R1 是首个通过大规模强化学习训练、无需监督微调作为初始步骤的开源权重推理模型。">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <link rel="canonical" href="https://aipaper.jasonlin.tech/p/nathanlambert-deepseek-r1-recipe/">
+<link rel="alternate" hreflang="zh" href="https://aipaper.jasonlin.tech/p/nathanlambert-deepseek-r1-recipe/"><link rel="alternate" hreflang="en" href="https://aipaper.jasonlin.tech/p/nathanlambert-deepseek-r1-recipe/"><link rel="alternate" hreflang="x-default" href="https://aipaper.jasonlin.tech/p/nathanlambert-deepseek-r1-recipe/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="AI Paper · 双语论文阅读站">
+<meta property="og:locale" content="zh_CN"><meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="DeepSeek R1 复制 o1 的秘诀 · 内森·兰伯特 — AI Paper">
 <meta property="og:description" content="DeepSeek R1 揭示了复制 OpenAI o1 模型的秘诀。｜核心贡献：DeepSeek R1 是首个通过大规模强化学习训练、无需监督微调作为初始步骤的开源权重推理模型。">
 <meta property="og:image" content="https://aipaper.jasonlin.tech/assets/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="DeepSeek R1 复制 o1 的秘诀 · 内森·兰伯特 — AI Paper">
 <meta property="og:url" content="https://aipaper.jasonlin.tech/p/nathanlambert-deepseek-r1-recipe/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="DeepSeek R1 复制 o1 的秘诀 · 内森·兰伯特 — AI Paper">
 <meta name="twitter:description" content="DeepSeek R1 揭示了复制 OpenAI o1 模型的秘诀。｜核心贡献：DeepSeek R1 是首个通过大规模强化学习训练、无需监督微调作为初始步骤的开源权重推理模型。">
 <meta name="twitter:image" content="https://aipaper.jasonlin.tech/assets/og.png">
+<meta name="keywords" content="内森·兰伯特,Nathan Lambert,nlp,rl,Allen Institute for AI,AI论文,双语论文,deep learning,机器学习">
+<meta name="author" content="Nathan Lambert">
+<meta property="article:published_time" content="2025-01-21">
+<meta property="article:author" content="Nathan Lambert">
+<meta property="article:tag" content="nlp"><meta property="article:tag" content="rl">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"DeepSeek R1's recipe to replicate o1","alternativeHeadline":"DeepSeek R1 复制 o1 的秘诀","name":"DeepSeek R1's recipe to replicate o1","url":"https://aipaper.jasonlin.tech/p/nathanlambert-deepseek-r1-recipe/","datePublished":"2025-01-21","inLanguage":["en","zh"],"abstract":"The cutting edge of AI, from inside the frontier AI labs, minus the hype. The border between high-level and technical thinking. Read by leading engineers, researchers, and investors. By subscribing, you agree Substack's Terms of Use, and acknowledge its Information Collection Notice and Privacy Policy.","description":"DeepSeek R1 reveals a recipe to replicate OpenAI's o1 model.","keywords":"nlp, rl","author":{"@type":"Person","name":"Nathan Lambert","jobTitle":"Post-training Lead, Allen Institute for AI","url":"https://aipaper.jasonlin.tech/pp/nathanlambert/"},"isPartOf":{"@type":"WebSite","name":"AI Paper","url":"https://aipaper.jasonlin.tech"},"sourceOrganization":{"@type":"Organization","name":"Allen Institute for AI"},"sameAs":"https://www.interconnects.ai/p/deepseek-r1-recipe-for-o1"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Paper","item":"https://aipaper.jasonlin.tech/"},{"@type":"ListItem","position":2,"name":"内森·兰伯特","item":"https://aipaper.jasonlin.tech/pp/nathanlambert/"},{"@type":"ListItem","position":3,"name":"DeepSeek R1 复制 o1 的秘诀","item":"https://aipaper.jasonlin.tech/p/nathanlambert-deepseek-r1-recipe/"}]}</script>
 <style>:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}</style></head><body><div class="wrap"><nav class="bc"><a href="https://aipaper.jasonlin.tech/">AI Paper</a> › <a href="https://aipaper.jasonlin.tech/pp/nathanlambert/">内森·兰伯特</a> › 论文</nav>
