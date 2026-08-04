@@ -4,7 +4,7 @@
    557/558 篇的「核心贡献」都是空的(MCP 搜索结果一直缺这块,2026-08-03 修)。*/
 const fs=require('fs'),path=require('path');
 const ROOT=path.resolve(__dirname,'..');
-const h=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');
+const h=fs.readFileSync(path.join(ROOT,'app.js'),'utf8');
 const PAPERS=JSON.parse(h.match(/const PAPERS = ([\s\S]*?);\s*\n\/\* PAPERS_END \*\//)[1]);
 const PEOPLE=eval('('+h.match(/const PEOPLE\s*=\s*(\{[\s\S]*?\n\});/)[1]+')');
 let miss=0;

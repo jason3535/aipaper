@@ -10,7 +10,7 @@
 import json, re, sys, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-IDX = os.path.join(ROOT, 'index.html')
+IDX = os.path.join(ROOT, 'app.js')
 STRIP = ('absEn', 'absZh', 'insights')
 
 src = open(IDX, encoding='utf-8').read()

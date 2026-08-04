@@ -10,7 +10,7 @@ BASE = Path(__file__).resolve().parent
 ROOT = BASE.parent
 SITE = "https://aipaper.jasonlin.tech"
 
-html = io.open(ROOT / "index.html", encoding="utf-8").read()
+html = io.open(ROOT / "app.js", encoding="utf-8").read()
 papers = json.loads(re.search(r"const PAPERS\s*=\s*(\[.*?\]);", html, re.S).group(1))
 
 

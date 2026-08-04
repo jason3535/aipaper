@@ -11,7 +11,7 @@ from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from enrich_paper import rich_sections
 from add_paper import arxiv_meta, call as ds_call
-ROOT=Path(__file__).resolve().parent.parent; DATA=ROOT/"data"; HTML=ROOT/"index.html"
+ROOT=Path(__file__).resolve().parent.parent; DATA=ROOT/"data"; HTML=ROOT/"app.js"
 DONE=Path("/tmp/wave_done.jsonl")
 GLOSS=json.load(open(Path(__file__).resolve().parent/"glossary.json",encoding="utf-8"))
 GT="\n".join(f"  {k} → {v}" for k,v in GLOSS.items() if not k.startswith("_"))

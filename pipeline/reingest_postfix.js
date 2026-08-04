@@ -8,7 +8,7 @@ function blockCount(d) {
   return (d.full || []).reduce((a, s) => a + ((s.items || s.paras || []).length), 0);
 }
 
-const h = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+const h = fs.readFileSync(path.join(ROOT, "app.js"), "utf8");
 const a = h.indexOf("const PAPERS = "), b = h.indexOf("/* PAPERS_END */");
 const papers = JSON.parse(h.slice(a + 15, b).trim().replace(/;$/, ""));
 const byId = Object.fromEntries(papers.map(p => [p.id, p]));
@@ -38,7 +38,7 @@ for (const o of orig) {
 
 // 写回 index.html PAPERS
 const nh = h.slice(0, a) + "const PAPERS = " + JSON.stringify(papers) + ";\n/* PAPERS_END */" + h.slice(b + "/* PAPERS_END */".length);
-fs.writeFileSync(path.join(ROOT, "index.html"), nh);
+fs.writeFileSync(path.join(ROOT, "app.js"), nh);
 
 console.log(`补全成功: ${filled}/${orig.length} | 回填 addedAt/cites: ${restored}`);
 console.log(`仍空(需 PDF 手工/换源): ${empty.length}`);
