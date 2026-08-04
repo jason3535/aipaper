@@ -3,7 +3,7 @@
 写进 index.html 的 PAPERS[] 与 data/<id>.json 的 `cites` 字段。无参数,扫全部论文。"""
 import json,re,sys,time,urllib.request,urllib.error
 from pathlib import Path
-ROOT=Path(__file__).resolve().parent.parent; HTML=ROOT/"index.html"
+ROOT=Path(__file__).resolve().parent.parent; HTML=ROOT/"app.js"
 OP=urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 def ss_cites(aid):

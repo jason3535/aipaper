@@ -10,7 +10,7 @@
 import argparse, json, os, re, sys, time, urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-BASE=Path(__file__).resolve().parent; ROOT=BASE.parent; HTML=ROOT/"index.html"
+BASE=Path(__file__).resolve().parent; ROOT=BASE.parent; HTML=ROOT/"app.js"
 sys.path.insert(0, str(BASE)); import arxiv_html   # arXiv 原生 HTML 提取(含显示公式+图)
 GLOSS=json.load(open(BASE/"glossary.json",encoding="utf-8")) if (BASE/"glossary.json").exists() else {}
 GT="\n".join(f"  {k} → {v}" for k,v in GLOSS.items() if not k.startswith("_"))
@@ -25,7 +25,7 @@ def call(system,user,mx=8000):
         {"role":"user","content":user}],"response_format":{"type":"json_object"},
         "max_tokens":mx,"temperature":0.2}).encode()
     last=None
-    for a in range(3):
+    for a in range(6):   # 限流时多重试几次 + 更长退避,避免过早放弃留下空译文
         try:
             req=urllib.request.Request(URL,data=body,headers={"Content-Type":"application/json","Authorization":f"Bearer {KEY}"})
             content=json.load(OP.open(req,timeout=180))["choices"][0]["message"]["content"]
@@ -34,7 +34,7 @@ def call(system,user,mx=8000):
             except json.JSONDecodeError:
                 # DeepSeek 常在数学论文译文里裸输出 LaTeX 反斜杠(\mathcal 等),把非法转义补成 \\
                 return json.loads(re.sub(r'\\(?![\\/"bfnrtu])', r'\\\\', content))
-        except Exception as e: last=e; time.sleep(2+a*3)
+        except Exception as e: last=e; time.sleep(3+a*5)   # 3,8,13,18,23,28s
     raise RuntimeError(str(last)[:120])
 
 def arxiv_meta(aid):

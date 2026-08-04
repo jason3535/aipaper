@@ -1,9 +1,9 @@
 // SEO/GEO 静态预渲染:为每篇论文生成 p/<id>/(真实正文 + JSON-LD ScholarlyArticle),
 // 每位学者/机构实体生成 pp/<pid>/(hub),首页注入结构化数据,产出 sitemap.xml + llms.txt。
 // 静态页含真实可抓取内容(不再只是跳转壳),正文顶部有「打开互动全文版」链接回 SPA。
-const fs=require('fs'),path=require('path');
+const fs=require('fs'),path=require('path'),crypto=require('crypto');
 const ROOT=path.resolve(__dirname,'..'),SITE='https://aipaper.jasonlin.tech';
-const h=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');
+const h=fs.readFileSync(path.join(ROOT,'app.js'),'utf8');
 const PAPERS=JSON.parse(h.match(/const PAPERS = (\[[\s\S]*?\]);/)[1]);
 const PEOPLE=eval('('+h.match(/const PEOPLE=(\{[\s\S]*?\n\});/)[1]+')');
 const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -114,4 +114,11 @@ fs.writeFileSync(path.join(ROOT,'sitemap.xml'),
 const scholars=Object.keys(byPid).filter(pid=>PEOPLE[pid]);
 const llms=`# AI Paper · 双语论文阅读站\n\n> 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.\n\n站点: ${SITE}/\n规模: ${scholars.length} 位学者 / ${PAPERS.length} 篇论文\n每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。\n\n## 学者 Scholars\n${scholars.sort((a,b)=>byPid[b].length-byPid[a].length).slice(0,120).map(pid=>{const pe=PEOPLE[pid];return `- [${pe.en}${pe.zh?' / '+pe.zh:''}](${SITE}/pp/${pid}/): ${(pe.tiEn||'').replace(/\n/g,' ')} — ${byPid[pid].length} 篇`;}).join('\n')}\n\n## 高被引论文 Most-cited papers\n${PAPERS.slice().filter(p=>p.cites!=null).sort((a,b)=>(b.cites||0)-(a.cites||0)).slice(0,50).map(p=>{const pe=PEOPLE[p.pid]||{};return `- [${p.tEn}](${SITE}/p/${p.id}/) — ${pe.en||''}, ${p.org||''}, 被引 ${p.cites}`;}).join('\n')}\n\n## 数据接口\n- sitemap: ${SITE}/sitemap.xml\n- 论文检索目录: ${SITE}/data/index.json\n`;
 fs.writeFileSync(path.join(ROOT,'llms.txt'),llms);
-console.log('分享页',n,'篇 + 学者 hub',pn,'个 + sitemap',urls.length,'条 + llms.txt');
+// app.js 内容哈希 → 回填 index.html 的 ?v=,内容一变就让浏览器重新拉(否则老访客吃到缓存的旧 app.js)。
+// 因此本脚本必须是构建链最后一步:之后再动 app.js(如 slim_index),哈希就对不上了。
+const appHash=crypto.createHash('md5').update(h).digest('hex').slice(0,10);
+const idxPath=path.join(ROOT,'index.html');
+let idx=fs.readFileSync(idxPath,'utf8');
+idx=idx.replace(/<script src="app\.js(\?v=[a-f0-9]+)?" defer><\/script>/,`<script src="app.js?v=${appHash}" defer></script>`);
+fs.writeFileSync(idxPath,idx);
+console.log('分享页',n,'篇 + 学者 hub',pn,'个 + sitemap',urls.length,'条 + llms.txt + app.js?v='+appHash);
