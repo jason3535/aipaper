@@ -4,7 +4,8 @@
    机构实体(ORG_ENTITIES,如 openai/deepseek)标 org:true,便于调用方区分真人与团队署名。*/
 const fs = require('fs'), path = require('path');
 const ROOT = path.resolve(__dirname, '..');
-const h = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+/* 数据与逻辑 2026-08-04 从 index.html 拆到了 app.js(首屏瘦身),PAPERS/PEOPLE 都在那边 */
+const h = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
 
 const PAPERS = JSON.parse(h.match(/const PAPERS = ([\s\S]*?);\s*\n\/\* PAPERS_END \*\//)[1]);
 const PEOPLE = eval('(' + h.match(/const PEOPLE\s*=\s*(\{[\s\S]*?\n\});/)[1] + ')');
