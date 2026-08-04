@@ -624,7 +624,7 @@ const ORG_ENTITIES=new Set(['thinkingmachines','deepmind','citrini','meituan','o
 const PAPER_GRAPH={"lindahua":"lindahua","yanjunjie":"yanjunjie","jimmyba":"jimmyba","shazeer":"shazeer","christiano":"christiano","demis":"hassabis","jeffdean":"dean","abbeel":"abbeel","cszegedy":"szegedy","jasonwei":"wei","dario":"damodei","hinton":"hinton","askell":"askell","kendall":"kendall","tworek":"tworek","albertgu":"albertgu","tombrown":"brown","svlevine":"levine","jimfan":"jimfan","sam":"altman","finn":"finn","leike":"janleike","aradford":"radford","antonoglou":"antonoglou","goodfellow":"goodfellow","ilya":"sutskever","oriol":"vinyals","justinjohnson":"justinjohnson","jonathanho":"ho","richsutton":"sutton","karpathy":"karpathy","rrombach":"rombach","bengio":"bengio","fedus":"fedus","tridao":"tridao","kaiming":"kaiminghe","dhafner":"hafner","feifei":"feifei","yejin":"yejin","nathanlambert":"lambert","alexwei":"alexwei","kaplan":"jaredkaplan","schulman":"schulman","jietang":"jietang","kaifulee":"kaifulee","lilianweng":"lilianweng","dayaguo":"dayaguo","chrisolah":"olah","shochreiter":"hochreiter","lecun":"lecun","sebastienbubeck":"bubeck","zhilinyang":"yangzhilin","junyanglin":"linjunyang","shunyuyao":"yaoshunyu","wenfengliang":"liangwenfeng","dkingma":"kingma"};
 const PAPER2POD={sebastienbubeck:'bubeck',thariq:'thariq',abbeel:'abbeel',achowdhery:'chowdhery',albertgu:'albertgu',alexwei:'alexwei',antonoglou:'antonoglou',askell:'askell',bengio:'bengio',chrisolah:'olah',christiano:'christiano',dario:'dario',demis:'demis',dhafner:'hafner',fedus:'fedus',feifei:'feifei',finn:'finn',hinton:'hinton',ilya:'ilya',jasonwei:'jasonwei',jeffdean:'jeffdean',jimfan:'jimfan',jleskovec:'jureleskovec',justinjohnson:'justinjohnson',kaplan:'kaplan',karpathy:'karpathy',kendall:'kendall',kokotajlo:'kokotajlo',lecun:'lecun',leike:'leike',nathanlambert:'lambert',oriol:'oriol',richsutton:'sutton',sam:'altman',satya:'satya',schulman:'schulman',sermon:'ermon',shazeer:'shazeer',simonwillison:'simonwillison',svlevine:'slevine',tombrown:'tombrown',tonyfadell:'fadell',tridao:'tridao',tworek:'tworek',yejin:'yejin'};
 function pplOrder(){const k=Object.keys(PEOPLE).filter(p=>!ORG_ENTITIES.has(p));return k.slice().sort((a,b)=>papersOf(b).length-papersOf(a).length||k.indexOf(a)-k.indexOf(b));}
-function av(pid,cls){const p=PEOPLE[pid];if(PHOTOS.has(pid))return `<div class="${cls||'av'}"><img src="assets/people/${pid}.jpg" alt="${esc(p.en)}" loading="lazy" decoding="async" onerror="this.remove()"></div>`;const cs=(p.fields||['deep-learning']).map(f=>(FIELDS[f]||{}).c||'#9aa4b2');const bg=`linear-gradient(140deg,${cs[0]},${cs[1]||cs[0]})`;return `<div class="${cls||'av'}" style="background:${bg}">${esc(p.init)}</div>`;}
+function av(pid,cls){const p=PEOPLE[pid];if(PHOTOS.has(pid))return `<div class="${cls||'av'}"><img src="assets/people/${pid}.webp" alt="${esc(p.en)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/people/${pid}.jpg'"></div>`;const cs=(p.fields||['deep-learning']).map(f=>(FIELDS[f]||{}).c||'#9aa4b2');const bg=`linear-gradient(140deg,${cs[0]},${cs[1]||cs[0]})`;return `<div class="${cls||'av'}" style="background:${bg}">${esc(p.init)}</div>`;}
 const fdot=f=>`<span class="fdot" style="background:${(FIELDS[f]||{}).c||'var(--sub)'}"></span>`;
 const ftag=f=>`<span class="tag">${fdot(f)}${(FIELDS[f]||{}).zh||f}</span>`;
 function go(h){location.hash=h;}
@@ -674,7 +674,7 @@ function readStats(){
 function sharePromoHtml(st,hrs){
   const ups=[...new Set(st.ps.map(p=>p.pid))];const mx=Math.min(7,ups.length);let avs='';
   for(let i=0;i<mx;i++){const pid=ups[i];const pe=PEOPLE[pid]||{};
-    avs+=(typeof PHOTOS!=='undefined'&&PHOTOS.has(pid))?`<img src="assets/people/${pid}.jpg" alt="" loading="lazy">`:`<span>${pe.init||'?'}</span>`;}
+    avs+=(typeof PHOTOS!=='undefined'&&PHOTOS.has(pid))?`<img src="assets/people/${pid}.webp" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/people/${pid}.jpg'">`:`<span>${pe.init||'?'}</span>`;}
   if(ups.length>mx)avs+=`<span>+${ups.length-mx}</span>`;
   return `<div class="shp-card">
     <div class="shp-dots"><i></i><i></i><i></i><i></i><i></i></div>
@@ -709,7 +709,7 @@ function vMine(){
   const mx=top.length?top[0][1]:1;
   const rows=top.map(([name,n])=>{
     const pid=Object.keys(PEOPLE).find(k=>(PEOPLE[k].zh===name||PEOPLE[k].en===name));
-    const ic=(pid&&typeof PHOTOS!=='undefined'&&PHOTOS.has(pid))?`<img class="rk-logo" src="assets/people/${pid}.jpg" alt="" loading="lazy" decoding="async">`:`<span class="rk-ini">${(name||'?').slice(0,2)}</span>`;
+    const ic=(pid&&typeof PHOTOS!=='undefined'&&PHOTOS.has(pid))?`<img class="rk-logo" src="assets/people/${pid}.webp" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/people/${pid}.jpg'">`:`<span class="rk-ini">${(name||'?').slice(0,2)}</span>`;
     return `<div class="rk-row">${ic}<span class="rk-name">${esc(name)}</span><span class="rk-bar" style="width:${Math.round(n/mx*220)}px"></span><span class="rk-n">${n} 篇</span></div>`;}).join('');
   return `<div class="wrap"><section style="padding:30px 0">
     <div class="eyebrow">My Space · 我的</div><h2 class="title">我的</h2>
