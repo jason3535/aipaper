@@ -31,5 +31,19 @@ const people = Object.keys(PEOPLE).map(pid => {
 }).filter(p => p.papers.length)
   .sort((a, b) => b.papers.length - a.papers.length);
 
-fs.writeFileSync(path.join(ROOT, 'data', 'people.json'), JSON.stringify({ count: people.length, people }));
+/* 写入前门禁(同 build_index.js 的理由):PEOPLE/PAPERS 一旦被挪出 app.js 或正则失配,
+   这里会安静地产出一个人少一半的 people.json,而 MCP 的 list_scholars 就跟着缩水。 */
+const OUT = path.join(ROOT, 'data', 'people.json');
+let prev = null;
+try { prev = JSON.parse(fs.readFileSync(OUT, 'utf8')); } catch (e) {}
+const bio = people.filter(p => (p.bioEn || '').trim() && (p.bioZh || '').trim()).length / Math.max(people.length, 1);
+const bad = [];
+if (prev && people.length < prev.count * 0.98) bad.push(`学者数 ${people.length} 比上一版 ${prev.count} 少了 >2%`);
+if (bio < 0.9) bad.push(`双语简介完整率 ${(bio * 100).toFixed(1)}% < 90%`);
+if (bad.length && !process.argv.includes('--force')) {
+  console.error('✗ 门禁不过,people.json 未写入:\n  ' + bad.join('\n  ') +
+    '\n  先确认 app.js 里的 PAPERS/PEOPLE 是否还在原位、正则是否还匹配得上;确属真实变化加 --force。');
+  process.exit(1);
+}
+fs.writeFileSync(OUT, JSON.stringify({ count: people.length, people }));
 console.log('people.json:', people.length, 'scholars,', people.filter(p => p.isOrg).length, 'org entities');
