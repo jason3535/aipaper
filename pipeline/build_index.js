@@ -7,6 +7,11 @@ const ROOT=path.resolve(__dirname,'..');
 const h=fs.readFileSync(path.join(ROOT,'app.js'),'utf8');
 const PAPERS=JSON.parse(h.match(/const PAPERS = ([\s\S]*?);\s*\n\/\* PAPERS_END \*\//)[1]);
 const PEOPLE=eval('('+h.match(/const PEOPLE\s*=\s*(\{[\s\S]*?\n\});/)[1]+')');
+/* 一句话摘要 2026-08-05 起也从 app.js 抽到了 data/summaries.json(首屏瘦身),
+   和 insights 同一个坑:只读内联的话 559/565 篇的 sEn 会变空,
+   MCP search_papers 的摘要和 Ask 的选片依据就全没了。*/
+let SUMM={};
+try{ SUMM=JSON.parse(fs.readFileSync(path.join(ROOT,'data','summaries.json'),'utf8')); }catch(e){}
 let miss=0;
 const papers=PAPERS.map(p=>{
   let d={};
@@ -14,7 +19,8 @@ const papers=PAPERS.map(p=>{
   const ins=p.insights||d.insights||{};
   /* 不放 absEn:chat-worker 选片只用 标题+一句话,MCP search_papers 也不返回摘要,
      放进来白白让目录大一倍(全文摘要要用的话 get_paper 里有)。*/
-  return {id:p.id,person:(PEOPLE[p.pid]||{}).en||p.pid,tEn:p.tEn,tZh:p.tZh,sEn:p.sEn,date:p.date,
+  const sEn=p.sEn||(SUMM[p.id]||{}).sEn||d.sEn||'';
+  return {id:p.id,person:(PEOPLE[p.pid]||{}).en||p.pid,tEn:p.tEn,tZh:p.tZh,sEn,date:p.date,
     contrib:(ins.contrib||[]).map(x=>x.en),limits:(ins.limits||[]).map(x=>x.en)};
 });
 fs.writeFileSync(path.join(ROOT,'data','index.json'),JSON.stringify({papers}));
