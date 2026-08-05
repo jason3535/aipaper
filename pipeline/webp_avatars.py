@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""webp_avatars.py — 把头像/台标转一份同尺寸的 WebP,前端优先用它,省约一半流量。
+"""webp_avatars.py — 把头像/台标/机构 logo 转一份同尺寸的 WebP,前端优先用它。
+
+照片(头像/台标)省约一半;机构 logo 是 PNG,转 WebP 能省八成左右。
 
 背景:头像是 256×256 JPEG(约 15KB/张),首页可视区就要几十张。同尺寸转 WebP@82 大约省 45~50%,
 且不改显示尺寸——不能靠缩图省,因为 aipaper 的 hero 头像会显示到 230px,缩小了会发虚。
@@ -16,7 +18,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DIRS = [ROOT / "assets" / "people", ROOT / "assets" / "pods"]
+DIRS = [ROOT / "assets" / "people", ROOT / "assets" / "pods", ROOT / "assets" / "orgs"]
 
 
 def main():
@@ -33,12 +35,15 @@ def main():
     for d in DIRS:
         if not d.is_dir():
             continue
-        for f in sorted(d.glob("*.jpg")):
+        for f in sorted(list(d.glob("*.jpg")) + list(d.glob("*.png"))):
             w = f.with_suffix(".webp")
             if w.exists() and w.stat().st_mtime >= f.stat().st_mtime:
                 skip += 1
                 continue
-            im = Image.open(f).convert("RGB")
+            im = Image.open(f)
+            # PNG 可能带透明通道,转 RGB 会把透明底压成黑块,所以有 alpha 就转 RGBA
+            has_alpha = im.mode in ("RGBA", "LA") or (im.mode == "P" and "transparency" in im.info)
+            im = im.convert("RGBA" if has_alpha else "RGB")
             im.save(w, "WEBP", quality=g.quality, method=6)
             conv += 1
             src_kb += f.stat().st_size / 1024
