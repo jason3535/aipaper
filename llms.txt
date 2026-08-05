@@ -175,10 +175,10 @@
 - [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://aipaper.jasonlin.tech/p/jasonwei-2201.11903/) — Jason Wei, Google, 被引 19779
 - [End-to-End Object Detection with Transformers](https://aipaper.jasonlin.tech/p/ncarion-2005.12872/) — Nicolas Carion, Meta AI, 被引 18832
 - [YOLO9000: Better, Faster, Stronger](https://aipaper.jasonlin.tech/p/jredmon-1612.08242/) — Joseph Redmon, U. Washington, 被引 17705
+- [The Llama 3 Herd of Models](https://aipaper.jasonlin.tech/p/aarongrattafiori-2407.21783/) — Aaron Grattafiori, , 被引 17476
 - [Llama 2: Open Foundation and Fine-Tuned Chat Models](https://aipaper.jasonlin.tech/p/aarongrattafiori-2307.09288/) — Aaron Grattafiori, Meta AI, 被引 17457
 - [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation](https://aipaper.jasonlin.tech/p/lcchen-1802.02611/) — Liang-Chieh Chen, Google, 被引 16970
 - [Continuous control with deep reinforcement learning](https://aipaper.jasonlin.tech/p/tlillicrap-1509.02971/) — Timothy Lillicrap, Google DeepMind, 被引 15595
-- [Momentum Contrast for Unsupervised Visual Representation Learning](https://aipaper.jasonlin.tech/p/rgirshick-1911.05722/) — Ross Girshick, Facebook AI Research (FAIR), 被引 15197
 
 ## 数据接口
 - sitemap: https://aipaper.jasonlin.tech/sitemap.xml
