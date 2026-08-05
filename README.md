@@ -41,8 +41,8 @@ pipeline/               内容管线(见下)
 | `enrich_paper.py` | 给已收录论文补图 / 公式 / 附录(复用已有译文) |
 | `bulk_ingest.py` | 并行批量收录,直接产出富内容(图/公式/附录),最后一次性 merge |
 | `add_citations.py` | Semantic Scholar 按 arXiv id 补被引数 |
-| `build_index.js` | 重建 Ask / 检索目录 `data/index.json`(核心贡献/局限从 `data/<id>.json` 读,别改回读内联) |
-| `build_people.js` | 重建 `data/people.json`(MCP 的 list_scholars / get_scholar 用) |
+| `build_index.js` | 重建 Ask / 检索目录 `data/index.json`。**字段一律从 `data/` 回落读**(内联块会被首屏瘦身剥空);**写入前有门禁**:sEn/contrib 非空率 <95%、limits <90%、或比上一版倒退 >2 个点就拒写并非零退出(真实变化用 `--force`) |
+| `build_people.js` | 重建 `data/people.json`(MCP 的 list_scholars / get_scholar 用),同样有门禁:学者数比上版少 >2% 或双语简介完整率 <90% 拒写 |
 | `slim_index.py` | **首屏瘦身**:把内联 PAPERS 的 absEn/absZh/insights 剥掉(详情页从 data/<id>.json 懒加载),幂等 |
 | `build_share_pages.js` | 每篇论文生成静态分享页 `p/<id>/`(OG 卡片)+ `sitemap.xml` |
 | `gen_og.py` | 重生成品牌 OG 图 `assets/og.png` |

@@ -23,6 +23,29 @@ const papers=PAPERS.map(p=>{
   return {id:p.id,person:(PEOPLE[p.pid]||{}).en||p.pid,tEn:p.tEn,tZh:p.tZh,sEn,date:p.date,
     contrib:(ins.contrib||[]).map(x=>x.en),limits:(ins.limits||[]).map(x=>x.en)};
 });
-fs.writeFileSync(path.join(ROOT,'data','index.json'),JSON.stringify({papers}));
-console.log('index.json:',papers.length,'papers |',papers.filter(x=>x.contrib.length).length,'含核心贡献 |',
-  papers.filter(x=>x.limits.length).length,'含局限'+(miss?` | ${miss} 篇缺 data 文件`:''));
+/* ===== 写入前门禁 =====
+   两天内已经三次同一个模式:某个字段被抽出 app.js 做首屏瘦身,而脚本还在读内联块,
+   于是静默产出一堆空字段(insights 空过、sEn 差点空)。这些字段喂的是 MCP 与 Ask,
+   页面上看不出来,只能靠门禁拦。规则:绝对非空率跌破下限、或比上一版倒退 >2 个点,
+   都不写文件、非零退出。确属真实变化(如批量收录无贡献的短文)时用 --force 放行。 */
+const OUT=path.join(ROOT,'data','index.json');
+const filled=(arr,k)=>arr.filter(x=>Array.isArray(x[k])?x[k].length:(x[k]||'').trim()).length;
+let prev=null;
+try{ prev=JSON.parse(fs.readFileSync(OUT,'utf8')).papers; }catch(e){}
+const bad=[];
+for(const [k,floor] of [['sEn',0.95],['contrib',0.95],['limits',0.90]]){
+  const r=filled(papers,k)/papers.length;
+  const p0=prev&&prev.length?filled(prev,k)/prev.length:null;
+  if(r<floor)              bad.push(`${k} 非空率 ${(r*100).toFixed(1)}% < 下限 ${floor*100}%`);
+  else if(p0!==null&&r<p0-0.02) bad.push(`${k} 非空率 ${(r*100).toFixed(1)}%,比上一版 ${(p0*100).toFixed(1)}% 倒退`);
+}
+if(prev&&papers.length<prev.length*0.98) bad.push(`篇数 ${papers.length} 比上一版 ${prev.length} 少了 >2%`);
+if(bad.length&&!process.argv.includes('--force')){
+  console.error('✗ 门禁不过,index.json 未写入:\n  '+bad.join('\n  ')+
+    '\n  最常见原因:该字段刚被抽出 app.js(见本文件头部注释),脚本还在读内联块 → 补回落再跑。'+
+    '\n  确认是真实变化就加 --force。');
+  process.exit(1);
+}
+fs.writeFileSync(OUT,JSON.stringify({papers}));
+console.log('index.json:',papers.length,'papers |',filled(papers,'contrib'),'含核心贡献 |',
+  filled(papers,'limits'),'含局限 |',filled(papers,'sEn'),'含摘要'+(miss?` | ${miss} 篇缺 data 文件`:''));
