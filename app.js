@@ -617,7 +617,7 @@ const ORG_C={'Google':'#4285f4','OpenAI':'#10a37f','DeepMind':'#1a73e8','Meta AI
 const orgColor=o=>ORG_C[o]||'#6e6e73';
 const papersByOrg=o=>PAPERS.filter(p=>p.org===o);
 const ORG_LOGO={"Thinking Machines Lab": "thinkingmachines", "OpenAI": "openai", "Anthropic": "anthropic", "Google": "google", "Google DeepMind": "deepmind", "DeepSeek": "deepseek", "Meta AI": "meta", "Microsoft": "microsoft", "Microsoft Research Asia": "microsoft", "NVIDIA": "nvidia", "Stanford": "stanford", "UC Berkeley": "berkeley", "MIT": "mit", "CMU": "cmu", "Mistral AI": "mistral", "Moonshot AI": "moonshot", "Alibaba": "alibabagroup", "Alibaba Qwen": "alibabagroup", "Zhipu AI": "zhipuai", "ByteDance Seed": "bytedance", "Tencent Hunyuan": "tencent", "Tencent": "tencent", "StepFun": "stepfun", "MiniMax": "minimax", "Stability AI": "stability", "Physical Intelligence": "physicalint", "Xiaomi": "xiaomi", "OpenBMB": "openbmb", "Xiaohongshu": "rednote", "Skywork AI": "skywork", "Cohere": "cohere", "Hugging Face": "huggingface", "Black Forest Labs": "bfl", "Salesforce": "salesforce", "Allen Institute for AI": "allenai", "Tsinghua University": "tsinghua", "University of Freiburg": "freiburg", "Huawei": "huawei", "KAUST": "kaust", "IDEA Research": "idea", "IDEA Research / HKUST": "idea", "Princeton University": "princeton", "Cornell University": "cornell", "EPFL": "epfl", "NTU Singapore": "ntu", "Preferred Networks": "pfn", "MEGVII (Face++)": "megvii", "MEGVII (Face++) / Tsinghua University": "megvii", "Zhuiyi Technology": "zhuiyi", "01.AI": "01", "Oxford": "ox", "U. Toronto": "utoronto", "U. Amsterdam": "uva", "U. Montréal": "umontreal", "Mila / U. Montréal": "mila", "MILA / Université de Montréal": "mila", "Imperial College": "imperial", "JKU Linz": "jku", "USI Lugano": "usi", "LMU Munich": "lmu", "U. Washington": "uw", "SenseTime Research": "sensetime"};
-const orgLogo=(o,cls)=>ORG_LOGO[o]?`<img class="${cls||'orglogo'}" src="assets/orgs/${ORG_LOGO[o]}.png" alt="">`:'';
+const orgLogo=(o,cls)=>ORG_LOGO[o]?`<img class="${cls||'orglogo'}" src="assets/orgs/${ORG_LOGO[o]}.webp" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/orgs/${ORG_LOGO[o]}.png'">`:'';
 const orgChip=o=>o?`<span class="orgchip" onclick="event.stopPropagation();go('#/org/'+encodeURIComponent('${o.replace(/'/g,"")}'))" style="cursor:pointer">${orgLogo(o)}<span>${esc(o)}</span></span>`:'';
 function orgList(){const m={};PAPERS.forEach(p=>{if(p.org)m[p.org]=(m[p.org]||0)+1;});return Object.entries(m).sort((a,b)=>b[1]-a[1]);}
 const ORG_ENTITIES=new Set(['thinkingmachines','deepmind','citrini','meituan','openai','anthropic','deepseek','stepfun','antling','minicpm','xiaomimimo','wanteam']);
@@ -816,7 +816,7 @@ function vHome(){
  const fbg=(fp.fields||['deep-learning']).map(f=>(FIELDS[f]||{}).c||'#9aa4b2').join(',');
  return `
  ${feat?`<div class="hero hero-wrap" style="max-width:1180px;margin:0 auto;padding:18px 24px 8px"><div class="hero-card">
-   <div class="hero-art" style="background:linear-gradient(150deg,${fbg})"><div class="hero-cov"><span class="hc-pod">${(()=>{const s=(typeof ORG_LOGO!=='undefined')?ORG_LOGO[feat.org]:'';return s?`<img src="assets/orgs/${s}.png" alt="">`:'';})()}${esc(feat.org||'')}</span><span class="hc-ct"><b>${esc(fp.en||'')}</b><span>${feat.date||''}</span></span></div>${av(feat.pid)}</div>
+   <div class="hero-art" style="background:linear-gradient(150deg,${fbg})"><div class="hero-cov"><span class="hc-pod">${(()=>{const s=(typeof ORG_LOGO!=='undefined')?ORG_LOGO[feat.org]:'';return s?`<img src="assets/orgs/${s}.webp" alt="" decoding="async" onerror="this.onerror=null;this.src='assets/orgs/${s}.png'">`:'';})()}${esc(feat.org||'')}</span><span class="hc-ct"><b>${esc(fp.en||'')}</b><span>${feat.date||''}</span></span></div>${av(feat.pid)}</div>
    <div class="hero-body">
      <div class="eyebrow">最新收录 · Latest</div>
      <h1>${esc(feat.tEn)}</h1>
@@ -1091,7 +1091,7 @@ function vOrgs(){const list=orgList();
  </section></div>${footer()}`;}
 function vOrg(o){o=decodeURIComponent(o);const ps=papersByOrg(o).sort((a,b)=>(b.cites||0)-(a.cites||0));
  return `<div class="wrap"><section><span class="back" onclick="go('#/orgs')">← 机构</span>
-  <div class="orghead"><div class="orgbadge" style="background:${ORG_LOGO[o]?'#fff':orgColor(o)}">${ORG_LOGO[o]?`<img src="assets/orgs/${ORG_LOGO[o]}.png" alt="">`:`<span>${esc(o.split(' ').map(w=>w[0]).join('').slice(0,3))}</span>`}</div><div style="min-width:0"><h1>${esc(o)}</h1><p class="sub">${ps.length} 篇论文 · 按被引排序</p></div></div>
+  <div class="orghead"><div class="orgbadge" style="background:${ORG_LOGO[o]?'#fff':orgColor(o)}">${ORG_LOGO[o]?`<img src="assets/orgs/${ORG_LOGO[o]}.webp" alt="" decoding="async" onerror="this.onerror=null;this.src='assets/orgs/${ORG_LOGO[o]}.png'">`:`<span>${esc(o.split(' ').map(w=>w[0]).join('').slice(0,3))}</span>`}</div><div style="min-width:0"><h1>${esc(o)}</h1><p class="sub">${ps.length} 篇论文 · 按被引排序</p></div></div>
   <div class="grid" style="margin-top:18px">${ps.map(paperCard).join('')||'<p class="sub">暂无</p>'}</div>
  </section></div>${footer()}`;}
 function toggleTheme(){const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.theme=t;}
