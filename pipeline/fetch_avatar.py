@@ -129,7 +129,13 @@ def from_github(user, expect):
 def from_url(url):
     if re.search(r"\.(jpe?g|png|webp)(\?|$)", url, re.I):
         return get(url)
-    html = get(url).decode("utf-8", "ignore")
+    raw = get(url)
+    # 不能只看扩展名:GitHub 组织/用户头像这类 URL 没有后缀,却直接就是图片,
+    # 按网页去找 og:image 必然失败。改成按内容的魔数判断。
+    if raw[:3] == b"\xff\xd8\xff" or raw[:8] == b"\x89PNG\r\n\x1a\n" or raw[:4] == b"RIFF":
+        print("  URL 直接返回图片(按内容判定,非扩展名)")
+        return raw
+    html = raw.decode("utf-8", "ignore")
     for pat in (r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)',
                 r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']',
                 r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)'):
