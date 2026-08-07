@@ -6,216 +6,216 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Mon, 03 Aug 2026 14:00:16 -0000</lastBuildDate>
+  <lastBuildDate>Fri, 07 Aug 2026 13:09:37 -0000</lastBuildDate>
+  <item>
+    <title>开放模型回顾：关于Kimi K3、Qwen 3.8、习近平WAIC演讲、蒸馏、开放与封闭差距以及未来展望的更多内容 — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/p/nathanlambert-open-models-recap-more-on-kimi-k3/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/nathanlambert-open-models-recap-more-on-kimi-k3/</guid>
+    <pubDate>Fri, 07 Aug 2026 13:09:37 -0000</pubDate>
+    <description>回顾近期开放模型进展，涵盖Kimi K3、Qwen 3.8、习近平WAIC演讲、蒸馏技术、开放与封闭差距及未来方向。</description>
+  </item>
+  <item>
+    <title>三粒AI药丸 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/p/zvi-the-three-ai-pills/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-the-three-ai-pills/</guid>
+    <pubDate>Fri, 07 Aug 2026 13:08:47 -0000</pubDate>
+    <description>AI发展需兼顾短期快速迭代与长期世界模型构建。</description>
+  </item>
+  <item>
+    <title>OpenAI 未发布模型 Astra 解决十大数学开放问题 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/p/zvi-openais-unreleased-model-astra-solves/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-openais-unreleased-model-astra-solves/</guid>
+    <pubDate>Fri, 07 Aug 2026 13:08:23 -0000</pubDate>
+    <description>OpenAI 未发布的模型 Astra 解决了十个重大数学开放问题。</description>
+  </item>
+  <item>
+    <title>LongCat稀疏注意力：通过流感知的层级跨层索引驯服闪电 — cs.AI</title>
+    <link>https://aipaper.jasonlin.tech/p/meituan-2608.01662/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/meituan-2608.01662/</guid>
+    <pubDate>Fri, 07 Aug 2026 13:07:56 -0000</pubDate>
+    <description>LongCat稀疏注意力通过流感知、跨层和层级索引，在高达百万级上下文长度下达到与全注意力相当的性能，并支持高效的长上下文训练。</description>
+  </item>
+  <item>
+    <title>Qwen-CUA：原生计算机使用，几乎适用于一切 — cs.LG</title>
+    <link>https://aipaper.jasonlin.tech/p/junyanglin-2608.02352/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/junyanglin-2608.02352/</guid>
+    <pubDate>Fri, 07 Aug 2026 13:06:18 -0000</pubDate>
+    <description>Qwen-CUA通过仅观察截图和模拟键盘鼠标操作，在八个基准测试中超越Qwen3.7并媲美专有系统，展示了原生计算机使用作为通用智能体基础的潜力。</description>
+  </item>
+  <item>
+    <title>DiffusionGemma 技术报告 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/p/thomasmesnard-2608.00146/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/thomasmesnard-2608.00146/</guid>
+    <pubDate>Fri, 07 Aug 2026 13:05:18 -0000</pubDate>
+    <description>DiffusionGemma 通过并行细化 256 个 token 块实现高速文本生成，在速度上超越自回归模型，同时保持模型能力。</description>
+  </item>
   <item>
     <title>Inkling：我们的开放权重模型 — Thinking Machines Lab</title>
     <link>https://aipaper.jasonlin.tech/p/thinkingmachines-inkling/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/thinkingmachines-inkling/</guid>
     <pubDate>Mon, 03 Aug 2026 14:00:16 -0000</pubDate>
-    <description>我们发布了Inkling，一个975B参数的混合专家模型，开放权重，支持1M上下文和原生多模态推理。</description>
+    <description></description>
   </item>
   <item>
     <title>关于AI发展的公开信 — Simon Willison's Weblog</title>
     <link>https://aipaper.jasonlin.tech/p/simonwillison-open-letters-ai-development/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/simonwillison-open-letters-ai-development/</guid>
     <pubDate>Mon, 03 Aug 2026 13:56:25 -0000</pubDate>
-    <description>关于AI发展的公开信反映了业界对美国可能限制开放权重模型的反对，强调创新与安全考量。</description>
+    <description></description>
   </item>
   <item>
     <title>数学与理论计算机科学的十项进展 — Simon Willison's Weblog</title>
     <link>https://aipaper.jasonlin.tech/p/simonwillison-ten-advances-in-mathematics/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/simonwillison-ten-advances-in-mathematics/</guid>
     <pubDate>Mon, 03 Aug 2026 13:56:10 -0000</pubDate>
-    <description>OpenAI的内部模型Astra以每个问题不到2000美元的成本解决了十个长期未解的数学难题，展示了AI在科研中的潜力。</description>
+    <description></description>
   </item>
   <item>
     <title>GPT 5.6 有 72 种可能配置。什么是好的默认设置？ — Ahead of AI</title>
     <link>https://aipaper.jasonlin.tech/p/sebastianraschka-gpt-5-6-configurations/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sebastianraschka-gpt-5-6-configurations/</guid>
     <pubDate>Mon, 03 Aug 2026 13:55:55 -0000</pubDate>
-    <description>GPT 5.6 的 72 种配置可映射到训练时和推理时扩展，其中 Sol、Terra、Luna 代表模型规模，effort 代表推理计算。</description>
+    <description></description>
   </item>
   <item>
     <title>控制大语言模型中的推理努力程度 — Ahead of AI</title>
     <link>https://aipaper.jasonlin.tech/p/sebastianraschka-controlling-reasoning-effort/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sebastianraschka-controlling-reasoning-effort/</guid>
     <pubDate>Mon, 03 Aug 2026 13:55:43 -0000</pubDate>
-    <description>新的GPT-5.6模型系列提供多种推理努力设置，使用户能够控制性能与计算成本之间的权衡。</description>
+    <description></description>
   </item>
   <item>
     <title>Inkling：一款带有若干惊喜的新型开放权重975B MoE模型 — Ahead of AI</title>
     <link>https://aipaper.jasonlin.tech/p/sebastianraschka-inkling-architecture-notes/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sebastianraschka-inkling-architecture-notes/</guid>
     <pubDate>Mon, 03 Aug 2026 13:55:01 -0000</pubDate>
-    <description>Inkling是一款975B参数开放权重MoE模型，激活参数41B，上下文1M，采用短卷积和可学习相对位置偏置替代RoPE。</description>
+    <description></description>
   </item>
   <item>
     <title>Kimi K3 架构笔记 — Ahead of AI</title>
     <link>https://aipaper.jasonlin.tech/p/sebastianraschka-kimi-k3-architecture-notes/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sebastianraschka-kimi-k3-architecture-notes/</guid>
     <pubDate>Mon, 03 Aug 2026 13:54:41 -0000</pubDate>
-    <description>Kimi K3 是 Kimi Linear 的规模化生产版本，采用 LatentMoE 压缩大型线性层。</description>
+    <description></description>
   </item>
   <item>
     <title>理解推理型大语言模型 — Research</title>
     <link>https://aipaper.jasonlin.tech/p/sebastianraschka-understanding-reasoning-llms/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sebastianraschka-understanding-reasoning-llms/</guid>
     <pubDate>Sun, 02 Aug 2026 07:26:57 -0000</pubDate>
-    <description>推理型大语言模型通过生成显式的中间推理步骤来提升问题解决能力，但其真正潜力在于平衡推理时计算与训练时优化。</description>
+    <description></description>
   </item>
   <item>
     <title>Transformer 家族版本 2.0 — Research</title>
     <link>https://aipaper.jasonlin.tech/p/lilianweng-2023-01-27-the-transformer-family-v2/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/lilianweng-2023-01-27-the-transformer-family-v2/</guid>
     <pubDate>Sun, 02 Aug 2026 07:15:42 -0000</pubDate>
-    <description>探讨了结合局部和全局上下文的Transformer架构演变及其在强化学习中的应用。</description>
+    <description></description>
   </item>
   <item>
     <title>关于大型语言模型的六个直觉 — Jason Wei — Research</title>
     <link>https://aipaper.jasonlin.tech/p/jasonwei-some-intuitions-about-large-language-models/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/jasonwei-some-intuitions-about-large-language-models/</guid>
     <pubDate>Sun, 02 Aug 2026 07:06:50 -0000</pubDate>
-    <description>大型语言模型之所以表现出色，是因为在海量自监督数据上进行下一词预测本质上是一种大规模多任务学习。</description>
+    <description></description>
   </item>
   <item>
     <title>训练神经网络的秘诀 — Research</title>
     <link>https://aipaper.jasonlin.tech/p/karpathy-recipe/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/karpathy-recipe/</guid>
     <pubDate>Sun, 02 Aug 2026 07:05:33 -0000</pubDate>
-    <description>通过遵循系统化的训练流程，避免常见的神经网络错误。</description>
+    <description></description>
   </item>
   <item>
     <title>Gemini 2.5：以先进推理、多模态、长上下文和下一代智能体能力突破前沿 — cs.CL</title>
     <link>https://aipaper.jasonlin.tech/p/shazeer-2507.06261/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/shazeer-2507.06261/</guid>
     <pubDate>Sun, 02 Aug 2026 02:06:16 -0000</pubDate>
-    <description>Gemini 2.5 Pro 凭借最先进的推理和编码性能、卓越的多模态理解能力（支持长达3小时的视频上下文），并解锁新的智能体工作流，推动技术前沿。</description>
+    <description></description>
   </item>
   <item>
     <title>阐明基于扩散的生成模型的设计空间 — cs.CV</title>
     <link>https://aipaper.jasonlin.tech/p/tkarras-2206.00364/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/tkarras-2206.00364/</guid>
     <pubDate>Sat, 01 Aug 2026 15:11:38 -0000</pubDate>
-    <description>我们提出了一个清晰的设计空间，在CIFAR-10和ImageNet-64上取得了新的最先进FID分数，且采样速度更快。</description>
+    <description></description>
   </item>
   <item>
     <title>Kimi K3：开放前沿智能 — cs.CL</title>
     <link>https://aipaper.jasonlin.tech/p/zhilinyang-2607.24653/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zhilinyang-2607.24653/</guid>
     <pubDate>Sat, 01 Aug 2026 14:40:45 -0000</pubDate>
-    <description>Kimi K3 是一个拥有 2.8T 参数、104B 激活参数、原生视觉能力和 1M 上下文窗口的混合专家模型，其扩展效率较 K2 提升约 2.5 倍，在长程编码、智能体、知识、推理和视觉等任务上达到前沿水平，并超越所有其他开源模型。</description>
+    <description></description>
   </item>
   <item>
     <title>MiniMax-01：利用闪电注意力扩展基础模型 — cs.CL</title>
     <link>https://aipaper.jasonlin.tech/p/yanjunjie-2501.08313/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/yanjunjie-2501.08313/</guid>
     <pubDate>Sat, 01 Aug 2026 14:21:27 -0000</pubDate>
-    <description>MiniMax-01通过闪电注意力与专家混合架构，在数千亿参数和最高四百万tokens上下文中实现高效训练与推理，性能比肩GPT-4o与Claude-3.5-Sonnet。</description>
+    <description></description>
   </item>
   <item>
     <title>Aya模型：一种指令微调的开源多语言语言模型 — cs.CL</title>
     <link>https://aipaper.jasonlin.tech/p/sarahooker-2402.07827/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sarahooker-2402.07827/</guid>
     <pubDate>Sat, 01 Aug 2026 14:02:24 -0000</pubDate>
-    <description>Aya是一个支持101种语言的指令微调多语言模型，在多数任务上优于现有模型，且覆盖语言数量翻倍。</description>
+    <description></description>
   </item>
   <item>
     <title>几何深度学习：网格、群、图、测地线与规范 — cs.LG</title>
     <link>https://aipaper.jasonlin.tech/p/pvelickovic-2104.13478/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/pvelickovic-2104.13478/</guid>
     <pubDate>Sat, 01 Aug 2026 13:47:43 -0000</pubDate>
-    <description>深度学习的成功源于利用数据中的结构规律，这些规律可通过几何原理加以统一，从而理解和设计神经网络架构。</description>
+    <description></description>
   </item>
   <item>
     <title>Transformers 是 SSM：通过结构化状态空间对偶的通用模型与高效算法 — cs.LG</title>
     <link>https://aipaper.jasonlin.tech/p/tridao-2405.21060/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/tridao-2405.21060/</guid>
     <pubDate>Sat, 01 Aug 2026 13:13:16 -0000</pubDate>
-    <description>论文揭示了Transformer与状态空间模型通过结构化半可分矩阵的紧密联系，并提出了比Mamba快2-8倍、在语言建模上与Transformer竞争的Mamba-2。</description>
+    <description></description>
   </item>
   <item>
     <title>Lightning OPD 2.0：缓解大型推理模型跨教师在线策略蒸馏中的风格偏差 — cs.CL</title>
     <link>https://aipaper.jasonlin.tech/p/songhan-2607.28449/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/songhan-2607.28449/</guid>
     <pubDate>Sat, 01 Aug 2026 12:06:56 -0000</pubDate>
-    <description>Lightning OPD 2.0 通过交叉拟合风格残差化消除风格标记偏差，使得在SFT教师与蒸馏教师不同时仍能高效进行在线策略蒸馏。</description>
+    <description></description>
   </item>
   <item>
     <title>Qwen-UI-Agent 技术报告：迈向下一代以真实世界为中心的基座 GUI 智能体 — cs.AI</title>
     <link>https://aipaper.jasonlin.tech/p/anyang-2607.28227/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/anyang-2607.28227/</guid>
     <pubDate>Sat, 01 Aug 2026 12:02:51 -0000</pubDate>
-    <description>Qwen-UI-Agent 通过集成真实设备运行时、统一动作空间和在线强化学习，在移动 GUI 基准上取得最先进成果，并在计算机与浏览器任务上达到具有竞争力的表现。</description>
+    <description></description>
   </item>
   <item>
     <title>Seedance 2.0：面向世界复杂性的视频生成新进展 — cs.CV</title>
     <link>https://aipaper.jasonlin.tech/p/yugao-2604.14148/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/yugao-2604.14148/</guid>
     <pubDate>Sat, 01 Aug 2026 11:39:52 -0000</pubDate>
-    <description>Seedance 2.0 是一个原生多模态音视频生成模型，统一支持文本、图像、音频和视频输入，在视频与音频生成的关键维度上达到业界领先水平，并支持直接生成 4–15 秒、480p/720p 的音视频内容。</description>
+    <description></description>
   </item>
   <item>
     <title>Llama 3 模型群 — cs.AI</title>
     <link>https://aipaper.jasonlin.tech/p/aarongrattafiori-2407.21783/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/aarongrattafiori-2407.21783/</guid>
     <pubDate>Sat, 01 Aug 2026 10:59:42 -0000</pubDate>
-    <description>Llama 3 是一组基础语言模型，最大规模达405B参数，在众多任务上与GPT-4等领先模型质量相当，并通过组合方式支持图像、视频和语音能力。</description>
+    <description></description>
   </item>
   <item>
     <title>无状态MCP重新引起了我的兴趣 — Simon Willison's Weblog</title>
     <link>https://aipaper.jasonlin.tech/p/simonwillison-stateless-mcp/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/simonwillison-stateless-mcp/</guid>
     <pubDate>Sat, 01 Aug 2026 08:51:03 -0000</pubDate>
-    <description>无状态MCP重新引起了我的兴趣。</description>
+    <description></description>
   </item>
   <item>
     <title>一份关于使用哪种AI的主观指南（2026年夏季） — Wharton</title>
     <link>https://aipaper.jasonlin.tech/p/ethanmollick-ai-guide-summer-2026/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/ethanmollick-ai-guide-summer-2026/</guid>
     <pubDate>Sat, 01 Aug 2026 08:49:33 -0000</pubDate>
-    <description>选择AI应基于具体任务，没有一种AI能包打天下。</description>
-  </item>
-  <item>
-    <title>论Kimi K3：其能力及相关不满 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/p/zvi-on-kimi-k3/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-on-kimi-k3/</guid>
-    <pubDate>Sat, 01 Aug 2026 08:47:55 -0000</pubDate>
-    <description>Kimi K3的能力令人瞩目，但同时也带来了值得关注的不满与争议。</description>
-  </item>
-  <item>
-    <title>Kimi K3：开放权重的升级 — Allen Institute for AI</title>
-    <link>https://aipaper.jasonlin.tech/p/nathanlambert-kimi-k3-escalation/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/nathanlambert-kimi-k3-escalation/</guid>
-    <pubDate>Sat, 01 Aug 2026 08:44:44 -0000</pubDate>
-    <description>Kimi K3 标志着开放权重 AI 的重大升级，提供无炒作的前沿洞察。</description>
-  </item>
-  <item>
-    <title>Command A：一款面向企业的商用级大语言模型 — cs.CL</title>
-    <link>https://aipaper.jasonlin.tech/p/sarahooker-2504.00698/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sarahooker-2504.00698/</guid>
-    <pubDate>Fri, 31 Jul 2026 07:25:35 -0000</pubDate>
-    <description>Command A 是一款面向智能体优化、支持多语言的大语言模型，通过混合架构与去中心化训练，在企业级 RAG 与效率上表现卓越。</description>
-  </item>
-  <item>
-    <title>Wan：开放且先进的大规模视频生成模型 — cs.CV</title>
-    <link>https://aipaper.jasonlin.tech/p/wanteam-2503.20314/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/wanteam-2503.20314/</guid>
-    <pubDate>Fri, 31 Jul 2026 03:01:25 -0000</pubDate>
-    <description>Wan是一个开源视频基础模型系列，以双模型尺寸、消费级效率和广泛的任务覆盖，实现了业界领先的生成性能。</description>
-  </item>
-  <item>
-    <title>RoboBrain 2.0 技术报告 — cs.RO</title>
-    <link>https://aipaper.jasonlin.tech/p/xinlongwang-2507.02029/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/xinlongwang-2507.02029/</guid>
-    <pubDate>Fri, 31 Jul 2026 01:05:53 -0000</pubDate>
-    <description>RoboBrain 2.0 的7B和32B变体在空间和时间具身推理基准测试中取得领先结果。</description>
-  </item>
-  <item>
-    <title>Emu3：下一个标记预测就足够了 — cs.CV</title>
-    <link>https://aipaper.jasonlin.tech/p/xinlongwang-2409.18869/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/xinlongwang-2409.18869/</guid>
-    <pubDate>Fri, 31 Jul 2026 01:00:05 -0000</pubDate>
-    <description>Emu3证明纯下一个标记预测，无需扩散或组合架构，就能在多模态生成和感知任务上达到领先水平，甚至超越SDXL和LLaVA-1.6等专用模型。</description>
+    <description></description>
   </item>
 </channel>
 </rss>

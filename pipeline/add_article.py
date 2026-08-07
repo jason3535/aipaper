@@ -25,6 +25,46 @@ def fetch_md(url):
 # Jina 抓下来像正文。收录 DeepMind 后务必人工检查 full[0] 是否导航垃圾,是则整节删除并重建 absEn/absZh。
 STOP = re.compile(r"^#{1,4}\s+(related|footnotes?|references|acknowledg|read the|share|citation|appendix|more news|sign up|subscribe|policy memo|authors?|contributors?|further reading|explore more|стать)", re.I)
 
+"""Substack/Newsletter 站的页面骨架(订阅框、站标图、页脚版权)会被 Jina 当正文抓下来,
+   而且往往正好落在第一节 —— 于是 absEn(取首节前 3 段)变成"Discover more from…/
+   By subscribing you agree…",线上出现过 4 篇这样的假摘要。这里在翻译前先剥掉。"""
+CHROME_SEC = re.compile(
+    r"^\s*!?\[?Image\b|substackcdn\.com|substack-post-media|^\s*Ready for more\?\s*$|"
+    r"^\s*Discover more from\b|\(https?://",   # 标题里带 URL 的一律是站标/订阅框(正文小标题不会这样)
+    re.I)
+CHROME_PARA = re.compile(
+    r"^\s*(Discover more from\b|By subscribing,? you agree\b|Thanks for reading\b|Share this post\b|"
+    r"Subscribe\s*$|Continue reading\b|©\s*\d{4}[^\n]{0,80}(Privacy|Terms|Substack)|"
+    r"This site requires JavaScript|Type your email|Already have an account\?)", re.I)
+
+def strip_chrome(secs):
+    out = []
+    for s in secs:
+        if CHROME_SEC.search(s.get("sec") or ""):
+            continue
+        ps = [p for p in s["paras"] if not CHROME_PARA.match((p.get("en") or "").strip())]
+        if ps:
+            s = {**s, "paras": ps}
+            out.append(s)
+    return out or secs   # 全被剥光说明规则误伤,宁可原样返回
+
+ABS_SYS = """你是技术编辑。基于给定文章正文,写一段英文摘要(abstract),3-5 句、120-200 词:
+说清文章讲了什么、核心论点、给读者的结论。只依据正文,不杜撰,不写元评论,不用 markdown。
+只输出 JSON: {"absEn":"..."}"""
+
+def pick_abs(full):
+    """摘要取"第一节前 3 段"太脆:首节常是目录/致谢/一句话导语。
+    改成扫全篇,取头几段真正的散文(≥120 字、不是编号目录行)。"""
+    toc = re.compile(r"^\s*\d+[.)]\s|^\s*(Table of Contents|Contents)\s*$", re.I)
+    out = []
+    for s in full:
+        for p in s["paras"]:
+            t = (p.get("en") or "").strip()
+            if len(t) >= 120 and not toc.match(t):
+                out.append(t)
+                if len(out) == 3: return " ".join(out)[:1200]
+    return (" ".join(out) or " ".join(p["en"] for p in full[0]["paras"][:3]))[:1200]
+
 def parse_md(md, title_hint=""):
     pub = ""
     mt = re.search(r"Published Time:\s*(\S+)", md)
@@ -96,6 +136,10 @@ def main():
     print(f"[1/4] Jina Reader 抓取 {url}", file=sys.stderr)
     md = fetch_md(url)
     title, pub, secs = parse_md(md, a.title)
+    n0 = sum(len(s["paras"]) for s in secs)
+    secs = strip_chrome(secs)
+    n1 = sum(len(s["paras"]) for s in secs)
+    if n1 < n0: print(f"   剥掉订阅框/页脚等骨架 {n0-n1} 段", file=sys.stderr)
     pub = a.date or pub or "2025-01-01"
     print(f"   标题: {title[:60]} | {pub} | {len(secs)} 节 / {sum(len(s['paras']) for s in secs)} 段", file=sys.stderr)
     if sum(len(s["paras"]) for s in secs) < 3:
@@ -107,12 +151,18 @@ def main():
         futs = {ex.submit(tf, s): i for i, s in enumerate(secs)}
         for f in as_completed(futs): full[futs[f]] = f.result()
     print(f"[3/4] 贡献/局限 + 元信息", file=sys.stderr)
-    absEn = " ".join(p["en"] for p in full[0]["paras"][:3])[:1200]
+    # 摘要:优先让模型基于正文写一段(启发式取前几段被 Substack 骨架/目录坑过两次),
+    # 失败再退回 pick_abs 的"前几段散文"。
+    _body = " ".join(p["en"] for s in full for p in s["paras"])[:12000]
+    try:
+        absEn = (call(ABS_SYS, title + "\n" + _body, mx=1200).get("absEn") or "").strip() or pick_abs(full)
+    except Exception:
+        absEn = pick_abs(full)
     ctx = title + "\n" + absEn + "\n" + " ".join(p["en"] for s in full for p in s["paras"])[:60000]
     ins = call(INS_SYS, ctx, mx=6000)
     fields = [x.strip() for x in a.fields.split(",") if x.strip()]
     if a.reverse:   # 中文原生:title 是中文,tEn 需生成,absZh=中文原文
-        absZh = " ".join(p["zh"] for p in full[0]["paras"][:3])[:1200]
+        absZh = " ".join(p["zh"] for p in full[0]["paras"][:3])[:1200]   # 反向模式:中文原文即摘要
         m = meta_rev(title, absEn)
         tEn, tZh = m.get("tEn", title), title
     else:
