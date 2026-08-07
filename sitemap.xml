@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-08-07</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/junyanglin/</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/meituan/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/thomasmesnard/</loc><lastmod>2026-07-31</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/anyang/</loc><lastmod>2026-07-30</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/songhan/</loc><lastmod>2026-07-30</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-07-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zhilinyang/</loc><lastmod>2026-07-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-07-23</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-07-20</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-07-20</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-07-22</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xiaomimimo/</loc><lastmod>2026-07-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/thinkingmachines/</loc><lastmod>2026-07-15</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/demis/</loc><lastmod>2026-07-14</lastmod></url>
@@ -16,7 +19,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/satya/</loc><lastmod>2026-07-12</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/tonyfadell/</loc><lastmod>2026-07-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/lilianweng/</loc><lastmod>2026-07-04</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/thomasmesnard/</loc><lastmod>2026-07-02</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/bengio/</loc><lastmod>2026-06-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/deepseek/</loc><lastmod>2026-06-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/abbeel/</loc><lastmod>2026-06-17</lastmod></url>
@@ -27,7 +29,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/lecun/</loc><lastmod>2026-05-25</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/alihatamizadeh/</loc><lastmod>2026-05-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/wenfengliang/</loc><lastmod>2026-05-20</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/junyanglin/</loc><lastmod>2026-04-17</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/yugao/</loc><lastmod>2026-04-15</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/akhiadbercovich/</loc><lastmod>2026-04-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/lindahua/</loc><lastmod>2026-03-26</lastmod></url>
@@ -42,7 +43,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/jianfenggao/</loc><lastmod>2026-02-05</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/kaiming/</loc><lastmod>2026-02-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/haifengwang/</loc><lastmod>2026-02-04</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/meituan/</loc><lastmod>2026-01-29</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/dario/</loc><lastmod>2026-01-26</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/leike/</loc><lastmod>2026-01-08</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jinzebai/</loc><lastmod>2025-11-26</lastmod></url>
@@ -240,14 +240,20 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-three-ai-pills/</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/junyanglin-2608.02352/</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/meituan-2608.01662/</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-openais-unreleased-model-astra-solves/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-open-letters-ai-development/</loc><lastmod>2026-08-02</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-ten-advances-in-mathematics/</loc><lastmod>2026-08-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-stateless-mcp/</loc><lastmod>2026-07-31</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/thomasmesnard-2608.00146/</loc><lastmod>2026-07-31</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/anyang-2607.28227/</loc><lastmod>2026-07-30</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/songhan-2607.28449/</loc><lastmod>2026-07-30</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/sebastianraschka-kimi-k3-architecture-notes/</loc><lastmod>2026-07-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zhilinyang-2607.24653/</loc><lastmod>2026-07-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/ethanmollick-ai-guide-summer-2026/</loc><lastmod>2026-07-23</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-open-models-recap-more-on-kimi-k3/</loc><lastmod>2026-07-22</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-kimi-k3-escalation/</loc><lastmod>2026-07-20</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-on-kimi-k3/</loc><lastmod>2026-07-20</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/sebastianraschka-controlling-reasoning-effort/</loc><lastmod>2026-07-18</lastmod></url>
