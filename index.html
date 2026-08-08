@@ -286,6 +286,17 @@ body[data-order="zh"] .para .zh{order:1;color:var(--ink)}
 .toc-sheet.on .panel{transform:none}
 .toc-sheet .sh-h{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sub2);padding:14px 14px 8px}
 .toc-sheet .toc-i{border-left:none;font-size:15px;padding:11px 14px;border-radius:10px}
+.toc-i.on{color:var(--ink);border-left-color:var(--acc);font-weight:500}
+.toc-sheet .toc-i.on{background:var(--surface2);border-left:none}
+/* 顶部一行安静的站点定位(不与 hero 争视觉,照 aipodcast) */
+.site-tag{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:22px 24px 0;font-size:13px;font-weight:500;color:var(--sub);letter-spacing:.01em}
+.site-tag .st-n{color:var(--sub2);font-weight:400;padding-left:12px;border-left:1px solid var(--line)}
+/* hero 中文标题下的英文原题副行 */
+.hero-ten{color:var(--sub);font-size:15px;line-height:1.45;margin:6px 0 2px;letter-spacing:-.01em}
+/* 新手入门横滑卡片轨 */
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 14px;margin:0 -2px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.rail .paper-card{flex:0 0 300px;scroll-snap-align:start}
 @media(max-width:900px){.toc{display:none}.toc-fab{display:inline-flex}.read-wrap{display:block;padding:0 22px}.read-wrap .rcol{max-width:none;padding:24px 0 90px}}
 /* ---------- 搜索浮层 ---------- */
 .search-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.32);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;justify-content:center;align-items:flex-start;padding:11vh 22px 22px;opacity:0;pointer-events:none;transition:opacity .22s}
@@ -435,6 +446,10 @@ footer b{color:var(--sub)}
 .pm-c{font-size:12px;color:var(--acc)}
 @media(max-width:640px){
   .ppl-grid{grid-template-columns:repeat(2,1fr)!important;gap:10px}
+  .site-tag{font-size:12px;gap:8px;padding-top:14px}
+  .site-tag .st-n{padding-left:8px}
+  .hero-ten{display:none}
+  .rail .paper-card{flex-basis:82%}
   .home-ppl .ppl-card:nth-child(n+18){display:none}
   .home-ppl a.ppl-card.ppl-more{display:flex}
   .nav{gap:12px;padding:0 12px;height:52px}
@@ -513,6 +528,6 @@ window.typesetIfMath=function(el,done){
 <button class="totop" id="toTop" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6-6 6 6"/></svg></button>
 <div id="app"></div>
 <div id="selBar" class="sel-bar" onmousedown="event.preventDefault()"><button class="sel-btn sel-ask" onclick="askSel()">问一问</button><button class="sel-btn" onclick="markSel()">标记</button><button class="sel-btn" id="shareSelBtn" onclick="shareSel()">分享</button></div>
-<script src="app.js?v=439acafcff" defer></script>
+<script src="app.js?v=e66385dcae" defer></script>
 </body>
 </html>

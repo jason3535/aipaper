@@ -828,6 +828,8 @@ async function rsiShare(btn){try{
   else await navigator.share({title:'我的已读 AI 论文',url:'https://aipaper.jasonlin.tech'});
 }catch(e){}}
 
+/* 新手入门:里程碑论文,首页「第一次来」区(照 aipodcast STARTERS) */
+const STARTERS=['ilya-alexnet-2012','kaiming-1512.03385','shazeer-1706.03762','tombrown-2005.14165','deepmind-alphafold'];
 function vHome(){
  // 按收录时间(addedAt)排:hero=最新收录那篇,最新栏=其后几篇(照 AI Podcast 逻辑,新收录的论文总能刷上首页)
  const byAdded=[...PAPERS].sort((a,b)=>(b.addedAt||'').localeCompare(a.addedAt||'')||(b.date||'').localeCompare(a.date||''));
@@ -838,11 +840,13 @@ function vHome(){
  const fq={en:(feat&&feat.sEn)||c0.en||'',zh:(feat&&feat.sZh)||c0.zh||''};
  const fbg=(fp.fields||['deep-learning']).map(f=>(FIELDS[f]||{}).c||'#9aa4b2').join(',');
  return `
+ <div class="site-tag">AI 学者的里程碑论文 · 中英对照全文<span class="st-n">${PAPERS.length} 篇 · ${pplOrder().length} 位学者</span></div>
  ${feat?`<div class="hero hero-wrap" style="max-width:1180px;margin:0 auto;padding:18px 24px 8px"><div class="hero-card">
    <div class="hero-art" style="background:linear-gradient(150deg,${fbg})"><div class="hero-cov"><span class="hc-pod">${(()=>{const s=(typeof ORG_LOGO!=='undefined')?ORG_LOGO[feat.org]:'';return s?`<img src="assets/orgs/${s}.webp" alt="" decoding="async" onerror="this.onerror=null;this.src='assets/orgs/${s}.png'">`:'';})()}${esc(feat.org||'')}</span><span class="hc-ct"><b>${esc(fp.en||'')}</b><span>${feat.date||''}</span></span></div>${av(feat.pid)}</div>
    <div class="hero-body">
      <div class="eyebrow">最新收录 · Latest</div>
-     <h1>${esc(feat.tEn)}</h1>
+     <h1>${esc(feat.tZh||feat.tEn)}</h1>
+     ${feat.tZh&&feat.tEn&&feat.tZh!==feat.tEn?`<div class="hero-ten">${esc(feat.tEn)}</div>`:''}
      <div class="who">${esc(fp.en||'')} · ${esc(fp.zh||'')} &nbsp;|&nbsp; ${esc(feat.org||'')}</div>
      <div class="quote">“${esc(fq.en)}”</div>
      <div class="quote-zh">“${esc(fq.zh)}”</div>
@@ -861,6 +865,11 @@ function vHome(){
   ${(()=>{const lt=laterGet().map(id=>PAPERS.find(p=>p.id===id)).filter(Boolean).filter(p=>!readHas(p.id)).reverse().slice(0,8);
    return lt.length?`<section style="padding-top:8px"><div class="eyebrow">Read later · 稍后读</div><h2 class="title">我的待读 · ${lt.length}</h2>
     <div class="grid" style="margin-top:20px">${lt.map(paperCard).join('')}</div></section>`:'';})()}
+  ${(()=>{const st=STARTERS.map(id=>PAPERS.find(p=>p.id===id)).filter(Boolean);
+   return st.length?`<section style="padding-top:30px;padding-bottom:0"><div class="eyebrow">Start here · 新手入门</div>
+    <h2 class="title">第一次来？从这 ${st.length} 篇开始</h2>
+    <div class="sub">改变 AI 走向的里程碑，每篇都值得完整读一遍。</div>
+    <div class="rail" style="margin-top:22px">${st.map(paperCard).join('')}</div></section>`:'';})()}
   ${latest.length?`<section><div class="eyebrow">Latest · 最新收录</div><h2 class="title">最新论文</h2>
    <div class="grid" style="margin-top:20px">${latest.map(paperCard).join('')}</div></section>`:''}
   <section style="padding-top:8px"><div class="eyebrow">By field · 按领域浏览</div><h2 class="title">按研究领域浏览论文</h2>
@@ -961,7 +970,7 @@ function vPaper(id){
  const reader=full?secs.map((s,i)=>`<div class="sec-h" id="sec-${i}"><span class="se">${esc(s.sec)}</span><span class="sz">${esc(s.secZh||s.sec)}</span></div>`+
     (s.items?s.items.map(renderItem).join(''):(s.paras||[]).map(pa=>renderItem({t:'para',en:pa.en,zh:pa.zh})).join('')) ).join('')
    :`<div class="skeleton" style="width:90%"></div><div class="skeleton" style="width:80%"></div><div class="skeleton" style="width:86%"></div>`;
- const tocItems=secs.map((s,i)=>`<a class="toc-i" onclick="jumpSec(${i})"><span class="se">${esc(s.sec)}</span><span class="sz">${esc(s.secZh||s.sec)}</span></a>`).join('');
+ const tocItems=secs.map((s,i)=>`<a class="toc-i" data-sec="${i}" onclick="jumpSec(${i})"><span class="se">${esc(s.sec)}</span><span class="sz">${esc(s.secZh||s.sec)}</span></a>`).join('');
  const hasToc=secs.length>=3;
  if(!full) ensureFull(id);
  const ord=document.body.dataset.order==='zh'?'译文在前':'原文在前';
@@ -1118,11 +1127,59 @@ function vOrg(o){o=decodeURIComponent(o);const ps=papersByOrg(o).sort((a,b)=>(b.
   <div class="grid" style="margin-top:18px">${ps.map(paperCard).join('')||'<p class="sub">暂无</p>'}</div>
  </section></div>${footer()}`;}
 function toggleTheme(){const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.theme=t;}
-function setLang(l){document.body.dataset.lang=l;localStorage.lang=l;syncSeg();}
-function setSize(s){document.body.dataset.size=s;localStorage.size=s;syncSeg();}
+/* 切换语言/字号/顺序时保持阅读位置:记住视口内第一个段落/节标题的屏幕位置,切完再对齐(照 aipodcast) */
+function keepAnchor(fn){
+ const els=document.querySelectorAll('.reader .sec-h,.reader .para');
+ let anchor=null,off=0;
+ for(const el of els){const r=el.getBoundingClientRect();if(r.bottom>96){anchor=el;off=r.top;break;}}
+ fn();
+ if(anchor)requestAnimationFrame(()=>{const top=anchor.getBoundingClientRect().top+scrollY-off;scrollTo(0,Math.max(0,top));});
+}
+/* 目录跟随滚动:高亮当前章节,悬浮按钮显示进度。
+   不用 IntersectionObserver——快速滚动会一帧跳过整条检测带而漏触发;
+   改 rAF 节流的 scroll 监听,按 offsetTop 实时算当前节(懒加载图片撑高页面也不怕)。 */
+let tocHeads=null,_tocCur=-1,_tocTick=false;
+function setTocActive(i,total){
+ document.querySelectorAll('.toc-i').forEach(a=>a.classList.toggle('on',+a.dataset.sec===i));
+ const fab=document.querySelector('.toc-fab');if(fab&&total)fab.textContent=`目录 · ${i+1}/${total}`;
+ const t=document.querySelector('.toc'),el=t&&t.querySelector('.toc-i.on');   // 长目录跟随当前章
+ if(el&&(el.offsetTop<t.scrollTop+40||el.offsetTop>t.scrollTop+t.clientHeight-60))t.scrollTop=el.offsetTop-t.clientHeight/2;
+}
+function tocOnScroll(){
+ if(!tocHeads||_tocTick)return;_tocTick=true;
+ requestAnimationFrame(()=>{_tocTick=false;if(!tocHeads)return;
+  const y=scrollY+150;let i=0;
+  for(let k=0;k<tocHeads.length;k++){if(tocHeads[k].offsetTop<=y)i=k;else break;}
+  if(i!==_tocCur){_tocCur=i;setTocActive(i,tocHeads.length);}
+ });
+}
+addEventListener('scroll',tocOnScroll,{passive:true});
+function initTOC(){
+ tocHeads=[...document.querySelectorAll('.reader .sec-h')];_tocCur=-1;
+ if(!tocHeads.length){tocHeads=null;return;}
+ tocOnScroll();
+}
+/* 每个路由更新标签页标题/描述(照 aipodcast updateMeta) */
+function updateMeta(parts){
+ let title='AI Paper · 双语论文阅读站',desc='著名 AI 学者与他们的代表论文，逐段中英对照全文 + 核心贡献，还能针对论文内容直接问 AI。';
+ const id=parts[1]?decodeURIComponent(parts[1]):'';
+ if(parts[0]==='paper'){const p=PAPERS.find(x=>x.id===id);if(p){const pe=PEOPLE[p.pid]||{};
+  title=`${p.tZh||p.tEn} · ${pe.zh||pe.en||''} — AI Paper`;desc=(p.sZh||p.sEn||p.tEn||'').slice(0,150);}}
+ else if(parts[0]==='person'){const pe=PEOPLE[id];if(pe)title=`${pe.zh||pe.en} ${pe.zh?pe.en:''} 的论文 — AI Paper`;}
+ else if(parts[0]==='people')title='全部学者 — AI Paper';
+ else if(parts[0]==='papers')title='全部论文 — AI Paper';
+ else if(parts[0]==='orgs')title='按机构浏览 — AI Paper';
+ else if(parts[0]==='org'&&id)title=`${id} 的论文 — AI Paper`;
+ else if(parts[0]==='ask')title='问全站 — AI Paper';
+ else if(parts[0]==='mine'||parts[0]==='stats')title='我的 — AI Paper';
+ document.title=title;
+ const m=document.querySelector('meta[name="description"]');if(m)m.setAttribute('content',desc);
+}
+function setLang(l){keepAnchor(()=>{document.body.dataset.lang=l;});localStorage.lang=l;syncSeg();}
+function setSize(s){keepAnchor(()=>{document.body.dataset.size=s;});localStorage.size=s;syncSeg();}
 function rbToggle(ev){if(ev)ev.stopPropagation();const b=document.querySelector('.read-bar');if(b)b.classList.toggle('rb-open');}
 addEventListener('click',e=>{const b=document.querySelector('.read-bar.rb-open');if(b&&!b.contains(e.target))b.classList.remove('rb-open');});
-function toggleOrder(){const o=document.body.dataset.order==='zh'?'en':'zh';document.body.dataset.order=o;localStorage.order=o;const b=document.querySelector('#orderBtn .ol');if(b)b.textContent=o==='zh'?'译文在前':'原文在前';}
+function toggleOrder(){keepAnchor(()=>{const o=document.body.dataset.order==='zh'?'en':'zh';document.body.dataset.order=o;localStorage.order=o;});const b=document.querySelector('#orderBtn .ol');if(b)b.textContent=document.body.dataset.order==='zh'?'译文在前':'原文在前';}
 function syncSeg(){const lg=document.body.dataset.lang||'both',sz=document.body.dataset.size||'m';
  const ls=document.getElementById('langSeg');if(ls){const m={en:0,zh:1,both:2};[...ls.children].forEach((b,i)=>b.classList.toggle('on',i===m[lg]));}
  const ss=document.getElementById('sizeSeg');if(ss){const m={s:0,m:1,l:2};[...ss.children].forEach((b,i)=>b.classList.toggle('on',i===m[sz]));}}
@@ -1419,7 +1476,9 @@ function render(){
  document.getElementById('app').innerHTML=html;
  placeAsk();
  observeReveals();
- if(parts[0]==='paper')initReadMark(decodeURIComponent(parts[1]));
+ updateMeta(parts);
+ if(parts[0]==='paper'){initReadMark(decodeURIComponent(parts[1]));initTOC();}
+ else tocHeads=null;
  if(parts[0]==='paper'&&!pendingLocate){const _pid=decodeURIComponent(parts[1]);const rp=readPosGet()[_pid];if(rp&&rp.s>0&&!readHas(_pid))pendingLocate={id:_pid,at:rp.s,hl:''};}  // 无分享锚点时回到上次读到的章节
  try{trackView()}catch(_){}
  if(!pendingLocate)window.scrollTo(0,0);
