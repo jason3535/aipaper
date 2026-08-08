@@ -750,6 +750,7 @@ function vMine(){
     <div class="rk">${rows||'<div class="st-empty">暂无</div>'}</div>
     ${sharePromoHtml(st,hrs)}
     ${mineLaterHtml()}${mineMarksHtml()}
+    <div style="margin-top:34px;font-size:13px"><a class="alink" style="cursor:pointer;color:var(--sub2)" onclick="go('#/stats')">站点访问统计(站长)→</a></div>
   </section></div>`;
 }
 /* 已读长图 */
@@ -1171,7 +1172,8 @@ function updateMeta(parts){
  else if(parts[0]==='orgs')title='按机构浏览 — AI Paper';
  else if(parts[0]==='org'&&id)title=`${id} 的论文 — AI Paper`;
  else if(parts[0]==='ask')title='问全站 — AI Paper';
- else if(parts[0]==='mine'||parts[0]==='stats')title='我的 — AI Paper';
+ else if(parts[0]==='mine')title='我的 — AI Paper';
+ else if(parts[0]==='stats')title='访问统计 — AI Paper';
  document.title=title;
  const m=document.querySelector('meta[name="description"]');if(m)m.setAttribute('content',desc);
 }
@@ -1441,6 +1443,71 @@ function syncPanelRefresh(){const el=document.getElementById('syncPanel');if(!el
 addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&syncCode()&&Date.now()-_syncLastPull>60000)syncPull();});
 setTimeout(()=>{if(syncCode())syncPull();},800);
 
+/* ===== 站长访问统计(#/stats):读共享埋点 worker 的 /q?mode=sql,token 只存本机 =====
+   与 AI Podcast 共用 stats.jasonlin.tech(D1),aipaper 流量的 path 带 paper: 前缀,查询按前缀过滤。 */
+function vStats(){
+ const tok=localStorage.statsToken||'';
+ if(tok)setTimeout(statsLoad,30);
+ return `<div class="wrap"><section style="padding:30px 0;min-height:60vh">
+  <div class="eyebrow">Site analytics · 站长</div><h2 class="title">访问统计</h2>
+  ${tok?`<div class="chips" style="margin-top:16px">${[7,30,90].map(d=>`<span class="chip ${(+localStorage.statsDays||30)===d?'on':''}" onclick="localStorage.statsDays=${d};render()">近 ${d} 天</span>`).join('')}<span class="chip" onclick="localStorage.removeItem('statsToken');render()">退出</span></div>
+  <div id="statsBody" style="margin-top:10px"><div class="st-empty">加载中…</div></div>`
+  :`<div class="sub" style="margin-top:14px;max-width:560px">读取 stats.jasonlin.tech 的匿名埋点数据(与 AI Podcast 共用 worker,本站流量带 paper: 前缀)。粘贴查询 STATS_TOKEN 查看;token 只保存在本机浏览器,不会上传到别处。</div>
+  <div style="display:flex;gap:10px;margin-top:18px;max-width:460px">
+   <input id="stTok" type="password" placeholder="STATS_TOKEN" style="flex:1;padding:11px 14px;border:1px solid var(--line);border-radius:11px;background:var(--surface2);color:var(--ink);font-size:14px" onkeydown="if(event.key==='Enter')document.getElementById('stGo').click()">
+   <button id="stGo" class="askbtn" style="width:auto;padding:11px 24px" onclick="const v=document.getElementById('stTok').value.trim();if(v){localStorage.statsToken=v;render();}">查看</button></div>`}
+ </section></div>${footer()}`;
+}
+async function statsQ(sql){
+ const r=await fetch(STATS_URL+'/q?token='+encodeURIComponent(localStorage.statsToken||'')+'&mode=sql&q='+encodeURIComponent(sql));
+ const j=await r.json();if(j.error)throw new Error(j.error);return j.rows||[];
+}
+async function statsLoad(){
+ const el=document.getElementById('statsBody');if(!el)return;
+ const days=+localStorage.statsDays||30,since=Date.now()-days*864e5;
+ const P="path LIKE 'paper:%'",UV="count(distinct coalesce(nullif(sid,''),vid))";
+ try{
+  const [tot,today,range,byDay,top,refs,dev]=await Promise.all([
+   statsQ(`SELECT count(*) c FROM events WHERE type='view' AND ${P}`),
+   statsQ(`SELECT count(*) pv,${UV} uv FROM events WHERE type='view' AND ${P} AND day=date('now')`),
+   statsQ(`SELECT count(*) pv,${UV} uv FROM events WHERE type='view' AND ${P} AND ts>=${since}`),
+   statsQ(`SELECT day,count(*) pv,${UV} uv FROM events WHERE type='view' AND ${P} AND ts>=${since} GROUP BY day ORDER BY day`),
+   statsQ(`SELECT path,count(*) c FROM events WHERE type='view' AND path LIKE 'paper:/paper/%' AND ts>=${since} GROUP BY path ORDER BY c DESC LIMIT 12`),
+   statsQ(`SELECT ref,count(*) c FROM events WHERE type='view' AND ${P} AND ts>=${since} AND ref<>'' GROUP BY ref ORDER BY c DESC LIMIT 10`),
+   statsQ(`SELECT ua,count(*) c FROM events WHERE type='view' AND ${P} AND ts>=${since} GROUP BY ua ORDER BY c DESC`),
+  ]);
+  const el2=document.getElementById('statsBody');if(el2)el2.innerHTML=statsHtml({tot,today,range,byDay,top,refs,dev,days});
+ }catch(e){const el2=document.getElementById('statsBody');
+  if(el2)el2.innerHTML=`<div class="st-empty">查询失败:${esc(''+(e&&e.message||e))}${/unauthorized/i.test(''+e)?'——token 不对,点「退出」重新输入。':''}</div>`;}
+}
+function statsHtml(d){
+ const t=d.today[0]||{pv:0,uv:0},r=d.range[0]||{pv:0,uv:0},tot=(d.tot[0]||{}).c||0;
+ const m={};d.byDay.forEach(x=>m[x.day]=x);
+ const arr=[];for(let i=d.days-1;i>=0;i--){const k=new Date(Date.now()-i*864e5).toISOString().slice(0,10);arr.push(m[k]||{day:k,pv:0,uv:0});}
+ const mx=Math.max(1,...arr.map(x=>x.pv));
+ const bars=arr.map(x=>`<i style="height:${x.pv?Math.max(6,Math.round(x.pv/mx*100)):2}%"${x.pv?'':' data-z'} title="${x.day} · PV ${x.pv} · 访客 ${x.uv}"></i>`).join('');
+ const topMx=d.top.length?d.top[0].c:1;
+ const top=d.top.map(x=>{const id=x.path.slice('paper:/paper/'.length);const p=PAPERS.find(pp=>pp.id===id);
+  return `<div class="rk-row" onclick="go('#/paper/${id}')" style="cursor:pointer"><span class="rk-name" style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(p?(p.tZh||p.tEn):id)}</span><span class="rk-bar" style="width:${Math.max(8,Math.round(x.c/topMx*160))}px"></span><span class="rk-n">${x.c}</span></div>`;}).join('');
+ const refMx=d.refs.length?d.refs[0].c:1;
+ const refs=d.refs.map(x=>`<div class="rk-row"><span class="rk-name" style="flex:1">${esc(x.ref)}</span><span class="rk-bar" style="width:${Math.max(8,Math.round(x.c/refMx*160))}px"></span><span class="rk-n">${x.c}</span></div>`).join('');
+ const dvT=d.dev.reduce((s,x)=>s+x.c,0)||1;
+ const dv=d.dev.map(x=>`${x.ua==='mobile'?'移动':x.ua==='desktop'?'桌面':esc(x.ua||'?')} ${Math.round(x.c/dvT*100)}%`).join(' · ');
+ return `
+  <div class="st-tiles">
+   <div class="st-tile"><div class="n">${t.pv}</div><div class="l">今日 PV</div><div class="s">访客 ${t.uv}</div></div>
+   <div class="st-tile"><div class="n">${r.pv}</div><div class="l">近 ${d.days} 天 PV</div></div>
+   <div class="st-tile"><div class="n">${r.uv}</div><div class="l">近 ${d.days} 天访客·日</div></div>
+   <div class="st-tile"><div class="n">${tot}</div><div class="l">累计 PV</div></div>
+  </div>
+  <div class="st-h3">每日 PV · 近 ${d.days} 天</div>
+  <div class="stx">${bars}</div>
+  <div class="stx-x"><span>${arr[0].day.slice(5)}</span><span>${arr[arr.length-1].day.slice(5)}</span></div>
+  <div class="st-h3">热门论文</div><div class="rk">${top||'<div class="st-empty">暂无</div>'}</div>
+  <div class="st-h3">流量来源</div><div class="rk">${refs||'<div class="st-empty">暂无(直接访问不带来源)</div>'}</div>
+  <div class="st-h3">设备</div><div class="sub" style="margin-top:6px;font-size:14px">${dv||'暂无'}</div>`;
+}
+
 /* ===== 回到顶部 / 划词栏隐藏(进度条改用 read-bar 里的 readProg) ===== */
 addEventListener('scroll',()=>{
  const tt=document.getElementById('toTop');
@@ -1470,7 +1537,8 @@ function render(){
  else if(parts[0]==='orgs')html=vOrgs();
  else if(parts[0]==='org')html=vOrg(parts[1]);
  else if(parts[0]==='ask')html=vAsk();
- else if(parts[0]==='mine'||parts[0]==='stats')html=vMine();
+ else if(parts[0]==='mine')html=vMine();
+ else if(parts[0]==='stats')html=vStats();
  else html=vHome();
  document.body.dataset.route=parts[0]||'home';
  document.getElementById('app').innerHTML=html;
