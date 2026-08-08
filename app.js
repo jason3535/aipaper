@@ -750,7 +750,6 @@ function vMine(){
     <div class="rk">${rows||'<div class="st-empty">暂无</div>'}</div>
     ${sharePromoHtml(st,hrs)}
     ${mineLaterHtml()}${mineMarksHtml()}
-    <div style="margin-top:34px;font-size:13px"><a class="alink" style="cursor:pointer;color:var(--sub2)" onclick="go('#/stats')">站点访问统计(站长)→</a></div>
   </section></div>`;
 }
 /* 已读长图 */
