@@ -1450,7 +1450,8 @@ function vStats(){
  if(tok)setTimeout(statsLoad,30);
  return `<div class="wrap"><section style="padding:30px 0;min-height:60vh">
   <div class="eyebrow">Site analytics · 站长</div><h2 class="title">访问统计</h2>
-  ${tok?`<div class="chips" style="margin-top:16px">${[7,30,90].map(d=>`<span class="chip ${(+localStorage.statsDays||30)===d?'on':''}" onclick="localStorage.statsDays=${d};render()">近 ${d} 天</span>`).join('')}<span class="chip" onclick="localStorage.removeItem('statsToken');render()">退出</span></div>
+  ${tok?`<div class="chips" style="margin-top:16px">${[['paper','论文站'],['podcast','播客站'],['all','两站合计']].map(([k,l])=>`<span class="chip ${(localStorage.statsSite||'paper')===k?'on':''}" onclick="localStorage.statsSite='${k}';render()">${l}</span>`).join('')}</div>
+  <div class="chips" style="margin-top:10px">${[7,30,90].map(d=>`<span class="chip ${(+localStorage.statsDays||30)===d?'on':''}" onclick="localStorage.statsDays=${d};render()">近 ${d} 天</span>`).join('')}<span class="chip" onclick="localStorage.removeItem('statsToken');render()">退出</span></div>
   <div id="statsBody" style="margin-top:10px"><div class="st-empty">加载中…</div></div>`
   :`<div class="sub" style="margin-top:14px;max-width:560px">读取 stats.jasonlin.tech 的匿名埋点数据(与 AI Podcast 共用 worker,本站流量带 paper: 前缀)。粘贴查询 STATS_TOKEN 查看;token 只保存在本机浏览器,不会上传到别处。</div>
   <div style="display:flex;gap:10px;margin-top:18px;max-width:460px">
@@ -1465,20 +1466,32 @@ async function statsQ(sql){
 async function statsLoad(){
  const el=document.getElementById('statsBody');if(!el)return;
  const days=+localStorage.statsDays||30,since=Date.now()-days*864e5;
- const P="path LIKE 'paper:%'",UV="count(distinct coalesce(nullif(sid,''),vid))";
+ const site=localStorage.statsSite||'paper';
+ const P=site==='paper'?"path LIKE 'paper:%'":site==='podcast'?"path NOT LIKE 'paper:%'":"1=1";
+ const TOP=site==='paper'?"path LIKE 'paper:/paper/%'":site==='podcast'?"path LIKE '/episode/%'":"(path LIKE 'paper:/paper/%' OR path LIKE '/episode/%')";
+ const UV="count(distinct coalesce(nullif(sid,''),vid))";
  try{
   const [tot,today,range,byDay,top,refs,dev]=await Promise.all([
    statsQ(`SELECT count(*) c FROM events WHERE type='view' AND ${P}`),
    statsQ(`SELECT count(*) pv,${UV} uv FROM events WHERE type='view' AND ${P} AND day=date('now')`),
    statsQ(`SELECT count(*) pv,${UV} uv FROM events WHERE type='view' AND ${P} AND ts>=${since}`),
    statsQ(`SELECT day,count(*) pv,${UV} uv FROM events WHERE type='view' AND ${P} AND ts>=${since} GROUP BY day ORDER BY day`),
-   statsQ(`SELECT path,count(*) c FROM events WHERE type='view' AND path LIKE 'paper:/paper/%' AND ts>=${since} GROUP BY path ORDER BY c DESC LIMIT 12`),
+   statsQ(`SELECT path,count(*) c FROM events WHERE type='view' AND ${TOP} AND ts>=${since} GROUP BY path ORDER BY c DESC LIMIT 12`),
    statsQ(`SELECT ref,count(*) c FROM events WHERE type='view' AND ${P} AND ts>=${since} AND ref<>'' GROUP BY ref ORDER BY c DESC LIMIT 10`),
    statsQ(`SELECT ua,count(*) c FROM events WHERE type='view' AND ${P} AND ts>=${since} GROUP BY ua ORDER BY c DESC`),
   ]);
   const el2=document.getElementById('statsBody');if(el2)el2.innerHTML=statsHtml({tot,today,range,byDay,top,refs,dev,days});
- }catch(e){const el2=document.getElementById('statsBody');
-  if(el2)el2.innerHTML=`<div class="st-empty">查询失败:${esc(''+(e&&e.message||e))}${/unauthorized/i.test(''+e)?'——token 不对,点「退出」重新输入。':''}</div>`;}
+ }catch(e){const el2=document.getElementById('statsBody');if(!el2)return;
+  const msg=''+(e&&e.message||e);
+  let hint='';
+  if(e instanceof TypeError||/failed to fetch|networkerror|load failed/i.test(msg))
+   hint=`<div class="sub" style="margin-top:10px;font-size:14px">worker 不可达。先在浏览器直接打开 <b>https://stats.jasonlin.tech</b>——正常应显示「AI Podcast stats worker」。打不开就是 worker 没部署或自定义域名没绑定,到 stats-worker 目录跑 <code>wrangler deploy</code>。</div>`;
+  else if(/unauthorized/i.test(msg))
+   hint=`<div class="sub" style="margin-top:10px;font-size:14px">token 不对——要填 stats-worker 的 <b>STATS_TOKEN</b> 密钥(<code>wrangler secret put STATS_TOKEN</code> 设的那个)。点「退出」重新输入。</div>`;
+  else if(/no such table/i.test(msg))
+   hint=`<div class="sub" style="margin-top:10px;font-size:14px;line-height:1.8"><b>找到根因了:D1 里没建 events 表。</b>worker 的写入包在 try/catch 里静默吞错,所以两站的埋点一直在丢、也查不出数据。在 aipodcast/stats-worker 目录执行一次建表即可(历史数据无法追回,建表后开始累计):<br>
+   <code style="display:block;margin-top:8px;padding:10px 12px;background:var(--surface);border-radius:8px;font-size:12px;white-space:pre-wrap">wrangler d1 execute aipodcast-stats --remote --command "CREATE TABLE IF NOT EXISTS events(ts INTEGER NOT NULL, day TEXT NOT NULL, type TEXT NOT NULL, path TEXT NOT NULL DEFAULT '', ref TEXT NOT NULL DEFAULT '', ua TEXT NOT NULL DEFAULT '', vid TEXT NOT NULL DEFAULT '', sid TEXT NOT NULL DEFAULT ''); CREATE INDEX IF NOT EXISTS idx_ev_type_ts ON events(type,ts); CREATE INDEX IF NOT EXISTS idx_ev_day ON events(day);"</code></div>`;
+  el2.innerHTML=`<div class="st-empty">查询失败:${esc(msg)}</div>${hint}`;}
 }
 function statsHtml(d){
  const t=d.today[0]||{pv:0,uv:0},r=d.range[0]||{pv:0,uv:0},tot=(d.tot[0]||{}).c||0;
@@ -1487,13 +1500,20 @@ function statsHtml(d){
  const mx=Math.max(1,...arr.map(x=>x.pv));
  const bars=arr.map(x=>`<i style="height:${x.pv?Math.max(6,Math.round(x.pv/mx*100)):2}%"${x.pv?'':' data-z'} title="${x.day} · PV ${x.pv} · 访客 ${x.uv}"></i>`).join('');
  const topMx=d.top.length?d.top[0].c:1;
- const top=d.top.map(x=>{const id=x.path.slice('paper:/paper/'.length);const p=PAPERS.find(pp=>pp.id===id);
-  return `<div class="rk-row" onclick="go('#/paper/${id}')" style="cursor:pointer"><span class="rk-name" style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(p?(p.tZh||p.tEn):id)}</span><span class="rk-bar" style="width:${Math.max(8,Math.round(x.c/topMx*160))}px"></span><span class="rk-n">${x.c}</span></div>`;}).join('');
+ const top=d.top.map(x=>{
+  const isPaper=x.path.startsWith('paper:/paper/');
+  const id=isPaper?x.path.slice('paper:/paper/'.length):x.path.replace('/episode/','');
+  const p=isPaper?PAPERS.find(pp=>pp.id===id):null;
+  const nm=p?(p.tZh||p.tEn):id+(isPaper?'':' 🎙');
+  const click=isPaper?` onclick="go('#/paper/${id}')" style="cursor:pointer"`:'';
+  return `<div class="rk-row"${click}><span class="rk-name" style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(nm)}</span><span class="rk-bar" style="width:${Math.max(8,Math.round(x.c/topMx*160))}px"></span><span class="rk-n">${x.c}</span></div>`;}).join('');
  const refMx=d.refs.length?d.refs[0].c:1;
  const refs=d.refs.map(x=>`<div class="rk-row"><span class="rk-name" style="flex:1">${esc(x.ref)}</span><span class="rk-bar" style="width:${Math.max(8,Math.round(x.c/refMx*160))}px"></span><span class="rk-n">${x.c}</span></div>`).join('');
  const dvT=d.dev.reduce((s,x)=>s+x.c,0)||1;
  const dv=d.dev.map(x=>`${x.ua==='mobile'?'移动':x.ua==='desktop'?'桌面':esc(x.ua||'?')} ${Math.round(x.c/dvT*100)}%`).join(' · ');
+ const empty=!(+t.pv)&&!(+r.pv)&&!tot;
  return `
+  ${empty?`<div class="sub" style="margin:6px 0 14px;font-size:14px">worker 和数据表都正常,但一条记录都没有——说明埋点从未成功入库(此前表不存在时的静默丢弃),从现在起开始累计。</div>`:''}
   <div class="st-tiles">
    <div class="st-tile"><div class="n">${t.pv}</div><div class="l">今日 PV</div><div class="s">访客 ${t.uv}</div></div>
    <div class="st-tile"><div class="n">${r.pv}</div><div class="l">近 ${d.days} 天 PV</div></div>
