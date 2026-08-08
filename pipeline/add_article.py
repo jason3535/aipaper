@@ -13,6 +13,7 @@
 import argparse, json, re, sys, gzip, urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from add_paper import call, translate_section, INS_SYS, meta_zh, load_papers, ROOT, HTML, OPX
+from zh_space import space_obj
 
 def fetch_md(url):
     req = urllib.request.Request("https://r.jina.ai/" + url,
@@ -173,6 +174,7 @@ def main():
              "absZh": absZh if a.reverse else m.get("absZh", ""),
              "insights": ins, "srcUrl": url, "srcLabel": a.label or a.org or "Article",
              "addedAt": __import__("time").strftime("%Y-%m-%dT%H:%M:%SZ", __import__("time").gmtime())}
+    space_obj(paper); space_obj(full)   # 中英文之间补空格(盘古之白),写盘/内联前统一做
     print(f"[4/4] 写 data/{pid_id}.json + index.html", file=sys.stderr)
     json.dump({**paper, "authors": [a.org] if a.org else [], "full": full},
               open(ROOT / "data" / f"{pid_id}.json", "w"), ensure_ascii=False)

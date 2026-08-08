@@ -3,6 +3,7 @@
 DeepSeek 每 chunk 返回译文短于输入,尾段丢中文且英文保留 PDF 乱码)。
 用小 chunk(6 段)重翻,模型顺带清理英文乱码,写回 en+zh。用法: python fill_missing_zh.py <id> [<id>...]"""
 import json, sys, os
+from zh_space import space_obj
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from add_paper import call, TR_SYS
 
@@ -57,7 +58,7 @@ def fill(fid):
                         apply([chunk[k]], r1)
                     except Exception as e:
                         print(f"  单段失败 {fid}:", str(e)[:40], file=sys.stderr)
-    json.dump(d, open(f,"w",encoding="utf-8"), ensure_ascii=False)
+    json.dump(space_obj(d), open(f,"w",encoding="utf-8"), ensure_ascii=False)   # 顺带盘古之白
     print(f"{fid}: 补翻 {filled}/{total} (跳过公式碎片 {skipped})", file=sys.stderr)
     return filled
 

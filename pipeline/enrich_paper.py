@@ -6,6 +6,7 @@
 import json,os,re,sys,time,urllib.request
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from pathlib import Path
+from zh_space import space_obj
 ROOT=Path(__file__).resolve().parent.parent; DATA=ROOT/"data"
 OP=urllib.request.build_opener(urllib.request.ProxyHandler({}))
 OPX=urllib.request.build_opener(urllib.request.ProxyHandler({'http':'http://127.0.0.1:7890','https':'http://127.0.0.1:7890'}))
@@ -100,7 +101,8 @@ def enrich(pid_id):
         r=call(SEC,json.dumps([s["sec"] for s in miss],ensure_ascii=False)); zh=r.get("zh",[])
         for s,z in zip(miss,zh): s["secZh"]=z or s["sec"]
     d["full"]=[{"sec":s["sec"],"secZh":s["secZh"],"items":s["items"]} for s in secs]
-    json.dump(d,open(f,"w"),ensure_ascii=False)
+    json.dump(space_obj(d),open(f,"w"),ensure_ascii=False)   # 顺带盘古之白
+
     nf=sum(1 for s in secs for it in s["items"] if it["t"]=="fig")
     ne=sum(1 for s in secs for it in s["items"] if it["t"]=="eq")
     print(f"  {pid_id}: {len(secs)}节 图{nf} 公式{ne} 段{sum(1 for s in secs for it in s['items'] if it['t']=='para')}",file=sys.stderr)

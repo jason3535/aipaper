@@ -10,6 +10,7 @@
 import argparse, json, os, re, sys, time, urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+from zh_space import space_obj
 BASE=Path(__file__).resolve().parent; ROOT=BASE.parent; HTML=ROOT/"app.js"
 sys.path.insert(0, str(BASE)); import arxiv_html   # arXiv 原生 HTML 提取(含显示公式+图)
 GLOSS=json.load(open(BASE/"glossary.json",encoding="utf-8")) if (BASE/"glossary.json").exists() else {}
@@ -267,6 +268,7 @@ def main():
            "tEn":title,"tZh":m.get("tZh",title),"sEn":m.get("sEn",""),"sZh":m.get("sZh",""),
            "absEn":summ,"absZh":m.get("absZh",""),"insights":ins,
            "addedAt":time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())}   # 收录时间戳(首页按此排最新)
+    space_obj(paper); space_obj(full)   # 中英文之间补空格(盘古之白),写盘/内联前统一做
     print(f"[4/4] 写 data/{pid_id}.json + index.html",file=sys.stderr)
     json.dump({**paper,"authors":authors,"full":full},open(ROOT/"data"/f"{pid_id}.json","w"),ensure_ascii=False)
     h=HTML.read_text(encoding="utf-8")
