@@ -11,6 +11,7 @@ from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from enrich_paper import rich_sections
 from add_paper import arxiv_meta, call as ds_call
+from zh_space import space_obj
 ROOT=Path(__file__).resolve().parent.parent; DATA=ROOT/"data"; HTML=ROOT/"app.js"
 DONE=Path("/tmp/wave_done.jsonl")
 GLOSS=json.load(open(Path(__file__).resolve().parent/"glossary.json",encoding="utf-8"))
@@ -56,6 +57,7 @@ def do_paper(rec):
               "tEn":title,"tZh":m.get("tZh",title),"sEn":m.get("sEn",""),"sZh":m.get("sZh",""),
               "absEn":summ,"absZh":m.get("absZh",""),"insights":ins}
         full=[{"sec":s["sec"],"secZh":s.get("secZh",s["sec"]),"items":s["items"]} for s in secs]
+        space_obj(meta); space_obj(full)   # 中英文之间补空格(盘古之白)
         json.dump({**meta,"authors":authors,"full":full},open(DATA/f"{pid_id}.json","w"),ensure_ascii=False)
         with lock:
             open(DONE,"a").write(json.dumps(meta,ensure_ascii=False)+"\n")
