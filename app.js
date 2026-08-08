@@ -633,30 +633,53 @@ function go(h){location.hash=h;}
 function pplCard(pid){const p=PEOPLE[pid];const n=papersOf(pid).length;
  return `<a class="ppl-card" href="#/person/${pid}">${av(pid)}<div class="n">${esc(p.en)}</div><div class="nz">${esc(p.zh)}</div><div class="ti">${esc(p.tiZh)}</div><div class="cnt">${n} 篇论文</div></a>`;}
 function papersBy(pid){return PAPERS.filter(x=>x.pid===pid);}
+/* 相关度(data/related.json,由 pipeline/build_related.js 用 BM25 离线算好):
+   只按 8 个粗领域标签选"接着读"是不够的 —— 428 篇都挂 nlp,排序实际由时间接近度和
+   随机抖动决定,Zvi 的评论随笔会被推来 Aya 技术报告。BM25 用 标题+一句话摘要+核心贡献
+   算文本相似,零 LLM 成本、确定可复现。打开论文页时才拉,拉到后就地重渲染推荐区。 */
+const REL={};let _relLoading=false,_relReady=false;
+function ensureRelated(){
+ if(_relReady||_relLoading)return;
+ _relLoading=true;
+ fetch('data/related.json').then(r=>r.ok?r.json():Promise.reject(r.status)).then(j=>{
+  Object.assign(REL,j);_relReady=true;
+  const box=document.getElementById('recoBox');                 // 已在论文页 → 就地换成更准的一组
+  if(box){const id=box.dataset.pid,pp=PAPERS.find(x=>x.id===id);if(pp)box.innerHTML=recoInner(pp);}
+ }).catch(()=>{_relLoading=false;});
+}
 function nextReads(p){
  const out=[],seen=new Set([p.id]);
  const push=x=>{if(x&&!seen.has(x.id)){seen.add(x.id);out.push(x);}};
  const unread=id=>!readHas(id);
- const same=papersBy(p.pid).filter(x=>x.id!==p.id);      // 同一位作者/机构的其他条目,偏未读
+ const byId=id=>PAPERS.find(x=>x.id===id);
+ const same=papersBy(p.pid).filter(x=>x.id!==p.id);      // 第一条固定:同一位作者/机构的其他条目,偏未读
  push(same.find(x=>unread(x.id))||same[0]);
- const pf=p.fields||[];                                   // 领域打分:共享领域×2 + 同机构 + 收录时间接近,同分随机抖动
- const score=x=>{let sc=0;for(const f of pf)if((x.fields||[]).includes(f))sc+=2;
-  if(x.org&&p.org&&x.org===p.org)sc+=1;
-  const dy=Math.abs((new Date(x.addedAt||x.date||0))-(new Date(p.addedAt||p.date||0)))/864e5;sc+=Math.max(0,1-dy/365);
-  return sc;};
- const cands=PAPERS.filter(x=>x.id!==p.id&&x.pid!==p.pid&&!seen.has(x.id)&&unread(x.id)&&(x.fields||[]).some(f=>pf.includes(f)))
-  .map(x=>({x,s:score(x)+Math.random()*0.3})).sort((a,b)=>b.s-a.s);
- for(const c of cands){if(out.length>=4)break;push(c.x);}
- const has=t=>out.some(x=>t==="art"?!x.arxiv:!!x.arxiv); // 保证「论文+文章」混合:缺一类就从候选里补
- for(const t of ["art","paper"]){
-  if(out.length>=3&&!has(t)){const c=cands.find(c=>!seen.has(c.x.id)&&(t==="art"?!c.x.arxiv:!!c.x.arxiv));
-   if(c){seen.delete(out[out.length-1].id);out[out.length-1]=c.x;seen.add(c.x.id);}}
+ const isArt=x=>!x.arxiv;
+ const rel=(REL[p.id]||[]).map(r=>byId(r.id)).filter(Boolean);
+ if(rel.length){
+  push(rel[0]);   // 相似度最高的一条无条件占位:同类型优先会把它挤掉(Qwen-CUA 的最佳匹配
+                  // 是 OpenAI 的 Computer-Using Agent,属"文章"),而它往往正是最该读的下一篇
+  /* 其余同类型优先(评论随笔配长文、技术报告配论文),未读优先;都不够再放宽 */
+  const tiers=[x=>unread(x.id)&&isArt(x)===isArt(p), x=>unread(x.id), ()=>true];
+  for(const t of tiers){for(const x of rel){if(out.length>=4)break;if(t(x))push(x);}if(out.length>=4)break;}
+ }
+ if(out.length<4){                                       // related.json 还没拉到/新收未覆盖 → 退回领域打分
+  const pf=p.fields||[];                                 // 去掉随机抖动,时间项权重压到 0.5,别盖过领域
+  const score=x=>{let sc=0;for(const f of pf)if((x.fields||[]).includes(f))sc+=2;
+   if(x.org&&p.org&&x.org===p.org)sc+=1;
+   const dy=Math.abs((new Date(x.addedAt||x.date||0))-(new Date(p.addedAt||p.date||0)))/864e5;
+   return sc+Math.max(0,0.5-dy/730);};
+  const cands=PAPERS.filter(x=>!seen.has(x.id)&&x.pid!==p.pid&&unread(x.id)&&(x.fields||[]).some(f=>pf.includes(f)))
+   .map(x=>({x,s:score(x)+(isArt(x)===isArt(p)?0.75:0)})).sort((a,b)=>b.s-a.s);
+  for(const c of cands){if(out.length>=4)break;push(c.x);}
  }
  return out.slice(0,4);
 }
+function recoInner(p){const ns=nextReads(p);
+ return ns.length?`<div class="eyebrow" style="margin-top:56px">Up next · 接着读</div><div class="reco-grid" style="margin-top:16px">${ns.map(paperCard).join("")}</div>`:"";}
 function recoBlock(p,full){if(!full)return "<div id=\"readEnd\" aria-hidden=\"true\"></div>";
- const ns=nextReads(p);
- return (ns.length?`<div class="eyebrow" style="margin-top:56px">Up next · 接着读</div><div class="reco-grid" style="margin-top:16px">${ns.map(paperCard).join("")}</div>`:"")+"<div id=\"readEnd\" aria-hidden=\"true\"></div>";}
+ ensureRelated();
+ return `<div id="recoBox" data-pid="${p.id}">${recoInner(p)}</div><div id="readEnd" aria-hidden="true"></div>`;}
 function paperCard(p){const pe=PEOPLE[p.pid]||{};const isOrg=pe.en&&p.org&&(pe.en===p.org||pe.zh===p.org);
  const rp=!readHas(p.id)&&readPosGet()[p.id];const prog=(rp&&rp.s>0&&rp.n)?`<span class="prog-badge">读到 ${Math.min(rp.s+1,rp.n)}/${rp.n} 章</span>`:'';
  return `<a class="paper-card${readHas(p.id)?' read':''}${laterHas(p.id)?' later':''}" data-id="${p.id}" href="#/paper/${p.id}"><span class="cover-badges">${readHas(p.id)?'<span class="read-badge">✓ 已读</span>':prog||(laterHas(p.id)?'<span class="later-badge">★ 待读</span>':(isNew(p)?'<span class="new-badge">NEW</span>':''))}</span><div class="pt">${esc(p.tEn)}</div><div class="ptz">${esc(p.tZh)}</div>
