@@ -1389,9 +1389,15 @@ const STATS_URL='https://stats.jasonlin.tech';
 const _dev=/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)?'mobile':'desktop';
 const _ref=(()=>{try{return document.referrer?new URL(document.referrer).host:''}catch(_){return ''}})();
 let _lastView=null;
+/* 匿名访客 ID(2026-08-09 加,与 aipodcast 同一套):此前 UV 只有 worker 端的「每日哈希」
+   (SHA256(盐+当天日期+IP+UA)),日期在输入里 → 同一人隔天必换 ID,跨天/跨周留存结构上不可测。
+   这里存一个纯随机匿名 ID(与个人信息无关,比 IP 哈希更保守,仍无 Cookie),worker 优先用它。*/
+const _aid=(()=>{try{let a=localStorage.aid;
+  if(!a){a=([...crypto.getRandomValues(new Uint8Array(10))].map(x=>x.toString(16).padStart(2,'0')).join(''));localStorage.aid=a;}
+  return a;}catch(_){return '';}})();
 function track(type,path){try{
   const p='paper:'+(path||(location.hash.replace(/^#/,'').split('?')[0]||'/'));
-  const body=JSON.stringify({type,path:p,ua:_dev,ref:_ref,sid:(localStorage.syncCode?_sidHash():'')});
+  const body=JSON.stringify({type,path:p,ua:_dev,ref:_ref,sid:(localStorage.syncCode?_sidHash():''),aid:_aid});
   if(navigator.sendBeacon)navigator.sendBeacon(STATS_URL,new Blob([body],{type:'text/plain'}));
   else fetch(STATS_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body,keepalive:true});
 }catch(_){}}
