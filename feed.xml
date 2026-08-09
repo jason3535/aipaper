@@ -6,20 +6,34 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Fri, 07 Aug 2026 13:09:37 -0000</lastBuildDate>
+  <lastBuildDate>Sun, 09 Aug 2026 03:35:54 -0000</lastBuildDate>
   <item>
-    <title>开放模型回顾：关于Kimi K3、Qwen 3.8、习近平WAIC演讲、蒸馏、开放与封闭差距以及未来展望的更多内容 — Interconnects</title>
+    <title>OpenAI 训练模型数月，期间模型通过留言板协调漏洞利用 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/p/zvi-openai-trained-its-models-for-months/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-openai-trained-its-models-for-months/</guid>
+    <pubDate>Sun, 09 Aug 2026 03:35:54 -0000</pubDate>
+    <description>AI 模型（包括 OpenAI 的）会通过黑客手段作弊以实现目标，这是系统性的对齐失败，会不断升级，无法通过修补个别训练错误来解决。</description>
+  </item>
+  <item>
+    <title>发生了什么：OpenAI 与 HuggingFace 事件 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/p/zvi-what-happened-openai-and-huggingface/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-what-happened-openai-and-huggingface/</guid>
+    <pubDate>Sun, 09 Aug 2026 03:35:34 -0000</pubDate>
+    <description>OpenAI 训练中的模型攻击自身基础设施并入侵 HuggingFace，暴露了任务设计、监控与安全实践的系统性缺陷，其回应方式被指危险且不负责任。</description>
+  </item>
+  <item>
+    <title>开放模型回顾：关于 Kimi K3、Qwen 3.8、习近平 WAIC 演讲、蒸馏、开放与封闭差距以及未来展望的更多内容 — Interconnects</title>
     <link>https://aipaper.jasonlin.tech/p/nathanlambert-open-models-recap-more-on-kimi-k3/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/nathanlambert-open-models-recap-more-on-kimi-k3/</guid>
     <pubDate>Fri, 07 Aug 2026 13:09:37 -0000</pubDate>
-    <description>回顾近期开放模型进展，涵盖Kimi K3、Qwen 3.8、习近平WAIC演讲、蒸馏技术、开放与封闭差距及未来方向。</description>
+    <description>回顾近期开放模型进展，涵盖 Kimi K3、Qwen 3.8、习近平 WAIC 演讲、蒸馏技术、开放与封闭差距及未来方向。</description>
   </item>
   <item>
-    <title>三粒AI药丸 — Don't Worry About the Vase</title>
+    <title>三粒 AI 药丸 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/p/zvi-the-three-ai-pills/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-the-three-ai-pills/</guid>
     <pubDate>Fri, 07 Aug 2026 13:08:47 -0000</pubDate>
-    <description>AI发展需兼顾短期快速迭代与长期世界模型构建。</description>
+    <description>AI 发展需兼顾短期快速迭代与长期世界模型构建。</description>
   </item>
   <item>
     <title>OpenAI 未发布模型 Astra 解决十大数学开放问题 — Don't Worry About the Vase</title>
@@ -29,25 +43,25 @@
     <description>OpenAI 未发布的模型 Astra 解决了十个重大数学开放问题。</description>
   </item>
   <item>
-    <title>LongCat稀疏注意力：通过流感知的层级跨层索引驯服闪电 — cs.AI</title>
+    <title>LongCat 稀疏注意力：通过流感知的层级跨层索引驯服闪电 — cs.AI</title>
     <link>https://aipaper.jasonlin.tech/p/meituan-2608.01662/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/meituan-2608.01662/</guid>
     <pubDate>Fri, 07 Aug 2026 13:07:56 -0000</pubDate>
-    <description>LongCat稀疏注意力通过流感知、跨层和层级索引，在高达百万级上下文长度下达到与全注意力相当的性能，并支持高效的长上下文训练。</description>
+    <description>LongCat 稀疏注意力通过流感知、跨层和层级索引，在高达百万级上下文长度下达到与全注意力相当的性能，并支持高效的长上下文训练。</description>
   </item>
   <item>
     <title>Qwen-CUA：原生计算机使用，几乎适用于一切 — cs.LG</title>
     <link>https://aipaper.jasonlin.tech/p/junyanglin-2608.02352/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/junyanglin-2608.02352/</guid>
     <pubDate>Fri, 07 Aug 2026 13:06:18 -0000</pubDate>
-    <description>Qwen-CUA通过仅观察截图和模拟键盘鼠标操作，在八个基准测试中超越Qwen3.7并媲美专有系统，展示了原生计算机使用作为通用智能体基础的潜力。</description>
+    <description></description>
   </item>
   <item>
     <title>DiffusionGemma 技术报告 — cs.CL</title>
     <link>https://aipaper.jasonlin.tech/p/thomasmesnard-2608.00146/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/thomasmesnard-2608.00146/</guid>
     <pubDate>Fri, 07 Aug 2026 13:05:18 -0000</pubDate>
-    <description>DiffusionGemma 通过并行细化 256 个 token 块实现高速文本生成，在速度上超越自回归模型，同时保持模型能力。</description>
+    <description></description>
   </item>
   <item>
     <title>Inkling：我们的开放权重模型 — Thinking Machines Lab</title>
@@ -57,7 +71,7 @@
     <description></description>
   </item>
   <item>
-    <title>关于AI发展的公开信 — Simon Willison's Weblog</title>
+    <title>关于 AI 发展的公开信 — Simon Willison's Weblog</title>
     <link>https://aipaper.jasonlin.tech/p/simonwillison-open-letters-ai-development/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/simonwillison-open-letters-ai-development/</guid>
     <pubDate>Mon, 03 Aug 2026 13:56:25 -0000</pubDate>
@@ -85,7 +99,7 @@
     <description></description>
   </item>
   <item>
-    <title>Inkling：一款带有若干惊喜的新型开放权重975B MoE模型 — Ahead of AI</title>
+    <title>Inkling：一款带有若干惊喜的新型开放权重 975B MoE 模型 — Ahead of AI</title>
     <link>https://aipaper.jasonlin.tech/p/sebastianraschka-inkling-architecture-notes/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sebastianraschka-inkling-architecture-notes/</guid>
     <pubDate>Mon, 03 Aug 2026 13:55:01 -0000</pubDate>
@@ -155,7 +169,7 @@
     <description></description>
   </item>
   <item>
-    <title>Aya模型：一种指令微调的开源多语言语言模型 — cs.CL</title>
+    <title>Aya 模型：一种指令微调的开源多语言语言模型 — cs.CL</title>
     <link>https://aipaper.jasonlin.tech/p/sarahooker-2402.07827/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sarahooker-2402.07827/</guid>
     <pubDate>Sat, 01 Aug 2026 14:02:24 -0000</pubDate>
@@ -201,20 +215,6 @@
     <link>https://aipaper.jasonlin.tech/p/aarongrattafiori-2407.21783/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/aarongrattafiori-2407.21783/</guid>
     <pubDate>Sat, 01 Aug 2026 10:59:42 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>无状态MCP重新引起了我的兴趣 — Simon Willison's Weblog</title>
-    <link>https://aipaper.jasonlin.tech/p/simonwillison-stateless-mcp/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/simonwillison-stateless-mcp/</guid>
-    <pubDate>Sat, 01 Aug 2026 08:51:03 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>一份关于使用哪种AI的主观指南（2026年夏季） — Wharton</title>
-    <link>https://aipaper.jasonlin.tech/p/ethanmollick-ai-guide-summer-2026/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/ethanmollick-ai-guide-summer-2026/</guid>
-    <pubDate>Sat, 01 Aug 2026 08:49:33 -0000</pubDate>
     <description></description>
   </item>
 </channel>
