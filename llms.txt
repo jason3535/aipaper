@@ -3,7 +3,7 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 239 位学者 / 571 篇论文
+规模: 239 位学者 / 573 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
@@ -31,6 +31,7 @@
 - [Noam Shazeer / 诺姆·沙泽尔](https://aipaper.jasonlin.tech/pp/shazeer/): Co-lead, Google Gemini — 6 篇
 - [Xinlong Wang / 王鑫龙](https://aipaper.jasonlin.tech/pp/xinlongwang/): Research Scientist, BAAI (Beijing Academy of AI) — 6 篇
 - [Geoffrey Hinton / 杰弗里·辛顿](https://aipaper.jasonlin.tech/pp/hinton/): Professor Emeritus, U of Toronto — 6 篇
+- [Zvi Mowshowitz / 兹维·莫绍维茨](https://aipaper.jasonlin.tech/pp/zvi/): Writer, Don't Worry About the Vase — 5 篇
 - [Simon Willison / 西蒙·威利森](https://aipaper.jasonlin.tech/pp/simonwillison/): Creator of Datasette · Independent Researcher — 5 篇
 - [Sebastian Raschka / 塞巴斯蒂安·拉施卡](https://aipaper.jasonlin.tech/pp/sebastianraschka/): Author, Build a Large Language Model (From Scratch) — 5 篇
 - [Tri Dao / 特里·道](https://aipaper.jasonlin.tech/pp/tridao/): Chief Scientist, Together AI; Professor, Princeton — 5 篇
@@ -46,7 +47,6 @@
 - [Google DeepMind / 谷歌 DeepMind](https://aipaper.jasonlin.tech/pp/deepmind/): AI research lab (Gemini, AlphaFold, AlphaGo) — 4 篇
 - [Ilya Sutskever / 伊利亚·苏茨克维尔](https://aipaper.jasonlin.tech/pp/ilya/): Co-founder, SSI (prev. Chief Scientist, OpenAI) — 4 篇
 - [Oriol Vinyals / 奥里奥尔·维尼亚尔斯](https://aipaper.jasonlin.tech/pp/oriol/): VP of Research, Google DeepMind; Gemini co-lead — 4 篇
-- [Zvi Mowshowitz / 兹维·莫绍维茨](https://aipaper.jasonlin.tech/pp/zvi/): Writer, Don't Worry About the Vase — 3 篇
 - [Nathan Lambert / 内森·兰伯特](https://aipaper.jasonlin.tech/pp/nathanlambert/): Post-training Lead, Allen Institute for AI — 3 篇
 - [Xiaomi MiMo Team / 小米 MiMo 团队](https://aipaper.jasonlin.tech/pp/xiaomimimo/): Xiaomi LLM-Core, multimodal LLM — 3 篇
 - [Yoshua Bengio / 约书亚·本吉奥](https://aipaper.jasonlin.tech/pp/bengio/): Professor, Mila / U. Montréal; Turing Award — 3 篇

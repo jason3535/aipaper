@@ -38,12 +38,18 @@ CHROME_PARA = re.compile(
     r"Subscribe\s*$|Continue reading\b|©\s*\d{4}[^\n]{0,80}(Privacy|Terms|Substack)|"
     r"This site requires JavaScript|Type your email|Already have an account\?)", re.I)
 
+def _ptext(p):
+    """paras 在翻译前是纯字符串、翻译后是 {en,zh} dict —— strip_chrome 两个阶段都会被调,
+    必须兼容两种形态(2026-08-09 教训:只按 dict 写,主流程翻译前调用直接 AttributeError,
+    而当时的回归验证拿的是翻译后的数据,形态不对等于没验)。"""
+    return p if isinstance(p, str) else (p.get("en") or "")
+
 def strip_chrome(secs):
     out = []
     for s in secs:
         if CHROME_SEC.search(s.get("sec") or ""):
             continue
-        ps = [p for p in s["paras"] if not CHROME_PARA.match((p.get("en") or "").strip())]
+        ps = [p for p in s["paras"] if not CHROME_PARA.match(_ptext(p).strip())]
         if ps:
             s = {**s, "paras": ps}
             out.append(s)
@@ -60,7 +66,7 @@ def pick_abs(full):
     out = []
     for s in full:
         for p in s["paras"]:
-            t = (p.get("en") or "").strip()
+            t = _ptext(p).strip()
             if len(t) >= 120 and not toc.match(t):
                 out.append(t)
                 if len(out) == 3: return " ".join(out)[:1200]

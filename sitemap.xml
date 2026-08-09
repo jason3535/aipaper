@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-08-08</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-08-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/junyanglin/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/meituan/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-08-02</lastmod></url>
@@ -240,6 +240,8 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-what-happened-openai-and-huggingface/</loc><lastmod>2026-08-08</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-openai-trained-its-models-for-months/</loc><lastmod>2026-08-07</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-three-ai-pills/</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/junyanglin-2608.02352/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/meituan-2608.01662/</loc><lastmod>2026-08-03</lastmod></url>
