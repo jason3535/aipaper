@@ -42,6 +42,8 @@ pipeline/               内容管线(见下)
 | `bulk_ingest.py` | 并行批量收录,直接产出富内容(图/公式/附录),最后一次性 merge |
 | `add_citations.py` | Semantic Scholar 按 arXiv id 补被引数 |
 | `build_index.js` | 重建 Ask / 检索目录 `data/index.json`。**字段一律从 `data/` 回落读**(内联块会被首屏瘦身剥空);**写入前有门禁**:sEn/contrib 非空率 <95%、limits <90%、或比上一版倒退 >2 个点就拒写并非零退出(真实变化用 `--force`) |
+| `audit_paper.js` | **新收条目质检门禁**(Substack 残留/absEn 垃圾/⟐/中英覆盖/日期/目录挂钩),postingest 第 0 步 |
+| `postingest.sh` | **收尾唯一入口**:audit → slim → 分享页 → index/people/related(各带门禁)→ feed → webp → 语法门禁 |
 | `build_related.js` | 重建 `data/related.json`(文末「接着读」的 BM25 相关度,标题+摘要+核心贡献;门禁:<95% 的篇拿不到 ≥4 条相关就拒写) |
 | `build_people.js` | 重建 `data/people.json`(MCP 的 list_scholars / get_scholar 用),同样有门禁:学者数比上版少 >2% 或双语简介完整率 <90% 拒写 |
 | `slim_index.py` | **首屏瘦身**:把内联 PAPERS 的 absEn/absZh/insights 剥掉(详情页从 data/<id>.json 懒加载),幂等 |
@@ -53,8 +55,8 @@ pipeline/               内容管线(见下)
 DEEPSEEK_API_KEY=sk-... python3 pipeline/add_paper.py --arxiv 1706.03762 --pid shazeer --fields nlp
 # 批量(JSON: [{pid,arxiv,fields,org}...])
 DEEPSEEK_API_KEY=sk-... python3 pipeline/bulk_ingest.py papers.json 5
-# 收录/更新后必跑(顺序):瘦身 → 分享页/站点地图 → Ask 目录 → MCP 学者目录
-python3 pipeline/slim_index.py && node pipeline/build_share_pages.js && node pipeline/build_index.js && node pipeline/build_people.js && node pipeline/build_related.js
+# 收录/更新后收尾(唯一入口,含新收条目质检门禁 + 8 步重建,任一步挂即中止):
+pipeline/postingest.sh <新收id ...>
 ```
 
 > `--pid` 须先在 `index.html` 的 PEOPLE 中;问答需部署 `chat-worker` 并把 workers.dev 地址填入 `index.html` 的 `CHAT_PROXY`。
