@@ -28,6 +28,8 @@ echo "── 6/8 RSS(gen_feed)"
 python3 pipeline/gen_feed.py | tail -1
 echo "── 7/8 头像 WebP(webp_avatars)"
 python3 pipeline/webp_avatars.py | tail -1
+echo "── 7.5/8 站群互链闭环(build_crosslinks,工具在 aipodcast 仓库)"
+python3 /Users/jason/CascadeProjects/aipodcast/pipeline/build_crosslinks.py --apply | tail -3
 echo "── 8/8 app.js 语法门禁"
 node -e 'new Function(require("fs").readFileSync("app.js","utf8")); console.log("app.js 语法 OK")'
 

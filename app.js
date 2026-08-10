@@ -622,7 +622,7 @@ const orgChip=o=>o?`<span class="orgchip" onclick="event.stopPropagation();go('#
 function orgList(){const m={};PAPERS.forEach(p=>{if(p.org)m[p.org]=(m[p.org]||0)+1;});return Object.entries(m).sort((a,b)=>b[1]-a[1]);}
 const ORG_ENTITIES=new Set(['thinkingmachines','deepmind','citrini','meituan','openai','anthropic','deepseek','stepfun','antling','minicpm','xiaomimimo','wanteam']);
 const PAPER_GRAPH={"lindahua":"lindahua","yanjunjie":"yanjunjie","jimmyba":"jimmyba","shazeer":"shazeer","christiano":"christiano","demis":"hassabis","jeffdean":"dean","abbeel":"abbeel","cszegedy":"szegedy","jasonwei":"wei","dario":"damodei","hinton":"hinton","askell":"askell","kendall":"kendall","tworek":"tworek","albertgu":"albertgu","tombrown":"brown","svlevine":"levine","jimfan":"jimfan","sam":"altman","finn":"finn","leike":"janleike","aradford":"radford","antonoglou":"antonoglou","goodfellow":"goodfellow","ilya":"sutskever","oriol":"vinyals","justinjohnson":"justinjohnson","jonathanho":"ho","richsutton":"sutton","karpathy":"karpathy","rrombach":"rombach","bengio":"bengio","fedus":"fedus","tridao":"tridao","kaiming":"kaiminghe","dhafner":"hafner","feifei":"feifei","yejin":"yejin","nathanlambert":"lambert","alexwei":"alexwei","kaplan":"jaredkaplan","schulman":"schulman","jietang":"jietang","kaifulee":"kaifulee","lilianweng":"lilianweng","dayaguo":"dayaguo","chrisolah":"olah","shochreiter":"hochreiter","lecun":"lecun","sebastienbubeck":"bubeck","zhilinyang":"yangzhilin","junyanglin":"linjunyang","shunyuyao":"yaoshunyu","wenfengliang":"liangwenfeng","dkingma":"kingma"};
-const PAPER2POD={sebastienbubeck:'bubeck',thariq:'thariq',abbeel:'abbeel',achowdhery:'chowdhery',albertgu:'albertgu',alexwei:'alexwei',antonoglou:'antonoglou',askell:'askell',bengio:'bengio',chrisolah:'olah',christiano:'christiano',dario:'dario',demis:'demis',dhafner:'hafner',fedus:'fedus',feifei:'feifei',finn:'finn',hinton:'hinton',ilya:'ilya',jasonwei:'jasonwei',jeffdean:'jeffdean',jimfan:'jimfan',jleskovec:'jureleskovec',justinjohnson:'justinjohnson',kaplan:'kaplan',karpathy:'karpathy',kendall:'kendall',kokotajlo:'kokotajlo',lecun:'lecun',leike:'leike',nathanlambert:'lambert',oriol:'oriol',richsutton:'sutton',sam:'altman',satya:'satya',schulman:'schulman',sermon:'ermon',shazeer:'shazeer',simonwillison:'simonwillison',svlevine:'slevine',tombrown:'tombrown',tonyfadell:'fadell',tridao:'tridao',tworek:'tworek',yejin:'yejin'};
+const PAPER2POD={sebastienbubeck:'bubeck',thariq:'thariq',abbeel:'abbeel',achowdhery:'chowdhery',albertgu:'albertgu',alexwei:'alexwei',antonoglou:'antonoglou',askell:'askell',bengio:'bengio',chrisolah:'olah',christiano:'christiano',dario:'dario',demis:'demis',dhafner:'hafner',fedus:'fedus',feifei:'feifei',finn:'finn',hinton:'hinton',ilya:'ilya',jasonwei:'jasonwei',jeffdean:'jeffdean',jimfan:'jimfan',jleskovec:'jureleskovec',justinjohnson:'justinjohnson',kaplan:'kaplan',karpathy:'karpathy',kendall:'kendall',kokotajlo:'kokotajlo',lecun:'lecun',leike:'leike',nathanlambert:'lambert',oriol:'oriol',richsutton:'sutton',sam:'altman',satya:'satya',schulman:'schulman',sermon:'ermon',shazeer:'shazeer',simonwillison:'simonwillison',svlevine:'slevine',tombrown:'tombrown',tonyfadell:'fadell',tridao:'tridao',tworek:'tworek',yejin:'yejin',sebastianraschka:'raschka'};
 function pplOrder(){const k=Object.keys(PEOPLE).filter(p=>!ORG_ENTITIES.has(p));return k.slice().sort((a,b)=>papersOf(b).length-papersOf(a).length||k.indexOf(a)-k.indexOf(b));}
 function av(pid,cls){const p=PEOPLE[pid];if(PHOTOS.has(pid))return `<div class="${cls||'av'}"><img src="assets/people/${pid}.webp" alt="${esc(p.en)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/people/${pid}.jpg'"></div>`;const cs=(p.fields||['deep-learning']).map(f=>(FIELDS[f]||{}).c||'#9aa4b2');const bg=`linear-gradient(140deg,${cs[0]},${cs[1]||cs[0]})`;return `<div class="${cls||'av'}" style="background:${bg}">${esc(p.init)}</div>`;}
 const fdot=f=>`<span class="fdot" style="background:${(FIELDS[f]||{}).c||'var(--sub)'}"></span>`;
@@ -889,16 +889,22 @@ function vPeople(field){
  </section></div>${footer()}`;
 }
 function vPapers(qp){
- const field=(qp&&qp.get('field'))||'';const sort=(qp&&qp.get('sort'))||'new';
+ const field=(qp&&qp.get('field'))||'';const sort=(qp&&qp.get('sort'))||'new';const type=(qp&&qp.get('type'))||'';
  let ps=PAPERS.filter(p=>!field||(p.fields||[]).includes(field));
+ // 类型筛选:无 arxiv 号 = 文章(博客长文),与 paperCard 的「文章」徽标同一判据
+ if(type==='art')ps=ps.filter(p=>!p.arxiv);else if(type==='paper')ps=ps.filter(p=>p.arxiv);
  if(sort==='cites')ps=[...ps].sort((a,b)=>(b.cites||0)-(a.cites||0));
- const qs=(f,s)=>{const u=[];if(f)u.push('field='+f);if(s!=='new')u.push('sort='+s);return '#/papers'+(u.length?'?'+u.join('&'):'');};
- return `<div class="wrap"><section><div class="eyebrow">Papers · 论文</div><h2 class="title">全部论文 · ${ps.length}</h2>
-  <div class="chips" style="margin-top:18px"><span class="chip ${!field?'on':''}" onclick="go('${qs('',sort)}')">全部</span>
-   ${Object.keys(FIELDS).map(f=>`<span class="chip ${field===f?'on':''}" onclick="go('${qs(f,sort)}')">${fdot(f)}${FIELDS[f].zh}</span>`).join('')}</div>
+ const qs=(f,s,t)=>{const u=[];if(f)u.push('field='+f);if(s!=='new')u.push('sort='+s);if(t)u.push('type='+t);return '#/papers'+(u.length?'?'+u.join('&'):'');};
+ return `<div class="wrap"><section><div class="eyebrow">Papers · 论文</div><h2 class="title">${type==='art'?'全部文章':type==='paper'?'全部论文':'论文与文章'} · ${ps.length}</h2>
+  <div class="chips" style="margin-top:18px"><span class="chip ${!field?'on':''}" onclick="go('${qs('',sort,type)}')">全部</span>
+   ${Object.keys(FIELDS).map(f=>`<span class="chip ${field===f?'on':''}" onclick="go('${qs(f,sort,type)}')">${fdot(f)}${FIELDS[f].zh}</span>`).join('')}</div>
+  <div class="chips" style="margin-top:10px"><span style="font-size:13px;color:var(--sub2);align-self:center">类型</span>
+   <span class="chip ${!type?'on':''}" onclick="go('${qs(field,sort,'')}')">全部</span>
+   <span class="chip ${type==='paper'?'on':''}" onclick="go('${qs(field,sort,'paper')}')">论文</span>
+   <span class="chip ${type==='art'?'on':''}" onclick="go('${qs(field,sort,'art')}')">文章</span></div>
   <div class="chips" style="margin-top:10px"><span style="font-size:13px;color:var(--sub2);align-self:center">排序</span>
-   <span class="chip ${sort==='new'?'on':''}" onclick="go('${qs(field,'new')}')">最新收录</span>
-   <span class="chip ${sort==='cites'?'on':''}" onclick="go('${qs(field,'cites')}')">被引最多</span></div>
+   <span class="chip ${sort==='new'?'on':''}" onclick="go('${qs(field,'new',type)}')">最新收录</span>
+   <span class="chip ${sort==='cites'?'on':''}" onclick="go('${qs(field,'cites',type)}')">被引最多</span></div>
   <div class="grid" style="margin-top:20px">${(window._allPapers?ps:ps.slice(0,90)).map(paperCard).join('')||'<p class="sub">暂无论文</p>'}</div>
   ${(!window._allPapers&&ps.length>90)?`<div style="text-align:center;margin-top:22px"><button class="askbtn" style="width:auto;padding:10px 26px" onclick="window._allPapers=1;render();">显示全部 ${ps.length} 篇</button></div>`:''}</section></div>${footer()}`;
 }
@@ -1472,7 +1478,8 @@ async function statsLoad(){
  const el=document.getElementById('statsBody');if(!el)return;
  const days=+localStorage.statsDays||30,since=Date.now()-days*864e5;
  const site=localStorage.statsSite||'paper';
- const P=site==='paper'?"path LIKE 'paper:%'":site==='podcast'?"path NOT LIKE 'paper:%'":"1=1";
+ // 2026-08-10 起四图谱也进同一 D1(前缀 graph-*),「播客」不能再用「非 paper: 即播客」的二分
+ const P=site==='paper'?"path LIKE 'paper:%'":site==='podcast'?"path NOT LIKE 'paper:%' AND path NOT LIKE 'graph-%'":"1=1";
  const TOP=site==='paper'?"path LIKE 'paper:/paper/%'":site==='podcast'?"path LIKE '/episode/%'":"(path LIKE 'paper:/paper/%' OR path LIKE '/episode/%')";
  const UV="count(distinct coalesce(nullif(sid,''),vid))";
  try{
