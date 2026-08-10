@@ -535,5 +535,7 @@ window.typesetIfMath=function(el,done){
 <div id="app"></div>
 <div id="selBar" class="sel-bar" onmousedown="event.preventDefault()"><button class="sel-btn sel-ask" onclick="askSel()">问一问</button><button class="sel-btn" onclick="markSel()">标记</button><button class="sel-btn" id="shareSelBtn" onclick="shareSel()">分享</button></div>
 <script src="app.js?v=074c72f61b" defer></script>
+<script>/* SW 只在生产域名注册:本地预览(http/127.0.0.1)不注册,避免把 localhost 缓存搞混 */
+if('serviceWorker' in navigator&&/jasonlin\.tech$/.test(location.hostname))addEventListener('load',function(){navigator.serviceWorker.register('/sw.js')});</script>
 </body>
 </html>
