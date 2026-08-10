@@ -1035,7 +1035,7 @@ function footer(){return `<footer><div class="wrap">
     <code class="mcp-url">${MCP_URL}</code><button id="mcpCopy" class="mcp-copy" onclick="copyMcp()">复制</button>
   </div>
   <div class="legal-note" style="margin-bottom:22px" id="syncPanel">
-    <div class="legal-note" style="margin-bottom:14px"><b>姊妹站</b> — 同一批人物，三种读法：<a href="https://aipodcast.jasonlin.tech" target="_blank" rel="noopener">AI Podcast</a>（他们的访谈，双语全文）· <a href="https://ai.jasonlin.tech" target="_blank" rel="noopener">AI 学者图谱</a>（谁和谁共事、师承、合创）。阅读记录用同一个同步码互通。</div>
+    <div class="legal-note" style="margin-bottom:14px"><b>姊妹站</b> — 同一批人物，三种读法：<a href="https://aipodcast.jasonlin.tech" target="_blank" rel="noopener">AI Podcast</a>（他们的访谈，双语全文）· <a href="https://ai.jasonlin.tech" target="_blank" rel="noopener">AI 学者图谱</a>（谁和谁共事、师承、合创）。另有 <a href="https://hardware.jasonlin.tech" target="_blank" rel="noopener">硬件</a>、<a href="https://investor.jasonlin.tech" target="_blank" rel="noopener">投资</a>、<a href="https://design.jasonlin.tech" target="_blank" rel="noopener">设计</a>三个姊妹图谱。阅读记录用同一个同步码互通。</div>
     ${syncPanelInner()}
   </div>
   <b>AI Paper · AI 论文</b> — 知名 AI 学者的论文与长文，双语阅读。<a href="/feed.xml">📡 RSS 订阅</a><br>
