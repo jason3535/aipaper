@@ -136,17 +136,24 @@ def main():
     ap.add_argument("--label", default=""); ap.add_argument("--slug", default="")
     ap.add_argument("--title", default=""); ap.add_argument("--date", default="")
     ap.add_argument("--reverse", action="store_true", help="中文原生内容:中文原文→英文译文(默认英文→中文)")
+    ap.add_argument("--md-file", default="", help="跳过 Jina,用本地已抓好的 markdown(Jina 对部分页面持续返回残缺渲染,curl r.jina.ai 手动抓全后从文件走)")
     a = ap.parse_args()
     url = a.url.strip()
     slug = a.slug or re.sub(r"[^a-z0-9-]", "", url.rstrip("/").split("/")[-1].lower())[:48]
     pid_id = f"{a.pid}-{slug}"
-    print(f"[1/4] Jina Reader 抓取 {url}", file=sys.stderr)
-    md = fetch_md(url)
+    if a.md_file:
+        print(f"[1/4] 读本地 markdown {a.md_file}", file=sys.stderr)
+        md = open(a.md_file, encoding="utf-8").read()
+    else:
+        print(f"[1/4] Jina Reader 抓取 {url}", file=sys.stderr)
+        md = fetch_md(url)
     title, pub, secs = parse_md(md, a.title)
     n0 = sum(len(s["paras"]) for s in secs)
     secs = strip_chrome(secs)
     n1 = sum(len(s["paras"]) for s in secs)
     if n1 < n0: print(f"   剥掉订阅框/页脚等骨架 {n0-n1} 段", file=sys.stderr)
+    if pub and not re.match(r"^\d{4}-\d{2}-\d{2}$", pub):
+        pub = ""                     # "Wed," 这类碎片宁可空掉走默认,别进库
     pub = a.date or pub or "2025-01-01"
     print(f"   标题: {title[:60]} | {pub} | {len(secs)} 节 / {sum(len(s['paras']) for s in secs)} 段", file=sys.stderr)
     if sum(len(s["paras"]) for s in secs) < 3:

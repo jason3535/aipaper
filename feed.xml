@@ -6,7 +6,21 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sun, 09 Aug 2026 03:35:54 -0000</lastBuildDate>
+  <lastBuildDate>Wed, 12 Aug 2026 03:57:47 -0000</lastBuildDate>
+  <item>
+    <title>缩放定律，审慎解读 — Thinking Machines Lab</title>
+    <link>https://aipaper.jasonlin.tech/p/lilianweng-2026-06-24-scaling-laws/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/lilianweng-2026-06-24-scaling-laws/</guid>
+    <pubDate>Wed, 12 Aug 2026 03:57:47 -0000</pubDate>
+    <description>缩放定律为高效训练大模型提供指导，但模型规模与数据的最优平衡需谨慎实验校准。</description>
+  </item>
+  <item>
+    <title>黑客攻击的教训 - 作者：Nathan Lambert — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/p/nathanlambert-lessons-from-the-hacks/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/nathanlambert-lessons-from-the-hacks/</guid>
+    <pubDate>Wed, 12 Aug 2026 03:36:41 -0000</pubDate>
+    <description>当前科技公司和政府的激励机制不适合快速 AI 转型，需要透明度和开放模型来做好准备。</description>
+  </item>
   <item>
     <title>OpenAI 训练模型数月，期间模型通过留言板协调漏洞利用 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/p/zvi-openai-trained-its-models-for-months/</link>
@@ -33,21 +47,21 @@
     <link>https://aipaper.jasonlin.tech/p/zvi-the-three-ai-pills/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-the-three-ai-pills/</guid>
     <pubDate>Fri, 07 Aug 2026 13:08:47 -0000</pubDate>
-    <description>AI 发展需兼顾短期快速迭代与长期世界模型构建。</description>
+    <description></description>
   </item>
   <item>
     <title>OpenAI 未发布模型 Astra 解决十大数学开放问题 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/p/zvi-openais-unreleased-model-astra-solves/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-openais-unreleased-model-astra-solves/</guid>
     <pubDate>Fri, 07 Aug 2026 13:08:23 -0000</pubDate>
-    <description>OpenAI 未发布的模型 Astra 解决了十个重大数学开放问题。</description>
+    <description></description>
   </item>
   <item>
     <title>LongCat 稀疏注意力：通过流感知的层级跨层索引驯服闪电 — cs.AI</title>
     <link>https://aipaper.jasonlin.tech/p/meituan-2608.01662/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/meituan-2608.01662/</guid>
     <pubDate>Fri, 07 Aug 2026 13:07:56 -0000</pubDate>
-    <description>LongCat 稀疏注意力通过流感知、跨层和层级索引，在高达百万级上下文长度下达到与全注意力相当的性能，并支持高效的长上下文训练。</description>
+    <description></description>
   </item>
   <item>
     <title>Qwen-CUA：原生计算机使用，几乎适用于一切 — cs.LG</title>
@@ -201,20 +215,6 @@
     <link>https://aipaper.jasonlin.tech/p/anyang-2607.28227/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/anyang-2607.28227/</guid>
     <pubDate>Sat, 01 Aug 2026 12:02:51 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Seedance 2.0：面向世界复杂性的视频生成新进展 — cs.CV</title>
-    <link>https://aipaper.jasonlin.tech/p/yugao-2604.14148/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/yugao-2604.14148/</guid>
-    <pubDate>Sat, 01 Aug 2026 11:39:52 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Llama 3 模型群 — cs.AI</title>
-    <link>https://aipaper.jasonlin.tech/p/aarongrattafiori-2407.21783/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/aarongrattafiori-2407.21783/</guid>
-    <pubDate>Sat, 01 Aug 2026 10:59:42 -0000</pubDate>
     <description></description>
   </item>
 </channel>
