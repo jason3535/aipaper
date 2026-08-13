@@ -622,7 +622,7 @@ const orgChip=o=>o?`<span class="orgchip" onclick="event.stopPropagation();go('#
 function orgList(){const m={};PAPERS.forEach(p=>{if(p.org)m[p.org]=(m[p.org]||0)+1;});return Object.entries(m).sort((a,b)=>b[1]-a[1]);}
 const ORG_ENTITIES=new Set(['thinkingmachines','deepmind','citrini','meituan','openai','anthropic','deepseek','stepfun','antling','minicpm','xiaomimimo','wanteam']);
 const PAPER_GRAPH={"lindahua":"lindahua","yanjunjie":"yanjunjie","jimmyba":"jimmyba","shazeer":"shazeer","christiano":"christiano","demis":"hassabis","jeffdean":"dean","abbeel":"abbeel","cszegedy":"szegedy","jasonwei":"wei","dario":"damodei","hinton":"hinton","askell":"askell","kendall":"kendall","tworek":"tworek","albertgu":"albertgu","tombrown":"brown","svlevine":"levine","jimfan":"jimfan","sam":"altman","finn":"finn","leike":"janleike","aradford":"radford","antonoglou":"antonoglou","goodfellow":"goodfellow","ilya":"sutskever","oriol":"vinyals","justinjohnson":"justinjohnson","jonathanho":"ho","richsutton":"sutton","karpathy":"karpathy","rrombach":"rombach","bengio":"bengio","fedus":"fedus","tridao":"tridao","kaiming":"kaiminghe","dhafner":"hafner","feifei":"feifei","yejin":"yejin","nathanlambert":"lambert","alexwei":"alexwei","kaplan":"jaredkaplan","schulman":"schulman","jietang":"jietang","kaifulee":"kaifulee","lilianweng":"lilianweng","dayaguo":"dayaguo","chrisolah":"olah","shochreiter":"hochreiter","lecun":"lecun","sebastienbubeck":"bubeck","zhilinyang":"yangzhilin","junyanglin":"linjunyang","shunyuyao":"yaoshunyu","wenfengliang":"liangwenfeng","dkingma":"kingma"};
-const PAPER2POD={sebastienbubeck:'bubeck',thariq:'thariq',abbeel:'abbeel',achowdhery:'chowdhery',albertgu:'albertgu',alexwei:'alexwei',antonoglou:'antonoglou',askell:'askell',bengio:'bengio',chrisolah:'olah',christiano:'christiano',dario:'dario',demis:'demis',dhafner:'hafner',fedus:'fedus',feifei:'feifei',finn:'finn',hinton:'hinton',ilya:'ilya',jasonwei:'jasonwei',jeffdean:'jeffdean',jimfan:'jimfan',jleskovec:'jureleskovec',justinjohnson:'justinjohnson',kaplan:'kaplan',karpathy:'karpathy',kendall:'kendall',kokotajlo:'kokotajlo',lecun:'lecun',leike:'leike',nathanlambert:'lambert',oriol:'oriol',richsutton:'sutton',sam:'altman',satya:'satya',schulman:'schulman',sermon:'ermon',shazeer:'shazeer',simonwillison:'simonwillison',svlevine:'slevine',tombrown:'tombrown',tonyfadell:'fadell',tridao:'tridao',tworek:'tworek',yejin:'yejin',sebastianraschka:'raschka'};
+const PAPER2POD={sebastienbubeck:'bubeck',thariq:'thariq',abbeel:'abbeel',achowdhery:'chowdhery',albertgu:'albertgu',alexwei:'alexwei',antonoglou:'antonoglou',askell:'askell',bengio:'bengio',chrisolah:'olah',christiano:'christiano',dario:'dario',demis:'demis',dhafner:'hafner',fedus:'fedus',feifei:'feifei',finn:'finn',hinton:'hinton',ilya:'ilya',jasonwei:'jasonwei',jeffdean:'jeffdean',jimfan:'jimfan',jleskovec:'jureleskovec',justinjohnson:'justinjohnson',kaplan:'kaplan',karpathy:'karpathy',kendall:'kendall',kokotajlo:'kokotajlo',lecun:'lecun',leike:'leike',nathanlambert:'lambert',oriol:'oriol',richsutton:'sutton',sam:'altman',satya:'satya',schulman:'schulman',sermon:'ermon',shazeer:'shazeer',simonwillison:'simonwillison',svlevine:'slevine',tombrown:'tombrown',tonyfadell:'fadell',tridao:'tridao',tworek:'tworek',yejin:'yejin',sebastianraschka:'raschka',zvi:'zvi'};
 function pplOrder(){const k=Object.keys(PEOPLE).filter(p=>!ORG_ENTITIES.has(p));return k.slice().sort((a,b)=>papersOf(b).length-papersOf(a).length||k.indexOf(a)-k.indexOf(b));}
 function av(pid,cls){const p=PEOPLE[pid];if(PHOTOS.has(pid))return `<div class="${cls||'av'}"><img src="assets/people/${pid}.webp" alt="${esc(p.en)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/people/${pid}.jpg'"></div>`;const cs=(p.fields||['deep-learning']).map(f=>(FIELDS[f]||{}).c||'#9aa4b2');const bg=`linear-gradient(140deg,${cs[0]},${cs[1]||cs[0]})`;return `<div class="${cls||'av'}" style="background:${bg}">${esc(p.init)}</div>`;}
 const fdot=f=>`<span class="fdot" style="background:${(FIELDS[f]||{}).c||'var(--sub)'}"></span>`;
@@ -714,7 +714,7 @@ function mineLaterHtml(){
 }
 function vMine(){
   const st=readStats();
-  if(!st.ps.length)return `<div class="wrap"><section style="min-height:50vh;padding:30px 0"><div class="eyebrow">My Space · 我的</div><h2 class="title">我的</h2><div class="st-h2">我的数据</div><div class="st-empty">还没有读完的论文——打开一篇读到底会自动标记已读，统计从此开始累计。</div>${mineLaterHtml()}${mineMarksHtml()}</section></div>`;
+  if(!st.ps.length)return `<div class="wrap"><section style="min-height:50vh;padding:30px 0"><div class="eyebrow">My Space · 我的</div><h2 class="title">我的</h2><div class="st-h2">我的数据</div><div class="st-empty">还没有读完的论文——打开一篇读到底会自动标记已读，统计从此开始累计。</div>${pushPanelHtml()}${mineLaterHtml()}${mineMarksHtml()}</section></div>`;
   const hrs=Math.round(st.totalMin/6)/10;
   const g=rlogGet();const day=86400000;const today=new Date();today.setHours(0,0,0,0);
   const end=today.getTime()+(6-today.getDay())*day;
@@ -748,6 +748,7 @@ function vMine(){
     <div class="hm-legend">少 <i style="background:var(--surface);border:1px solid var(--line)"></i><i style="background:rgba(10,118,233,.25)"></i><i style="background:rgba(10,118,233,.45)"></i><i style="background:rgba(10,118,233,.7)"></i><i style="background:var(--acc)"></i> 多 · 每日阅读分钟数</div>
     <div class="st-h3">学者排行 · 我读得最多的</div>
     <div class="rk">${rows||'<div class="st-empty">暂无</div>'}</div>
+    ${pushPanelHtml()}
     ${sharePromoHtml(st,hrs)}
     ${mineLaterHtml()}${mineMarksHtml()}
   </section></div>`;
@@ -1391,6 +1392,77 @@ function rlogLocalMerge(){const g=rlogGet();let add=0;
 function isNew(p){if(!p||!p.date)return false;const t=new Date(p.date+'T00:00:00').getTime();return Date.now()-t<14*86400000;}
 
 /* ===== 匿名访问统计(与 AI Podcast 同款,自有 D1;无 Cookie、不收集个人信息) ===== */
+/* ====== 更新提醒（浏览器推送）======================================================
+   目的:补「读完就走、没有第二天」的缺口 —— 有新内容时主动叫回来一次。
+
+   现实约束(2026-08-13 直连实测):Chrome/Edge/Android 的推送必须经 fcm.googleapis.com,
+   国内网络不可达,**连 subscribe() 都会直接失败**;Safari(web.push.apple.com)、
+   Firefox、Edge(WNS)可达。所以"开启失败"在这里不是罕见兜底而是主路径之一,
+   必须给人话解释 + RSS 备选,绝不能留一个按了没反应的开关。
+   iOS 另有一层:Safari 只在「已添加到主屏幕」时才允许网页推送。 */
+const PUSH_API='https://push.jasonlin.tech';
+const PUSH_SITE='aipaper';
+const VAPID_PUB='BKZpK04qWu3AxxSH9KatKT0882TaRH43G1JhOQ1cLkaEg_AyR8os6JcLpzNhUKvyhmlEpD6no9SHphYbd_-n2hc';
+function urlB64ToBytes(s){const p='='.repeat((4-s.length%4)%4);
+  const b=atob((s+p).replace(/-/g,'+').replace(/_/g,'/'));const a=new Uint8Array(b.length);
+  for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a;}
+function pushSupported(){return 'serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window;}
+/* iOS/iPadOS 未加到主屏幕时,PushManager 存在但 subscribe 必失败 */
+function pushIOSNeedsInstall(){
+  const iOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  return iOS&&!(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)&&!navigator.standalone;}
+/* navigator.serviceWorker.ready 在「一个 SW 都没注册」时**永远不 resolve**(不是拒绝,是挂着)。
+   隐私模式、SW 注册被拦、或本地直接开文件时都会这样 —— 不加超时的话面板会永远停在"检查中…"。 */
+function swReady(ms){
+  return Promise.race([navigator.serviceWorker.ready,
+    new Promise((_,rj)=>setTimeout(()=>rj(new Error('Service Worker 未就绪')),ms||3000))]);}
+async function pushState(){
+  if(!pushSupported())return 'unsupported';
+  if(pushIOSNeedsInstall())return 'ios';
+  if(Notification.permission==='denied')return 'denied';
+  try{const r=await swReady();return (await r.pushManager.getSubscription())?'on':'off';}catch(_){return 'off';}}
+let _pushNote='';
+const RSS_TIP='<a href="/feed.xml" style="color:var(--accent)">订阅 RSS</a>（任何网络都能用）';
+function pushPanelHtml(){setTimeout(pushPanelRefresh,0);
+  return `<div class="st-h3">更新提醒</div><div id="pushPanel"><div class="st-empty">检查中…</div></div>`;}
+async function pushPanelRefresh(){
+  const el=document.getElementById('pushPanel');if(!el)return;
+  const st=await pushState();
+  const note=_pushNote?`<div class="st-empty" style="margin-top:10px">${_pushNote}</div>`:'';
+  const btn=(txt,fn)=>`<button class="shp-btn" style="margin-top:12px;width:auto;padding:9px 20px" id="pushBtn" onclick="${fn}">${txt}</button>`;
+  if(st==='unsupported')el.innerHTML=`<div class="st-empty">这个浏览器不支持网页推送。${RSS_TIP}</div>`;
+  else if(st==='ios')el.innerHTML=`<div class="st-empty">iPhone / iPad 上，需要先用 Safari 的「分享 → 添加到主屏幕」把本站装成图标，才能开启推送。或者${RSS_TIP}。</div>`;
+  else if(st==='denied')el.innerHTML=`<div class="st-empty">本站的通知权限被浏览器屏蔽了，需要在地址栏的站点设置里恢复。或者${RSS_TIP}。</div>`;
+  else if(st==='on')el.innerHTML=`<div class="st-empty">已开启 ✓ 有新内容时会收到一条通知（多篇会合并成一条）。</div>${btn('关闭提醒','pushUnsubscribe()')}${note}`;
+  else el.innerHTML=`<div class="st-empty">有新论文或长文时给你发一条浏览器通知。不需要账号，也不收集任何个人信息。</div>${btn('开启更新提醒','pushSubscribe()')}${note}`;}
+function pushDiagnose(e){
+  const m=''+((e&&e.message)||e);
+  if(/push service|AbortError|Registration failed|not permitted|denied/i.test(m))
+    return '开启失败：浏览器连不上它自己的推送服务器。Chrome / Edge 的推送要经 Google FCM，国内网络通常不通 —— 可以改用 Safari，或'+RSS_TIP+'。';
+  return '开启失败：'+m.slice(0,140)+'。可以先'+RSS_TIP+'。';}
+async function pushSubscribe(){
+  const b=document.getElementById('pushBtn');if(b){b.disabled=true;b.textContent='正在开启…';}
+  _pushNote='';
+  try{
+    if(await Notification.requestPermission()!=='granted'){_pushNote='没有授予通知权限，提醒未开启。';return pushPanelRefresh();}
+    const reg=await swReady(5000);
+    const sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlB64ToBytes(VAPID_PUB)});
+    const r=await fetch(PUSH_API+'/sub',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({site:PUSH_SITE,sub:sub.toJSON()})});
+    if(!r.ok)throw new Error('订阅服务器未接受（HTTP '+r.status+'）');
+    // 告诉 SW「现有内容都算已看过」,否则第一条推送会说"N 篇新内容"(N=全站)
+    if(reg.active)reg.active.postMessage({type:'push-seen-init',ts:Date.now()});
+  }catch(e){_pushNote=pushDiagnose(e);}
+  pushPanelRefresh();}
+async function pushUnsubscribe(){
+  const b=document.getElementById('pushBtn');if(b){b.disabled=true;b.textContent='正在关闭…';}
+  _pushNote='';
+  try{const reg=await swReady(5000);const s=await reg.pushManager.getSubscription();
+    if(s){await fetch(PUSH_API+'/unsub',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({endpoint:s.endpoint})}).catch(()=>{});await s.unsubscribe();}
+  }catch(e){_pushNote='关闭时出错：'+(''+((e&&e.message)||e)).slice(0,100);}
+  pushPanelRefresh();}
+
 const STATS_URL='https://stats.jasonlin.tech';
 const _dev=/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)?'mobile':'desktop';
 const _ref=(()=>{try{return document.referrer?new URL(document.referrer).host:''}catch(_){return ''}})();
