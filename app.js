@@ -1193,7 +1193,7 @@ function syncSeg(){const lg=document.body.dataset.lang||'both',sz=document.body.
  const ss=document.getElementById('sizeSeg');if(ss){const m={s:0,m:1,l:2};[...ss.children].forEach((b,i)=>b.classList.toggle('on',i===m[sz]));}}
 let _spyTick=false;
 addEventListener('scroll',()=>{
- const _rp=document.getElementById('readProg');if(_rp){const _sc=document.documentElement,_hh=_sc.scrollHeight-innerHeight;_rp.style.width=(_hh>0?Math.min(100,Math.max(0,_sc.scrollTop/_hh*100)):0)+'%';}
+ const _rp=document.getElementById('readProg');if(_rp)_rp.style.width=progWidth()+'%';
  if(_spyTick)return;_spyTick=true;
  requestAnimationFrame(()=>{_spyTick=false;
   const heads=document.querySelectorAll('.reader .sec-h');if(!heads.length)return;
@@ -1727,6 +1727,31 @@ function statsHtml(d){
   <div class="st-h3">热门论文</div><div class="rk">${top||'<div class="st-empty">暂无</div>'}</div>
   <div class="st-h3">流量来源</div><div class="rk">${refs||'<div class="st-empty">暂无(直接访问不带来源)</div>'}</div>
   <div class="st-h3">设备</div><div class="sub" style="margin-top:6px;font-size:14px">${dv||'暂无'}</div>`;
+}
+
+/* 阅读进度按**正文**算,不按整份文档算。文档里正文之前有标题/速览/洞察(实测占 4.0%)、
+   之后有页脚与推荐(1.9%),按文档算会「一进来就有进度、读完正文才 98%」。
+   起点 = 正文第一段顶碰到粘性栏下沿;终点 = 正文最后一段底碰到视口底部。
+   范围缓存起来,文档高度变了(切字号/语言/展开译文)才重算 —— 344 段的 DOM 查询
+   不能每帧都跑。 */
+let _progBox=null,_progDocH=-1;
+function progBounds(){
+  const dh=document.documentElement.scrollHeight;
+  if(_progBox!==null&&_progDocH===dh)return _progBox;
+  _progDocH=dh;
+  const els=document.querySelectorAll('.reader .turn,.reader .sec-h');
+  if(!els.length)return _progBox=false;
+  const rb=document.querySelector('.read-bar');
+  const sticky=rb?Math.round(rb.getBoundingClientRect().bottom):100;   // 菜单栏+标题栏 的下沿
+  const top=els[0].getBoundingClientRect().top+scrollY;
+  const bot=els[els.length-1].getBoundingClientRect().bottom+scrollY;
+  const start=top-sticky, end=bot-innerHeight;
+  return _progBox=(end>start?{start,end}:false);
+}
+function progWidth(){
+  const b=progBounds();
+  if(!b)return 0;
+  return Math.min(100,Math.max(0,(scrollY-b.start)/(b.end-b.start)*100));
 }
 
 /* ===== 回到顶部 / 划词栏隐藏(进度条改用 read-bar 里的 readProg) ===== */
