@@ -127,7 +127,7 @@ idx=idx.replace(/<script src="app\.js(\?v=[a-f0-9]+)?" defer><\/script>/,`<scrip
    这里补上 首页 → 学者 hub → 各篇 的可爬路径,<details> 收起不打扰阅读。 */
 const idxPeople=Object.keys(byPid).filter(pid=>PEOPLE[pid]).sort((a,b)=>byPid[b].length-byPid[a].length);
 const latest=PAPERS.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,80);
-const block=`<!--SITE_INDEX_START--><details class="site-index"><summary>站内索引 · Site index（${idxPeople.length} 位学者 · ${PAPERS.length} 篇）</summary>
+const block=`<!--SITE_INDEX_START--><details class="site-index"><summary>站点地图 · Sitemap（${idxPeople.length} 位学者 · ${PAPERS.length} 篇）</summary>
 <nav><b>学者</b> ${idxPeople.map(pid=>`<a href="/pp/${pid}/">${esc(PEOPLE[pid].zh||PEOPLE[pid].en)}</a>`).join(' · ')}</nav>
 <nav><b>最新</b> ${latest.map(x=>`<a href="/p/${x.id}/">${esc(x.tZh||x.tEn)}</a>`).join(' · ')}</nav>
 </details><!--SITE_INDEX_END-->`;
