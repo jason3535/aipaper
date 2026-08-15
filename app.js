@@ -1807,5 +1807,19 @@ if(localStorage.size)document.body.dataset.size=localStorage.size;
 if(localStorage.order)document.body.dataset.order=localStorage.order;
 syncSeg();
 const selH=()=>setTimeout(selCheck,10);
+
+/* 点空白处清掉文字选区。浏览器原生并不总会清(移动端 Safari 尤其明显),会出现
+   「选中的蓝底一直留在那儿」的残留(2026-08-15 用户报)。selCheck 只隐藏了工具条,
+   没动选区本身,所以之前修不掉。
+   排除 #selBar —— 上面的按钮都要用当前选区,先清就没得用了;.hl 是已有标记,点它是要移除。 */
+document.addEventListener('pointerdown',e=>{
+  const t=e.target;
+  if(t&&t.closest&&(t.closest('#selBar')||t.closest('.hl')))return;
+  const s=window.getSelection();
+  if(!s||s.isCollapsed)return;
+  if(typeof mkHideSel==='function')mkHideSel();
+  else{try{s.removeAllRanges();}catch(_){}}
+},true);
+
 document.addEventListener('mouseup',selH);document.addEventListener('touchend',selH);
 addEventListener('hashchange',render);render();
