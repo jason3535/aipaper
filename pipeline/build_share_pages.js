@@ -120,5 +120,19 @@ const appHash=crypto.createHash('md5').update(h).digest('hex').slice(0,10);
 const idxPath=path.join(ROOT,'index.html');
 let idx=fs.readFileSync(idxPath,'utf8');
 idx=idx.replace(/<script src="app\.js(\?v=[a-f0-9]+)?" defer><\/script>/,`<script src="app.js?v=${appHash}" defer></script>`);
+
+/* 首页静态索引 —— 同 aipodcast。2026-08-15 Search Console 实况:1,119 页
+   「已发现-尚未编入索引」,已收录的只有 4 个首页。根因是首页原始 HTML 里指向
+   /p/ 与 /pp/ 的深链为 0(全靠 JS 渲染 + hash 路由),静态页对 Google 是孤岛。
+   这里补上 首页 → 学者 hub → 各篇 的可爬路径,<details> 收起不打扰阅读。 */
+const idxPeople=Object.keys(byPid).filter(pid=>PEOPLE[pid]).sort((a,b)=>byPid[b].length-byPid[a].length);
+const latest=PAPERS.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,80);
+const block=`<!--SITE_INDEX_START--><details class="site-index"><summary>站内索引 · Site index（${idxPeople.length} 位学者 · ${PAPERS.length} 篇）</summary>
+<nav><b>学者</b> ${idxPeople.map(pid=>`<a href="/pp/${pid}/">${esc(PEOPLE[pid].zh||PEOPLE[pid].en)}</a>`).join(' · ')}</nav>
+<nav><b>最新</b> ${latest.map(x=>`<a href="/p/${x.id}/">${esc(x.tZh||x.tEn)}</a>`).join(' · ')}</nav>
+</details><!--SITE_INDEX_END-->`;
+if(/<!--SITE_INDEX_START-->[\s\S]*?<!--SITE_INDEX_END-->/.test(idx))
+  idx=idx.replace(/<!--SITE_INDEX_START-->[\s\S]*?<!--SITE_INDEX_END-->/,block);
+else idx=idx.replace('</body>',block+'\n</body>');
 fs.writeFileSync(idxPath,idx);
 console.log('分享页',n,'篇 + 学者 hub',pn,'个 + sitemap',urls.length,'条 + llms.txt + app.js?v='+appHash);
