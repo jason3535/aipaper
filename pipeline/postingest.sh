@@ -37,5 +37,6 @@ echo "── 7.7/8 主动推给搜索引擎(IndexNow,工具在 aipodcast 仓库)
 python3 /Users/jason/CascadeProjects/aipodcast/pipeline/indexnow.py --site aipaper || echo "  ⚠ IndexNow 推送失败(不阻断)"
 echo "── 8/8 app.js 语法门禁"
 node -e 'new Function(require("fs").readFileSync("app.js","utf8")); console.log("app.js 语法 OK")'
+node /Users/jason/CascadeProjects/aipodcast/pipeline/check_es_compat.js app.js
 
 echo "\n✅ postingest 全部通过,可以 git add -A && git commit && git push"
