@@ -1798,6 +1798,8 @@ function render(){
  if(!pendingLocate)window.scrollTo(0,0);
  typesetIfMath(document.getElementById('app'),()=>{if(parts[0]==='paper')mkApply();});
  applyLocate(); syncSeg();
+ // 页脚站点地图在骨架屏阶段不该露出来(它排在 #app 之后)
+ document.body.dataset.ready='1';
 }
 if(localStorage.theme)document.documentElement.dataset.theme=localStorage.theme;
 /* iOS Safari 的状态栏区域跟随 <meta name="theme-color"> 与 color-scheme,但**它在页面加载时
