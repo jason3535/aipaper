@@ -34,7 +34,11 @@ if(m)m.content=document.documentElement.dataset.theme==='dark'?'#0e0e10':'#fffff
 <meta name="twitter:description" content="著名 AI 学者与他们的代表论文，逐段中英对照全文 + 核心贡献，还能针对论文内容直接问 AI。">
 <meta name="twitter:image" content="https://aipaper.jasonlin.tech/assets/og.png">
 <style>
-:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#d2d2d7;--bg:#fff;--surface:#f5f5f7;--surface2:#fafafa;--acc:#0066cc;
+  /* color-scheme 必须跟着 data-theme 走。它决定的不只是滚动条/表单控件配色 ——
+     **iOS Safari 用它来画状态栏那片区域和上下 overscroll 的画布底色**。不声明时按浅色画,
+     于是「站点深色 + 系统浅色」会在状态栏留一条白边,和页面顶栏硬生生断开
+     (2026-08-15 Jason 截图实测:theme-color 已是 #0e0e10,但 color-scheme 仍是 normal → 白边still在)。 */
+:root{color-scheme:light;--ink:#1d1d1f;--sub:#6e6e73;--line:#d2d2d7;--bg:#fff;--surface:#f5f5f7;--surface2:#fafafa;--acc:#0066cc;
 --f-dl:#0a84ff;--f-nlp:#5e5ce6;--f-vision:#30d158;--f-rl:#ff9f0a;--f-eff:#64d2ff;--f-gen:#ff375f;--f-safety:#ff453a;--f-robotics:#bf5af2;
 --sub2:#86868b;--nav:rgba(251,251,253,.72);--shadow:0 4px 24px rgba(0,0,0,.06);--shadow-lg:0 12px 40px rgba(0,0,0,.10);--serif:ui-serif,'New York',Georgia,'Songti SC',serif;--han:'PingFang SC','Songti SC',-apple-system,sans-serif;--read-scale:1;}
 [data-size="s"]{--read-scale:.9}[data-size="m"]{--read-scale:1}[data-size="l"]{--read-scale:1.5}
@@ -170,7 +174,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:40px 0 60px;colo
 body[data-route="person"] footer{border-top:none}
 footer a{color:var(--sub);text-decoration:underline;text-underline-offset:2px}
 /* dark mode */
-[data-theme="dark"]{--ink:#f5f5f7;--sub:#a1a1a6;--sub2:#8e8e93;--line:#2a2a2c;--bg:#000;--surface:#1c1c1e;--surface2:#161618;--acc:#2997ff;--nav:rgba(20,20,22,.72);--shadow-lg:0 12px 40px rgba(0,0,0,.6)}
+[data-theme="dark"]{color-scheme:dark;--ink:#f5f5f7;--sub:#a1a1a6;--sub2:#8e8e93;--line:#2a2a2c;--bg:#000;--surface:#1c1c1e;--surface2:#161618;--acc:#2997ff;--nav:rgba(20,20,22,.72);--shadow-lg:0 12px 40px rgba(0,0,0,.6)}
 [data-theme="dark"] header{background:rgba(20,20,22,.72)}
 [data-theme="dark"] .paper-card,[data-theme="dark"] .ppl-card,[data-theme="dark"] .icard,[data-theme="dark"] .askbox{background:#1c1c1e}
 [data-theme="dark"] .citebar{background:linear-gradient(100deg,#152034,#1d1830);border-color:#2a3550;color:#dfe4ee}
