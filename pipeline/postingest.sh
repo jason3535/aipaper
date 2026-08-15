@@ -33,6 +33,8 @@ python3 /Users/jason/CascadeProjects/aipodcast/pipeline/build_crosslinks.py --ap
 echo "── 7.6/8 更新提醒(push-latest.json + 浏览器推送)"
 # 只在传了新收 id 时才真发;失败不阻断提交
 python3 /Users/jason/CascadeProjects/aipodcast/pipeline/push_notify.py --site aipaper --ids "${ids[@]}" || echo "  ⚠ 推送环节失败(不阻断)"
+echo "── 7.7/8 主动推给搜索引擎(IndexNow,工具在 aipodcast 仓库)"
+python3 /Users/jason/CascadeProjects/aipodcast/pipeline/indexnow.py --site aipaper || echo "  ⚠ IndexNow 推送失败(不阻断)"
 echo "── 8/8 app.js 语法门禁"
 node -e 'new Function(require("fs").readFileSync("app.js","utf8")); console.log("app.js 语法 OK")'
 
