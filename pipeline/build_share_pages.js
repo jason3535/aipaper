@@ -9,6 +9,15 @@ const PEOPLE=eval('('+h.match(/const PEOPLE=(\{[\s\S]*?\n\});/)[1]+')');
 const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const jl=o=>`<script type="application/ld+json">${JSON.stringify(o).replace(/</g,'\\u003c')}</script>`;
 const full=id=>{try{return JSON.parse(fs.readFileSync(path.join(ROOT,'data',id+'.json'),'utf8'));}catch(e){return{};}};
+/* 站群互链(map 来自 app.js,由 build_crosslinks.py 保持无缺口)——静态人物页补姊妹站入口 */
+const XMAP=n=>{try{return eval('('+h.match(new RegExp('const '+n+'=(\\{[\\s\\S]*?\\});'))[1]+')')}catch(e){return{}}};
+const PAPER2POD=XMAP('PAPER2POD'),PAPER_GRAPH=XMAP('PAPER_GRAPH');
+const xlinksOf=pid=>{
+  const x=[];
+  if(PAPER2POD[pid])x.push(`<a href="https://aipodcast.jasonlin.tech/pp/${PAPER2POD[pid]}/">听 TA 的播客访谈（AI Podcast）</a>`);
+  if(PAPER_GRAPH[pid])x.push(`<a href="https://ai.jasonlin.tech/p/${PAPER_GRAPH[pid]}.html">AI 学者图谱</a>`);
+  return x.length?`<p class="meta">同一人物 · 姊妹站：${x.join(' · ')}</p>`:'';
+};
 const CSS=`:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}`;
 const page=(title,desc,url,ogtype,bodyHtml,ld,extra='')=>`<!doctype html><html lang="zh"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -91,6 +100,7 @@ Object.keys(byPid).forEach(pid=>{
 <h1>${esc(pe.zh||'')} ${esc(pe.en||'')}</h1><p class="en-t">${esc(pe.tiZh||'')} · ${esc(pe.tiEn||'')}</p>
 ${pe.bioZh?`<p class="zh">${esc(pe.bioZh)}</p><p class="en">${esc(pe.bioEn||'')}</p>`:''}
 <a class="cta" href="${SITE}/#/person/${pid}">在 AI Paper 查看 TA 的全部论文 →</a>
+${xlinksOf(pid)}
 <h2>收录的 ${ps.length} 篇论文（按被引排序）</h2>
 <ul class="p-list">${ps.map(p=>`<li><a href="${SITE}/p/${p.id}/">${esc(p.tZh||p.tEn)}</a> — ${esc(p.org||'')} · ${esc(p.date||'')}${p.cites!=null?` · 被引 ${p.cites}`:''}</li>`).join('')}</ul>`;
   const ld=[{"@context":"https://schema.org","@type":"ProfilePage",mainEntity:{"@type":"Person",name:pe.en,alternateName:pe.zh,jobTitle:pe.tiEn,description:pe.bioEn,url}},
@@ -128,6 +138,7 @@ idx=idx.replace(/<script src="app\.js(\?v=[a-f0-9]+)?" defer><\/script>/,`<scrip
 const idxPeople=Object.keys(byPid).filter(pid=>PEOPLE[pid]).sort((a,b)=>byPid[b].length-byPid[a].length);
 const latest=PAPERS.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,80);
 const block=`<!--SITE_INDEX_START--><details class="site-index"><summary>站点地图 · Sitemap（${idxPeople.length} 位学者 · ${PAPERS.length} 篇）</summary>
+<nav><b>姊妹站</b> <a href="https://aipodcast.jasonlin.tech/">AI Podcast（播客访谈双语全文）</a> · <a href="https://ai.jasonlin.tech/">AI 学者图谱</a> · <a href="https://hardware.jasonlin.tech/">硬件创业图谱</a> · <a href="https://investor.jasonlin.tech/">投资人图谱</a> · <a href="https://design.jasonlin.tech/">设计师图谱</a></nav>
 <nav><b>学者</b> ${idxPeople.map(pid=>`<a href="/pp/${pid}/">${esc(PEOPLE[pid].zh||PEOPLE[pid].en)}</a>`).join(' · ')}</nav>
 <nav><b>最新</b> ${latest.map(x=>`<a href="/p/${x.id}/">${esc(x.tZh||x.tEn)}</a>`).join(' · ')}</nav>
 </details><!--SITE_INDEX_END-->`;
