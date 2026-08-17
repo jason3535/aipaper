@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-08-16</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-08-17</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/junyanglin/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/meituan/</loc><lastmod>2026-08-03</lastmod></url>
@@ -11,7 +12,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-07-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zhilinyang/</loc><lastmod>2026-07-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-07-23</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xiaomimimo/</loc><lastmod>2026-07-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/thinkingmachines/</loc><lastmod>2026-07-15</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/demis/</loc><lastmod>2026-07-14</lastmod></url>
@@ -19,8 +19,8 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/satya/</loc><lastmod>2026-07-12</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/tonyfadell/</loc><lastmod>2026-07-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/lilianweng/</loc><lastmod>2026-07-04</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/deepseek/</loc><lastmod>2026-07-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/bengio/</loc><lastmod>2026-06-28</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/deepseek/</loc><lastmod>2026-06-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/abbeel/</loc><lastmod>2026-06-17</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/yejin/</loc><lastmod>2026-06-13</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/tianqi/</loc><lastmod>2026-06-13</lastmod></url>
@@ -240,6 +240,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-lessons-from-the-hacks/</loc><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-what-happened-openai-and-huggingface/</loc><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-openai-trained-its-models-for-months/</loc><lastmod>2026-08-07</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-three-ai-pills/</loc><lastmod>2026-08-05</lastmod></url>
@@ -270,6 +271,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-sqlite-utils-fable/</loc><lastmod>2026-07-05</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/lilianweng-harness-engineering/</loc><lastmod>2026-07-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/thomasmesnard-2607.02770/</loc><lastmod>2026-07-02</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/deepseek-spatiotemporal-composability/</loc><lastmod>2026-07-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/bengio-2606.29657/</loc><lastmod>2026-06-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-dspark/</loc><lastmod>2026-06-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/lilianweng-2026-06-24-scaling-laws/</loc><lastmod>2026-06-24</lastmod></url>
@@ -415,7 +417,6 @@
   <url><loc>https://aipaper.jasonlin.tech/p/chiphuyen-agents/</loc><lastmod>2025-01-07</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/sam-reflections/</loc><lastmod>2025-01-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xingwusun-2501.02423/</loc><lastmod>2025-01-05</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-lessons-from-the-hacks/</loc><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/wenfengliang-2412.19437/</loc><lastmod>2024-12-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/junnanli-2412.16256/</loc><lastmod>2024-12-20</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/openai-deliberative-alignment/</loc><lastmod>2024-12-20</lastmod></url>

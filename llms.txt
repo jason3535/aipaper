@@ -3,13 +3,13 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 239 位学者 / 575 篇论文
+规模: 239 位学者 / 576 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
 - [Anthropic / Anthropic](https://aipaper.jasonlin.tech/pp/anthropic/): AI safety lab (Claude); interpretability & alignment — 22 篇
 - [OpenAI / OpenAI](https://aipaper.jasonlin.tech/pp/openai/): Frontier AI lab (GPT / DALL·E / Codex) — 17 篇
-- [DeepSeek-AI / 深度求索](https://aipaper.jasonlin.tech/pp/deepseek/): Frontier open-model lab, China — 14 篇
+- [DeepSeek-AI / 深度求索](https://aipaper.jasonlin.tech/pp/deepseek/): Frontier open-model lab, China — 15 篇
 - [Song Han / 韩松](https://aipaper.jasonlin.tech/pp/songhan/): Associate Professor, MIT — 12 篇
 - [Junyang Lin / 林俊旸](https://aipaper.jasonlin.tech/pp/junyanglin/): Lead, Qwen Team, Alibaba — 10 篇
 - [Zhilin Yang / 杨植麟](https://aipaper.jasonlin.tech/pp/zhilinyang/): Founder & CEO, Moonshot AI (Kimi); XLNet lead author — 10 篇
@@ -39,8 +39,8 @@
 - [Andrej Karpathy / 安德烈·卡帕西](https://aipaper.jasonlin.tech/pp/karpathy/): Founder, Eureka Labs; ex-OpenAI, ex-Tesla AI — 5 篇
 - [Wenhai Wang / 王文海](https://aipaper.jasonlin.tech/pp/wenhaiwang/): Researcher (InternVL), Shanghai AI Lab / CUHK — 5 篇
 - [Yuntao Bai / 白云涛](https://aipaper.jasonlin.tech/pp/ybai/): Research Scientist, Anthropic — 5 篇
-- [Thomas Mesnard / Thomas Mesnard](https://aipaper.jasonlin.tech/pp/thomasmesnard/): Research Scientist, Google DeepMind (Gemma) — 4 篇
 - [Nathan Lambert / 内森·兰伯特](https://aipaper.jasonlin.tech/pp/nathanlambert/): Post-training Lead, Allen Institute for AI — 4 篇
+- [Thomas Mesnard / Thomas Mesnard](https://aipaper.jasonlin.tech/pp/thomasmesnard/): Research Scientist, Google DeepMind (Gemma) — 4 篇
 - [Satya Nadella / 萨提亚·纳德拉](https://aipaper.jasonlin.tech/pp/satya/): Chairman & CEO, Microsoft — 4 篇
 - [Yejin Choi / 崔艺珍](https://aipaper.jasonlin.tech/pp/yejin/): Professor, Stanford University; Senior Director, NVIDIA — 4 篇
 - [Junjie Yan / 闫俊杰](https://aipaper.jasonlin.tech/pp/yanjunjie/): Founder & CEO, MiniMax — 4 篇
