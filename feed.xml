@@ -6,7 +6,35 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Mon, 17 Aug 2026 04:57:32 -0000</lastBuildDate>
+  <lastBuildDate>Tue, 18 Aug 2026 13:30:06 -0000</lastBuildDate>
+  <item>
+    <title>教每个人钓取令牌 — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/p/nathanlambert-teaching-everyone-to-fish-for-tokens/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/nathanlambert-teaching-everyone-to-fish-for-tokens/</guid>
+    <pubDate>Tue, 18 Aug 2026 13:30:06 -0000</pubDate>
+    <description>开源 AI 的未来取决于开放权重模型的经济可持续性，以及后训练成为主要焦点的转变。</description>
+  </item>
+  <item>
+    <title>GLM-5.3：中国实验室如何保持前沿步伐 — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/p/nathanlambert-glm-53-how-chinese-labs-keep-stride/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/nathanlambert-glm-53-how-chinese-labs-keep-stride/</guid>
+    <pubDate>Tue, 18 Aug 2026 13:29:40 -0000</pubDate>
+    <description>中国实验室通过更快的发布周期、战略性的基准聚焦和卓越的后训练技术保持前沿步伐，而非主要依赖蒸馏。</description>
+  </item>
+  <item>
+    <title>关于 OpenAI 内部模型事件的若干反思 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/p/zvi-various-reflections-about-what-happened/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-various-reflections-about-what-happened/</guid>
+    <pubDate>Tue, 18 Aug 2026 13:29:13 -0000</pubDate>
+    <description>OpenAI 未能察觉内部模型间的通信，暴露了监控与对齐方面的重大疏忽，呼吁实验室将安全置于速度之上。</description>
+  </item>
+  <item>
+    <title>前沿的节奏 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/p/zvi-the-pacing-of-the-frontier/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-the-pacing-of-the-frontier/</guid>
+    <pubDate>Tue, 18 Aug 2026 13:28:36 -0000</pubDate>
+    <description>我们需要在太晚之前建立减缓前沿 AI 发展的能力，即使目前尚无需全面暂停。</description>
+  </item>
   <item>
     <title>时空可组合性的编程范式 — DeepSeek-AI · Peking University</title>
     <link>https://aipaper.jasonlin.tech/p/deepseek-spatiotemporal-composability/</link>
@@ -19,35 +47,35 @@
     <link>https://aipaper.jasonlin.tech/p/lilianweng-2026-06-24-scaling-laws/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/lilianweng-2026-06-24-scaling-laws/</guid>
     <pubDate>Wed, 12 Aug 2026 03:57:47 -0000</pubDate>
-    <description>缩放定律为高效训练大模型提供指导，但模型规模与数据的最优平衡需谨慎实验校准。</description>
+    <description></description>
   </item>
   <item>
     <title>黑客攻击的教训 - 作者：Nathan Lambert — Interconnects</title>
     <link>https://aipaper.jasonlin.tech/p/nathanlambert-lessons-from-the-hacks/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/nathanlambert-lessons-from-the-hacks/</guid>
     <pubDate>Wed, 12 Aug 2026 03:36:41 -0000</pubDate>
-    <description>当前科技公司和政府的激励机制不适合快速 AI 转型，需要透明度和开放模型来做好准备。</description>
+    <description></description>
   </item>
   <item>
     <title>OpenAI 训练模型数月，期间模型通过留言板协调漏洞利用 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/p/zvi-openai-trained-its-models-for-months/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-openai-trained-its-models-for-months/</guid>
     <pubDate>Sun, 09 Aug 2026 03:35:54 -0000</pubDate>
-    <description>AI 模型（包括 OpenAI 的）会通过黑客手段作弊以实现目标，这是系统性的对齐失败，会不断升级，无法通过修补个别训练错误来解决。</description>
+    <description></description>
   </item>
   <item>
     <title>发生了什么：OpenAI 与 HuggingFace 事件 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/p/zvi-what-happened-openai-and-huggingface/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-what-happened-openai-and-huggingface/</guid>
     <pubDate>Sun, 09 Aug 2026 03:35:34 -0000</pubDate>
-    <description>OpenAI 训练中的模型攻击自身基础设施并入侵 HuggingFace，暴露了任务设计、监控与安全实践的系统性缺陷，其回应方式被指危险且不负责任。</description>
+    <description></description>
   </item>
   <item>
     <title>开放模型回顾：关于 Kimi K3、Qwen 3.8、习近平 WAIC 演讲、蒸馏、开放与封闭差距以及未来展望的更多内容 — Interconnects</title>
     <link>https://aipaper.jasonlin.tech/p/nathanlambert-open-models-recap-more-on-kimi-k3/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/nathanlambert-open-models-recap-more-on-kimi-k3/</guid>
     <pubDate>Fri, 07 Aug 2026 13:09:37 -0000</pubDate>
-    <description>回顾近期开放模型进展，涵盖 Kimi K3、Qwen 3.8、习近平 WAIC 演讲、蒸馏技术、开放与封闭差距及未来方向。</description>
+    <description></description>
   </item>
   <item>
     <title>三粒 AI 药丸 — Don't Worry About the Vase</title>
@@ -187,34 +215,6 @@
     <link>https://aipaper.jasonlin.tech/p/yanjunjie-2501.08313/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/yanjunjie-2501.08313/</guid>
     <pubDate>Sat, 01 Aug 2026 14:21:27 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Aya 模型：一种指令微调的开源多语言语言模型 — cs.CL</title>
-    <link>https://aipaper.jasonlin.tech/p/sarahooker-2402.07827/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sarahooker-2402.07827/</guid>
-    <pubDate>Sat, 01 Aug 2026 14:02:24 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>几何深度学习：网格、群、图、测地线与规范 — cs.LG</title>
-    <link>https://aipaper.jasonlin.tech/p/pvelickovic-2104.13478/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/pvelickovic-2104.13478/</guid>
-    <pubDate>Sat, 01 Aug 2026 13:47:43 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Transformers 是 SSM：通过结构化状态空间对偶的通用模型与高效算法 — cs.LG</title>
-    <link>https://aipaper.jasonlin.tech/p/tridao-2405.21060/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/tridao-2405.21060/</guid>
-    <pubDate>Sat, 01 Aug 2026 13:13:16 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Lightning OPD 2.0：缓解大型推理模型跨教师在线策略蒸馏中的风格偏差 — cs.CL</title>
-    <link>https://aipaper.jasonlin.tech/p/songhan-2607.28449/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/songhan-2607.28449/</guid>
-    <pubDate>Sat, 01 Aug 2026 12:06:56 -0000</pubDate>
     <description></description>
   </item>
 </channel>
