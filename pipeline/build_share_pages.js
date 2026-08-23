@@ -9,6 +9,23 @@ const PEOPLE=eval('('+h.match(/const PEOPLE=(\{[\s\S]*?\n\});/)[1]+')');
 const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const jl=o=>`<script type="application/ld+json">${JSON.stringify(o).replace(/</g,'\\u003c')}</script>`;
 const full=id=>{try{return JSON.parse(fs.readFileSync(path.join(ROOT,'data',id+'.json'),'utf8'));}catch(e){return{};}};
+
+/* 逐段中英对照全文写进静态页(2026-08-23)。此前静态页只有摘要+贡献+章节名,
+   359 万英文词的全文都在 hash 路由 `#/paper/id` 后面,搜索引擎抓不到。
+   注意 arXiv 论文的段落容器是 `items`(条目带 t 类型:para/formula/…),博客长文才是 `paras`;
+   只渲染 t=='para' 的散文,公式/表格碎片对 SEO 无价值且渲染出来很脏。 */
+const fullTextHtml=d=>{
+  const secs=(d&&d.full)||[];
+  if(!secs.length)return '';
+  const out=secs.map((s,i)=>{
+    const arr=(s.items||s.paras||[]).filter(p=>(!p.t||p.t==='para')&&((p.en||'').trim()||(p.zh||'').trim()));
+    if(!arr.length)return '';
+    const head=esc(s.secZh||s.sec||'')+(s.sec&&s.secZh?` <span class="en">${esc(s.sec)}</span>`:'');
+    const body=arr.map(p=>(p.zh?`<p class="zh">${esc(p.zh)}</p>`:'')+(p.en?`<p class="en">${esc(p.en)}</p>`:'')).join('');
+    return `<section class="sec"><h3 id="s${i+1}">${head}</h3>${body}</section>`;
+  }).join('');
+  return out?`<h2>全文 · Full text（逐段中英对照）</h2><div class="tr">${out}</div>`:'';
+};
 /* 站群互链(map 来自 app.js,由 build_crosslinks.py 保持无缺口)——静态人物页补姊妹站入口 */
 const XMAP=n=>{try{return eval('('+h.match(new RegExp('const '+n+'=(\\{[\\s\\S]*?\\});'))[1]+')')}catch(e){return{}}};
 const PAPER2POD=XMAP('PAPER2POD'),PAPER_GRAPH=XMAP('PAPER_GRAPH');
@@ -18,7 +35,11 @@ const xlinksOf=pid=>{
   if(PAPER_GRAPH[pid])x.push(`<a href="https://ai.jasonlin.tech/p/${PAPER_GRAPH[pid]}.html">AI 学者图谱</a>`);
   return x.length?`<p class="meta">同一人物 · 姊妹站：${x.join(' · ')}</p>`:'';
 };
-const CSS=`:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}`;
+const CSS=`:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}
+/* 全文区。content-visibility 让屏幕外章节跳过渲染,长论文才不卡 */
+.tr{margin-top:8px}.tr .sec{content-visibility:auto;contain-intrinsic-size:auto 600px;margin:0 0 10px}
+.tr h3{font-size:15px;margin:26px 0 8px;color:var(--ink);border-top:1px solid var(--line);padding-top:14px}
+.tr p.zh{margin:.2em 0}.tr p.en{margin:.1em 0 .9em}`;
 const page=(title,desc,url,ogtype,bodyHtml,ld,extra='')=>`<!doctype html><html lang="zh"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title}</title>
@@ -66,12 +87,11 @@ PAPERS.forEach(p=>{
 ${(d.absZh||p.sZh||d.absEn||p.sEn)?`<h2>摘要 · Abstract</h2><p class="zh">${esc(d.absZh||p.sZh||'')}</p><p class="en">${esc(d.absEn||p.sEn||'')}</p>`:''}
 ${contrib.length?`<h2>核心贡献 · Key contributions</h2><ul>${li(contrib)}</ul>`:''}
 ${limits.length?`<h2>局限 · Limitations</h2><ul>${li(limits)}</ul>`:''}
-${secs.length?`<h2>论文章节 · Sections（共 ${secs.length}）</h2><ul>${secs.map(s=>`<li><span class="zh">${esc(s.zh)}</span> <span class="en">${esc(s.en)}</span></li>`).join('')}</ul>`:''}
-<p style="margin-top:26px"><a class="cta" href="${hash}">阅读逐段中英对照全文 →</a></p>
+${secs.length?`<h2>论文章节 · Sections（共 ${secs.length}）</h2><ul>${secs.map((s,i)=>`<li><a href="#s${i+1}"><span class="zh">${esc(s.zh)}</span> <span class="en">${esc(s.en)}</span></a></li>`).join('')}</ul>`:''}
+${fullTextHtml(d)}
+<p style="margin-top:26px"><a class="cta" href="${hash}">互动版：图/公式 + 针对本篇提问 →</a></p>
 <script>(function(){var q=location.search.replace(/^\\?/,'');var h=${JSON.stringify(hash)}+(q?'?'+q:'');
-document.querySelectorAll('a.cta').forEach(function(a){a.href=h});
-// 真人访客直达 SPA 详情页;爬虫(SEO/OG 卡片)留在本静态页
-if(!/bot|spider|crawl|slurp|preview|fetch|embed|facebookexternalhit|whatsapp\\//i.test(navigator.userAgent))location.replace(h);})()</script>`;
+document.querySelectorAll('a.cta').forEach(function(a){a.href=h});})()</script>`;
   const art={"@context":"https://schema.org","@type":"ScholarlyArticle",headline:p.tEn,alternativeHeadline:p.tZh,name:p.tEn,url,datePublished:p.date,inLanguage:["en","zh"],abstract:d.absEn||p.sEn||p.sZh,description:p.sEn||p.sZh,keywords:(p.fields||[]).join(', '),author:{"@type":"Person",name:pe.en,jobTitle:pe.tiEn,url:person},isPartOf:{"@type":"WebSite",name:"AI Paper",url:SITE}};
   if(p.org)art.sourceOrganization={"@type":"Organization",name:p.org};
   if(srcUrl)art.sameAs=srcUrl;
