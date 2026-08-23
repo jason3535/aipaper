@@ -1045,7 +1045,7 @@ function footer(){return `<footer><div class="wrap">
     <div class="legal-note" style="margin-bottom:14px"><b>姊妹站</b> — 同一批人物，三种读法：<a href="https://aipodcast.jasonlin.tech" target="_blank" rel="noopener">AI Podcast</a>（他们的访谈，双语全文）· <a href="https://ai.jasonlin.tech" target="_blank" rel="noopener">AI 学者图谱</a>（谁和谁共事、师承、合创）。另有 <a href="https://hardware.jasonlin.tech" target="_blank" rel="noopener">硬件</a>、<a href="https://investor.jasonlin.tech" target="_blank" rel="noopener">投资</a>、<a href="https://design.jasonlin.tech" target="_blank" rel="noopener">设计</a>三个姊妹图谱。阅读记录用同一个同步码互通。</div>
     ${syncPanelInner()}
   </div>
-  <b>AI Paper · AI 论文</b> — 知名 AI 学者的论文与长文，双语阅读。<a href="/feed.xml">📡 RSS 订阅</a><br>
+  <b>AI Paper · AI 论文</b> — 知名 AI 学者的论文与长文，双语阅读。<a href="https://feed.jasonlin.tech/aipaper.xml">📡 RSS 订阅</a><br>
   版权归原作者、arXiv 及各机构；双语全文为 AI 翻译，仅供学习研究，以原文为准。权利人如需下架：<a href="mailto:linzheng3535@gmail.com?subject=AI%20Paper%20Takedown">linzheng3535@gmail.com</a>，即刻处理。<br>
   译文 AI 生成，偶有瑕疵；照片来自 <a href="https://commons.wikimedia.org" target="_blank">Wikimedia</a> 及本人公开主页、机构标识仅作识别；匿名统计，无 Cookie。领域分类来自 <a href="https://ai.jasonlin.tech" target="_blank">AI 学者图谱</a>。
  </div></footer>`;}
@@ -1447,7 +1447,7 @@ async function pushSyncQuiet(){
   }catch(_){}}
 addEventListener('load',()=>setTimeout(pushSyncQuiet,2500));
 let _pushNote='';
-const RSS_TIP='<a href="/feed.xml" style="color:var(--accent)">订阅 RSS</a>（任何网络都能用）';
+const RSS_TIP='<a href="https://feed.jasonlin.tech/aipaper.xml" style="color:var(--accent)">订阅 RSS</a>（任何网络都能用）';
 function pushPanelHtml(){setTimeout(pushPanelRefresh,0);
   return `<div class="st-h3">更新提醒</div><div id="pushPanel"><div class="st-empty">检查中…</div></div>`;}
 async function pushPanelRefresh(){
