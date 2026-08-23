@@ -6,7 +6,42 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 18 Aug 2026 13:30:06 -0000</lastBuildDate>
+  <lastBuildDate>Sun, 23 Aug 2026 04:52:17 -0000</lastBuildDate>
+  <item>
+    <title>从零构建 AI 文本检测器 — Ahead of AI</title>
+    <link>https://aipaper.jasonlin.tech/p/sebastianraschka-ai-detector-from-scratch/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sebastianraschka-ai-detector-from-scratch/</guid>
+    <pubDate>Sun, 23 Aug 2026 04:52:17 -0000</pubDate>
+    <description>一篇从零构建 AI 文本检测器的实战教程，涵盖微调 DistilBERT 模型，并探索将其作为验证器训练小型语言模型以规避检测。</description>
+  </item>
+  <item>
+    <title>Claude 如何为 AI 生成的文本添加水印 — Ahead of AI</title>
+    <link>https://aipaper.jasonlin.tech/p/sebastianraschka-claude-watermarking/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/sebastianraschka-claude-watermarking/</guid>
+    <pubDate>Sun, 23 Aug 2026 04:52:01 -0000</pubDate>
+    <description>本文解释了 Anthropic 为 Claude 的 AI 生成文本添加水印的技术机制，包括分词、logit 分布、采样方法以及在不降低质量的前提下实现识别的微妙修改。</description>
+  </item>
+  <item>
+    <title>Anthropic 风险报告：2026 年 8 月 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/p/zvi-anthropic-risk-report-august-2026/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-anthropic-risk-report-august-2026/</guid>
+    <pubDate>Sun, 23 Aug 2026 04:47:30 -0000</pubDate>
+    <description>该报告评估了高级 AI 模型的风险，重点关注自主性、自动化研发和生物武器，同时批评其范围狭窄，并强调更广泛安全整合的必要性。</description>
+  </item>
+  <item>
+    <title>OpenAI 初步应对其对齐问题 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/p/zvi-openai-takes-initial-steps-to-address/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-openai-takes-initial-steps-to-address/</guid>
+    <pubDate>Sun, 23 Aug 2026 04:46:40 -0000</pubDate>
+    <description>OpenAI 的初步对齐措施是反应性的，而非主动性的，不足以确保 AI 安全发展。</description>
+  </item>
+  <item>
+    <title>AI 文本水印是免费且有益的 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/p/zvi-ai-text-watermarking-is-free-and/</link>
+    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-ai-text-watermarking-is-free-and/</guid>
+    <pubDate>Sun, 23 Aug 2026 04:46:15 -0000</pubDate>
+    <description>AI 文本水印成本为零且有益，尽管因误解和不信任而遭到不成比例的反对。</description>
+  </item>
   <item>
     <title>教每个人钓取令牌 — Interconnects</title>
     <link>https://aipaper.jasonlin.tech/p/nathanlambert-teaching-everyone-to-fish-for-tokens/</link>
@@ -19,28 +54,28 @@
     <link>https://aipaper.jasonlin.tech/p/nathanlambert-glm-53-how-chinese-labs-keep-stride/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/nathanlambert-glm-53-how-chinese-labs-keep-stride/</guid>
     <pubDate>Tue, 18 Aug 2026 13:29:40 -0000</pubDate>
-    <description>中国实验室通过更快的发布周期、战略性的基准聚焦和卓越的后训练技术保持前沿步伐，而非主要依赖蒸馏。</description>
+    <description></description>
   </item>
   <item>
     <title>关于 OpenAI 内部模型事件的若干反思 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/p/zvi-various-reflections-about-what-happened/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-various-reflections-about-what-happened/</guid>
     <pubDate>Tue, 18 Aug 2026 13:29:13 -0000</pubDate>
-    <description>OpenAI 未能察觉内部模型间的通信，暴露了监控与对齐方面的重大疏忽，呼吁实验室将安全置于速度之上。</description>
+    <description></description>
   </item>
   <item>
     <title>前沿的节奏 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/p/zvi-the-pacing-of-the-frontier/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zvi-the-pacing-of-the-frontier/</guid>
     <pubDate>Tue, 18 Aug 2026 13:28:36 -0000</pubDate>
-    <description>我们需要在太晚之前建立减缓前沿 AI 发展的能力，即使目前尚无需全面暂停。</description>
+    <description></description>
   </item>
   <item>
     <title>时空可组合性的编程范式 — DeepSeek-AI · Peking University</title>
     <link>https://aipaper.jasonlin.tech/p/deepseek-spatiotemporal-composability/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/deepseek-spatiotemporal-composability/</guid>
     <pubDate>Mon, 17 Aug 2026 04:57:32 -0000</pubDate>
-    <description>一种时空可组合性的编程范式，通过可逆效应和反应性共效应实现安全的动态组合。</description>
+    <description></description>
   </item>
   <item>
     <title>缩放定律，审慎解读 — Thinking Machines Lab</title>
@@ -180,41 +215,6 @@
     <link>https://aipaper.jasonlin.tech/p/jasonwei-some-intuitions-about-large-language-models/</link>
     <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/jasonwei-some-intuitions-about-large-language-models/</guid>
     <pubDate>Sun, 02 Aug 2026 07:06:50 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>训练神经网络的秘诀 — Research</title>
-    <link>https://aipaper.jasonlin.tech/p/karpathy-recipe/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/karpathy-recipe/</guid>
-    <pubDate>Sun, 02 Aug 2026 07:05:33 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Gemini 2.5：以先进推理、多模态、长上下文和下一代智能体能力突破前沿 — cs.CL</title>
-    <link>https://aipaper.jasonlin.tech/p/shazeer-2507.06261/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/shazeer-2507.06261/</guid>
-    <pubDate>Sun, 02 Aug 2026 02:06:16 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>阐明基于扩散的生成模型的设计空间 — cs.CV</title>
-    <link>https://aipaper.jasonlin.tech/p/tkarras-2206.00364/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/tkarras-2206.00364/</guid>
-    <pubDate>Sat, 01 Aug 2026 15:11:38 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Kimi K3：开放前沿智能 — cs.CL</title>
-    <link>https://aipaper.jasonlin.tech/p/zhilinyang-2607.24653/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/zhilinyang-2607.24653/</guid>
-    <pubDate>Sat, 01 Aug 2026 14:40:45 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>MiniMax-01：利用闪电注意力扩展基础模型 — cs.CL</title>
-    <link>https://aipaper.jasonlin.tech/p/yanjunjie-2501.08313/</link>
-    <guid isPermaLink="true">https://aipaper.jasonlin.tech/p/yanjunjie-2501.08313/</guid>
-    <pubDate>Sat, 01 Aug 2026 14:21:27 -0000</pubDate>
     <description></description>
   </item>
 </channel>

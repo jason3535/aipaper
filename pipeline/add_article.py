@@ -101,6 +101,11 @@ def parse_md(md, title_hint=""):
         t = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", s)
         t = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", t)          # 链接留文字
         t = re.sub(r"\*\*|__|`|^#+\s*|^>\s*", "", t).strip()
+        # 上面两条替换会把 Jina 的嵌套图片 `[![](img)](link)` 剥成 `[](link)` —— 锚文本为空,
+        # `\[([^\]]+)\]` 匹配不上,而第 98 行的跳过检查在替换之前就跑完了,于是这行带着长 URL
+        # 混进正文(len>40 拦不住)。2026-08-23 Raschka 两篇各混进 20+ 段这种壳。
+        # 替换后再判一次:只剩空锚链接或裸 URL 的,不是正文。
+        if re.fullmatch(r"\[\s*\]\(\S*\)|<?https?://\S+>?", t): continue
         if len(t) > 40: cur["paras"].append(t)
     if cur["paras"]: secs.append(cur)
     return title, pub, secs
