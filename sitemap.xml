@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-08-18</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-08-23</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-08-22</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-08-17</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-08-11</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/junyanglin/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/meituan/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-08-02</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/thomasmesnard/</loc><lastmod>2026-07-31</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/anyang/</loc><lastmod>2026-07-30</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/songhan/</loc><lastmod>2026-07-30</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-07-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zhilinyang/</loc><lastmod>2026-07-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-07-23</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xiaomimimo/</loc><lastmod>2026-07-16</lastmod></url>
@@ -240,7 +240,12 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/sebastianraschka-claude-watermarking/</loc><lastmod>2026-08-22</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-ai-text-watermarking-is-free-and/</loc><lastmod>2026-08-21</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-openai-takes-initial-steps-to-address/</loc><lastmod>2026-08-19</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-anthropic-risk-report-august-2026/</loc><lastmod>2026-08-18</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-teaching-everyone-to-fish-for-tokens/</loc><lastmod>2026-08-17</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/sebastianraschka-ai-detector-from-scratch/</loc><lastmod>2026-08-15</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-glm-53-how-chinese-labs-keep-stride/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-various-reflections-about-what-happened/</loc><lastmod>2026-08-11</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-pacing-of-the-frontier/</loc><lastmod>2026-08-10</lastmod></url>

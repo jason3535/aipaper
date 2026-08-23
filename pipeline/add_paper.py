@@ -206,8 +206,12 @@ def translate_section(sec):
         en=r.get("en",[]); z=r.get("zh",[])
         if len(en)!=len(chunk): en=(en+chunk)[:len(chunk)]   # 清理失败回退原文
         if len(z)!=len(chunk): z=(z+[""]*len(chunk))[:len(chunk)]
-        en_out.extend([(x or "").replace("⟐","\\") for x in en])
-        zh.extend([(x or "").replace("⟐","\\") for x in z])
+        # 长度对得上不代表每段都有内容:模型偶尔对某段(多为图/幻灯片旁的短句)返回空串,
+        # 上面的长度回退不会触发,空串就把正文覆盖掉了 —— 静默丢正文。逐段兜底回退原文。
+        # (2026-08-23 发现:Raschka 讲稿类文章 EN 覆盖只有 85%,站内多篇老文章也有同样的空段。)
+        en_out.extend([(t.replace("⟐","\\") if (t:=(x or "")).strip() else chunk[i])
+                       for i,x in enumerate(en)])
+        zh.extend([(x or "").replace("⟐","\\") for x in z])   # zh 空只能靠 fill_missing_zh 补翻
     return {"sec":sec["sec"],"secZh":secZh or sec["sec"],"paras":[{"en":e,"zh":z} for e,z in zip(en_out,zh)]}
 
 INS_SYS=f"""你是 AI 论文编辑。读论文标题、摘要与正文,提炼两组要点,输出 JSON:
