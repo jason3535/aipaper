@@ -9,7 +9,7 @@ set -e
 cd "$(dirname "$0")/.."
 
 ids=("$@")
-if (( ${#ids} )); then
+if (( ${#ids[@]} )); then
   echo "── 0/8 新收条目质检(audit_paper)"
   node pipeline/audit_paper.js "${ids[@]}"
 fi
@@ -39,4 +39,4 @@ echo "── 8/8 app.js 语法门禁"
 node -e 'new Function(require("fs").readFileSync("app.js","utf8")); console.log("app.js 语法 OK")'
 node /Users/jason/CascadeProjects/aipodcast/pipeline/check_es_compat.js app.js
 
-echo "\n✅ postingest 全部通过,可以 git add -A && git commit && git push"
+printf "\n"; echo "✅ postingest 全部通过,可以 git add -A && git commit && git push"
