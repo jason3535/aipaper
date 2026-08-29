@@ -38,5 +38,21 @@ python3 /Users/jason/CascadeProjects/aipodcast/pipeline/indexnow.py --site aipap
 echo "── 8/8 app.js 语法门禁"
 node -e 'new Function(require("fs").readFileSync("app.js","utf8")); console.log("app.js 语法 OK")'
 node /Users/jason/CascadeProjects/aipodcast/pipeline/check_es_compat.js app.js
+# 静态页埋点门禁:两条流都得在。掉了不会报错、页面照常渲染,只是从此再也分不清爬虫,
+# 而 p/ 593 + pp/ 239 正是全部 SEO 落地页 —— 正是要盯住的那类静默降级。
+node -e '
+const fs=require("fs");
+const bad=[];
+for(const [dir,n] of [["p",6],["pp",6]]){
+  const ids=fs.readdirSync(dir).filter(x=>fs.existsSync(dir+"/"+x+"/index.html"));
+  const step=Math.max(1,Math.floor(ids.length/n));
+  for(const id of ids.filter((_,i)=>i%step===0).slice(0,n)){
+    const h=fs.readFileSync(dir+"/"+id+"/index.html","utf8");
+    if(!(/stats\.jasonlin\.tech/.test(h)&&/post\(.view.\)/.test(h)&&/post\(.read.\)/.test(h)))bad.push(dir+"/"+id);
+  }
+}
+if(bad.length){console.error("  ✗ 静态页埋点缺失或缺 read 流:"+bad.slice(0,3).join("、")+
+  "\n    → build_share_pages.js 还在读 aipodcast 仓库的 pipeline/beacon.js 吗?");process.exit(1);}
+console.log("  静态页埋点:抽查 12 页,view+read 两条流齐全");'
 
 printf "\n"; echo "✅ postingest 全部通过,可以 git add -A && git commit && git push"

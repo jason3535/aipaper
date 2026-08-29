@@ -34,4 +34,38 @@
 <h2>收录的 10 篇论文（按被引排序）</h2>
 <ul class="p-list"><li><a href="https://aipaper.jasonlin.tech/p/jietang-2408.06072/">CogVideoX: 带专家 Transformer 的文本到视频扩散模型</a> —  · 2024-08-12 · 被引 2079</li><li><a href="https://aipaper.jasonlin.tech/p/jietang-2103.10360/">GLM：基于自回归空白填充的通用语言模型预训练</a> — Tsinghua University · 2021-03-18 · 被引 1944</li><li><a href="https://aipaper.jasonlin.tech/p/jietang-2406.12793/">ChatGLM：从 GLM-130B 到 GLM-4 All Tools 的大型语言模型家族</a> — Zhipu AI · 2024-06-18 · 被引 1609</li><li><a href="https://aipaper.jasonlin.tech/p/jietang-2103.10385/">GPT 也能理解：P-Tuning——用可训练的连续提示嵌入提升自然语言理解性能</a> — Tsinghua University · 2021-03-18 · 被引 1450</li><li><a href="https://aipaper.jasonlin.tech/p/jietang-2210.02414/">GLM-130B：一个开放的双语预训练模型</a> — Zhipu AI · 2022-10-05 · 被引 1285</li><li><a href="https://aipaper.jasonlin.tech/p/jietang-2308.03688/">AgentBench：评估作为智能体的大语言模型</a> — Tsinghua University / Zhipu AI · 2023-08-07 · 被引 1014</li><li><a href="https://aipaper.jasonlin.tech/p/jietang-2311.03079/">CogVLM：预训练语言模型的视觉专家</a> — Zhipu AI · 2023-11-06 · 被引 818</li><li><a href="https://aipaper.jasonlin.tech/p/jietang-2508.06471/">GLM-4.5：面向智能体、推理与编码（ARC）的基础模型</a> — Zhipu AI · 2025-08-08 · 被引 372</li><li><a href="https://aipaper.jasonlin.tech/p/jietang-2507.01006/">GLM-4.5V 和 GLM-4.1V-Thinking：迈向具有可扩展强化学习的通用多模态推理</a> — Zhipu AI · 2025-07-01 · 被引 290</li><li><a href="https://aipaper.jasonlin.tech/p/jietang-2602.15763/">GLM-5：从氛围编码到智能体工程</a> — Zhipu AI · 2026-02-17 · 被引 241</li></ul>
 <footer>© AI Paper · <a href="https://aipaper.jasonlin.tech/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架(linzheng3535@gmail.com)。</footer>
-</div></body></html>
+</div><script>(function(){try{
+var UA=navigator.userAgent||'';
+if(/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit/i.test(UA))return;
+var U='https://stats.jasonlin.tech',DWELL=4000;
+var LS=null;try{LS=window.localStorage}catch(_){}
+var aid='';
+try{
+  aid=(LS&&LS.aid)||'';
+  if(!aid){var i,n;
+    try{var u=new Uint8Array(10);crypto.getRandomValues(u);
+        for(i=0;i<10;i++){n=u[i].toString(16);aid+=n.length<2?'0'+n:n;}}
+    catch(_){for(i=0;i<20;i++)aid+=Math.floor(Math.random()*16).toString(16);}
+    if(LS)LS.aid=aid;}   /* 与 SPA 共用同一个 aid:先落静态页再点进互动版的人算 1 个 UV */
+}catch(_){aid='';}
+var sid='';try{if(LS&&LS.syncSidFor&&LS.syncSidFor===LS.syncCode)sid=LS.syncSid||'';}catch(_){}
+var ref='';try{ref=(document.referrer||'').replace(/^[a-z]+:\/\//i,'').split('/')[0];}catch(_){}
+var dev=/Mobi|Android|iPhone|iPad|iPod/i.test(UA)?'mobile':'desktop';
+function post(type){
+  try{
+    var body=JSON.stringify({type:type,path:'paper:'+location.pathname.replace(/index\.html$/,''),ua:dev,ref:ref,sid:sid,aid:aid});
+    if(navigator.sendBeacon&&typeof Blob!=='undefined')navigator.sendBeacon(U,new Blob([body],{type:'text/plain'}));
+    else{var x=new XMLHttpRequest();x.open('POST',U,true);x.setRequestHeader('Content-Type','text/plain');x.send(body);}
+  }catch(_){}
+}
+post('view');                                  /* 打开即发,口径不变 */
+var sent=false,acc=0,since=null,timer=null;    /* 以下是 read:攒够可见时长或等到一次交互 */
+function read(){if(sent)return;sent=true;if(timer){clearTimeout(timer);timer=null;}post('read');}
+function pause(){if(since!==null){acc+=Date.now()-since;since=null;}if(timer){clearTimeout(timer);timer=null;}}
+function resume(){if(sent||since!==null)return;since=Date.now();timer=setTimeout(read,Math.max(0,DWELL-acc));}
+function vis(){if(document.visibilityState==='visible')resume();else pause();}
+try{document.addEventListener('visibilitychange',vis);}catch(_){}
+var evs=['scroll','pointerdown','mousedown','keydown','touchstart'];
+for(var k=0;k<evs.length;k++){try{window.addEventListener(evs[k],read,true);}catch(_){}}
+vis();
+}catch(_){}})()</script></body></html>

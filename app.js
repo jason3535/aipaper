@@ -920,9 +920,15 @@ function vPerson(pid){
    <div style="margin-top:8px">${p.fields.map(ftag).join(' ')}</div></div></div>
   <p class="bio">${esc(p.bioEn)}</p><p class="bioz">${esc(p.bioZh)}</p>
   ${PAPER_GRAPH[pid]?`<a class="xlink" href="https://ai.jasonlin.tech/?node=${PAPER_GRAPH[pid]}" target="_blank" rel="noopener" style="margin-right:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6.5" r="2.1"/><circle cx="18" cy="8" r="2.1"/><circle cx="10.5" cy="18" r="2.1"/><path d="M8 7l7.9 1M8.1 8l1.8 8"/></svg>在关系图谱中查看</a>`:''}${PAPER2POD[pid]?`<a class="xlink" href="https://aipodcast.jasonlin.tech/#/person/${PAPER2POD[pid]}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-1a9 9 0 0 1 18 0v1"/><rect x="3" y="13.5" width="4" height="6.5" rx="1.6"/><rect x="17" y="13.5" width="4" height="6.5" rx="1.6"/></svg>在 AI 播客中收听访谈</a>`:''}
-  ${vArc(ps)}
   <h3 style="margin-top:30px">代表论文 · ${ps.length}</h3>
   <div class="grid" style="margin-top:14px">${ps.map(paperCard).join('')||'<p class="sub">暂无</p>'}</div>
+  ${/* 「研究脉络」必须排在论文列表**之后**。2026-08-29 实测(手机 390×844,首张论文卡的位置):
+       hinton 2.0 屏 / karpathy 1.8 屏 / tridao 1.7 屏,而没有脉络的 kendall 只要 0.8 屏 ——
+       脉络本身占 418-833px,把这位学者的论文目录整个压到了第二屏。
+       姊妹站 aipodcast 的「观点演变」是一模一样的毛病(本函数注释里那句「对标 aipodcast」
+       连问题一起抄了过来),那边实测:版式相同但列表在前的节目页,进内容的转化是人物页的 5 倍。
+       同理,论文越多的学者脉络越长、目录埋得越深 —— 内容最厚的页面最吃亏。 */''}
+  ${vArc(ps)}
  </section></div>${footer()}`;
 }
 /* 研究脉络:按年份把这位学者的论文串起来,看研究焦点怎么迁移。

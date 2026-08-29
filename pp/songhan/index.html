@@ -34,4 +34,38 @@
 <h2>收录的 12 篇论文（按被引排序）</h2>
 <ul class="p-list"><li><a href="https://aipaper.jasonlin.tech/p/songhan-1510.00149/">深度压缩：通过剪枝、训练量化和霍夫曼编码压缩深度神经网络</a> — Stanford · 2015-10-01 · 被引 10164</li><li><a href="https://aipaper.jasonlin.tech/p/songhan-2309.17453/">高效流式语言模型：注意力汇聚机制</a> — MIT · 2023-09-29 · 被引 2063</li><li><a href="https://aipaper.jasonlin.tech/p/songhan-2211.10438/">SmoothQuant：大型语言模型的准确高效训练后量化</a> — MIT · 2022-11-18 · 被引 1705</li><li><a href="https://aipaper.jasonlin.tech/p/songhan-1908.09791/">一次训练，处处可用：训练一个网络，专用于高效部署</a> — MIT · 2019-08-26 · 被引 1575</li><li><a href="https://aipaper.jasonlin.tech/p/songhan-2306.00978/">AWQ：面向大语言模型压缩与加速的激活感知权重量化</a> — MIT · 2023-06-01 · 被引 1478</li><li><a href="https://aipaper.jasonlin.tech/p/songhan-2405.04532/">QServe: W4A8KV4 量化与系统协同设计实现高效 LLM 服务</a> — MIT · 2024-05-07 · 被引 224</li><li><a href="https://aipaper.jasonlin.tech/p/songhan-2412.04468/">NVILA：高效前沿视觉语言模型</a> — NVIDIA / MIT · 2024-12-05 · 被引 222</li><li><a href="https://aipaper.jasonlin.tech/p/songhan-2410.10733/">深度压缩自编码器：面向高效高分辨率扩散模型</a> — MIT · 2024-10-14 · 被引 201</li><li><a href="https://aipaper.jasonlin.tech/p/songhan-2411.05007/">SVDQuant：通过低秩组件吸收异常值实现 4 比特扩散模型</a> — MIT · 2024-11-07 · 被引 148</li><li><a href="https://aipaper.jasonlin.tech/p/songhan-2205.14756/">EfficientViT：用于高分辨率密集预测的多尺度线性注意力</a> — MIT · 2022-05-29 · 被引 106</li><li><a href="https://aipaper.jasonlin.tech/p/songhan-2607.28449/">Lightning OPD 2.0：缓解大型推理模型跨教师在线策略蒸馏中的风格偏差</a> —  · 2026-07-30</li><li><a href="https://aipaper.jasonlin.tech/p/songhan-2606.04511/">SparDA: 用于高效长上下文 LLM 推理的稀疏解耦注意力</a> — MIT / NVIDIA · 2026-06-03 · 被引 0</li></ul>
 <footer>© AI Paper · <a href="https://aipaper.jasonlin.tech/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架(linzheng3535@gmail.com)。</footer>
-</div></body></html>
+</div><script>(function(){try{
+var UA=navigator.userAgent||'';
+if(/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit/i.test(UA))return;
+var U='https://stats.jasonlin.tech',DWELL=4000;
+var LS=null;try{LS=window.localStorage}catch(_){}
+var aid='';
+try{
+  aid=(LS&&LS.aid)||'';
+  if(!aid){var i,n;
+    try{var u=new Uint8Array(10);crypto.getRandomValues(u);
+        for(i=0;i<10;i++){n=u[i].toString(16);aid+=n.length<2?'0'+n:n;}}
+    catch(_){for(i=0;i<20;i++)aid+=Math.floor(Math.random()*16).toString(16);}
+    if(LS)LS.aid=aid;}   /* 与 SPA 共用同一个 aid:先落静态页再点进互动版的人算 1 个 UV */
+}catch(_){aid='';}
+var sid='';try{if(LS&&LS.syncSidFor&&LS.syncSidFor===LS.syncCode)sid=LS.syncSid||'';}catch(_){}
+var ref='';try{ref=(document.referrer||'').replace(/^[a-z]+:\/\//i,'').split('/')[0];}catch(_){}
+var dev=/Mobi|Android|iPhone|iPad|iPod/i.test(UA)?'mobile':'desktop';
+function post(type){
+  try{
+    var body=JSON.stringify({type:type,path:'paper:'+location.pathname.replace(/index\.html$/,''),ua:dev,ref:ref,sid:sid,aid:aid});
+    if(navigator.sendBeacon&&typeof Blob!=='undefined')navigator.sendBeacon(U,new Blob([body],{type:'text/plain'}));
+    else{var x=new XMLHttpRequest();x.open('POST',U,true);x.setRequestHeader('Content-Type','text/plain');x.send(body);}
+  }catch(_){}
+}
+post('view');                                  /* 打开即发,口径不变 */
+var sent=false,acc=0,since=null,timer=null;    /* 以下是 read:攒够可见时长或等到一次交互 */
+function read(){if(sent)return;sent=true;if(timer){clearTimeout(timer);timer=null;}post('read');}
+function pause(){if(since!==null){acc+=Date.now()-since;since=null;}if(timer){clearTimeout(timer);timer=null;}}
+function resume(){if(sent||since!==null)return;since=Date.now();timer=setTimeout(read,Math.max(0,DWELL-acc));}
+function vis(){if(document.visibilityState==='visible')resume();else pause();}
+try{document.addEventListener('visibilitychange',vis);}catch(_){}
+var evs=['scroll','pointerdown','mousedown','keydown','touchstart'];
+for(var k=0;k<evs.length;k++){try{window.addEventListener(evs[k],read,true);}catch(_){}}
+vis();
+}catch(_){}})()</script></body></html>

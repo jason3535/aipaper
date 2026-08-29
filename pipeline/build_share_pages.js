@@ -40,6 +40,21 @@ const CSS=`:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-
 .tr{margin-top:8px}.tr .sec{content-visibility:auto;contain-intrinsic-size:auto 600px;margin:0 0 10px}
 .tr h3{font-size:15px;margin:26px 0 8px;color:var(--ink);border-top:1px solid var(--line);padding-top:14px}
 .tr p.zh{margin:.2em 0}.tr p.en{margin:.1em 0 .9em}`;
+/* 匿名访问统计 —— 静态页必须自带一份。
+   2026-08-29 之前只有 app.js 里埋了点(1593 行 track()),而 app.js 只有 SPA 首页加载:
+   p/ 593 页 + pp/ 239 页 —— 恰恰是全部 SEO 落地页 —— 一条都没上报。
+   后果不是少统计,是结构性看不见:搜索引擎把人送到哪一篇、有没有人真的读,
+   在数据上完全无法判断。姊妹站 aipodcast 同日同法修好。
+
+   片段本体在 aipodcast 仓库的 pipeline/beacon.js(六站共用一份,含停留门槛的来龙去脉)。
+   按绝对路径引用,与本仓库 postingest.sh 引用 check_es_compat.js 的既有做法一致 ——
+   各站抄一份才是口径漂移的开始,宁可缺文件时直接报错。 */
+const BEACON=(()=>{
+  const SHARED='/Users/jason/CascadeProjects/aipodcast/pipeline/beacon.js';
+  const raw=fs.readFileSync(SHARED,'utf8');            // 缺了就让构建失败,别静默降级成没埋点
+  return raw.slice(raw.indexOf('<script>'),raw.lastIndexOf('</script>')+9)
+            .replace('%PATH%',"'paper:'+location.pathname.replace(/index\\.html$/,'')");})();
+
 const page=(title,desc,url,ogtype,bodyHtml,ld,extra='')=>`<!doctype html><html lang="zh"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title}</title>
@@ -62,7 +77,7 @@ const page=(title,desc,url,ogtype,bodyHtml,ld,extra='')=>`<!doctype html><html l
 ${extra}${ld.map(jl).join('\n')}
 <style>${CSS}</style></head><body><div class="wrap">${bodyHtml}
 <footer>© AI Paper · <a href="${SITE}/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架(linzheng3535@gmail.com)。</footer>
-</div></body></html>`;
+</div>${BEACON}</body></html>`;
 
 const byPid={};PAPERS.forEach(p=>(byPid[p.pid]=byPid[p.pid]||[]).push(p));
 const PDIR=path.join(ROOT,'p');fs.rmSync(PDIR,{recursive:true,force:true});fs.mkdirSync(PDIR,{recursive:true});

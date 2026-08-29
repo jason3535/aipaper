@@ -34,4 +34,38 @@
 <h2>收录的 7 篇论文（按被引排序）</h2>
 <ul class="p-list"><li><a href="https://aipaper.jasonlin.tech/p/junnanli-2301.12597/">BLIP-2：利用冻结的图像编码器和大型语言模型引导语言-图像预训练</a> — Salesforce · 2023-01-30 · 被引 8480</li><li><a href="https://aipaper.jasonlin.tech/p/junnanli-2201.12086/">BLIP：引导语言-图像预训练实现统一视觉-语言理解与生成</a> — Salesforce · 2022-01-28 · 被引 6925</li><li><a href="https://aipaper.jasonlin.tech/p/junnanli-2305.06500/">InstructBLIP：面向通用视觉-语言模型的指令微调</a> — Salesforce · 2023-05-11 · 被引 3589</li><li><a href="https://aipaper.jasonlin.tech/p/junnanli-2407.15754/">LongVideoBench：面向长上下文交错视频-语言理解的基准测试</a> — Rhymes AI · 2024-07-22 · 被引 628</li><li><a href="https://aipaper.jasonlin.tech/p/junnanli-2505.09568/">BLIP3-o：全开放统一多模态模型家族——架构、训练与数据集</a> — Salesforce · 2025-05-14 · 被引 322</li><li><a href="https://aipaper.jasonlin.tech/p/junnanli-2410.05993/">Aria：一个开放的多模态原生混合专家模型</a> — Rhymes AI · 2024-10-08 · 被引 139</li><li><a href="https://aipaper.jasonlin.tech/p/junnanli-2412.16256/">Aria-UI：面向 GUI 指令的视觉定位</a> — Rhymes AI / University of Hong Kong · 2024-12-20 · 被引 133</li></ul>
 <footer>© AI Paper · <a href="https://aipaper.jasonlin.tech/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架(linzheng3535@gmail.com)。</footer>
-</div></body></html>
+</div><script>(function(){try{
+var UA=navigator.userAgent||'';
+if(/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit/i.test(UA))return;
+var U='https://stats.jasonlin.tech',DWELL=4000;
+var LS=null;try{LS=window.localStorage}catch(_){}
+var aid='';
+try{
+  aid=(LS&&LS.aid)||'';
+  if(!aid){var i,n;
+    try{var u=new Uint8Array(10);crypto.getRandomValues(u);
+        for(i=0;i<10;i++){n=u[i].toString(16);aid+=n.length<2?'0'+n:n;}}
+    catch(_){for(i=0;i<20;i++)aid+=Math.floor(Math.random()*16).toString(16);}
+    if(LS)LS.aid=aid;}   /* 与 SPA 共用同一个 aid:先落静态页再点进互动版的人算 1 个 UV */
+}catch(_){aid='';}
+var sid='';try{if(LS&&LS.syncSidFor&&LS.syncSidFor===LS.syncCode)sid=LS.syncSid||'';}catch(_){}
+var ref='';try{ref=(document.referrer||'').replace(/^[a-z]+:\/\//i,'').split('/')[0];}catch(_){}
+var dev=/Mobi|Android|iPhone|iPad|iPod/i.test(UA)?'mobile':'desktop';
+function post(type){
+  try{
+    var body=JSON.stringify({type:type,path:'paper:'+location.pathname.replace(/index\.html$/,''),ua:dev,ref:ref,sid:sid,aid:aid});
+    if(navigator.sendBeacon&&typeof Blob!=='undefined')navigator.sendBeacon(U,new Blob([body],{type:'text/plain'}));
+    else{var x=new XMLHttpRequest();x.open('POST',U,true);x.setRequestHeader('Content-Type','text/plain');x.send(body);}
+  }catch(_){}
+}
+post('view');                                  /* 打开即发,口径不变 */
+var sent=false,acc=0,since=null,timer=null;    /* 以下是 read:攒够可见时长或等到一次交互 */
+function read(){if(sent)return;sent=true;if(timer){clearTimeout(timer);timer=null;}post('read');}
+function pause(){if(since!==null){acc+=Date.now()-since;since=null;}if(timer){clearTimeout(timer);timer=null;}}
+function resume(){if(sent||since!==null)return;since=Date.now();timer=setTimeout(read,Math.max(0,DWELL-acc));}
+function vis(){if(document.visibilityState==='visible')resume();else pause();}
+try{document.addEventListener('visibilitychange',vis);}catch(_){}
+var evs=['scroll','pointerdown','mousedown','keydown','touchstart'];
+for(var k=0;k<evs.length;k++){try{window.addEventListener(evs[k],read,true);}catch(_){}}
+vis();
+}catch(_){}})()</script></body></html>

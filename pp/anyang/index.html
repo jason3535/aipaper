@@ -34,4 +34,38 @@
 <h2>收录的 9 篇论文（按被引排序）</h2>
 <ul class="p-list"><li><a href="https://aipaper.jasonlin.tech/p/anyang-2505.09388/">Qwen3 技术报告</a> — Alibaba Qwen · 2025-05-14 · 被引 6307</li><li><a href="https://aipaper.jasonlin.tech/p/anyang-2412.15115/">Qwen2.5 技术报告</a> —  · 2024-12-19 · 被引 4372</li><li><a href="https://aipaper.jasonlin.tech/p/anyang-2409.12191/">Qwen2-VL：增强视觉语言模型在任何分辨率下对世界的感知</a> — Alibaba · 2024-09-18 · 被引 4352</li><li><a href="https://aipaper.jasonlin.tech/p/anyang-2309.16609/">Qwen 技术报告</a> —  · 2023-09-28 · 被引 4005</li><li><a href="https://aipaper.jasonlin.tech/p/anyang-2409.12186/">Qwen2.5-Coder 技术报告</a> — Qwen Team, Alibaba · 2024-09-18 · 被引 1330</li><li><a href="https://aipaper.jasonlin.tech/p/anyang-2409.12122/">Qwen2.5-Math 技术报告：通过自我改进迈向数学专家模型</a> — Qwen Team, Alibaba · 2024-09-18 · 被引 1029</li><li><a href="https://aipaper.jasonlin.tech/p/anyang-2501.15383/">Qwen2.5-1M 技术报告</a> —  · 2025-01-26 · 被引 179</li><li><a href="https://aipaper.jasonlin.tech/p/anyang-2603.00729/">Qwen3-Coder-Next 技术报告</a> — Alibaba Qwen · 2026-02-28 · 被引 50</li><li><a href="https://aipaper.jasonlin.tech/p/anyang-2607.28227/">Qwen-UI-Agent 技术报告：迈向下一代以真实世界为中心的基座 GUI 智能体</a> —  · 2026-07-30</li></ul>
 <footer>© AI Paper · <a href="https://aipaper.jasonlin.tech/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架(linzheng3535@gmail.com)。</footer>
-</div></body></html>
+</div><script>(function(){try{
+var UA=navigator.userAgent||'';
+if(/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit/i.test(UA))return;
+var U='https://stats.jasonlin.tech',DWELL=4000;
+var LS=null;try{LS=window.localStorage}catch(_){}
+var aid='';
+try{
+  aid=(LS&&LS.aid)||'';
+  if(!aid){var i,n;
+    try{var u=new Uint8Array(10);crypto.getRandomValues(u);
+        for(i=0;i<10;i++){n=u[i].toString(16);aid+=n.length<2?'0'+n:n;}}
+    catch(_){for(i=0;i<20;i++)aid+=Math.floor(Math.random()*16).toString(16);}
+    if(LS)LS.aid=aid;}   /* 与 SPA 共用同一个 aid:先落静态页再点进互动版的人算 1 个 UV */
+}catch(_){aid='';}
+var sid='';try{if(LS&&LS.syncSidFor&&LS.syncSidFor===LS.syncCode)sid=LS.syncSid||'';}catch(_){}
+var ref='';try{ref=(document.referrer||'').replace(/^[a-z]+:\/\//i,'').split('/')[0];}catch(_){}
+var dev=/Mobi|Android|iPhone|iPad|iPod/i.test(UA)?'mobile':'desktop';
+function post(type){
+  try{
+    var body=JSON.stringify({type:type,path:'paper:'+location.pathname.replace(/index\.html$/,''),ua:dev,ref:ref,sid:sid,aid:aid});
+    if(navigator.sendBeacon&&typeof Blob!=='undefined')navigator.sendBeacon(U,new Blob([body],{type:'text/plain'}));
+    else{var x=new XMLHttpRequest();x.open('POST',U,true);x.setRequestHeader('Content-Type','text/plain');x.send(body);}
+  }catch(_){}
+}
+post('view');                                  /* 打开即发,口径不变 */
+var sent=false,acc=0,since=null,timer=null;    /* 以下是 read:攒够可见时长或等到一次交互 */
+function read(){if(sent)return;sent=true;if(timer){clearTimeout(timer);timer=null;}post('read');}
+function pause(){if(since!==null){acc+=Date.now()-since;since=null;}if(timer){clearTimeout(timer);timer=null;}}
+function resume(){if(sent||since!==null)return;since=Date.now();timer=setTimeout(read,Math.max(0,DWELL-acc));}
+function vis(){if(document.visibilityState==='visible')resume();else pause();}
+try{document.addEventListener('visibilitychange',vis);}catch(_){}
+var evs=['scroll','pointerdown','mousedown','keydown','touchstart'];
+for(var k=0;k<evs.length;k++){try{window.addEventListener(evs[k],read,true);}catch(_){}}
+vis();
+}catch(_){}})()</script></body></html>
