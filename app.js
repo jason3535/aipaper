@@ -831,6 +831,15 @@ async function rsiShare(btn){try{
 
 /* 新手入门:里程碑论文,首页「第一次来」区(照 aipodcast STARTERS) */
 const STARTERS=['ilya-alexnet-2012','kaiming-1512.03385','shazeer-1706.03762','tombrown-2005.14165','deepmind-alphafold'];
+/* 近期必读:给新访客的第二条入口。选自 2026-08 埋点里真实被打开的正文
+   (导航页占 61% PV,正文只占 17% —— 新客不是没兴趣,是不知道从哪篇入手)。
+   与 STARTERS 的分工:那 5 篇是奠基脉络,这几篇是"当下正在被讨论的"。 */
+const RECENT_PICKS=['deepseek-spatiotemporal-composability','nathanlambert-teaching-everyone-to-fish-for-tokens','dario-machines-of-loving-grace','sam-gentle-singularity','anthropic-core-views-on-ai-safety','deepseek-dspark'];
+/* 新访客判定:本地没有任何阅读痕迹(读过/在读/待读)。用于首页板块排序——
+   老访客先看 Continue/稍后读,新访客先看 Start here,而不是三个空板块。 */
+function isNewcomer(){try{
+  return !recentGet().length && !laterGet().length && !readGet().size;
+}catch(e){return true}}
 function vHome(){
  // 按收录时间(addedAt)排:hero=最新收录那篇,最新栏=其后几篇(照 AI Podcast 逻辑,新收录的论文总能刷上首页)
  const byAdded=[...PAPERS].sort((a,b)=>(b.addedAt||'').localeCompare(a.addedAt||'')||(b.date||'').localeCompare(a.date||''));
@@ -859,6 +868,21 @@ function vHome(){
      <span class="ask-bar-btn">问全站</span>
    </div></div>`:''}
  <div class="wrap">
+  ${(()=>{/* 新访客:先给入口再给目录。老访客(有阅读痕迹)跳过,他们看下面的 Continue/稍后读。
+   数据依据(2026-08-31):近 14 天 61% 的 PV 停在导航列表页,只有 17% 打开正文;
+   而 79% 是新客,他们看到的 My/Continue/稍后读全是空板块。 */
+   if(!isNewcomer())return '';
+   const st=STARTERS.map(id=>PAPERS.find(p=>p.id===id)).filter(Boolean);
+   const rc=RECENT_PICKS.map(id=>PAPERS.find(p=>p.id===id)).filter(Boolean);
+   if(!st.length&&!rc.length)return '';
+   return `<section style="padding:30px 0 0"><div class="eyebrow">Start here · 新手入门</div>
+    <h2 class="title">第一次来？从这里开始</h2>
+    <div class="sub">不知道读什么，先挑一篇打开——奠基之作看脉络，近期必读看当下。</div>
+    ${st.length?`<div class="st-h2" style="margin-top:26px">奠基之作 · ${st.length} 篇</div>
+      <div class="rail" style="margin-top:14px">${st.map(paperCard).join('')}</div>`:''}
+    ${rc.length?`<div class="st-h2" style="margin-top:34px">近期必读 · ${rc.length} 篇</div>
+      <div class="rail" style="margin-top:14px">${rc.map(paperCard).join('')}</div>`:''}
+   </section>`;})()}
   ${(()=>{const rec=recentGet().map(id=>PAPERS.find(p=>p.id===id)).filter(Boolean).slice(0,4);
    return rec.length?`<section style="padding:30px 0 0"><div class="eyebrow">Continue · 继续阅读</div>
     <div class="recent-strip" style="margin-top:14px">${rec.map(p=>{const pe=PEOPLE[p.pid]||{};
@@ -866,7 +890,7 @@ function vHome(){
   ${(()=>{const lt=laterGet().map(id=>PAPERS.find(p=>p.id===id)).filter(Boolean).filter(p=>!readHas(p.id)).reverse().slice(0,8);
    return lt.length?`<section style="padding-top:8px"><div class="eyebrow">Read later · 稍后读</div><h2 class="title">我的待读 · ${lt.length}</h2>
     <div class="grid" style="margin-top:20px">${lt.map(paperCard).join('')}</div></section>`:'';})()}
-  ${(()=>{const st=STARTERS.map(id=>PAPERS.find(p=>p.id===id)).filter(Boolean);
+  ${(()=>{const st=isNewcomer()?[]:STARTERS.map(id=>PAPERS.find(p=>p.id===id)).filter(Boolean);
    return st.length?`<section style="padding-top:30px;padding-bottom:0"><div class="eyebrow">Start here · 新手入门</div>
     <h2 class="title">第一次来？从这 ${st.length} 篇开始</h2>
     <div class="sub">改变 AI 走向的里程碑，每篇都值得完整读一遍。</div>
@@ -875,6 +899,13 @@ function vHome(){
    <div class="grid" style="margin-top:20px">${latest.map(paperCard).join('')}</div></section>`:''}
   <section style="padding-top:8px"><div class="eyebrow">By field · 按领域浏览</div><h2 class="title">按研究领域浏览论文</h2>
    <div class="chips" style="margin-top:20px">${Object.keys(FIELDS).map(f=>`<span class="chip" onclick="go('#/papers?field=${f}')">${fdot(f)}${FIELDS[f].zh}</span>`).join('')}</div></section>
+  ${(()=>{/* 按机构浏览:埋点显示 /orgs→/org/Anthropic 是被真实走通的路径(近 14 天机构页 7 PV,
+     其中 5 个在 Anthropic),但首页此前只有领域入口,机构得先进 /orgs 才找得到。
+     取站内论文数最多的 8 家,按实际收录量排序,不写死。 */
+   const cnt={};PAPERS.forEach(p=>{if(p.org)cnt[p.org]=(cnt[p.org]||0)+1;});
+   const tops=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]).slice(0,8);
+   return tops.length?`<section style="padding-top:8px"><div class="eyebrow">By org · 按机构浏览</div><h2 class="title">按机构浏览论文</h2>
+    <div class="chips" style="margin-top:20px">${tops.map(o=>`<span class="chip" onclick="go('#/org/${encodeURIComponent(o)}')">${esc(o)} <b style="opacity:.5">${cnt[o]}</b></span>`).join('')}<span class="chip" onclick="go('#/orgs')">全部机构 →</span></div></section>`:'';})()}
   <section><div class="eyebrow">Scholars · 学者</div><h2 class="title">${pplOrder().length} 位学者</h2>
    <div class="chips" style="margin:14px 0 2px">${Object.keys(FIELDS).map(f=>`<span class="chip" onclick="go('#/people?field=${f}')">${fdot(f)}${FIELDS[f].zh}</span>`).join('')}</div>
    <div class="grid ppl-grid home-ppl" style="margin-top:20px">${pplOrder().map(pplCard).join('')}<a class="ppl-card ppl-more" href="#/people"><span class="pm-n">+${Math.max(0,pplOrder().length-17)}</span><div class="pm-t">查看全部学者</div><div class="pm-c">共 ${pplOrder().length} 位 →</div></a></div></section>
