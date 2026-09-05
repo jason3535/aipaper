@@ -1,5 +1,6 @@
 <!doctype html><html lang="zh"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <title>短训练，长测试：线性偏置注意力实现输入长度外推 · 奥菲尔·普雷斯 — AI Paper</title>
 <meta name="description" content="｜核心贡献：提出 ALiBi，一种简单的注意力位置方法，通过线性惩罚偏置注意力分数，惩罚与距离成正比。">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
@@ -27,6 +28,9 @@
 <style>:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}.cta-2{margin-left:8px;background:#fff;color:var(--acc);border:1px solid var(--line);cursor:pointer;font-family:inherit}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}
 /* 全文区。content-visibility 让屏幕外章节跳过渲染,长论文才不卡 */
 .tr{margin-top:8px}.tr .sec{content-visibility:auto;contain-intrinsic-size:auto 600px;margin:0 0 10px}
+/* 深色模式(2026-09-05 补):SPA 支持、静态分享页一直纯白,夜里点开分享链接先闪一屏白。 */
+@media (prefers-color-scheme:dark){:root{--ink:#f5f5f7;--sub:#a1a1a6;--line:#2c2c2e;--acc:#2997ff}
+body{background:#000;color:#f5f5f7}.cta-2{background:#1c1c1e;border-color:#3a3a3c}}
 .tr h3{font-size:15px;margin:26px 0 8px;color:var(--ink);border-top:1px solid var(--line);padding-top:14px}
 .tr p.zh{margin:.2em 0}.tr p.en{margin:.1em 0 .9em}</style></head><body><div class="wrap"><nav class="bc"><a href="https://aipaper.jasonlin.tech/">AI Paper</a> › <a href="https://aipaper.jasonlin.tech/pp/ofirpress/">奥菲尔·普雷斯</a> › 论文</nav>
 <h1>短训练，长测试：线性偏置注意力实现输入长度外推</h1><p class="en-t">Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation</p>
