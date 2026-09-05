@@ -37,6 +37,10 @@ python3 /Users/jason/CascadeProjects/aipodcast/pipeline/push_notify.py --site ai
 echo "── 7.7/8 主动推给搜索引擎(IndexNow,工具在 aipodcast 仓库)"
 python3 /Users/jason/CascadeProjects/aipodcast/pipeline/indexnow.py --site aipaper || echo "  ⚠ IndexNow 推送失败(不阻断)"
 echo "── 8/8 app.js 语法门禁"
+# app.js 版本号门禁(2026-09-05,播客站同款):index.html 的 app.js?v=<md5> 必须等于当前 app.js 的 md5,
+# 否则=改了 app.js 没重建,新内容顶着旧 URL 上线,SW cache-first 会把老版本钉在用户浏览器里。
+node -e 'const c=require("crypto"),f=require("fs");const h=c.createHash("md5").update(f.readFileSync("app.js","utf8")).digest("hex").slice(0,10);const m=f.readFileSync("index.html","utf8").match(/app\.js\?v=([a-f0-9]+)/);if(!m||m[1]!==h){console.error("  ✗ index.html 的 app.js?v="+(m&&m[1])+" ≠ app.js md5 "+h+" —— 跑 node pipeline/build_share_pages.js");process.exit(1);}console.log("  app.js 版本号与内容一致("+h+")")'
+
 node -e 'new Function(require("fs").readFileSync("app.js","utf8")); console.log("app.js 语法 OK")'
 node /Users/jason/CascadeProjects/aipodcast/pipeline/check_es_compat.js app.js
 # 静态页埋点门禁:两条流都得在。掉了不会报错、页面照常渲染,只是从此再也分不清爬虫,
