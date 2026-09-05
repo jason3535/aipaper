@@ -3,15 +3,15 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 239 位学者 / 593 篇论文
+规模: 239 位学者 / 597 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
 - [Anthropic / Anthropic](https://aipaper.jasonlin.tech/pp/anthropic/): AI safety lab (Claude); interpretability & alignment — 21 篇
 - [OpenAI / OpenAI](https://aipaper.jasonlin.tech/pp/openai/): Frontier AI lab (GPT / DALL·E / Codex) — 17 篇
 - [DeepSeek-AI / 深度求索](https://aipaper.jasonlin.tech/pp/deepseek/): Frontier open-model lab, China — 15 篇
+- [Zvi Mowshowitz / 兹维·莫绍维茨](https://aipaper.jasonlin.tech/pp/zvi/): Writer, Don't Worry About the Vase — 12 篇
 - [Song Han / 韩松](https://aipaper.jasonlin.tech/pp/songhan/): Associate Professor, MIT — 12 篇
-- [Zvi Mowshowitz / 兹维·莫绍维茨](https://aipaper.jasonlin.tech/pp/zvi/): Writer, Don't Worry About the Vase — 10 篇
 - [Junyang Lin / 林俊旸](https://aipaper.jasonlin.tech/pp/junyanglin/): Lead, Qwen Team, Alibaba — 10 篇
 - [Zhilin Yang / 杨植麟](https://aipaper.jasonlin.tech/pp/zhilinyang/): Founder & CEO, Moonshot AI (Kimi); XLNet lead author — 10 篇
 - [Jie Tang / 唐杰](https://aipaper.jasonlin.tech/pp/jietang/): Professor, Tsinghua University; Zhipu AI / GLM — 10 篇
@@ -27,6 +27,7 @@
 - [Albert Q. Jiang / 蒋启天](https://aipaper.jasonlin.tech/pp/aqjiang/): Research Scientist, Mistral AI — 7 篇
 - [Junnan Li / 李俊男](https://aipaper.jasonlin.tech/pp/junnanli/): Research Scientist (BLIP/BLIP-2 author), formerly Salesforce Research — 7 篇
 - [Tero Karras / 泰罗·卡拉斯](https://aipaper.jasonlin.tech/pp/tkarras/): Distinguished Research Scientist, NVIDIA Research — 7 篇
+- [Simon Willison / 西蒙·威利森](https://aipaper.jasonlin.tech/pp/simonwillison/): Creator of Datasette · Independent Researcher — 6 篇
 - [Nathan Lambert / 内森·兰伯特](https://aipaper.jasonlin.tech/pp/nathanlambert/): Post-training Lead, Allen Institute for AI — 6 篇
 - [Yu Gao / 高宇](https://aipaper.jasonlin.tech/pp/yugao/): ByteDance Seed, image & video generation — 6 篇
 - [Jim Fan / 范麟熙](https://aipaper.jasonlin.tech/pp/jimfan/): Senior Research Scientist, NVIDIA — 6 篇
@@ -34,7 +35,6 @@
 - [Noam Shazeer / 诺姆·沙泽尔](https://aipaper.jasonlin.tech/pp/shazeer/): Co-lead, Google Gemini — 6 篇
 - [Xinlong Wang / 王鑫龙](https://aipaper.jasonlin.tech/pp/xinlongwang/): Research Scientist, BAAI (Beijing Academy of AI) — 6 篇
 - [Geoffrey Hinton / 杰弗里·辛顿](https://aipaper.jasonlin.tech/pp/hinton/): Professor Emeritus, U of Toronto — 6 篇
-- [Simon Willison / 西蒙·威利森](https://aipaper.jasonlin.tech/pp/simonwillison/): Creator of Datasette · Independent Researcher — 5 篇
 - [Lilian Weng / 翁荔](https://aipaper.jasonlin.tech/pp/lilianweng/): Co-founder, Thinking Machines Lab · ex-VP, OpenAI — 5 篇
 - [Tri Dao / 特里·道](https://aipaper.jasonlin.tech/pp/tridao/): Chief Scientist, Together AI; Professor, Princeton — 5 篇
 - [Andrej Karpathy / 安德烈·卡帕西](https://aipaper.jasonlin.tech/pp/karpathy/): Founder, Eureka Labs; ex-OpenAI, ex-Tesla AI — 5 篇
@@ -52,6 +52,7 @@
 - [Sergey Levine / 谢尔盖·莱文](https://aipaper.jasonlin.tech/pp/svlevine/): Associate Professor, UC Berkeley; Co-founder, Physical Intelligence — 4 篇
 - [Ilya Sutskever / 伊利亚·苏茨克维尔](https://aipaper.jasonlin.tech/pp/ilya/): Co-founder, SSI (prev. Chief Scientist, OpenAI) — 4 篇
 - [Oriol Vinyals / 奥里奥尔·维尼亚尔斯](https://aipaper.jasonlin.tech/pp/oriol/): VP of Research, Google DeepMind; Gemini co-lead — 4 篇
+- [Ethan Mollick / 伊桑·莫利克](https://aipaper.jasonlin.tech/pp/ethanmollick/): Professor, Wharton School — 3 篇
 - [Xiaomi MiMo Team / 小米 MiMo 团队](https://aipaper.jasonlin.tech/pp/xiaomimimo/): Xiaomi LLM-Core, multimodal LLM — 3 篇
 - [Yoshua Bengio / 约书亚·本吉奥](https://aipaper.jasonlin.tech/pp/bengio/): Professor, Mila / U. Montréal; Turing Award — 3 篇
 - [Pieter Abbeel / 彼得·阿贝尔](https://aipaper.jasonlin.tech/pp/abbeel/): Professor, UC Berkeley — 3 篇
@@ -71,7 +72,6 @@
 - [Tsung-Yi Lin / 林宗毅](https://aipaper.jasonlin.tech/pp/tsungyilin/): Research Scientist, NVIDIA (formerly Google Brain, FAIR) — 3 篇
 - [Christian Szegedy / 克里斯蒂安·塞格迪](https://aipaper.jasonlin.tech/pp/cszegedy/): AI Researcher (xAI), formerly Google Brain — 3 篇
 - [Meituan LongCat Team / 美团 LongCat 团队](https://aipaper.jasonlin.tech/pp/meituan/): Frontier Model Team, Meituan — 2 篇
-- [Ethan Mollick / 伊桑·莫利克](https://aipaper.jasonlin.tech/pp/ethanmollick/): Professor, Wharton School — 2 篇
 - [Tony Fadell / 托尼·法德尔](https://aipaper.jasonlin.tech/pp/tonyfadell/): Principal, Build Collective · Father of the iPod — 2 篇
 - [Tianqi Chen / 陈天奇](https://aipaper.jasonlin.tech/pp/tianqi/): Assistant Professor, CMU — 2 篇
 - [Justin Johnson / 贾斯汀·约翰逊](https://aipaper.jasonlin.tech/pp/justinjohnson/): Co-founder, World Labs — 2 篇

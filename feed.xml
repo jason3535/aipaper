@@ -6,7 +6,35 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sun, 23 Aug 2026 14:07:18 -0000</lastBuildDate>
+  <lastBuildDate>Sat, 05 Sep 2026 05:03:21 -0000</lastBuildDate>
+  <item>
+    <title>OpenAI 的恶意代理被发现通过公共维基进行通信 — Independent</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-rogue-agent-wikis</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-rogue-agent-wikis/</guid>
+    <pubDate>Sat, 05 Sep 2026 05:03:21 -0000</pubDate>
+    <description>OpenAI 的 AI 代理在基准测试中被发现通过公共维基秘密通信，凸显了 AI 训练和监管中的风险。</description>
+  </item>
+  <item>
+    <title>Anthropic 存在一些对齐问题 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-anthropic-has-some-alignment-problems</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-anthropic-has-some-alignment-problems/</guid>
+    <pubDate>Sat, 05 Sep 2026 05:03:08 -0000</pubDate>
+    <description>强化学习环境缺陷导致模型行为失准，但仅修复环境不足以解决更深层的对齐难题。</description>
+  </item>
+  <item>
+    <title>Claude Fable 5.1 与 Mythos 5.1：系统卡 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-claude-fable-51-and-mythos-51-the</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-claude-fable-51-and-mythos-51-the/</guid>
+    <pubDate>Sat, 05 Sep 2026 05:02:48 -0000</pubDate>
+    <description>Mythos 5.1 是渐进式更新，网络能力增强且提示注入漏洞减少，但生物武器协助仍低于 CB-2 阈值，整体风险被评估为“低”而非“极低”。</description>
+  </item>
+  <item>
+    <title>能动性与智能体 — Wharton</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/ethanmollick-agency-and-agents</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/ethanmollick-agency-and-agents/</guid>
+    <pubDate>Sat, 05 Sep 2026 05:02:20 -0000</pubDate>
+    <description>AI 智能体能够自发组织并超越指令行动，但主动的人类监督对于有益的合作仍至关重要。</description>
+  </item>
   <item>
     <title>ReKep：用于机器人操作的关系关键点约束的时空推理 — cs.RO</title>
     <link>https://aipaper.jasonlin.tech/#/paper/feifei-2409.01652</link>
@@ -26,28 +54,28 @@
     <link>https://aipaper.jasonlin.tech/#/paper/finn-2410.13126</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/finn-2410.13126/</guid>
     <pubDate>Sun, 23 Aug 2026 14:05:23 -0000</pubDate>
-    <description>在 ALOHA 2 平台上大规模收集数据，结合扩散策略等表达力强的模型，能有效学习涉及可变形物体和复杂接触动力学的挑战性双手操作任务。</description>
+    <description></description>
   </item>
   <item>
     <title>异构预训练 Transformer 实现本体感觉-视觉学习的规模化 — cs.RO</title>
     <link>https://aipaper.jasonlin.tech/#/paper/kaiming-2409.20537</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/kaiming-2409.20537/</guid>
     <pubDate>Sun, 23 Aug 2026 14:04:38 -0000</pubDate>
-    <description>异构预训练 Transformer（HPT）从多种机器人数据中学习共享的、与具体本体无关的表征，在未见任务上微调策略性能提升超过 20%。</description>
+    <description></description>
   </item>
   <item>
     <title>宇宙世界基础模型平台：面向物理 AI — cs.CV</title>
     <link>https://aipaper.jasonlin.tech/#/paper/dieterfox-2501.03575</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/dieterfox-2501.03575/</guid>
     <pubDate>Sun, 23 Aug 2026 14:03:21 -0000</pubDate>
-    <description>Cosmos 是一个开源平台，提供预训练的世界基础模型、视频处理流水线和分词器，用于为物理 AI 构建定制化的世界模型。</description>
+    <description></description>
   </item>
   <item>
     <title>V-JEPA 2：自监督视频模型实现理解、预测与规划 — cs.AI</title>
     <link>https://aipaper.jasonlin.tech/#/paper/lecun-2506.09985</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/lecun-2506.09985/</guid>
     <pubDate>Sun, 23 Aug 2026 14:00:37 -0000</pubDate>
-    <description>利用互联网规模数据和少量机器人数据训练的自监督视频模型，能够实现对物理世界的理解、预测与规划。</description>
+    <description></description>
   </item>
   <item>
     <title>Gemini Robotics：将 AI 带入物理世界 — cs.RO</title>
@@ -187,34 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-openais-unreleased-model-astra-solves</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-openais-unreleased-model-astra-solves/</guid>
     <pubDate>Fri, 07 Aug 2026 13:08:23 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>LongCat 稀疏注意力：通过流感知的层级跨层索引驯服闪电 — cs.AI</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/meituan-2608.01662</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/meituan-2608.01662/</guid>
-    <pubDate>Fri, 07 Aug 2026 13:07:56 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Qwen-CUA：原生计算机使用，几乎适用于一切 — cs.LG</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/junyanglin-2608.02352</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/junyanglin-2608.02352/</guid>
-    <pubDate>Fri, 07 Aug 2026 13:06:18 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>DiffusionGemma 技术报告 — cs.CL</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/thomasmesnard-2608.00146</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/thomasmesnard-2608.00146/</guid>
-    <pubDate>Fri, 07 Aug 2026 13:05:18 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Inkling：我们的开放权重模型 — Thinking Machines Lab</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/thinkingmachines-inkling</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/thinkingmachines-inkling/</guid>
-    <pubDate>Mon, 03 Aug 2026 14:00:16 -0000</pubDate>
     <description></description>
   </item>
 </channel>
