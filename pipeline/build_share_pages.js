@@ -62,7 +62,8 @@ const BEACON=(()=>{
   return raw.slice(raw.indexOf('<script>'),raw.lastIndexOf('</script>')+9)
             .replace('%PATH%',"'paper:'+location.pathname.replace(/index\\.html$/,'')");})();
 
-const page=(title,desc,url,ogtype,bodyHtml,ld,extra='')=>`<!doctype html><html lang="zh"><head><meta charset="utf-8">
+const ogFor=(sub,id)=>fs.existsSync(path.join(ROOT,'og',sub,id+'.jpg'))?`${SITE}/og/${sub}/${id}.jpg`:`${SITE}/assets/og.png`;   // 每页专属分享卡(gen_og_cards.py),没有就回退
+const page=(title,desc,url,ogtype,bodyHtml,ld,extra='',og=`${SITE}/assets/og.png`)=>`<!doctype html><html lang="zh"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title}</title>
 <meta name="description" content="${desc}">
@@ -74,13 +75,13 @@ const page=(title,desc,url,ogtype,bodyHtml,ld,extra='')=>`<!doctype html><html l
 <meta property="og:locale" content="zh_CN"><meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${desc}">
-<meta property="og:image" content="${SITE}/assets/og.png">
+<meta property="og:image" content="${og}">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${title}">
 <meta property="og:url" content="${url}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${desc}">
-<meta name="twitter:image" content="${SITE}/assets/og.png">
+<meta name="twitter:image" content="${og}">
 ${extra}${ld.map(jl).join('\n')}
 <style>${CSS}</style></head><body><div class="wrap">${bodyHtml}
 <footer>© AI Paper · <a href="${SITE}/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架(linzheng3535@gmail.com)。</footer>
@@ -127,7 +128,7 @@ document.querySelectorAll('a.cta').forEach(function(a){a.href=h});})()</script>`
 <meta property="article:author" content="${esc(pe.en||'')}">
 ${(p.fields||[]).map(f=>`<meta property="article:tag" content="${esc(f)}">`).join('')}
 `;
-  fs.writeFileSync(path.join(PDIR,p.id,'index.html'),page(title,desc,url,'article',body,ld,extra));
+  fs.writeFileSync(path.join(PDIR,p.id,'index.html'),page(title,desc,url,'article',body,ld,extra,ogFor('p',p.id)));
   n++;
 });
 // 学者/实体 hub 页
@@ -151,7 +152,7 @@ ${xlinksOf(pid)}
   fs.mkdirSync(path.join(HDIR,pid),{recursive:true});
   const hkw=[pe.zh,pe.en,pe.tiZh,pe.tiEn,...new Set(ps.flatMap(p=>p.fields||[])),'AI学者','代表论文','researcher','deep learning'].filter(Boolean).join(',');
   const hextra=`<meta name="keywords" content="${esc(hkw)}">\n<meta name="author" content="${esc(pe.en||'')}">\n`;
-  fs.writeFileSync(path.join(HDIR,pid,'index.html'),page(title,desc,url,'profile',body,ld,hextra));
+  fs.writeFileSync(path.join(HDIR,pid,'index.html'),page(title,desc,url,'profile',body,ld,hextra,ogFor('pp',pid)));
   pn++;
 });
 // sitemap

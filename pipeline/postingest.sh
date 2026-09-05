@@ -17,6 +17,7 @@ fi
 echo "── 1/8 首屏瘦身(slim_index)"
 python3 pipeline/slim_index.py | tail -1
 echo "── 2/8 分享页 + sitemap + llms.txt(build_share_pages)"
+echo "── 每页分享卡(gen_og_cards,新增的才生成;工具在 aipodcast 仓库)"; python3 /Users/jason/CascadeProjects/aipodcast/pipeline/gen_og_cards.py --site aipaper | tail -1
 node pipeline/build_share_pages.js | tail -1
 echo "── 3/8 Ask/检索/MCP 目录(build_index,带非空率门禁)"
 node pipeline/build_index.js | tail -1
