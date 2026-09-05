@@ -50,7 +50,14 @@ const CSS=`:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-
    按绝对路径引用,与本仓库 postingest.sh 引用 check_es_compat.js 的既有做法一致 ——
    各站抄一份才是口径漂移的开始,宁可缺文件时直接报错。 */
 const BEACON=(()=>{
-  const SHARED='/Users/jason/CascadeProjects/aipodcast/pipeline/beacon.js';
+  // 两台 Mac 的 aipodcast 仓库位置不同(个人 Mac ~/CascadeProjects,工作 Mac 直接在 ~ 下),
+  // 按候选路径取第一个存在的;也可用 BEACON_JS 环境变量强制指定。
+  // 仍然「缺了就让构建失败」——不静默降级成没埋点,这是本文件原有的取舍。
+  const CANDS=[process.env.BEACON_JS,
+    '/Users/jason/CascadeProjects/aipodcast/pipeline/beacon.js',
+    require('os').homedir()+'/aipodcast/pipeline/beacon.js'].filter(Boolean);
+  const SHARED=CANDS.find(x=>fs.existsSync(x));
+  if(!SHARED) throw new Error('找不到共用埋点片段 beacon.js,试过:\n  '+CANDS.join('\n  '));
   const raw=fs.readFileSync(SHARED,'utf8');            // 缺了就让构建失败,别静默降级成没埋点
   return raw.slice(raw.indexOf('<script>'),raw.lastIndexOf('</script>')+9)
             .replace('%PATH%',"'paper:'+location.pathname.replace(/index\\.html$/,'')");})();
