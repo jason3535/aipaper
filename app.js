@@ -1250,7 +1250,11 @@ function placeAsk(){
 askMQ.addEventListener?askMQ.addEventListener('change',placeAsk):askMQ.addListener(placeAsk);
 function jumpSec(i){const el=document.getElementById('sec-'+i);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});const sh=document.getElementById('tocSheet');if(sh)sh.classList.remove('on');}
 function toggleTocSheet(){const s=document.getElementById('tocSheet');if(s)s.classList.toggle('on');}
-async function copyShare(id){const url=location.origin+'/p/'+id+'/';const b=event&&event.currentTarget;try{await navigator.clipboard.writeText(url);if(b){const t=b.textContent;b.textContent='已复制';setTimeout(()=>b.textContent=t,1500);}}catch(e){if(b)b.textContent='复制失败';}}
+/* 分享:手机走系统分享面板(带该篇专属 OG 卡),桌面回退复制链接;分享的是静态页 /p/<id>/ */
+async function copyShare(id){const url=location.origin+'/p/'+id+'/';const b=event&&event.currentTarget;const pp=(typeof PAPERS!=='undefined'?PAPERS:[]).find(x=>x.id===id)||{};
+  try{track&&track('share');}catch(_){}
+  if(navigator.share){try{await navigator.share({title:(pp.tZh||pp.tEn||'AI Paper'),text:(pp.sZh||pp.sEn||''),url});return;}catch(_){}}
+  try{await navigator.clipboard.writeText(url);if(b){const t=b.textContent;b.textContent='已复制';setTimeout(()=>b.textContent=t,1500);}}catch(e){if(b)b.textContent='复制失败';}}
 function inReader(node){let el=node&&(node.nodeType===3?node.parentElement:node);return !!(el&&el.closest&&el.closest('.reader'));}
 function selSecIndex(){const node=window.getSelection().anchorNode;if(!node)return -1;
  let el=node.nodeType===3?node.parentElement:node;const unit=el&&el.closest?el.closest('.para,.pfig,.peq'):null;let p=unit||el;

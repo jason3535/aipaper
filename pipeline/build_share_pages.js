@@ -35,7 +35,7 @@ const xlinksOf=pid=>{
   if(PAPER_GRAPH[pid])x.push(`<a href="https://ai.jasonlin.tech/p/${PAPER_GRAPH[pid]}.html">AI 学者图谱</a>`);
   return x.length?`<p class="meta">同一人物 · 姊妹站：${x.join(' · ')}</p>`:'';
 };
-const CSS=`:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}
+const CSS=`:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}.cta-2{margin-left:8px;background:#fff;color:var(--acc);border:1px solid var(--line);cursor:pointer;font-family:inherit}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}
 /* 全文区。content-visibility 让屏幕外章节跳过渲染,长论文才不卡 */
 .tr{margin-top:8px}.tr .sec{content-visibility:auto;contain-intrinsic-size:auto 600px;margin:0 0 10px}
 .tr h3{font-size:15px;margin:26px 0 8px;color:var(--ink);border-top:1px solid var(--line);padding-top:14px}
@@ -85,7 +85,9 @@ const page=(title,desc,url,ogtype,bodyHtml,ld,extra='',og=`${SITE}/assets/og.png
 ${extra}${ld.map(jl).join('\n')}
 <style>${CSS}</style></head><body><div class="wrap">${bodyHtml}
 <footer>© AI Paper · <a href="${SITE}/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架(linzheng3535@gmail.com)。</footer>
-</div>${BEACON}</body></html>`;
+</div><script>function shareThis(b){var u=document.querySelector('link[rel=canonical]').href,t=document.title,d=(document.querySelector('meta[name=description]')||{}).content||'';
+if(navigator.share){navigator.share({title:t,text:d,url:u}).catch(function(){});return;}
+try{navigator.clipboard.writeText(u).then(function(){var o=b.textContent;b.textContent='已复制链接';setTimeout(function(){b.textContent=o},1600)})}catch(e){}}</script>${BEACON}</body></html>`;
 
 const byPid={};PAPERS.forEach(p=>(byPid[p.pid]=byPid[p.pid]||[]).push(p));
 const PDIR=path.join(ROOT,'p');fs.rmSync(PDIR,{recursive:true,force:true});fs.mkdirSync(PDIR,{recursive:true});
@@ -106,7 +108,7 @@ PAPERS.forEach(p=>{
   const body=`<nav class="bc"><a href="${SITE}/">AI Paper</a> › <a href="${person}">${esc(pe.zh||pe.en||'')}</a> › 论文</nav>
 <h1>${esc(p.tZh||p.tEn)}</h1><p class="en-t">${esc(p.tEn)}</p>
 <p class="meta"><a href="${person}">${esc(pe.zh||'')} ${esc(pe.en||'')}</a> · ${esc(p.org||'')} · ${esc(p.date||'')}${srcUrl?` · <a href="${esc(srcUrl)}" rel="nofollow">${esc(srcLbl)} ↗</a>`:''}${p.cites!=null?` · 被引 ${p.cites}`:''}</p>
-<a class="cta" href="${hash}">打开互动全文版（逐段中英对照 + 图/公式 + 论文问答）→</a>
+<a class="cta" href="${hash}">打开互动全文版（逐段中英对照 + 图/公式 + 论文问答）→</a><button class="cta cta-2" onclick="shareThis(this)">分享本篇</button>
 ${(d.absZh||p.sZh||d.absEn||p.sEn)?`<h2>摘要 · Abstract</h2><p class="zh">${esc(d.absZh||p.sZh||'')}</p><p class="en">${esc(d.absEn||p.sEn||'')}</p>`:''}
 ${contrib.length?`<h2>核心贡献 · Key contributions</h2><ul>${li(contrib)}</ul>`:''}
 ${limits.length?`<h2>局限 · Limitations</h2><ul>${li(limits)}</ul>`:''}
@@ -142,7 +144,7 @@ Object.keys(byPid).forEach(pid=>{
   const body=`<nav class="bc"><a href="${SITE}/">AI Paper</a> › ${esc(pe.zh||pe.en||'')}</nav>
 <h1>${esc(pe.zh||'')} ${esc(pe.en||'')}</h1><p class="en-t">${esc(pe.tiZh||'')} · ${esc(pe.tiEn||'')}</p>
 ${pe.bioZh?`<p class="zh">${esc(pe.bioZh)}</p><p class="en">${esc(pe.bioEn||'')}</p>`:''}
-<a class="cta" href="${SITE}/#/person/${pid}">在 AI Paper 查看 TA 的全部论文 →</a>
+<a class="cta" href="${SITE}/#/person/${pid}">在 AI Paper 查看 TA 的全部论文 →</a><button class="cta cta-2" onclick="shareThis(this)">分享</button>
 ${xlinksOf(pid)}
 <h2>收录的 ${ps.length} 篇论文（按被引排序）</h2>
 <ul class="p-list">${ps.map(p=>`<li><a href="${SITE}/p/${p.id}/">${esc(p.tZh||p.tEn)}</a> — ${esc(p.org||'')} · ${esc(p.date||'')}${p.cites!=null?` · 被引 ${p.cites}`:''}</li>`).join('')}</ul>`;
