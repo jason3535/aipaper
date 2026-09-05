@@ -1603,7 +1603,19 @@ function track(type,path){try{
   else fetch(STATS_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body,keepalive:true});
 }catch(_){}}
 function _sidHash(){try{return (localStorage.statsSid||'')}catch(_){return ''}}
-function trackView(){const p=location.hash.replace(/^#/,'').split('?')[0]||'/';if(p===_lastView)return;_lastView=p;track('view');}
+function trackView(){const p=location.hash.replace(/^#/,'').split('?')[0]||'/';if(p===_lastView)return;_lastView=p;track('view');_rdArm(p);}
+/* read 流(2026-09-05 起 SPA 也发),与静态页共用的 aipodcast/pipeline/beacon.js 同口径:
+   当前路由可见满 4 秒,或打开 800ms 之后发生一次真实交互,二者取先;换路由重新起算。
+   之前 SPA 只有 view,近 7 天 aipaper 276 PV / 229 UV 里到底几个真人,SPA 侧完全看不见。
+   800ms 起步保护:换路由 scrollTo(0,0) 会冒一个 scroll,渲染型爬虫也是打开即滚。*/
+let _rd={path:null,sent:true,acc:0,since:null,timer:null,t0:0};
+function _rdPost(){if(_rd.sent)return;_rd.sent=true;if(_rd.timer){clearTimeout(_rd.timer);_rd.timer=null;}track('read',_rd.path);}
+function _rdPause(){if(_rd.since!==null){_rd.acc+=Date.now()-_rd.since;_rd.since=null;}if(_rd.timer){clearTimeout(_rd.timer);_rd.timer=null;}}
+function _rdResume(){if(_rd.sent||_rd.since!==null||document.visibilityState!=='visible')return;_rd.since=Date.now();_rd.timer=setTimeout(_rdPost,Math.max(0,4000-_rd.acc));}
+function _rdArm(p){_rdPause();_rd={path:p,sent:false,acc:0,since:null,timer:null,t0:Date.now()};_rdResume();}
+function _rdInteract(){if(_rd.sent||Date.now()-_rd.t0<800)return;_rdPost();}
+try{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')_rdResume();else _rdPause();});
+  ['scroll','pointerdown','keydown','touchstart'].forEach(ev=>window.addEventListener(ev,_rdInteract,true));}catch(_){}
 
 function recentAdd(id){let r=recentGet().filter(x=>x!==id);r.unshift(id);localStorage.recentPapers=JSON.stringify(r.slice(0,6));_recentSnap=localStorage.recentPapers;if(typeof syncTouch==='function')syncTouch();}
 
