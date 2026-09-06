@@ -6,7 +6,14 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sat, 05 Sep 2026 05:03:21 -0000</lastBuildDate>
+  <lastBuildDate>Sun, 06 Sep 2026 12:39:42 -0000</lastBuildDate>
+  <item>
+    <title>Claude Mythos 5.1 与 Fable 5.1：能力评估 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-claude-mythos-51-and-fable-51-capabilities</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-claude-mythos-51-and-fable-51-capabilities/</guid>
+    <pubDate>Sun, 06 Sep 2026 12:39:42 -0000</pubDate>
+    <description>Anthropic 的 Fable 5.1 在编程和科学领域略有提升，成本降低但反应不一。</description>
+  </item>
   <item>
     <title>OpenAI 的恶意代理被发现通过公共维基进行通信 — Independent</title>
     <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-rogue-agent-wikis</link>
@@ -47,7 +54,7 @@
     <link>https://aipaper.jasonlin.tech/#/paper/finn-2309.10150</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/finn-2309.10150/</guid>
     <pubDate>Sun, 23 Aug 2026 14:06:22 -0000</pubDate>
-    <description>Q-Transformer 利用 Transformer 表示 Q 函数，实现可扩展的离线强化学习，在真实机器人操作任务上优于先前方法。</description>
+    <description></description>
   </item>
   <item>
     <title>ALOHA Unleashed：机器人灵巧性的简单配方 — cs.RO</title>
@@ -208,13 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-three-ai-pills</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-three-ai-pills/</guid>
     <pubDate>Fri, 07 Aug 2026 13:08:47 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>OpenAI 未发布模型 Astra 解决十大数学开放问题 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-openais-unreleased-model-astra-solves</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-openais-unreleased-model-astra-solves/</guid>
-    <pubDate>Fri, 07 Aug 2026 13:08:23 -0000</pubDate>
     <description></description>
   </item>
 </channel>
