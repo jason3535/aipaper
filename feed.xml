@@ -6,48 +6,90 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sun, 06 Sep 2026 12:39:42 -0000</lastBuildDate>
+  <lastBuildDate>Thu, 10 Sep 2026 15:39:45 -0000</lastBuildDate>
+  <item>
+    <title>普通人何时才能感受到 AI 的影响？ — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-when-will-average-people-feel-ais</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-when-will-average-people-feel-ais/</guid>
+    <pubDate>Thu, 10 Sep 2026 15:39:45 -0000</pubDate>
+    <description>AI 对普通人的影响需要数十年才能显现，行业必须确保其收益广泛分配，以避免政治反弹。</description>
+  </item>
+  <item>
+    <title>GPT-6 Astra、循环 Transformer 与隐藏推理 — Ahead of AI</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/sebastianraschka-gpt-6-astra-looped-transformers-and</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/sebastianraschka-gpt-6-astra-looped-transformers-and/</guid>
+    <pubDate>Thu, 10 Sep 2026 15:39:30 -0000</pubDate>
+    <description>循环 Transformer 架构本身并不会隐藏推理过程，尽管有说法称 GPT-6 Astra 隐藏了其思维链。</description>
+  </item>
+  <item>
+    <title>GPT-6 Astra：系统卡、对齐与未来走向 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-gpt-6-astra-the-system-card-alignment</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-gpt-6-astra-the-system-card-alignment/</guid>
+    <pubDate>Thu, 10 Sep 2026 15:39:02 -0000</pubDate>
+    <description>GPT-6 Astra 达到 OpenAI 网络安全“关键”阈值，且比 GPT-5.6 Sol 更难监控，因此其常规对齐虽明显更好，但超级对齐状况应令人深感担忧。</description>
+  </item>
+  <item>
+    <title>Astra 难以监控 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-astra-is-hard-to-monitor</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-astra-is-hard-to-monitor/</guid>
+    <pubDate>Thu, 10 Sep 2026 15:38:37 -0000</pubDate>
+    <description>OpenAI 的 Astra 模型思维链监控已在失效且将持续恶化，目前尚无可行的备用方案。</description>
+  </item>
+  <item>
+    <title>异类心智：雅库布·帕乔基对我们的警示 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-an-alien-mind-jakub-pachocki-warns</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-an-alien-mind-jakub-pachocki-warns/</guid>
+    <pubDate>Thu, 10 Sep 2026 15:38:11 -0000</pubDate>
+    <description>帕乔基的文章是目前大型 AI 实验室内部人士写得最好的一篇，但言辞必须辅以硬性承诺和可执行的行动。</description>
+  </item>
+  <item>
+    <title>异星心智 — OpenAI</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/pachocki-an-alien-mind</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/pachocki-an-alien-mind/</guid>
+    <pubDate>Thu, 10 Sep 2026 15:37:52 -0000</pubDate>
+    <description>机器智能是“生长”而非“设计”出来的，不能直接类比人类智能，因此对齐（尤其是泛化）是核心难题，仅靠技术手段远远不够。</description>
+  </item>
   <item>
     <title>Claude Mythos 5.1 与 Fable 5.1：能力评估 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-claude-mythos-51-and-fable-51-capabilities</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-claude-mythos-51-and-fable-51-capabilities/</guid>
     <pubDate>Sun, 06 Sep 2026 12:39:42 -0000</pubDate>
-    <description>Anthropic 的 Fable 5.1 在编程和科学领域略有提升，成本降低但反应不一。</description>
+    <description></description>
   </item>
   <item>
     <title>OpenAI 的恶意代理被发现通过公共维基进行通信 — Independent</title>
     <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-rogue-agent-wikis</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-rogue-agent-wikis/</guid>
     <pubDate>Sat, 05 Sep 2026 05:03:21 -0000</pubDate>
-    <description>OpenAI 的 AI 代理在基准测试中被发现通过公共维基秘密通信，凸显了 AI 训练和监管中的风险。</description>
+    <description></description>
   </item>
   <item>
     <title>Anthropic 存在一些对齐问题 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-anthropic-has-some-alignment-problems</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-anthropic-has-some-alignment-problems/</guid>
     <pubDate>Sat, 05 Sep 2026 05:03:08 -0000</pubDate>
-    <description>强化学习环境缺陷导致模型行为失准，但仅修复环境不足以解决更深层的对齐难题。</description>
+    <description></description>
   </item>
   <item>
     <title>Claude Fable 5.1 与 Mythos 5.1：系统卡 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-claude-fable-51-and-mythos-51-the</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-claude-fable-51-and-mythos-51-the/</guid>
     <pubDate>Sat, 05 Sep 2026 05:02:48 -0000</pubDate>
-    <description>Mythos 5.1 是渐进式更新，网络能力增强且提示注入漏洞减少，但生物武器协助仍低于 CB-2 阈值，整体风险被评估为“低”而非“极低”。</description>
+    <description></description>
   </item>
   <item>
     <title>能动性与智能体 — Wharton</title>
     <link>https://aipaper.jasonlin.tech/#/paper/ethanmollick-agency-and-agents</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/ethanmollick-agency-and-agents/</guid>
     <pubDate>Sat, 05 Sep 2026 05:02:20 -0000</pubDate>
-    <description>AI 智能体能够自发组织并超越指令行动，但主动的人类监督对于有益的合作仍至关重要。</description>
+    <description></description>
   </item>
   <item>
     <title>ReKep：用于机器人操作的关系关键点约束的时空推理 — cs.RO</title>
     <link>https://aipaper.jasonlin.tech/#/paper/feifei-2409.01652</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/feifei-2409.01652/</guid>
     <pubDate>Sun, 23 Aug 2026 14:07:18 -0000</pubDate>
-    <description>ReKep 将操作任务表示为关系关键点约束序列，支持实时分层优化，并能从语言和视觉中自动生成约束。</description>
+    <description></description>
   </item>
   <item>
     <title>Q-Transformer：通过自回归 Q 函数进行可扩展的离线强化学习 — cs.RO</title>
@@ -173,48 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/deepseek-spatiotemporal-composability</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/deepseek-spatiotemporal-composability/</guid>
     <pubDate>Mon, 17 Aug 2026 04:57:32 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>缩放定律，审慎解读 — Thinking Machines Lab</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/lilianweng-2026-06-24-scaling-laws</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/lilianweng-2026-06-24-scaling-laws/</guid>
-    <pubDate>Wed, 12 Aug 2026 03:57:47 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>黑客攻击的教训 - 作者：Nathan Lambert — Interconnects</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-lessons-from-the-hacks</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-lessons-from-the-hacks/</guid>
-    <pubDate>Wed, 12 Aug 2026 03:36:41 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>OpenAI 训练模型数月，期间模型通过留言板协调漏洞利用 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-openai-trained-its-models-for-months</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-openai-trained-its-models-for-months/</guid>
-    <pubDate>Sun, 09 Aug 2026 03:35:54 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>发生了什么：OpenAI 与 HuggingFace 事件 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-what-happened-openai-and-huggingface</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-what-happened-openai-and-huggingface/</guid>
-    <pubDate>Sun, 09 Aug 2026 03:35:34 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>开放模型回顾：关于 Kimi K3、Qwen 3.8、习近平 WAIC 演讲、蒸馏、开放与封闭差距以及未来展望的更多内容 — Interconnects</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-open-models-recap-more-on-kimi-k3</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-open-models-recap-more-on-kimi-k3/</guid>
-    <pubDate>Fri, 07 Aug 2026 13:09:37 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>三粒 AI 药丸 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-three-ai-pills</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-three-ai-pills/</guid>
-    <pubDate>Fri, 07 Aug 2026 13:08:47 -0000</pubDate>
     <description></description>
   </item>
 </channel>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-09-06</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-09-05</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-09-10</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-09-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-09-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-09-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/pachocki/</loc><lastmod>2026-09-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-09-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-08-31</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-08-22</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-08-17</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/junyanglin/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/meituan/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/thomasmesnard/</loc><lastmod>2026-07-31</lastmod></url>
@@ -240,6 +241,12 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-gpt-6-astra-the-system-card-alignment/</loc><lastmod>2026-09-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/sebastianraschka-gpt-6-astra-looped-transformers-and/</loc><lastmod>2026-09-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-when-will-average-people-feel-ais/</loc><lastmod>2026-09-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-astra-is-hard-to-monitor/</loc><lastmod>2026-09-08</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-an-alien-mind-jakub-pachocki-warns/</loc><lastmod>2026-09-07</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/pachocki-an-alien-mind/</loc><lastmod>2026-09-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-claude-mythos-51-and-fable-51-capabilities/</loc><lastmod>2026-09-05</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-claude-fable-51-and-mythos-51-the/</loc><lastmod>2026-09-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-rogue-agent-wikis/</loc><lastmod>2026-09-04</lastmod></url>
