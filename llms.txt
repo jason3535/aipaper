@@ -3,14 +3,14 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 239 位学者 / 598 篇论文
+规模: 240 位学者 / 604 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
 - [Anthropic / Anthropic](https://aipaper.jasonlin.tech/pp/anthropic/): AI safety lab (Claude); interpretability & alignment — 21 篇
 - [OpenAI / OpenAI](https://aipaper.jasonlin.tech/pp/openai/): Frontier AI lab (GPT / DALL·E / Codex) — 17 篇
+- [Zvi Mowshowitz / 兹维·莫绍维茨](https://aipaper.jasonlin.tech/pp/zvi/): Writer, Don't Worry About the Vase — 16 篇
 - [DeepSeek-AI / 深度求索](https://aipaper.jasonlin.tech/pp/deepseek/): Frontier open-model lab, China — 15 篇
-- [Zvi Mowshowitz / 兹维·莫绍维茨](https://aipaper.jasonlin.tech/pp/zvi/): Writer, Don't Worry About the Vase — 13 篇
 - [Song Han / 韩松](https://aipaper.jasonlin.tech/pp/songhan/): Associate Professor, MIT — 12 篇
 - [Junyang Lin / 林俊旸](https://aipaper.jasonlin.tech/pp/junyanglin/): Lead, Qwen Team, Alibaba — 10 篇
 - [Zhilin Yang / 杨植麟](https://aipaper.jasonlin.tech/pp/zhilinyang/): Founder & CEO, Moonshot AI (Kimi); XLNet lead author — 10 篇
@@ -18,17 +18,17 @@
 - [An Yang / 杨安](https://aipaper.jasonlin.tech/pp/anyang/): Researcher, Qwen Team, Alibaba — 9 篇
 - [Xingwu Sun / 孙兴武](https://aipaper.jasonlin.tech/pp/xingwusun/): Lead Researcher, Hunyuan Team, Tencent — 9 篇
 - [Dario Amodei / 达里奥·阿莫迪](https://aipaper.jasonlin.tech/pp/dario/): CEO, Anthropic — 9 篇
+- [Sebastian Raschka / 塞巴斯蒂安·拉施卡](https://aipaper.jasonlin.tech/pp/sebastianraschka/): Author, Build a Large Language Model (From Scratch) — 8 篇
 - [Robin Rombach / 罗宾·罗姆巴赫](https://aipaper.jasonlin.tech/pp/rrombach/): Co-founder, Black Forest Labs (formerly Stability AI / CompVis) — 8 篇
 - [Aaron Grattafiori / Aaron Grattafiori](https://aipaper.jasonlin.tech/pp/aarongrattafiori/): Research Lead, Meta AI (Llama) — 8 篇
 - [Ross Girshick / 罗斯·吉尔希克](https://aipaper.jasonlin.tech/pp/rgirshick/): Research Scientist, Meta AI (FAIR) — 8 篇
 - [Alec Radford / 亚历克·拉德福德](https://aipaper.jasonlin.tech/pp/aradford/): Researcher, OpenAI (DCGAN, GPT, CLIP) — 8 篇
-- [Sebastian Raschka / 塞巴斯蒂安·拉施卡](https://aipaper.jasonlin.tech/pp/sebastianraschka/): Author, Build a Large Language Model (From Scratch) — 7 篇
+- [Nathan Lambert / 内森·兰伯特](https://aipaper.jasonlin.tech/pp/nathanlambert/): Post-training Lead, Allen Institute for AI — 7 篇
 - [Demis Hassabis / 杰米斯·哈萨比斯](https://aipaper.jasonlin.tech/pp/demis/): CEO, Google DeepMind — 7 篇
 - [Albert Q. Jiang / 蒋启天](https://aipaper.jasonlin.tech/pp/aqjiang/): Research Scientist, Mistral AI — 7 篇
 - [Junnan Li / 李俊男](https://aipaper.jasonlin.tech/pp/junnanli/): Research Scientist (BLIP/BLIP-2 author), formerly Salesforce Research — 7 篇
 - [Tero Karras / 泰罗·卡拉斯](https://aipaper.jasonlin.tech/pp/tkarras/): Distinguished Research Scientist, NVIDIA Research — 7 篇
 - [Simon Willison / 西蒙·威利森](https://aipaper.jasonlin.tech/pp/simonwillison/): Creator of Datasette · Independent Researcher — 6 篇
-- [Nathan Lambert / 内森·兰伯特](https://aipaper.jasonlin.tech/pp/nathanlambert/): Post-training Lead, Allen Institute for AI — 6 篇
 - [Yu Gao / 高宇](https://aipaper.jasonlin.tech/pp/yugao/): ByteDance Seed, image & video generation — 6 篇
 - [Jim Fan / 范麟熙](https://aipaper.jasonlin.tech/pp/jimfan/): Senior Research Scientist, NVIDIA — 6 篇
 - [Sam Altman / 萨姆·奥尔特曼](https://aipaper.jasonlin.tech/pp/sam/): Co-founder & CEO, OpenAI — 6 篇
@@ -114,6 +114,7 @@
 - [Martin Arjovsky / 马丁·阿尔约夫斯基](https://aipaper.jasonlin.tech/pp/arjovsky/): Research Scientist; GAN training theory (Wasserstein GAN) — 2 篇
 - [Tomas Mikolov / 托马斯·米科洛夫](https://aipaper.jasonlin.tech/pp/tmikolov/): Research Scientist (word2vec creator); formerly Google, Facebook AI — 2 篇
 - [Diederik P. Kingma / 迪德里克·金马](https://aipaper.jasonlin.tech/pp/dkingma/): Research Scientist, Anthropic (prev. Google Brain, OpenAI) — 2 篇
+- [Jakub Pachocki / 雅库布·帕霍茨基](https://aipaper.jasonlin.tech/pp/pachocki/): Chief Scientist, OpenAI — 1 篇
 - [Thinking Machines Lab / Thinking Machines Lab](https://aipaper.jasonlin.tech/pp/thinkingmachines/): AI research lab (Tinker, Inkling) — 1 篇
 - [Ali Hatamizadeh / 阿里·哈塔米扎德](https://aipaper.jasonlin.tech/pp/alihatamizadeh/): Senior Research Scientist, NVIDIA — 1 篇
 - [Citrini Research / Citrini Research](https://aipaper.jasonlin.tech/pp/citrini/): Thematic Investment Research — 1 篇
@@ -126,7 +127,6 @@
 - [Dwarkesh Patel / 德瓦克什·帕特尔](https://aipaper.jasonlin.tech/pp/dwarkeshpatel/): Host, Dwarkesh Podcast — 1 篇
 - [Mingjie Liu / 刘明杰](https://aipaper.jasonlin.tech/pp/mingjieliu/): NVIDIA, prolonged RL for reasoning — 1 篇
 - [Jujie He / 何巨杰](https://aipaper.jasonlin.tech/pp/jujiehe/): Skywork AI, open reasoning model — 1 篇
-- [Chaorui Deng / 邓超瑞](https://aipaper.jasonlin.tech/pp/chaoruideng/): ByteDance Seed, unified multimodal understanding & generation — 1 篇
 
 ## 高被引论文 Most-cited papers
 - [Deep Residual Learning for Image Recognition](https://aipaper.jasonlin.tech/p/kaiming-1512.03385/) — Kaiming He, Microsoft, 被引 231533
