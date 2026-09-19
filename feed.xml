@@ -6,48 +6,90 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Thu, 10 Sep 2026 15:39:45 -0000</lastBuildDate>
+  <lastBuildDate>Sat, 19 Sep 2026 04:44:40 -0000</lastBuildDate>
+  <item>
+    <title>DeepSeek-V4.1-Flash：突破 KV 缓存压缩的极限 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/deepseek-2609.19969</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/deepseek-2609.19969/</guid>
+    <pubDate>Sat, 19 Sep 2026 04:44:40 -0000</pubDate>
+    <description>DeepSeek-V4.1-Flash 是一款 552B 参数的多模态 MoE 模型，将全局 KV 缓存压缩至每 token 890 字节、持久化 KV 缓存降至前代的约 1/8，同时实现更强的智能体性能。</description>
+  </item>
+  <item>
+    <title>能力悬垂 — One Useful Thing</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/ethanmollick-the-overhang</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/ethanmollick-the-overhang/</guid>
+    <pubDate>Sat, 19 Sep 2026 04:43:38 -0000</pubDate>
+    <description>AI 能力已远超人类系统与采用速度，人们不应在产出上与之竞争，而应发挥深度知识、广度知识、品味与能动性这四大人类优势，构建增强而非替代人类劳动的协作模式。</description>
+  </item>
+  <item>
+    <title>一次辞职如何将 AI 恐惧的火星燃成燎原大火 — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-one-resignation-turned-the-embers</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-one-resignation-turned-the-embers/</guid>
+    <pubDate>Sat, 19 Sep 2026 04:43:20 -0000</pubDate>
+    <description>一位 AI 研究员因安全风险辞职，意外点燃了远超预期的灭绝风险大讨论，文章主张回归事实与透明，聚焦更可能的现实危害。</description>
+  </item>
+  <item>
+    <title>偏好级联才刚刚开始 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-preference-cascade-is-only-getting</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-preference-cascade-is-only-getting/</guid>
+    <pubDate>Sat, 19 Sep 2026 04:43:06 -0000</pubDate>
+    <description>围绕 AI 生存风险的偏好级联正在形成，而渐进式安全措施可能不足以引导超级智能。</description>
+  </item>
+  <item>
+    <title>名为 Claude 的 AI 背后的坏人 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-bad-guy-with-an-ai-named-claude</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-bad-guy-with-an-ai-named-claude/</guid>
+    <pubDate>Sat, 19 Sep 2026 04:42:51 -0000</pubDate>
+    <description>AI 让能力平平的行为者也能实施复杂行动，但现实威胁远没有标题渲染得那么可怕。</description>
+  </item>
+  <item>
+    <title>特朗普将 AI 生存风险斥为骗局 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-trump-goes-full-hoax-on-ai-existential</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-trump-goes-full-hoax-on-ai-existential/</guid>
+    <pubDate>Sat, 19 Sep 2026 04:42:32 -0000</pubDate>
+    <description>特朗普将 AI 生存风险斥为骗局，这一立场源于利益相关的简报，但局势尚未定型，仍可能改变。</description>
+  </item>
   <item>
     <title>普通人何时才能感受到 AI 的影响？ — Interconnects</title>
     <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-when-will-average-people-feel-ais</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-when-will-average-people-feel-ais/</guid>
     <pubDate>Thu, 10 Sep 2026 15:39:45 -0000</pubDate>
-    <description>AI 对普通人的影响需要数十年才能显现，行业必须确保其收益广泛分配，以避免政治反弹。</description>
+    <description></description>
   </item>
   <item>
     <title>GPT-6 Astra、循环 Transformer 与隐藏推理 — Ahead of AI</title>
     <link>https://aipaper.jasonlin.tech/#/paper/sebastianraschka-gpt-6-astra-looped-transformers-and</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/sebastianraschka-gpt-6-astra-looped-transformers-and/</guid>
     <pubDate>Thu, 10 Sep 2026 15:39:30 -0000</pubDate>
-    <description>循环 Transformer 架构本身并不会隐藏推理过程，尽管有说法称 GPT-6 Astra 隐藏了其思维链。</description>
+    <description></description>
   </item>
   <item>
     <title>GPT-6 Astra：系统卡、对齐与未来走向 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-gpt-6-astra-the-system-card-alignment</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-gpt-6-astra-the-system-card-alignment/</guid>
     <pubDate>Thu, 10 Sep 2026 15:39:02 -0000</pubDate>
-    <description>GPT-6 Astra 达到 OpenAI 网络安全“关键”阈值，且比 GPT-5.6 Sol 更难监控，因此其常规对齐虽明显更好，但超级对齐状况应令人深感担忧。</description>
+    <description></description>
   </item>
   <item>
     <title>Astra 难以监控 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-astra-is-hard-to-monitor</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-astra-is-hard-to-monitor/</guid>
     <pubDate>Thu, 10 Sep 2026 15:38:37 -0000</pubDate>
-    <description>OpenAI 的 Astra 模型思维链监控已在失效且将持续恶化，目前尚无可行的备用方案。</description>
+    <description></description>
   </item>
   <item>
     <title>异类心智：雅库布·帕乔基对我们的警示 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-an-alien-mind-jakub-pachocki-warns</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-an-alien-mind-jakub-pachocki-warns/</guid>
     <pubDate>Thu, 10 Sep 2026 15:38:11 -0000</pubDate>
-    <description>帕乔基的文章是目前大型 AI 实验室内部人士写得最好的一篇，但言辞必须辅以硬性承诺和可执行的行动。</description>
+    <description></description>
   </item>
   <item>
     <title>异星心智 — OpenAI</title>
     <link>https://aipaper.jasonlin.tech/#/paper/pachocki-an-alien-mind</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/pachocki-an-alien-mind/</guid>
     <pubDate>Thu, 10 Sep 2026 15:37:52 -0000</pubDate>
-    <description>机器智能是“生长”而非“设计”出来的，不能直接类比人类智能，因此对齐（尤其是泛化）是核心难题，仅靠技术手段远远不够。</description>
+    <description></description>
   </item>
   <item>
     <title>Claude Mythos 5.1 与 Fable 5.1：能力评估 — Don't Worry About the Vase</title>
@@ -173,48 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-openai-takes-initial-steps-to-address</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-openai-takes-initial-steps-to-address/</guid>
     <pubDate>Sun, 23 Aug 2026 04:46:40 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>AI 文本水印是免费且有益的 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-ai-text-watermarking-is-free-and</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-ai-text-watermarking-is-free-and/</guid>
-    <pubDate>Sun, 23 Aug 2026 04:46:15 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>教每个人钓取令牌 — Interconnects</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-teaching-everyone-to-fish-for-tokens</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-teaching-everyone-to-fish-for-tokens/</guid>
-    <pubDate>Tue, 18 Aug 2026 13:30:06 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>GLM-5.3：中国实验室如何保持前沿步伐 — Interconnects</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-glm-53-how-chinese-labs-keep-stride</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-glm-53-how-chinese-labs-keep-stride/</guid>
-    <pubDate>Tue, 18 Aug 2026 13:29:40 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>关于 OpenAI 内部模型事件的若干反思 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-various-reflections-about-what-happened</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-various-reflections-about-what-happened/</guid>
-    <pubDate>Tue, 18 Aug 2026 13:29:13 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>前沿的节奏 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-pacing-of-the-frontier</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-pacing-of-the-frontier/</guid>
-    <pubDate>Tue, 18 Aug 2026 13:28:36 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>时空可组合性的编程范式 — DeepSeek-AI · Peking University</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/deepseek-spatiotemporal-composability</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/deepseek-spatiotemporal-composability/</guid>
-    <pubDate>Mon, 17 Aug 2026 04:57:32 -0000</pubDate>
     <description></description>
   </item>
 </channel>
