@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-09-20</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-09-27</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-09-27</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-09-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/deepseek/</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-09-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/pachocki/</loc><lastmod>2026-09-06</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-09-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/junyanglin/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/meituan/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/thomasmesnard/</loc><lastmod>2026-07-31</lastmod></url>
@@ -241,6 +241,15 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-quest-for-embedded-evaluators/</loc><lastmod>2026-09-27</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-2026-in-llms-so-far/</loc><lastmod>2026-09-27</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-claude-opus-55-should-raise-your/</loc><lastmod>2026-09-26</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-on-ezra-kleins-podcast-with-jensen/</loc><lastmod>2026-09-25</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-claude-opus-55-the-system-card/</loc><lastmod>2026-09-23</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-politics-gets-interested-in-those/</loc><lastmod>2026-09-22</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-the-current-balance-of-power-in-open/</loc><lastmod>2026-09-21</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-better-call-sol-or-better-yet-claude/</loc><lastmod>2026-09-20</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-where-i-stand-on-rsi/</loc><lastmod>2026-09-19</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-preference-cascade-is-only-getting/</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/ethanmollick-the-overhang/</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2609.19969/</loc><lastmod>2026-09-17</lastmod></url>
