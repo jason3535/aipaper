@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-09-28</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-09-27</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-09-27</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-09-21</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-10-11</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-10-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-10-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-10-03</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/meituan/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/songhan/</loc><lastmod>2026-09-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/deepseek/</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-09-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/pachocki/</loc><lastmod>2026-09-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/junyanglin/</loc><lastmod>2026-08-03</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/meituan/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/thomasmesnard/</loc><lastmod>2026-07-31</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/anyang/</loc><lastmod>2026-07-30</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/songhan/</loc><lastmod>2026-07-30</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zhilinyang/</loc><lastmod>2026-07-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xiaomimimo/</loc><lastmod>2026-07-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/thinkingmachines/</loc><lastmod>2026-07-15</lastmod></url>
@@ -241,6 +241,19 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-new-math-from-openai/</loc><lastmod>2026-10-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-i-expect-rapid-progress-but-not-towards/</loc><lastmod>2026-10-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-curve-bends-you/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-the-cyber-risk-discourse-is-broken/</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-mythos-51-fable-51-and-opus-55-model/</loc><lastmod>2026-10-05</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-default-hard-budget-caps/</loc><lastmod>2026-10-03</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-ai-preference-cascade-reaches/</loc><lastmod>2026-10-02</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/ethanmollick-the-dot-and-the-swarm/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-a-morally-binding-white-house-accord/</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-astra-61-pulled-as-insufficiently/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/sebastianraschka-classifier-history-and-jev/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/meituan-2609.36071/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/songhan-2609.35110/</loc><lastmod>2026-09-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-quest-for-embedded-evaluators/</loc><lastmod>2026-09-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-2026-in-llms-so-far/</loc><lastmod>2026-09-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-claude-opus-55-should-raise-your/</loc><lastmod>2026-09-26</lastmod></url>
