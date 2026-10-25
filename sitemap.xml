@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-10-17</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-10-09</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-10-09</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-10-03</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-10-25</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-10-17</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/arvindnarayanan/</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/xiaomimimo/</loc><lastmod>2026-10-08</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/meituan/</loc><lastmod>2026-09-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/songhan/</loc><lastmod>2026-09-28</lastmod></url>
@@ -14,7 +16,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/thomasmesnard/</loc><lastmod>2026-07-31</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/anyang/</loc><lastmod>2026-07-30</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zhilinyang/</loc><lastmod>2026-07-27</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/xiaomimimo/</loc><lastmod>2026-07-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/thinkingmachines/</loc><lastmod>2026-07-15</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/demis/</loc><lastmod>2026-07-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xingwusun/</loc><lastmod>2026-07-14</lastmod></url>
@@ -73,7 +74,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/aarongrattafiori/</loc><lastmod>2025-04-22</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/gaohuang/</loc><lastmod>2025-04-18</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/kokotajlo/</loc><lastmod>2025-04-03</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/arvindnarayanan/</loc><lastmod>2025-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/shunyuyao/</loc><lastmod>2025-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/sarahooker/</loc><lastmod>2025-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/wanteam/</loc><lastmod>2025-03-26</lastmod></url>
@@ -241,19 +241,34 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-hackening/</loc><lastmod>2026-10-23</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-misaligned/</loc><lastmod>2026-10-21</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-anthropic-does-not-understand-why/</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/ethanmollick-30-months-on-the-exponential-in-charts/</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-battledrones/</loc><lastmod>2026-10-20</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-i-can-see-everything/</loc><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-leaked-anthropic-draft-ai-regulatory/</loc><lastmod>2026-10-17</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-meta-shakes-up-the-frontiers-open/</loc><lastmod>2026-10-17</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-safety-culture-at-the-labs-is/</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/arvindnarayanan-steering-ai-beyond-automation/</loc><lastmod>2026-10-14</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-arguments-about-ai-consciousness-b99/</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-openai-fires-three-safety-researchers/</loc><lastmod>2026-10-12</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-new-math-from-openai/</loc><lastmod>2026-10-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-i-expect-rapid-progress-but-not-towards/</loc><lastmod>2026-10-09</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/xiaomimimo-2610.11959/</loc><lastmod>2026-10-08</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-curve-bends-you/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-the-cyber-risk-discourse-is-broken/</loc><lastmod>2026-10-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-mythos-51-fable-51-and-opus-55-model/</loc><lastmod>2026-10-05</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-default-hard-budget-caps/</loc><lastmod>2026-10-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-ai-preference-cascade-reaches/</loc><lastmod>2026-10-02</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/ethanmollick-the-dot-and-the-swarm/</loc><lastmod>2026-10-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/arvindnarayanan-a-big-tent-or-small-tent-ai-safety/</loc><lastmod>2026-10-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-a-morally-binding-white-house-accord/</loc><lastmod>2026-09-30</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-astra-61-pulled-as-insufficiently/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/sebastianraschka-classifier-history-and-jev/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/meituan-2609.36071/</loc><lastmod>2026-09-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/songhan-2609.35110/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/arvindnarayanan-p-doom/</loc><lastmod>2026-09-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-quest-for-embedded-evaluators/</loc><lastmod>2026-09-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-2026-in-llms-so-far/</loc><lastmod>2026-09-27</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-claude-opus-55-should-raise-your/</loc><lastmod>2026-09-26</lastmod></url>
@@ -268,6 +283,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2609.19969/</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-trump-goes-full-hoax-on-ai-existential/</loc><lastmod>2026-09-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-bad-guy-with-an-ai-named-claude/</loc><lastmod>2026-09-15</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/arvindnarayanan-the-ai-as-normal-technology-view/</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-one-resignation-turned-the-embers/</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-gpt-6-astra-the-system-card-alignment/</loc><lastmod>2026-09-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/sebastianraschka-gpt-6-astra-looped-transformers-and/</loc><lastmod>2026-09-09</lastmod></url>
