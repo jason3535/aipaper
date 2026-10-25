@@ -24,7 +24,8 @@ def fetch_md(url):
 
 # 已知坑:deepmind.google 的页面开头会带产品导航菜单(Genie/Gemini/Gemma 连写的短语段),
 # Jina 抓下来像正文。收录 DeepMind 后务必人工检查 full[0] 是否导航垃圾,是则整节删除并重建 absEn/absZh。
-STOP = re.compile(r"^#{1,4}\s+(related|footnotes?|references|acknowledg|read the|share|citation|appendix|more news|sign up|subscribe|policy memo|authors?|contributors?|further reading|explore more|стать)", re.I)
+STOP = re.compile(r"^#{1,4}\s+(related|footnotes?|references|acknowledg|read the|share|citation|appendix|more news|sign up|subscribe|policy memo|authors?|contributors?|further reading|explore more|стать|more recent articles|monthly briefing|discussion about this post)", re.I)
+# 后三个:Willison 个人站页脚(近期文章列表/$10 赞助月报)与 Substack 评论区。2026-10-25 全库清出 15 篇带这些节
 
 """Substack/Newsletter 站的页面骨架(订阅框、站标图、页脚版权)会被 Jina 当正文抓下来,
    而且往往正好落在第一节 —— 于是 absEn(取首节前 3 段)变成"Discover more from…/
@@ -36,7 +37,7 @@ CHROME_SEC = re.compile(
 CHROME_PARA = re.compile(
     r"^\s*(Discover more from\b|By subscribing,? you agree\b|Thanks for reading\b|Share this post\b|"
     r"Subscribe\s*$|Continue reading\b|©\s*\d{4}[^\n]{0,80}(Privacy|Terms|Substack)|"
-    r"This site requires JavaScript|Type your email|Already have an account\?)", re.I)
+    r"This site requires JavaScript|Type your email|Already have an account\?|Posted \d{1,2}(st|nd|rd|th) \w+ \d{4} at )", re.I)   # 末项:Willison 文末「Posted … · Follow me on Mastodon」
 
 def _ptext(p):
     """paras 在翻译前是纯字符串、翻译后是 {en,zh} dict —— strip_chrome 两个阶段都会被调,
