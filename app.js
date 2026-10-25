@@ -842,8 +842,9 @@ function isNewcomer(){try{
   return !recentGet().length && !laterGet().length && !readGet().size;
 }catch(e){return true}}
 function vHome(){
- // 按收录时间(addedAt)排:hero=最新收录那篇,最新栏=其后几篇(照 AI Podcast 逻辑,新收录的论文总能刷上首页)
- const byAdded=[...PAPERS].sort((a,b)=>(b.addedAt||'').localeCompare(a.addedAt||'')||(b.date||'').localeCompare(a.date||''));
+ // 按收录日排:hero=最新一批里发表最晚那篇,最新栏=其后几篇(照 AI Podcast 逻辑,新收录的论文总能刷上首页)。
+ // 只比到天:同一批串行收录的 addedAt 差几分钟,比到秒会让批里最后跑的旧文(2026-10-25 是 9/14 那篇)压过 10/23 的新文
+ const byAdded=[...PAPERS].sort((a,b)=>(b.addedAt||'').slice(0,10).localeCompare((a.addedAt||'').slice(0,10))||(b.date||'').localeCompare(a.date||''));
  const feat=byAdded[0]||PAPERS[0];
  const latest=byAdded.filter(p=>p.id!==feat.id).slice(0,5);
  const fp=feat?(PEOPLE[feat.pid]||{}):{};
