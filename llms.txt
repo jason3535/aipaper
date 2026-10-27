@@ -3,12 +3,12 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 240 位学者 / 648 篇论文
+规模: 240 位学者 / 649 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
 - [Zvi Mowshowitz / 兹维·莫绍维茨](https://aipaper.jasonlin.tech/pp/zvi/): Writer, Don't Worry About the Vase — 39 篇
-- [Anthropic / Anthropic](https://aipaper.jasonlin.tech/pp/anthropic/): AI safety lab (Claude); interpretability & alignment — 21 篇
+- [Anthropic / Anthropic](https://aipaper.jasonlin.tech/pp/anthropic/): AI safety lab (Claude); interpretability & alignment — 22 篇
 - [OpenAI / OpenAI](https://aipaper.jasonlin.tech/pp/openai/): Frontier AI lab (GPT / DALL·E / Codex) — 17 篇
 - [DeepSeek-AI / 深度求索](https://aipaper.jasonlin.tech/pp/deepseek/): Frontier open-model lab, China — 16 篇
 - [Nathan Lambert / 内森·兰伯特](https://aipaper.jasonlin.tech/pp/nathanlambert/): Post-training Lead, Allen Institute for AI — 13 篇
