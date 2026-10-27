@@ -62,7 +62,7 @@ pipeline/postingest.sh <新收id ...>
 > `--pid` 须先在 `index.html` 的 PEOPLE 中;问答需部署 `chat-worker` 并把 workers.dev 地址填入 `index.html` 的 `CHAT_PROXY`。
 
 ### 招股书(SEC filing)
-`pipeline/add_filing.py` + `filing_parse.py`:把 EDGAR 上 PDF 转出的版式 HTML 还原成章/节/段,英文原文一字不改、逐段补中文并核对数字;终稿(424B4)加 `--final`。版式自动判定(20pt 章标题式 / 通篇 10pt 的 Workiva 式 / Donnelley 流式 HTML→`filing_flow.py`)。已收 Anthropic S-1、SpaceX / Cerebras / CoreWeave 424B4。
+`pipeline/add_filing.py` + `filing_parse.py`:把 EDGAR 上 PDF 转出的版式 HTML 还原成章/节/段,英文原文一字不改、逐段补中文并核对数字;终稿(424B4)加 `--final`。版式自动判定(20pt 章标题式 / 通篇 10pt 的 Workiva 式 / Donnelley 流式 HTML→`filing_flow.py`)。已收 Anthropic S-1、SpaceX / Cerebras / CoreWeave 424B4。收后 `audit_filing.py` 做结构门禁(标点/断段/表格对齐),`fix_filing_tables.py` 逐行逐格重译错位表格;表格段前端渲染成真表格。
 
 ## 版权与使用
 

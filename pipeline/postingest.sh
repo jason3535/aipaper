@@ -12,6 +12,8 @@ ids=("$@")
 if (( ${#ids[@]} )); then
   echo "── 0/8 新收条目质检(audit_paper)"
   node pipeline/audit_paper.js "${ids[@]}"
+  echo "── 0.5/8 结构自检(audit_filing:半角标点/跨页断段/表格错位/格界粘连)"
+  python3 pipeline/audit_filing.py "${ids[@]}"
 fi
 
 echo "── 1/8 首屏瘦身(slim_index)"
