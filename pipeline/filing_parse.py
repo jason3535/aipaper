@@ -95,6 +95,9 @@ def parse(src, blanks=True):
     """blanks=True:S-1 初稿里横向空隙是未填数字,标 [__];424B4 终稿没有空白,传 False 用空格连。
     版式两种:① Anthropic 式——章 20pt 粗/节 12pt 粗;② SpaceX/Cerebras 式(flat)——通篇 10pt,
     章=居中大写粗体行,节=左对齐短粗体行,小标题=粗斜体短行。按有没有 ≥19pt 的粗体行自动判定。"""
+    if src.count('position:absolute') < 50 and src.lower().count('<p') > 500:   # Donnelley 流式 HTML(CoreWeave 等)
+        from filing_flow import parse as flow_parse
+        return flow_parse(src)
     all_lines = list(lines(src))
     flat = sum((ln['size'] or 0) >= 19 and ln['bold'] for ln in all_lines) < 3  # 封面上一两行大字不算
     seen_toc = False

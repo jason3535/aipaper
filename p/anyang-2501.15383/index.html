@@ -112,7 +112,7 @@ Qwen2.5-Turbo 7.60 8.34 (+0.74)</p><p class="zh">预训练长度：8 个 token�
 
 **稀疏注意力内核优化**
 
-随着上下文长度 (\L_c\) 的增长，注意力机制的计算复杂度 (\mathcal{O}(L_c^2)\) 和内存访问复杂度 (\mathcal{O}(L_c)\) 显著增加。为了解决这一问题，业界已经探索了通过稀疏性来提升效率的优化策略，例如 MInference（Jiang 等，2024b）提出的 Vertical-Slash 方法。然而，我们观察到稀疏化后的注意力内核效率仍然较低，在端到端应用中仍占用推理时间的很大比例。因此，对稀疏注意力内核进行极致优化对于充分发挥稀疏化的潜力更为关键。为了减少稀疏内存访问的开销，我们在从全局内存加载稀疏 KV 对时实现了多级流水线并行，并进行了密集的指令级优化。我们优化的稀疏注意力内核能够利用多种 GPU 架构的能力，包括 NVIDIA 的 Ampere 和 Hopper 系列、AMD 的 MI300 系列以及其他硬件平台。实验表明，BladeLLM 中优化的内核在多个硬件平台上实现了极高的计算效率，峰值 FLOPs 利用率高达 90%。如图 7 所示，在 A100 GPU 上，100 万 token 上下文条件下，MInference 相比 FlashAttention 实现了 13.7 倍加速，而 BladeLLM 在相同稀疏配置下实现了 27.8 倍加速。</p><p class="en">**5.3.1 Kernel Optimization**
+随着上下文长度（\L_c\）的增长，注意力机制的计算复杂度 (\mathcal{O}(L_c^2)\) 和内存访问复杂度 (\mathcal{O}(L_c)\) 显著增加。为了解决这一问题，业界已经探索了通过稀疏性来提升效率的优化策略，例如 MInference（Jiang 等，2024b）提出的 Vertical-Slash 方法。然而，我们观察到稀疏化后的注意力内核效率仍然较低，在端到端应用中仍占用推理时间的很大比例。因此，对稀疏注意力内核进行极致优化对于充分发挥稀疏化的潜力更为关键。为了减少稀疏内存访问的开销，我们在从全局内存加载稀疏 KV 对时实现了多级流水线并行，并进行了密集的指令级优化。我们优化的稀疏注意力内核能够利用多种 GPU 架构的能力，包括 NVIDIA 的 Ampere 和 Hopper 系列、AMD 的 MI300 系列以及其他硬件平台。实验表明，BladeLLM 中优化的内核在多个硬件平台上实现了极高的计算效率，峰值 FLOPs 利用率高达 90%。如图 7 所示，在 A100 GPU 上，100 万 token 上下文条件下，MInference 相比 FlashAttention 实现了 13.7 倍加速，而 BladeLLM 在相同稀疏配置下实现了 27.8 倍加速。</p><p class="en">**5.3.1 Kernel Optimization**
 
 **Sparse Attention Kernel Optimization**
 
