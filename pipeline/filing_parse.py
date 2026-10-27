@@ -69,9 +69,14 @@ def merge_cells(cells, size):
     """把同一行里连着的 font 拼起来;隔开 >8pt 的视为不同表格格子(或正文里的空白占位)。
     font 边界常落在单词中间(「referen」「ces」),所以只有横向空隙 > 0.25 字号才补空格。"""
     out = []
+    dots = lambda x: bool(re.fullmatch(r'[.\s]+', x))
+    numlike = lambda x: bool(re.fullmatch(r'[\$(]?[\d][\d,.]*\)?%?|\$?[—–-]|\(?[\d,.]+\)', x.strip()))
     for l, r, t in sorted(cells):
         g = l - out[-1][1] if out else 0
-        if out and g <= 8 and t.strip() not in ('$', '$(', '(') and not re.match(r'^\s*\$\s*$', t):
+        # 点线引导(「科目......」)是格与格的分界;长科目名后面紧跟的纯数字是下一列(无 width 属性时宽度是估的,常把格子估重叠)
+        split = out and (dots(t) or dots(out[-1][2]) or (numlike(t) and not re.fullmatch(r'\(\d{1,2}\)', t.strip())
+                         and re.search(r'[A-Za-z]', out[-1][2]) and len(out[-1][2].strip()) > 12))  # 「(2)」脚注标跟着科目走
+        if out and g <= 8 and not split and t.strip() not in ('$', '$(', '(') and not re.match(r'^\s*\$\s*$', t):
             sep = ' ' if g > size * 0.25 and not out[-1][2].endswith(' ') and not t.startswith(' ') else ''
             out[-1][1] = r
             out[-1][2] += sep + t
@@ -91,11 +96,50 @@ def smart_title(t):
     return ' '.join(w if (i and w in SMALL) else (w.upper() if w in ('ai', 'ipo', 'gaap', 'sec', 'u.s.', 'llc', 'cs-3') else w.capitalize()) for i, w in enumerate(ws))
 
 
+def regroup(ls, blanks=True):
+    """两列表(「发行概况」这类:左列科目、右列数值,各在自己的格子 div 里,top 各自相对):
+    科目行(单格、left<100)后面 ≤4 行内出现 top 相同、left≥200 的值行 → 并成一行多格;科目折行(相对 top 更小)一起并入。"""
+    out, i = [], 0
+    while i < len(ls):
+        L = ls[i]
+        lefts = [c[0] for c in L['cells']]
+        if len(L['cells']) == 1 and min(lefts) < 100 and (L['size'] or 0) >= 9:
+            j, wraps, val = i + 1, [], None
+            while j < len(ls) and j <= i + 4:
+                M = ls[j]
+                ml = min(c[0] for c in M['cells'])
+                if abs(M['top'] - L['top']) < 0.8 and ml >= 200:
+                    val = j
+                    break
+                if ml < 100 and M['top'] < L['top'] and len(M['cells']) == 1 and not M['bold'] and (M['size'] or 0) >= 9:
+                    wraps.append(j)
+                    j += 1
+                    continue
+                break
+            if val is not None:
+                text = ' '.join(c[2] for c in L['cells']) + ''.join(' ' + ' '.join(c[2] for c in ls[w]['cells']) for w in wraps)
+                L2 = dict(L)
+                # 右列是一个逻辑格:格内空隙在初稿里是未填数字(「[__] shares」),终稿里只是排版空白
+                vtxt = (' [__] ' if blanks else ' ').join(re.sub(r'\s+', ' ', c[2]).strip() for c in sorted(ls[val]['cells']) if c[2].strip())
+                vl = min(c[0] for c in ls[val]['cells'])
+                L2['cells'] = [[L['cells'][0][0], L['cells'][0][0] + 150, re.sub(r'\s+', ' ', text).strip()], [vl, vl + 150, vtxt]]
+                L2['pair'] = True
+                out.append(L2)
+                i = val + 1
+                continue
+        out.append(L)
+        i += 1
+    return out
+
+
 def parse(src, blanks=True):
     """blanks=True:S-1 初稿里横向空隙是未填数字,标 [__];424B4 终稿没有空白,传 False 用空格连。
     版式两种:① Anthropic 式——章 20pt 粗/节 12pt 粗;② SpaceX/Cerebras 式(flat)——通篇 10pt,
     章=居中大写粗体行,节=左对齐短粗体行,小标题=粗斜体短行。按有没有 ≥19pt 的粗体行自动判定。"""
-    all_lines = list(lines(src))
+    if src.count('position:absolute') < 50 and src.lower().count('<p') > 500:   # Donnelley 流式 HTML(CoreWeave 等)
+        from filing_flow import parse as flow_parse
+        return flow_parse(src)
+    all_lines = regroup(list(lines(src)), blanks)
     flat = sum((ln['size'] or 0) >= 19 and ln['bold'] for ln in all_lines) < 3  # 封面上一两行大字不算
     seen_toc = False
     secs, cur = [], None
@@ -105,7 +149,16 @@ def parse(src, blanks=True):
     started = False
     chapters_seen = {}
 
+    foot = []   # 页脚脚注(小字号行)先攒着:跨页的正文段先并完整,脚注跟在该段之后
+
     def flush():
+        nonlocal para, para_kind, para_bold, foot
+        _flush_main()
+        if foot and cur is not None:
+            cur['paras'].extend(foot)
+            foot = []
+
+    def _flush_main():
         nonlocal para, para_kind, para_bold
         if para and cur is not None:
             if para_kind == 'table':
@@ -156,7 +209,7 @@ def parse(src, blanks=True):
             if not cells:
                 continue
         # 正文行里的横向空隙 = 招股书里还没填的数字(「$     」),用 [__] 标出来,别当成表格
-        prose = len(cells) > 1 and (ln['justify'] or max(map(len, cells)) >= 60) and size > 7.5
+        prose = len(cells) > 1 and (ln['justify'] or max(map(len, cells)) >= 60) and size > 7.5 and not ln.get('pair') and not leader
         if prose:
             cells = [(' [__] ' if blanks else ' ').join(cells)]
         text = ' '.join(cells)
@@ -214,12 +267,22 @@ def parse(src, blanks=True):
                 new_sec(text)
             prev = ln
             continue
+        # 页脚脚注:字号 < 9 的非表格行,且当前正文段还没写完 → 攒进 foot,不打断正文(下一页首行会自然续接)
+        if size < 9 and len(cells) == 1 and para_kind == 'text' and para and not re.search(r'[.:;!?”)]\s*$', para[-1]) \
+                and not (5.6 < size <= 7.5 and len(cells) > 1):
+            if foot and not (size < 6 or re.match(r'^\(?\d{1,2}\)?\s', text)) and not foot[-1].endswith(('.', '”', ')')):
+                foot[-1] += ' ' + text
+            elif foot and not (size < 6 or re.match(r'^\(?\d{1,2}\)?\s', text)):
+                foot[-1] += ' ' + text
+            else:
+                foot.append(text)
+            continue   # prev 不动:下一页首行与正文最后一行比 top(负值)即续接
         gap0 = ln['top'] - prev['top'] if prev else 999
         # 表格格子的 div 各有自己的坐标系(top 是相对格子的),同一逻辑行会散成几条「行」:
         # 纯数字行(「$ 7.85」)并回上一表格行;小写开头的折行(「to this offering」)续接上一行的科目名
         numeric = all(re.fullmatch(r'[\$\(\)\d,.\-—–%\s]+', c) for c in cells)
         wrap = para_kind == 'table' and para and cells[0][:1].islower() and left < 30 and not re.search(r'\d', para[-1].split(' · ')[-1][-6:])
-        is_table = (len(cells) > 1 or 5.6 < size <= 7.5 or leader or wrap or (numeric and para_kind == 'table' and para) or
+        is_table = (ln.get('pair') or len(cells) > 1 or 5.6 < size <= 7.5 or leader or wrap or (numeric and para_kind == 'table' and para) or
                     # 表格里只有一格的行(「Operating expenses:」、折行的科目名)别把表切断
                     para_kind == 'table' and not ln['justify'] and len(text) < 120 and 0 < gap0 < size * 2.4)
         is_sub = not flat and 9.8 <= size < 11.5 and bold and len(cells) == 1

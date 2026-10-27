@@ -56,8 +56,15 @@ def nums(t):
 
 
 def nums_ok(e, z):
-    """英文里的每个数字都要在译文里出现(译文可以多:September 30 → 9 月 30 日 会多出 9)。"""
-    return not (nums(e) - nums(z))
+    """英文里的每个数字都要在译文里出现(译文可以多:September 30 → 9 月 30 日 会多出 9)。
+    表格段还要求行数与每行的 ` · ` 格数一致,否则前端按表格渲染时列会错位。"""
+    if nums(e) - nums(z):
+        return False
+    if '\n' in e or ' · ' in e:
+        el, zl = e.split('\n'), z.split('\n')
+        if len(el) != len(zl) or any(a.count(' · ') != b.count(' · ') for a, b in zip(el, zl)):
+            return False
+    return True
 
 
 def chunks_of(paras, budget=3200, maxn=12):
