@@ -51,7 +51,11 @@ def _paren(m):
     s = m.string
     left, right = _near(s, m.start() - 1, -1), _near(s, m.end(), 1)
     if _CJK_RE.search(inner) or (left and _CTX_RE.match(left)) or (right and _CTX_RE.match(right)):
-        return '（' + inner.strip() + '）'
+        g = m.group(0)
+        # 两侧原有的空格:挨着中文/全角标点的去掉,挨着英文、数字、「·」分隔符的保留(表格格界「） · 」不能吃掉)
+        pre = ' ' if g.startswith(' ') and left == '·' else ''
+        post = ' ' if g.endswith(' ') and (right == '·' or right.isalnum()) else ''
+        return pre + '（' + inner.strip() + '）' + post
     return m.group(0)
 
 
