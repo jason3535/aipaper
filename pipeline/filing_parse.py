@@ -108,7 +108,16 @@ def parse(src, blanks=True):
     started = False
     chapters_seen = {}
 
+    foot = []   # 页脚脚注(小字号行)先攒着:跨页的正文段先并完整,脚注跟在该段之后
+
     def flush():
+        nonlocal para, para_kind, para_bold, foot
+        _flush_main()
+        if foot and cur is not None:
+            cur['paras'].extend(foot)
+            foot = []
+
+    def _flush_main():
         nonlocal para, para_kind, para_bold
         if para and cur is not None:
             if para_kind == 'table':
@@ -217,6 +226,16 @@ def parse(src, blanks=True):
                 new_sec(text)
             prev = ln
             continue
+        # 页脚脚注:字号 < 9 的非表格行,且当前正文段还没写完 → 攒进 foot,不打断正文(下一页首行会自然续接)
+        if size < 9 and len(cells) == 1 and para_kind == 'text' and para and not re.search(r'[.:;!?”)]\s*$', para[-1]) \
+                and not (5.6 < size <= 7.5 and len(cells) > 1):
+            if foot and not (size < 6 or re.match(r'^\(?\d{1,2}\)?\s', text)) and not foot[-1].endswith(('.', '”', ')')):
+                foot[-1] += ' ' + text
+            elif foot and not (size < 6 or re.match(r'^\(?\d{1,2}\)?\s', text)):
+                foot[-1] += ' ' + text
+            else:
+                foot.append(text)
+            continue   # prev 不动:下一页首行与正文最后一行比 top(负值)即续接
         gap0 = ln['top'] - prev['top'] if prev else 999
         # 表格格子的 div 各有自己的坐标系(top 是相对格子的),同一逻辑行会散成几条「行」:
         # 纯数字行(「$ 7.85」)并回上一表格行;小写开头的折行(「to this offering」)续接上一行的科目名
