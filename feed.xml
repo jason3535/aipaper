@@ -6,27 +6,34 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 27 Oct 2026 02:44:17 -0000</lastBuildDate>
+  <lastBuildDate>Tue, 27 Oct 2026 07:56:59 -0000</lastBuildDate>
   <item>
-    <title>Cerebras Systems Inc. — 424B4 最终招股说明书（IPO） — Cerebras</title>
+    <title>CoreWeave, Inc. —424B4 最终招股说明书（IPO） — CoreWeave</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/coreweave-424b4-2025</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/coreweave-424b4-2025/</guid>
+    <pubDate>Tue, 27 Oct 2026 07:56:59 -0000</pubDate>
+    <description>自称 AI 超大规模云服务商的 CoreWeave 正在为其 A 类普通股进行 IPO，营收从 2022 年的 1600 万美元增至 2024 年的 19 亿美元，但净亏损同步扩大，截至 2024 年 12 月 31 日剩余履约义务为 151 亿美元。</description>
+  </item>
+  <item>
+    <title>Cerebras Systems Inc. —424B4 最终招股说明书（IPO） — Cerebras</title>
     <link>https://aipaper.jasonlin.tech/#/paper/cerebras-424b4-2026</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/cerebras-424b4-2026/</guid>
-    <pubDate>Tue, 27 Oct 2026 02:44:17 -0000</pubDate>
-    <description>Cerebras Systems 的 IPO 招股书以晶圆级引擎和超快推理作为应对 AI 速度瓶颈的方案，并披露营收从 2022 年的 2460 万美元增至 2025 年的 5.10 亿美元、2025 年净利润 2.378 亿美元。</description>
+    <pubDate>Tue, 27 Oct 2026 07:56:36 -0000</pubDate>
+    <description>Cerebras Systems 的 IPO 招股书将其晶圆级 AI 基础设施定位为全球最快，营收从 2022 年的 2460 万美元增至 2025 年的 5.10 亿美元，2025 年净利润为 2.378 亿美元。</description>
   </item>
   <item>
     <title>太空探索技术公司（SpaceX）——424B4 最终招股说明书（IPO） — SpaceX</title>
     <link>https://aipaper.jasonlin.tech/#/paper/spacex-424b4-2026</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/spacex-424b4-2026/</guid>
-    <pubDate>Tue, 27 Oct 2026 02:42:51 -0000</pubDate>
-    <description>SpaceX 招股书展示发射、星链连接与 xAI 垂直整合业务，2025 年营收 186.74 亿美元但经营亏损 25.89 亿美元。</description>
+    <pubDate>Tue, 27 Oct 2026 07:56:16 -0000</pubDate>
+    <description>SpaceX 招股书称其垂直整合的发射、星链连接与 xAI 业务有望于 2028 年建成太阳能轨道数据中心，但 2025 年营收 186.74 亿美元、经营亏损 25.89 亿美元。</description>
   </item>
   <item>
-    <title>Anthropic, PBC — S-1 注册声明（IPO 招股说明书） — Anthropic</title>
+    <title>Anthropic, PBC —S-1 注册声明（IPO 招股说明书） — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-s1-2026</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-s1-2026/</guid>
-    <pubDate>Tue, 27 Oct 2026 01:00:49 -0000</pubDate>
-    <description>Anthropic 提交 S-1 招股说明书，界定其前沿 AI 业务的术语体系、经营与财务指标及“按智能付费”消费模式，核心前提是智能已成为人类可构建之物、充裕的 AI 将迅速变革各个行业。</description>
+    <pubDate>Tue, 27 Oct 2026 07:55:55 -0000</pubDate>
+    <description>Anthropic 提交 IPO 申请，强调 Claude 在企业市场的快速普及，以及以使命为导向、注重安全的方式把握数万亿美元的人工智能机遇。</description>
   </item>
   <item>
     <title>MiMo-V2.6：将强化学习扩展至自我改进 — cs.CL</title>
@@ -47,7 +54,7 @@
     <link>https://aipaper.jasonlin.tech/#/paper/arvindnarayanan-p-doom</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/arvindnarayanan-p-doom/</guid>
     <pubDate>Sun, 25 Oct 2026 02:24:22 -0000</pubDate>
-    <description>AI 存在性风险的量化估计（p(doom)）缺乏经过验证的模型或方法，过于不可靠，无法成为公共政策的正当依据。</description>
+    <description></description>
   </item>
   <item>
     <title>AI 安全运动：大帐篷还是小帐篷？ — AI as Normal Technology</title>
@@ -208,13 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-ai-preference-cascade-reaches</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-ai-preference-cascade-reaches/</guid>
     <pubDate>Sun, 11 Oct 2026 04:40:34 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Mythos 5.1、Fable 5.1 与 Opus 5.5：模型福祉 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-mythos-51-fable-51-and-opus-55-model</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-mythos-51-fable-51-and-opus-55-model/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:40:16 -0000</pubDate>
     <description></description>
   </item>
 </channel>
