@@ -61,6 +61,9 @@ pipeline/postingest.sh <新收id ...>
 
 > `--pid` 须先在 `index.html` 的 PEOPLE 中;问答需部署 `chat-worker` 并把 workers.dev 地址填入 `index.html` 的 `CHAT_PROXY`。
 
+### 招股书(SEC filing)
+`pipeline/add_filing.py` + `filing_parse.py`:把 EDGAR 上 PDF 转出的版式 HTML 还原成章/节/段,英文原文一字不改、逐段补中文并核对数字;终稿(424B4)加 `--final`。版式自动判定(20pt 章标题式 / 通篇 10pt 的 Workiva 式)。已收 Anthropic S-1、SpaceX 424B4、Cerebras 424B4。
+
 ## 版权与使用
 
 论文正文 / 摘要版权归原作者与 arXiv,按其许可(多为 CC-BY / arXiv 非独占)展示;译文 AI 生成、仅供参考,以原文为准。仅作学习研究用途,**应权利人要求即下架**(linzheng3535@gmail.com)。
