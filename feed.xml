@@ -6,7 +6,21 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 27 Oct 2026 01:00:49 -0000</lastBuildDate>
+  <lastBuildDate>Tue, 27 Oct 2026 02:44:17 -0000</lastBuildDate>
+  <item>
+    <title>Cerebras Systems Inc. — 424B4 最终招股说明书（IPO） — Cerebras</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/cerebras-424b4-2026</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/cerebras-424b4-2026/</guid>
+    <pubDate>Tue, 27 Oct 2026 02:44:17 -0000</pubDate>
+    <description>Cerebras Systems 的 IPO 招股书以晶圆级引擎和超快推理作为应对 AI 速度瓶颈的方案，并披露营收从 2022 年的 2460 万美元增至 2025 年的 5.10 亿美元、2025 年净利润 2.378 亿美元。</description>
+  </item>
+  <item>
+    <title>太空探索技术公司（SpaceX）——424B4 最终招股说明书（IPO） — SpaceX</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/spacex-424b4-2026</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/spacex-424b4-2026/</guid>
+    <pubDate>Tue, 27 Oct 2026 02:42:51 -0000</pubDate>
+    <description>SpaceX 招股书展示发射、星链连接与 xAI 垂直整合业务，2025 年营收 186.74 亿美元但经营亏损 25.89 亿美元。</description>
+  </item>
   <item>
     <title>Anthropic, PBC — S-1 注册声明（IPO 招股说明书） — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-s1-2026</link>
@@ -40,14 +54,14 @@
     <link>https://aipaper.jasonlin.tech/#/paper/arvindnarayanan-a-big-tent-or-small-tent-ai-safety</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/arvindnarayanan-a-big-tent-or-small-tent-ai-safety/</guid>
     <pubDate>Sun, 25 Oct 2026 02:23:41 -0000</pubDate>
-    <description>存在性风险叙事主导 AI 安全讨论反而有害，应转而聚焦具体、有证据支撑的灾难性风险。</description>
+    <description></description>
   </item>
   <item>
     <title>引导人工智能超越自动化 — AI as Normal Technology</title>
     <link>https://aipaper.jasonlin.tech/#/paper/arvindnarayanan-steering-ai-beyond-automation</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/arvindnarayanan-steering-ai-beyond-automation/</guid>
     <pubDate>Sun, 25 Oct 2026 02:23:22 -0000</pubDate>
-    <description>硅谷主流人工智能议程狭隘地聚焦于劳动自动化，而人机协作方向仍发展不足；作者提出一个协作式人工智能的初步研究纲领，以及一种自下而上、市场驱动的引导其发展的路径。</description>
+    <description></description>
   </item>
   <item>
     <title>战斗无人机——一款由氛围编程打造、支持音频联机的即时战略游戏 — Simon Willison's Weblog</title>
@@ -201,20 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-mythos-51-fable-51-and-opus-55-model</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-mythos-51-fable-51-and-opus-55-model/</guid>
     <pubDate>Sun, 11 Oct 2026 04:40:16 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>曲线让你屈服 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-curve-bends-you</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-curve-bends-you/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:39:54 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>OpenAI 带来的新数学 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-new-math-from-openai</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-new-math-from-openai/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:39:34 -0000</pubDate>
     <description></description>
   </item>
 </channel>

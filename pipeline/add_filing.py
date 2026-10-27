@@ -159,9 +159,10 @@ def main():
         ap.add_argument("--" + a, required=a not in ("org", "label"))
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--only-parse", action="store_true")
+    ap.add_argument("--final", action="store_true", help="424B4 终稿:没有未填空白,横向空隙不标 [__]")
     a = ap.parse_args()
 
-    secs = parse(open(Path(a.htm).expanduser(), encoding="utf-8", errors="ignore").read())
+    secs = parse(open(Path(a.htm).expanduser(), encoding="utf-8", errors="ignore").read(), blanks=not a.final)
     np_ = sum(len(s["paras"]) for s in secs)
     print(f"[1/4] 解析:{len(secs)} 节 / {np_} 段 / {sum(len(p) for s in secs for p in s['paras']) // 1000}k 字符", file=sys.stderr)
     if a.only_parse:
@@ -205,7 +206,9 @@ def main():
             for i, s in enumerate(secs)]
 
     print("[3/4] 摘要/看点/元信息", file=sys.stderr)
-    first = " ".join(p for s in secs[:12] for p in s["paras"])
+    # 摘要/看点取「Prospectus Summary」起的 16 节(终稿前面常是术语表/创始人信,拿它们做摘要会跑偏);没有就取开头 12 节
+    k = next((i for i, s in enumerate(secs) if re.search(r"prospectus summary|^summary$", s["sec"], re.I)), None)
+    first = " ".join(p for s in (secs[k:k + 16] if k is not None else secs[:12]) for p in s["paras"])
     absEn = (call(ABS_SYS, a.title + "\n" + first[:14000], mx=1200).get("absEn") or "").strip()
     ins = call(INS, a.title + "\n" + absEn + "\n" + first[:50000], mx=6000)
     m = call(META, f"标题: {a.title}\n摘要: {absEn}")

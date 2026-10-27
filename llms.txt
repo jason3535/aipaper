@@ -3,7 +3,7 @@
 > 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.
 
 站点: https://aipaper.jasonlin.tech/
-规模: 240 位学者 / 649 篇论文
+规模: 242 位学者 / 651 篇论文
 每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。
 
 ## 学者 Scholars
@@ -117,7 +117,9 @@
 - [Diederik P. Kingma / 迪德里克·金马](https://aipaper.jasonlin.tech/pp/dkingma/): Research Scientist, Anthropic (prev. Google Brain, OpenAI) — 2 篇
 - [Jakub Pachocki / 雅库布·帕霍茨基](https://aipaper.jasonlin.tech/pp/pachocki/): Chief Scientist, OpenAI — 1 篇
 - [Thinking Machines Lab / Thinking Machines Lab](https://aipaper.jasonlin.tech/pp/thinkingmachines/): AI research lab (Tinker, Inkling) — 1 篇
+- [SpaceX / SpaceX](https://aipaper.jasonlin.tech/pp/spacex/): Space, Starlink connectivity & AI compute (xAI); Nasdaq: SPCX — 1 篇
 - [Ali Hatamizadeh / 阿里·哈塔米扎德](https://aipaper.jasonlin.tech/pp/alihatamizadeh/): Senior Research Scientist, NVIDIA — 1 篇
+- [Cerebras / Cerebras](https://aipaper.jasonlin.tech/pp/cerebras/): Wafer-scale AI chips & inference infrastructure (Nasdaq: CBRS) — 1 篇
 - [Citrini Research / Citrini Research](https://aipaper.jasonlin.tech/pp/citrini/): Thematic Investment Research — 1 篇
 - [Matt Shumer / 马特·舒默](https://aipaper.jasonlin.tech/pp/mattshumer/): Co-founder & CEO, HyperWrite — 1 篇
 - [Jianfeng Gao / 高剑峰](https://aipaper.jasonlin.tech/pp/jianfenggao/): Distinguished Scientist & VP, Microsoft Research — 1 篇
@@ -125,8 +127,6 @@
 - [Shiyin Lu / 卢诗音](https://aipaper.jasonlin.tech/pp/shiyinlu/): Alibaba AIDC-AI, multimodal LLM — 1 篇
 - [MiniCPM Team (OpenBMB) / MiniCPM Team (OpenBMB)](https://aipaper.jasonlin.tech/pp/minicpm/): OpenBMB / Tsinghua, on-device LLMs — 1 篇
 - [Bi Huo / 火碧](https://aipaper.jasonlin.tech/pp/bihuo/): rednote hi-lab, open MoE LLM — 1 篇
-- [Dwarkesh Patel / 德瓦克什·帕特尔](https://aipaper.jasonlin.tech/pp/dwarkeshpatel/): Host, Dwarkesh Podcast — 1 篇
-- [Mingjie Liu / 刘明杰](https://aipaper.jasonlin.tech/pp/mingjieliu/): NVIDIA, prolonged RL for reasoning — 1 篇
 
 ## 高被引论文 Most-cited papers
 - [Deep Residual Learning for Image Recognition](https://aipaper.jasonlin.tech/p/kaiming-1512.03385/) — Kaiming He, Microsoft, 被引 231533
