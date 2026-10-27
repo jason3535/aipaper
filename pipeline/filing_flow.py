@@ -205,6 +205,18 @@ def parse(src):
             text = '**' + text + '**'
         if text.startswith(('•', '◦')):
             text = '- ' + text[1:].strip()
+        # 跨页续段:小写开头的正文段,并回前面最近一个没写完的正文段(中间隔着的是页脚脚注)
+        if re.match(r'^[a-z]', text) and not bold:
+            for k in range(len(cur['paras']) - 1, max(-1, len(cur['paras']) - 7), -1):
+                q = cur['paras'][k]
+                if '\n' in q or q.startswith(('#', '-', '**')) or re.match(r'^\(?\d{1,2}\)?\s', q):
+                    continue   # 表格/标题/项目符号/脚注「(1) …」跳过,继续往前找没写完的正文段
+                if not re.search(r'[.:;!?”)]\s*$', q):
+                    cur['paras'][k] = q + ' ' + text
+                    text = None
+                break
+            if text is None:
+                continue
         cur['paras'].append(text)
     flush_tbl()
     if cur and cur['paras']:

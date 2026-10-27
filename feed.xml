@@ -6,34 +6,34 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 27 Oct 2026 06:18:02 -0000</lastBuildDate>
+  <lastBuildDate>Tue, 27 Oct 2026 06:48:34 -0000</lastBuildDate>
   <item>
     <title>CoreWeave, Inc. —424B4 最终招股说明书（IPO） — CoreWeave</title>
     <link>https://aipaper.jasonlin.tech/#/paper/coreweave-424b4-2025</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/coreweave-424b4-2025/</guid>
-    <pubDate>Tue, 27 Oct 2026 06:18:02 -0000</pubDate>
-    <description>专为 AI 打造的超大规模云服务商 CoreWeave 营收从 2022 年的 1600 万美元增至 2024 年的 19 亿美元，截至 2024 年 12 月 31 日剩余履约义务达 151 亿美元。</description>
+    <pubDate>Tue, 27 Oct 2026 06:48:34 -0000</pubDate>
+    <description>专为 AI 打造的超大规模云服务商 CoreWeave 启动 IPO，营收从 2022 年的 1600 万美元增至 2024 年的 19 亿美元，但净亏损同步扩大，截至 2024 年 12 月 31 日剩余履约义务达 151 亿美元。</description>
   </item>
   <item>
     <title>Cerebras Systems Inc. —424B4 最终招股说明书（IPO） — Cerebras</title>
     <link>https://aipaper.jasonlin.tech/#/paper/cerebras-424b4-2026</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/cerebras-424b4-2026/</guid>
-    <pubDate>Tue, 27 Oct 2026 02:44:17 -0000</pubDate>
-    <description>Cerebras Systems 的 IPO 招股书以晶圆级引擎和超快推理作为应对 AI 速度瓶颈的方案，并披露营收从 2022 年的 2460 万美元增至 2025 年的 5.10 亿美元、2025 年净利润 2.378 亿美元。</description>
+    <pubDate>Tue, 27 Oct 2026 06:46:53 -0000</pubDate>
+    <description>Cerebras Systems 的 IPO 招股书将其晶圆级引擎定位为全球最快的 AI 推理基础设施，称其推理速度比基于 GPU 的解决方案快 15 倍，营收从 2022 年的 2460 万美元增至 2025 年的 5.10 亿美元，并已获得 OpenAI 和 AWS 等客户。</description>
   </item>
   <item>
     <title>太空探索技术公司（SpaceX）——424B4 最终招股说明书（IPO） — SpaceX</title>
     <link>https://aipaper.jasonlin.tech/#/paper/spacex-424b4-2026</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/spacex-424b4-2026/</guid>
-    <pubDate>Tue, 27 Oct 2026 02:42:51 -0000</pubDate>
-    <description>SpaceX 招股书展示发射、星链连接与 xAI 垂直整合业务，2025 年营收 186.74 亿美元但经营亏损 25.89 亿美元。</description>
+    <pubDate>Tue, 27 Oct 2026 06:46:18 -0000</pubDate>
+    <description>SpaceX 招股书展示了一家垂直整合的太空、连接与 AI 公司，2025 年营收 186.74 亿美元、经营亏损 25.89 亿美元。</description>
   </item>
   <item>
     <title>Anthropic, PBC —S-1 注册声明（IPO 招股说明书） — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-s1-2026</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-s1-2026/</guid>
-    <pubDate>Tue, 27 Oct 2026 01:00:49 -0000</pubDate>
-    <description>Anthropic 提交 S-1 招股说明书，界定其前沿 AI 业务的术语体系、经营与财务指标及“按智能付费”消费模式，核心前提是智能已成为人类可构建之物、充裕的 AI 将迅速变革各个行业。</description>
+    <pubDate>Tue, 27 Oct 2026 06:44:45 -0000</pubDate>
+    <description>2021 年成立、开发 Claude 模型的 AI 研究实验室 Anthropic, PBC 申请上市，称前沿 AI 的经济机遇超过工业化、电力、半导体和互联网，并主张安全与能力必须同步推进。</description>
   </item>
   <item>
     <title>MiMo-V2.6：将强化学习扩展至自我改进 — cs.CL</title>
