@@ -47,6 +47,12 @@ for (const id of ids) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(d.date || "")) errs.push(`date 非法: ${JSON.stringify(d.date)}(Jina 假日期?)`);
     const ins = d.insights || {};
     if ((ins.contrib || []).length < 3) ws.push(`核心贡献仅 ${(ins.contrib || []).length} 条`);
+    // 2026-10-28 全库查出 44 篇 arXiv 论文正文引用了几十张图、库里 0 张(HTML 当时没渲染/走了 PDF 兜底)
+    if (d.arxiv) {
+      const figs = full.reduce((n, s) => n + (s.items || []).filter(it => it.t === "fig").length, 0);
+      const refs = new Set((paras.map(x => x.en || "").join(" ").match(/\b(?:Figure|Fig\.)\s*\d+/g) || []).map(x => x.replace(/\D/g, ""))).size;
+      if (!figs && refs >= 3) ws.push(`正文引用 ${refs} 张图但 0 图,可 python3 pipeline/backfill_figures.py ${id}`);
+    }
     const sEn = (p && p.sEn) || (SUMM[id] || {}).sEn || d.sEn;
     if (!(sEn || "").trim()) errs.push("一句话摘要 sEn 缺失(搜索/MCP 会吃空值)");
   }

@@ -1019,7 +1019,7 @@ function mdMath(t){
 function renderItem(it){
  if(it.t==='fig')return `<figure class="pfig"><img loading="lazy" src="${it.src}" alt="figure" data-orig="${it.origSrc||''}" onerror="if(this.dataset.orig&&this.src!==this.dataset.orig){this.src=this.dataset.orig;}else{this.closest('figure').style.display='none';}"><figcaption><span class="lang-en">${esc(it.capEn||'')}</span><span class="lang-zh">${esc(it.capZh||'')}</span></figcaption></figure>`;
  if(it.t==='eq')return `<div class="peq">\\[${it.tex}\\]</div>`;
- return `<div class="para"><div class="en">${mdMath(it.en)}</div><div class="zh">${mdMath(it.zh)}</div></div>`;}
+ return `<div class="para${it.q?' q':''}"><div class="en">${mdMath(it.en)}</div><div class="zh">${mdMath(it.zh)}</div></div>`;}
 function ilist(arr,head){return `<div class="icard"><h4 style="color:var(--acc)">${head}</h4><ul style="margin:0;padding-left:18px">${(arr||[]).map(x=>`<li><span class="lang-en">${esc(x.en)}</span><span class="z lang-zh">${esc(x.zh)}</span></li>`).join('')}</ul></div>`;}
 function vPaper(id){
  const p=PAPERS.find(x=>x.id===id); if(!p) return vHome();
@@ -1030,7 +1030,7 @@ function vPaper(id){
  const absEn=(full&&full.absEn)||p.absEn||'',absZh=(full&&full.absZh)||p.absZh||'';
  const secs=full?full.full.filter(s=>!/^abstract$/i.test(s.sec)):[];
  const reader=full?secs.map((s,i)=>`<div class="sec-h" id="sec-${i}"><span class="se">${esc(s.sec)}</span><span class="sz">${esc(s.secZh||s.sec)}</span></div>`+
-    (s.items?s.items.map(renderItem).join(''):(s.paras||[]).map(pa=>renderItem({t:'para',en:pa.en,zh:pa.zh})).join('')) ).join('')
+    (s.items?s.items.map(renderItem).join(''):(s.paras||[]).map(pa=>renderItem({t:'para',en:pa.en,zh:pa.zh,q:pa.q})).join('')) ).join('')
    :`<div class="skeleton" style="width:90%"></div><div class="skeleton" style="width:80%"></div><div class="skeleton" style="width:86%"></div>`;
  const tocItems=secs.map((s,i)=>`<a class="toc-i" data-sec="${i}" onclick="jumpSec(${i})"><span class="se">${esc(s.sec)}</span><span class="sz">${esc(s.secZh||s.sec)}</span></a>`).join('');
  const hasToc=secs.length>=3;
@@ -1266,7 +1266,11 @@ function placeAsk(){
  else{if(inline&&box.parentElement!==inline)inline.appendChild(box);}
 }
 askMQ.addEventListener?askMQ.addEventListener('change',placeAsk):askMQ.addListener(placeAsk);
-function jumpSec(i){const el=document.getElementById('sec-'+i);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});const sh=document.getElementById('tocSheet');if(sh)sh.classList.remove('on');}
+/* 段落开了 content-visibility:auto,屏外段落高度是估算值:平滑滚动按估算算终点,落点能差出几万 px。
+   改成瞬时滚 + 逐帧复核,目标附近的段落渲染出真实高度后位置收敛(一般 2-3 帧)。 */
+function settleTo(el,block){let n=0,last=null;const go=()=>{el.scrollIntoView({behavior:'instant',block:block||'start'});
+ const t=Math.round(el.getBoundingClientRect().top);if(t!==last&&++n<12){last=t;requestAnimationFrame(go);}};go();}
+function jumpSec(i){const el=document.getElementById('sec-'+i);if(el)settleTo(el,'start');const sh=document.getElementById('tocSheet');if(sh)sh.classList.remove('on');}
 function toggleTocSheet(){const s=document.getElementById('tocSheet');if(s)s.classList.toggle('on');}
 /* 分享:手机走系统分享面板(带该篇专属 OG 卡),桌面回退复制链接;分享的是静态页 /p/<id>/ */
 async function copyShare(id){const url=location.origin+'/p/'+id+'/';const b=event&&event.currentTarget;const pp=(typeof PAPERS!=='undefined'?PAPERS:[]).find(x=>x.id===id)||{};
@@ -1334,7 +1338,7 @@ function applyLocate(){if(!pendingLocate)return;const {id,at,hl}=pendingLocate;
   for(const L of [40,30,22,16,10]){const snip=base.slice(0,Math.min(L,base.length));if(snip.length<6)continue;
    const hit=els.find(el=>el.textContent.replace(/\s/g,'').includes(snip));
    if(hit){hit.classList.add('hl-locate');setTimeout(()=>hit.classList.remove('hl-locate'),4000);target=hit.closest('.para')||hit;break;}}}
- if(target)setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'center'}),60);}
+ if(target)setTimeout(()=>settleTo(target,'center'),60);}
 async function sharePaper(id){const p=PAPERS.find(x=>x.id===id);if(!p)return;
  const url=location.origin+'/p/'+id+'/';const ref=p.arxiv?`arXiv:${p.arxiv}`:(p.srcLabel||p.org||'原文');const text=`${p.tZh}｜${p.tEn}（${ref}）`;
  try{if(navigator.share){await navigator.share({title:p.tZh,text,url});return;}}catch(e){if(e&&e.name==='AbortError')return;}

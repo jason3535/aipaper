@@ -126,6 +126,11 @@ section{padding:46px 0}
 .para{padding:12px 0;border-bottom:1px solid var(--line)}
 .para .en{font-size:calc(17px*var(--read-scale))}
 .para .zh{font-size:calc(17px*var(--read-scale));color:#3a3a3e;margin-top:7px}
+/* 引文(博客长文里的推文/论文/新闻摘录):左边线 + 略收字号,和作者正文区分开 */
+.para.q{border-bottom:none;border-left:3px solid var(--line);padding:8px 0 8px 16px;margin:0}
+.para.q .en,.para.q .zh{font-size:calc(16px*var(--read-scale))}
+.para.q .en{color:var(--sub)}
+.para.q+.para:not(.q){border-top:1px solid var(--line);margin-top:6px}
 .skeleton{height:14px;background:linear-gradient(90deg,#eee,#f6f6f6,#eee);border-radius:6px;margin:10px 0;animation:sk 1.3s infinite}
 @keyframes sk{0%{opacity:.6}50%{opacity:1}100%{opacity:.6}}
 .askbox{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
@@ -302,6 +307,8 @@ a.ppl-card{text-decoration:none;color:inherit;display:block}
 .toc-i:hover{color:var(--ink)}
 .toc-i.on{color:var(--ink);border-left-color:var(--acc);font-weight:500}
 .reader .sec-h{scroll-margin-top:118px}
+/* 屏外段落跳过排版/绘制:S-1 这类 3,700 段的长文档在手机上首帧主线程卡 1.3s(4× 降速实测) */
+.reader .para{content-visibility:auto;contain-intrinsic-size:auto 160px}
 .sec-h .sz,.toc-i .sz{display:none}
 body[data-lang="zh"] .sec-h .se,body[data-lang="zh"] .toc-i .se{display:none}
 body[data-lang="zh"] .sec-h .sz,body[data-lang="zh"] .toc-i .sz{display:inline}
@@ -574,7 +581,7 @@ window.typesetIfMath=function(el,done){
 <button class="totop" id="toTop" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6-6 6 6"/></svg></button>
 <div id="app"></div>
 <div id="selBar" class="sel-bar" onmousedown="event.preventDefault()"><button class="sel-btn sel-ask" onclick="askSel()">问一问</button><button class="sel-btn" onclick="markSel()">标记</button><button class="sel-btn" id="shareSelBtn" onclick="shareSel()">分享</button></div>
-<script src="app.js?v=1170b7d516" defer></script>
+<script src="app.js?v=23da418dc5" defer></script>
 <script>/* SW 只在生产域名注册:本地预览(http/127.0.0.1)不注册,避免把 localhost 缓存搞混 */
 if('serviceWorker' in navigator&&/jasonlin\.tech$/.test(location.hostname))addEventListener('load',function(){navigator.serviceWorker.register('/sw.js')});</script>
 <!--SITE_INDEX_START--><details class="site-index"><summary>站点地图 · Sitemap（242 位学者 · 651 篇）</summary>

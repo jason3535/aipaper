@@ -50,9 +50,11 @@ def strip_chrome(secs):
     for s in secs:
         if CHROME_SEC.search(s.get("sec") or ""):
             continue
-        ps = [p for p in s["paras"] if not CHROME_PARA.match(_ptext(p).strip())]
-        if ps:
-            s = {**s, "paras": ps}
+        qs = s.get("q") or [0] * len(s["paras"])
+        keep = [(p, q) for p, q in zip(s["paras"], qs) if not CHROME_PARA.match(_ptext(p).strip())]
+        if keep:
+            s = {**s, "paras": [p for p, _ in keep]}
+            if "q" in s: s["q"] = [q for _, q in keep]
             out.append(s)
     return out or secs   # 全被剥光说明规则误伤,宁可原样返回
 
@@ -83,18 +85,26 @@ def parse_md(md, title_hint=""):
         if m: title = re.sub(r"\s*[|\-–—]\s*(OpenAI|Anthropic|Transformer Circuits).*$", "", m.group(1)).strip()
     idx = md.find("Markdown Content:")
     body = md[idx + len("Markdown Content:"):] if idx >= 0 else md
-    secs = []; cur = {"sec": "Overview", "paras": []}
+    secs = []; cur = {"sec": "Overview", "paras": [], "q": []}
     for ln in body.split("\n"):
         s = ln.strip()
         if not s: continue
-        h = re.match(r"^(#{1,4})\s+(.+)$", s)
+        # 引用块(> …)以前整行丢弃 —— Zvi 这类评论型文章一半以上是引文(推文/论文/新闻摘录),
+        # 只收进原文 20–45%,读起来像在回应看不见的东西。现在每个非空 > 行作为一段收进来,标 q=1,
+        # 前端渲染成左边线引用样式。嵌套 > > 一并剥掉;引文里的 # 不当节标题。
+        isq = s.startswith(">")
+        if isq:
+            s = re.sub(r"^(>\s?)+", "", s).strip()
+            s = re.sub(r"^#{1,6}\s+", "", s)
+            if not s: continue
+        h = None if isq else re.match(r"^(#{1,4})\s+(.+)$", s)
         if h:
             if STOP.match(s): break
             head = re.sub(r"[*_`\[\]]", "", h.group(2)).strip()
             if h.group(1) == "#" and title and head.lower() == title.lower(): continue
             if not title and h.group(1) == "#": title = head; continue
             if cur["paras"]: secs.append(cur)
-            cur = {"sec": head, "paras": []}
+            cur = {"sec": head, "paras": [], "q": []}
             continue
         if s.startswith("![") or s in ("---", "***", "___") or s.startswith(("|", ">", "[](")) \
            or re.match(r"^\[[^\]]*\]\([^)]*\)$", s) \
@@ -107,9 +117,17 @@ def parse_md(md, title_hint=""):
         # 混进正文(len>40 拦不住)。2026-08-23 Raschka 两篇各混进 20+ 段这种壳。
         # 替换后再判一次:只剩空锚链接或裸 URL 的,不是正文。
         if re.fullmatch(r"\[\s*\]\(\S*\)|<?https?://\S+>?", t): continue
-        if len(t) > 40: cur["paras"].append(t)
+        # 引文多是推文/对话短句(「Jesus is real.」),门槛放低;正文仍按 40 字滤掉碎片
+        if len(t) > (12 if isq else 40):
+            cur["paras"].append(t); cur["q"].append(1 if isq else 0)
     if cur["paras"]: secs.append(cur)
     return title, pub, secs
+
+def mark_quotes(secs, full):
+    """翻译按位置一一对应(translate_section 保证等长),把解析期的 q 标记回填到 {en,zh} 上。"""
+    for s, f in zip(secs, full):
+        for p, q in zip(f["paras"], s.get("q") or []):
+            if q: p["q"] = 1
 
 # ---- 反向模式(中文原生内容):中文原文 → 英文译文 ----
 TR_SYS_REV = """你是专业译者。输入是一篇中文文章某一节的若干中文段落(JSON 数组)。
@@ -142,6 +160,7 @@ def main():
     ap.add_argument("--label", default=""); ap.add_argument("--slug", default="")
     ap.add_argument("--title", default=""); ap.add_argument("--date", default="")
     ap.add_argument("--reverse", action="store_true", help="中文原生内容:中文原文→英文译文(默认英文→中文)")
+    ap.add_argument("--keep-meta", action="store_true", help="重收已有文章:只换正文 full 与贡献/局限,保留标题/摘要/日期/收录时间(addedAt 不变,首页不会把旧文当新文)")
     ap.add_argument("--md-file", default="", help="跳过 Jina,用本地已抓好的 markdown(Jina 对部分页面持续返回残缺渲染,curl r.jina.ai 手动抓全后从文件走)")
     a = ap.parse_args()
     url = a.url.strip()
@@ -170,6 +189,17 @@ def main():
     with ThreadPoolExecutor(max_workers=5) as ex:
         futs = {ex.submit(tf, s): i for i, s in enumerate(secs)}
         for f in as_completed(futs): full[futs[f]] = f.result()
+    mark_quotes(secs, full)
+    old_path = ROOT / "data" / f"{pid_id}.json"
+    if a.keep_meta:
+        if not old_path.exists(): sys.exit(f"  ✗ --keep-meta 但 data/{pid_id}.json 不存在")
+        old = json.load(open(old_path, encoding="utf-8"))
+        ctx = old.get("tEn", title) + "\n" + (old.get("absEn") or "") + "\n" + " ".join(p["en"] for s in full for p in s["paras"])[:60000]
+        old["insights"] = call(INS_SYS, ctx, mx=6000) or old.get("insights")
+        space_obj(full); old["full"] = full
+        json.dump(old, open(old_path, "w"), ensure_ascii=False)
+        print(f"完成(keep-meta): {pid_id} | {len(secs)} 节 / {sum(len(s['paras']) for s in full)} 段", file=sys.stderr)
+        return
     print(f"[3/4] 贡献/局限 + 元信息", file=sys.stderr)
     # 摘要:优先让模型基于正文写一段(启发式取前几段被 Substack 骨架/目录坑过两次),
     # 失败再退回 pick_abs 的"前几段散文"。
