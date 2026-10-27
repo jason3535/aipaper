@@ -21,7 +21,7 @@ const fullTextHtml=d=>{
     const arr=(s.items||s.paras||[]).filter(p=>(!p.t||p.t==='para')&&((p.en||'').trim()||(p.zh||'').trim()));
     if(!arr.length)return '';
     const head=esc(s.secZh||s.sec||'')+(s.sec&&s.secZh?` <span class="en">${esc(s.sec)}</span>`:'');
-    const body=arr.map(p=>(p.zh?`<p class="zh">${esc(p.zh)}</p>`:'')+(p.en?`<p class="en">${esc(p.en)}</p>`:'')).join('');
+    const body=arr.map(p=>{const t=(p.zh?`<p class="zh">${esc(p.zh)}</p>`:'')+(p.en?`<p class="en">${esc(p.en)}</p>`:'');return p.q?`<blockquote>${t}</blockquote>`:t;}).join('');
     return `<section class="sec"><h3 id="s${i+1}">${head}</h3>${body}</section>`;
   }).join('');
   return out?`<h2>全文 · Full text（逐段中英对照）</h2><div class="tr">${out}</div>`:'';
@@ -37,10 +37,13 @@ const xlinksOf=pid=>{
 };
 const CSS=`:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}.cta-2{margin-left:8px;background:#fff;color:var(--acc);border:1px solid var(--line);cursor:pointer;font-family:inherit}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}
 /* 全文区。content-visibility 让屏幕外章节跳过渲染,长论文才不卡 */
-.tr{margin-top:8px}.tr .sec{content-visibility:auto;contain-intrinsic-size:auto 600px;margin:0 0 10px}
+.tr{margin-top:8px}.tr blockquote{margin:6px 0 12px;padding:2px 0 2px 14px;border-left:3px solid var(--line)}.tr .sec{content-visibility:auto;contain-intrinsic-size:auto 600px;margin:0 0 10px}
 /* 深色模式(2026-09-05 补):SPA 支持、静态分享页一直纯白,夜里点开分享链接先闪一屏白。 */
 @media (prefers-color-scheme:dark){:root{--ink:#f5f5f7;--sub:#a1a1a6;--line:#2c2c2e;--acc:#2997ff}
 body{background:#000;color:#f5f5f7}.cta-2{background:#1c1c1e;border-color:#3a3a3c}}
+.rn{list-style:none;padding:0;margin:0}.rn li{margin:0;border-top:1px solid var(--line)}.rn li:first-child{border-top:none}.rn a{display:block;padding:12px 0;text-decoration:none;color:var(--ink)}.rn-t{display:block;font-size:15.5px;font-weight:600;line-height:1.4}.rn-m{display:block;font-size:13px;color:var(--sub);margin-top:3px}
+.fab{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:9;padding:9px 15px;border-radius:999px;background:var(--ink);color:var(--bg,#fff);font-size:13px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+@media (prefers-color-scheme:dark){.fab{background:#f5f5f7;color:#000}}
 .tr h3{font-size:15px;margin:26px 0 8px;color:var(--ink);border-top:1px solid var(--line);padding-top:14px}
 .tr p.zh{margin:.2em 0}.tr p.en{margin:.1em 0 .9em}`;
 /* 匿名访问统计 —— 静态页必须自带一份。
@@ -94,6 +97,24 @@ if(navigator.share){navigator.share({title:t,text:d,url:u}).catch(function(){});
 try{navigator.clipboard.writeText(u).then(function(){var o=b.textContent;b.textContent='已复制链接';setTimeout(function(){b.textContent=o},1600)})}catch(e){}}</script>${BEACON}</body></html>`;
 
 const byPid={};PAPERS.forEach(p=>(byPid[p.pid]=byPid[p.pid]||[]).push(p));
+/* 文末「接着读」(2026-10-28)。S-1 被转进微信那天,几十位访客落在静态页、读完就走——
+   全文后面只有一个回互动版的按钮,没有任何去处。这里补:同类文件(招股书↔招股书)优先,
+   再 BM25 相关(data/related.json),最后同作者/机构的其他篇,去重取 6 篇。 */
+const REL=(()=>{try{return JSON.parse(fs.readFileSync(path.join(ROOT,'data','related.json'),'utf8'));}catch(e){return{};}})();
+const BYID=Object.fromEntries(PAPERS.map(p=>[p.id,p]));
+const SUMM=(()=>{try{return JSON.parse(fs.readFileSync(path.join(ROOT,'data','summaries.json'),'utf8'));}catch(e){return{};}})();   // sZh 已被 slim 移出 PAPERS
+const isFiling=p=>/^SEC Form/.test(p.venue||'');
+const kindOf=p=>p.arxiv?'论文':isFiling(p)?'招股文件':'文章';
+const readNext=p=>{
+  const ids=[],add=id=>{if(id&&id!==p.id&&BYID[id]&&!ids.includes(id))ids.push(id);};
+  if(isFiling(p))PAPERS.filter(isFiling).forEach(x=>add(x.id));
+  (REL[p.id]||[]).forEach(r=>add(r.id));
+  (byPid[p.pid]||[]).slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')).forEach(x=>add(x.id));
+  const items=ids.slice(0,6).map(id=>{const x=BYID[id],pe=PEOPLE[x.pid]||{};
+    return `<li><a href="${SITE}/p/${x.id}/"><span class="rn-t">${esc(x.tZh||x.tEn)}</span><span class="rn-m">${esc(pe.zh||pe.en||'')} · ${esc(x.date||'')}${(z=>z?' — '+esc(z.length>60?z.slice(0,60).replace(/[，。、,.;；：:\s]+$/,'')+'…':z):'')(x.sZh||(SUMM[x.id]||{}).sZh||'')}</span></a></li>`;}).join('');
+  return items?`<h2 id="next">接着读 · Read next</h2><ul class="rn">${items}</ul>`:'';
+};
+const nameOf=pe=>pe.zh&&pe.en&&pe.zh!==pe.en?`${esc(pe.zh)} ${esc(pe.en)}`:esc(pe.zh||pe.en||'');
 const PDIR=path.join(ROOT,'p');fs.rmSync(PDIR,{recursive:true,force:true});fs.mkdirSync(PDIR,{recursive:true});
 const HDIR=path.join(ROOT,'pp');fs.rmSync(HDIR,{recursive:true,force:true});fs.mkdirSync(HDIR,{recursive:true});
 let n=0;
@@ -109,16 +130,18 @@ PAPERS.forEach(p=>{
   const srcUrl=p.arxiv?`https://arxiv.org/abs/${p.arxiv}`:(p.srcUrl||'');
   const srcLbl=p.arxiv?`arXiv:${p.arxiv}`:(p.srcLabel||'原文');
   const li=arr=>arr.map(x=>`<li><span class="zh">${esc(x.zh)}</span><br><span class="en">${esc(x.en)}</span></li>`).join('');
-  const body=`<nav class="bc"><a href="${SITE}/">AI Paper</a> › <a href="${person}">${esc(pe.zh||pe.en||'')}</a> › 论文</nav>
+  const body=`<nav class="bc"><a href="${SITE}/">AI Paper</a> › <a href="${person}">${esc(pe.zh||pe.en||'')}</a> › ${kindOf(p)}</nav>
 <h1>${esc(p.tZh||p.tEn)}</h1><p class="en-t">${esc(p.tEn)}</p>
-<p class="meta"><a href="${person}">${esc(pe.zh||'')} ${esc(pe.en||'')}</a> · ${esc(p.org||'')} · ${esc(p.date||'')}${srcUrl?` · <a href="${esc(srcUrl)}" rel="nofollow">${esc(srcLbl)} ↗</a>`:''}${p.cites!=null?` · 被引 ${p.cites}`:''}</p>
-<a class="cta" href="${hash}">打开互动全文版（逐段中英对照 + 图/公式 + 论文问答）→</a><button class="cta cta-2" onclick="shareThis(this)">分享本篇</button>
+<p class="meta"><a href="${person}">${nameOf(pe)}</a>${p.org&&p.org!==pe.en&&p.org!==pe.zh?` · ${esc(p.org)}`:''} · ${esc(p.date||'')}${srcUrl?` · <a href="${esc(srcUrl)}" rel="nofollow">${esc(srcLbl)} ↗</a>`:''}${p.cites!=null?` · 被引 ${p.cites}`:''}</p>
+<a class="cta" href="${hash}">打开互动全文版（逐段中英对照${p.arxiv?' + 图/公式':''} + 针对本篇提问）→</a><button class="cta cta-2" onclick="shareThis(this)">分享本篇</button>
 ${(d.absZh||p.sZh||d.absEn||p.sEn)?`<h2>摘要 · Abstract</h2><p class="zh">${esc(d.absZh||p.sZh||'')}</p><p class="en">${esc(d.absEn||p.sEn||'')}</p>`:''}
 ${contrib.length?`<h2>核心贡献 · Key contributions</h2><ul>${li(contrib)}</ul>`:''}
 ${limits.length?`<h2>局限 · Limitations</h2><ul>${li(limits)}</ul>`:''}
-${secs.length?`<h2>论文章节 · Sections（共 ${secs.length}）</h2><ul>${secs.map((s,i)=>`<li><a href="#s${i+1}"><span class="zh">${esc(s.zh)}</span> <span class="en">${esc(s.en)}</span></a></li>`).join('')}</ul>`:''}
+${secs.length?`<h2 id="toc">${p.arxiv?'论文章节':'章节'} · Sections（共 ${secs.length}）</h2><ul>${secs.map((s,i)=>`<li><a href="#s${i+1}"><span class="zh">${esc(s.zh)}</span> <span class="en">${esc(s.en)}</span></a></li>`).join('')}</ul>`:''}
 ${fullTextHtml(d)}
-<p style="margin-top:26px"><a class="cta" href="${hash}">互动版：图/公式 + 针对本篇提问 →</a></p>
+<p style="margin-top:26px"><a class="cta" href="${hash}">互动版：${p.arxiv?'图/公式 + ':''}针对本篇提问 →</a></p>
+${readNext(p)}
+${secs.length>=20?`<a class="fab" href="#toc" aria-label="回到目录">目录</a>`:''}
 <script>(function(){var q=location.search.replace(/^\\?/,'');var h=${JSON.stringify(hash)}+(q?'?'+q:'');
 document.querySelectorAll('a.cta').forEach(function(a){a.href=h});})()</script>`;
   const art={"@context":"https://schema.org","@type":"ScholarlyArticle",headline:p.tEn,alternativeHeadline:p.tZh,name:p.tEn,url,datePublished:p.date,inLanguage:["en","zh"],abstract:d.absEn||p.sEn||p.sZh,description:p.sEn||p.sZh,keywords:(p.fields||[]).join(', '),author:{"@type":"Person",name:pe.en,jobTitle:pe.tiEn,url:person},isPartOf:{"@type":"WebSite",name:"AI Paper",url:SITE}};
