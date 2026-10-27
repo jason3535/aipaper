@@ -6,9 +6,16 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 27 Oct 2026 02:44:17 -0000</lastBuildDate>
+  <lastBuildDate>Tue, 27 Oct 2026 06:18:02 -0000</lastBuildDate>
   <item>
-    <title>Cerebras Systems Inc. — 424B4 最终招股说明书（IPO） — Cerebras</title>
+    <title>CoreWeave, Inc. —424B4 最终招股说明书（IPO） — CoreWeave</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/coreweave-424b4-2025</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/coreweave-424b4-2025/</guid>
+    <pubDate>Tue, 27 Oct 2026 06:18:02 -0000</pubDate>
+    <description>专为 AI 打造的超大规模云服务商 CoreWeave 营收从 2022 年的 1600 万美元增至 2024 年的 19 亿美元，截至 2024 年 12 月 31 日剩余履约义务达 151 亿美元。</description>
+  </item>
+  <item>
+    <title>Cerebras Systems Inc. —424B4 最终招股说明书（IPO） — Cerebras</title>
     <link>https://aipaper.jasonlin.tech/#/paper/cerebras-424b4-2026</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/cerebras-424b4-2026/</guid>
     <pubDate>Tue, 27 Oct 2026 02:44:17 -0000</pubDate>
@@ -22,7 +29,7 @@
     <description>SpaceX 招股书展示发射、星链连接与 xAI 垂直整合业务，2025 年营收 186.74 亿美元但经营亏损 25.89 亿美元。</description>
   </item>
   <item>
-    <title>Anthropic, PBC — S-1 注册声明（IPO 招股说明书） — Anthropic</title>
+    <title>Anthropic, PBC —S-1 注册声明（IPO 招股说明书） — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-s1-2026</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-s1-2026/</guid>
     <pubDate>Tue, 27 Oct 2026 01:00:49 -0000</pubDate>
@@ -47,7 +54,7 @@
     <link>https://aipaper.jasonlin.tech/#/paper/arvindnarayanan-p-doom</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/arvindnarayanan-p-doom/</guid>
     <pubDate>Sun, 25 Oct 2026 02:24:22 -0000</pubDate>
-    <description>AI 存在性风险的量化估计（p(doom)）缺乏经过验证的模型或方法，过于不可靠，无法成为公共政策的正当依据。</description>
+    <description></description>
   </item>
   <item>
     <title>AI 安全运动：大帐篷还是小帐篷？ — AI as Normal Technology</title>
@@ -208,13 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-ai-preference-cascade-reaches</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-ai-preference-cascade-reaches/</guid>
     <pubDate>Sun, 11 Oct 2026 04:40:34 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Mythos 5.1、Fable 5.1 与 Opus 5.5：模型福祉 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-mythos-51-fable-51-and-opus-55-model</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-mythos-51-fable-51-and-opus-55-model/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:40:16 -0000</pubDate>
     <description></description>
   </item>
 </channel>
