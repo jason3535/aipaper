@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-10-25</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/anthropic/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-10-23</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-10-20</lastmod></url>
@@ -49,7 +50,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/leike/</loc><lastmod>2026-01-08</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jinzebai/</loc><lastmod>2025-11-26</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/jimfan/</loc><lastmod>2025-10-28</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/anthropic/</loc><lastmod>2025-09-29</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/sam/</loc><lastmod>2025-09-23</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/wenhaiwang/</loc><lastmod>2025-08-25</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/shiyinlu/</loc><lastmod>2025-08-15</lastmod></url>
@@ -241,6 +241,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-s1-2026/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-hackening/</loc><lastmod>2026-10-23</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-misaligned/</loc><lastmod>2026-10-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-anthropic-does-not-understand-why/</loc><lastmod>2026-10-20</lastmod></url>

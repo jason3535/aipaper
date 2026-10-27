@@ -6,7 +6,14 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sun, 25 Oct 2026 02:26:19 -0000</lastBuildDate>
+  <lastBuildDate>Tue, 27 Oct 2026 01:00:49 -0000</lastBuildDate>
+  <item>
+    <title>Anthropic, PBC — S-1 注册声明（IPO 招股说明书） — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-s1-2026</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-s1-2026/</guid>
+    <pubDate>Tue, 27 Oct 2026 01:00:49 -0000</pubDate>
+    <description>Anthropic 提交 S-1 招股说明书，界定其前沿 AI 业务的术语体系、经营与财务指标及“按智能付费”消费模式，核心前提是智能已成为人类可构建之物、充裕的 AI 将迅速变革各个行业。</description>
+  </item>
   <item>
     <title>MiMo-V2.6：将强化学习扩展至自我改进 — cs.CL</title>
     <link>https://aipaper.jasonlin.tech/#/paper/xiaomimimo-2610.11959</link>
@@ -47,7 +54,7 @@
     <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-battledrones</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-battledrones/</guid>
     <pubDate>Sun, 25 Oct 2026 02:22:39 -0000</pubDate>
-    <description>一款几乎完全借助 Claude Code 等编程智能体以氛围编程方式打造的浏览器即时战略游戏，支持通过音频同步的本地多人对战，证明编程智能体已能做出真正好玩的游戏。</description>
+    <description></description>
   </item>
   <item>
     <title>指数增长中的 30 个月（图表版） — One Useful Thing</title>
@@ -208,13 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-new-math-from-openai</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-new-math-from-openai/</guid>
     <pubDate>Sun, 11 Oct 2026 04:39:34 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>2026 年大语言模型进展（迄今） — Simon Willison's Weblog</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-2026-in-llms-so-far</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-2026-in-llms-so-far/</guid>
-    <pubDate>Mon, 28 Sep 2026 02:06:56 -0000</pubDate>
     <description></description>
   </item>
 </channel>
