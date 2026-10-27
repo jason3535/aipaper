@@ -1679,7 +1679,7 @@ async function syncFetch(path,opts){let last;
   throw last instanceof Error?last:new Error('sync unreachable');}
 function syncCode(){return localStorage.syncCode||'';}
 function syncGen(){const A='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';let c='';const buf=new Uint8Array(20);crypto.getRandomValues(buf);for(const b of buf)c+=A[b%32];return c;}
-function syncCollect(){return{recent:recentGet(),read:[...readGet()],later:laterGet(),rlog:rlogGet(),prefs:{size:localStorage.size||'',lang:localStorage.lang||'',order:localStorage.order||'',theme:localStorage.theme||'',t:+localStorage.prefsT||0},t:Date.now()};}
+function syncCollect(){return{recent:recentGet(),read:[...readGet()],later:laterGet(),rlog:rlogGet(),mk:mkGet(),prefs:{size:localStorage.size||'',lang:localStorage.lang||'',order:localStorage.order||'',theme:localStorage.theme||'',t:+localStorage.prefsT||0},t:Date.now()};}
 function syncMerge(r){if(!r||typeof r!=='object')return false;let changed=false;
   {const s=readGet();const b=s.size;(r.read||[]).forEach(x=>s.add(x));
    if(s.size!==b){localStorage.readPapers=JSON.stringify([...s]);changed=true;}}
@@ -1690,6 +1690,11 @@ function syncMerge(r){if(!r||typeof r!=='object')return false;let changed=false;
     if(ch){localStorage.readLogPaper=JSON.stringify(g);changed=true;}}}
   const cur=recentGet();const merged=[...cur];(r.recent||[]).forEach(id=>{if(!merged.includes(id))merged.push(id);});
   if(merged.length!==cur.length){localStorage.recentPapers=JSON.stringify(merged.slice(0,12));changed=true;}
+  {const rm=r.mk;if(rm&&typeof rm==='object'){const lm=mkGet();let mc=false;   // 划词标记:按位置并集合并(与 aipodcast 的 hl 同规则)
+    for(const id in rm){if(!Array.isArray(rm[id]))continue;const la=lm[id]||[];const seen=new Set(la.map(x=>x.sec+'|'+x.pi+'|'+x.lang+'|'+x.s+'|'+x.e));
+      rm[id].forEach(x=>{const k=x.sec+'|'+x.pi+'|'+x.lang+'|'+x.s+'|'+x.e;if(!seen.has(k)){la.push(x);seen.add(k);mc=true;}});
+      if(la.length)lm[id]=la;}
+    if(mc){try{localStorage.paperMarks=JSON.stringify(lm)}catch(_){}changed=true;}}}
   const pf=r.prefs||{};if(pf.t&&pf.t>(+localStorage.prefsT||0)){['size','lang','order','theme'].forEach(k=>{if(pf[k])localStorage[k]=pf[k];});localStorage.prefsT=pf.t;changed=true;}
   return changed;}
 let _syncBusy=false,_syncTm=null,_syncLastPull=0;
@@ -1708,7 +1713,7 @@ async function syncJoin(code){code=(code||'').toUpperCase().replace(/[^A-Z2-7]/g
   localStorage.syncCode=code;await syncPull();await syncPush();syncPanelRefresh();}
 function syncOff(){localStorage.removeItem('syncCode');localStorage.removeItem('syncT');syncPanelRefresh();}
 function syncPanelInner(){const c=syncCode();
-  if(!c)return `<b>多设备同步</b> — 一个匿名同步码，跨设备同步已读、稍后读与阅读进度。无账号、无 Cookie。同一个码也可在姊妹站 AI Podcast 使用。<div style="margin-top:9px"><button class="mcp-copy" onclick="syncOn()">开启同步</button><span style="margin:0 6px;color:var(--sub2)">或</span><input id="syncIn" placeholder="输入同步码" style="font-family:inherit;font-size:16px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:200px;min-height:38px;box-sizing:border-box" onkeydown="if(event.key==='Enter')syncJoin(this.value)"> <button class="mcp-copy" onclick="syncJoin(document.getElementById('syncIn').value)">加入</button></div>`;
+  if(!c)return `<b>多设备同步</b> — 一个匿名同步码，跨设备同步已读、稍后读、划词标记与阅读进度。无账号、无 Cookie。同一个码也可在姊妹站 AI Podcast 使用。<div style="margin-top:9px"><button class="mcp-copy" onclick="syncOn()">开启同步</button><span style="margin:0 6px;color:var(--sub2)">或</span><input id="syncIn" placeholder="输入同步码" style="font-family:inherit;font-size:16px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:200px;min-height:38px;box-sizing:border-box" onkeydown="if(event.key==='Enter')syncJoin(this.value)"> <button class="mcp-copy" onclick="syncJoin(document.getElementById('syncIn').value)">加入</button></div>`;
   return `<b>多设备同步 · 已开启</b> — 把这个码填到另一台设备或姊妹站 AI Podcast，阅读记录即互通。<div style="margin-top:9px"><code class="mcp-url">${c}</code><button class="mcp-copy" onclick="navigator.clipboard&&navigator.clipboard.writeText('${c}');this.textContent='已复制'">复制</button> <button class="mcp-copy" onclick="syncOff()">关闭同步</button></div>`;}
 function syncPanelRefresh(){const el=document.getElementById('syncPanel');if(!el)return;const inner=el.querySelector('.legal-note');el.innerHTML=(inner?inner.outerHTML:'')+syncPanelInner();}
 addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&syncCode()&&Date.now()-_syncLastPull>60000)syncPull();});
