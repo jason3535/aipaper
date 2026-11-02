@@ -151,7 +151,10 @@ document.querySelectorAll('a.cta').forEach(function(a){a.href=h});})()</script>`
   const ld=[art,{"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"AI Paper",item:SITE+"/"},{"@type":"ListItem",position:2,name:pe.zh||pe.en||'',item:person},{"@type":"ListItem",position:3,name:p.tZh||p.tEn,item:url}]}];
   fs.mkdirSync(path.join(PDIR,p.id),{recursive:true});
   const kw=[pe.zh,pe.en,...(p.fields||[]),p.org,p.arxiv?'arXiv:'+p.arxiv:'','AI论文','双语论文','deep learning','机器学习'].filter(Boolean).join(',');
-  const extra=`<meta name="keywords" content="${esc(kw)}">
+  /* 真人打开 /p/<id>/ 直接进 SPA 详情页,不停在静态摘要页(2026-11-02 Jason:「不要出现摘要页面」)。
+     放 <head> 最前面执行,避免先闪一下静态内容;爬虫/链接预览 UA 不跳,照旧吃静态全文与 OG 卡片。 */
+  const extra=`<script>(function(){if(/bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|headless|lighthouse|bytespider|petalbot|yandex|baidu|sogou|360spider/i.test(navigator.userAgent))return;var q=location.search.replace(/^\\?/,'');location.replace(${JSON.stringify(hash)}+(q?'?'+q:''));})()</script>
+<meta name="keywords" content="${esc(kw)}">
 <meta name="author" content="${esc(pe.en||pe.zh||'')}">
 <meta property="article:published_time" content="${p.date||''}">
 <meta property="article:author" content="${esc(pe.en||'')}">
