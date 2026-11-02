@@ -66,7 +66,8 @@ const BEACON=(()=>{
   if(!SHARED) throw new Error('找不到共用埋点片段 beacon.js,试过:\n  '+CANDS.join('\n  '));
   const raw=fs.readFileSync(SHARED,'utf8');            // 缺了就让构建失败,别静默降级成没埋点
   return raw.slice(raw.indexOf('<script>'),raw.lastIndexOf('</script>')+9)
-            .replace('%PATH%',"'paper:'+location.pathname.replace(/index\\.html$/,'')");})();
+            .replace('%PATH%',"'paper:'+location.pathname.replace(/index\\.html$/,'')")
+            .replace('<script>','<script>if(!window.__SPA_TAKEOVER){').replace(/<\/script>$/,'}</script>');})();   // SPA 原地接管时不重复计 view
 
 const ogFor=(sub,id)=>fs.existsSync(path.join(ROOT,'og',sub,id+'.jpg'))?`${SITE}/og/${sub}/${id}.jpg`:`${SITE}/assets/og.png`;   // 每页专属分享卡(gen_og_cards.py),没有就回退
 const page=(title,desc,url,ogtype,bodyHtml,ld,extra='',og=`${SITE}/assets/og.png`)=>`<!doctype html><html lang="zh"><head><meta charset="utf-8">
@@ -151,9 +152,24 @@ document.querySelectorAll('a.cta').forEach(function(a){a.href=h});})()</script>`
   const ld=[art,{"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"AI Paper",item:SITE+"/"},{"@type":"ListItem",position:2,name:pe.zh||pe.en||'',item:person},{"@type":"ListItem",position:3,name:p.tZh||p.tEn,item:url}]}];
   fs.mkdirSync(path.join(PDIR,p.id),{recursive:true});
   const kw=[pe.zh,pe.en,...(p.fields||[]),p.org,p.arxiv?'arXiv:'+p.arxiv:'','AI论文','双语论文','deep learning','机器学习'].filter(Boolean).join(',');
-  /* 真人打开 /p/<id>/ 直接进 SPA 详情页,不停在静态摘要页(2026-11-02 Jason:「不要出现摘要页面」)。
-     放 <head> 最前面执行,避免先闪一下静态内容;爬虫/链接预览 UA 不跳,照旧吃静态全文与 OG 卡片。 */
-  const extra=`<script>(function(){if(/bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|headless|lighthouse|bytespider|petalbot|yandex|baidu|sogou|360spider/i.test(navigator.userAgent))return;var q=location.search.replace(/^\\?/,'');location.replace(${JSON.stringify(hash)}+(q?'?'+q:''));})()</script>
+  /* 真人打开 /p/<id>/ 直接看 SPA 详情页,不停在静态摘要页(2026-11-02 Jason:「不要出现摘要页面」)。
+     **不能跳转**:第一版用 location.replace('/#/paper/<id>'),飞书抓卡片会跟着 JS 跳转去抓首页,
+     卡片变成「AI Paper · 双语论文阅读站」(Jason 截图)。现在原地接管:拉站点根的 SPA 外壳,
+     document.open/write 到当前文档,地址仍是 /p/<id>/(只补 #/paper/<id>),抓卡片的不论执不执行 JS
+     都停在这个地址、拿到本页的单篇 OG。外壳有 <base href="/">,相对资源照常。
+     接管期间先隐藏静态内容防闪;静态页末尾的埋点见 __SPA_TAKEOVER 跳过,避免与 SPA 重复计数。
+     6 秒没拿到外壳就退回旧做法(跳转),保证真人至少能看到详情页。爬虫 UA 不接管,照旧吃静态全文。 */
+  const extra=`<script>(function(){if(/bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|headless|lighthouse|bytespider|petalbot|yandex|baidu|sogou|360spider/i.test(navigator.userAgent))return;
+var q=location.search.replace(/^\\?/,''),h=location.hash;if(h.indexOf('#/')!==0)h=${JSON.stringify('#/paper/'+p.id)}+(q?'?'+q:'');
+window.__SPA_TAKEOVER=1;var st=document.createElement('style');st.textContent='html{visibility:hidden}';document.head.appendChild(st);
+var done=0,fb=function(){if(done)return;done=1;location.replace('/'+h);},t=setTimeout(fb,6000);
+fetch('/',{credentials:'same-origin'}).then(function(r){if(!r.ok)throw 0;return r.text();}).then(function(html){
+var go=function(){if(done)return;done=1;clearTimeout(t);
+/* 外壳 head 里是首页的标题/OG,换成本页的,渲染后再读标签的抓取方也拿到单篇卡片 */
+var keep=[].map.call(document.head.querySelectorAll('title,meta[name=description],meta[property^="og:"],meta[name^="twitter:"],link[rel=canonical],script[type="application/ld+json"]'),function(e){return e.outerHTML;}).join('');
+html=html.replace(/<title>[\\s\\S]*?<\\/title>|<meta (?:name="description"|property="og:[^"]*"|name="twitter:[^"]*")[^>]*>|<link rel="canonical"[^>]*>|<script type="application\\/ld\\+json">[\\s\\S]*?<\\/script>/g,'').replace(/(<meta charset="utf-8">)/i,'$1'+keep);
+history.replaceState(null,'',location.pathname+h);document.open();document.write(html);document.close();};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();}).catch(fb);})()</script>
 <meta name="keywords" content="${esc(kw)}">
 <meta name="author" content="${esc(pe.en||pe.zh||'')}">
 <meta property="article:published_time" content="${p.date||''}">
