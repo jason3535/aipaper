@@ -6,7 +6,14 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 27 Oct 2026 07:56:59 -0000</lastBuildDate>
+  <lastBuildDate>Mon, 02 Nov 2026 06:34:32 -0000</lastBuildDate>
+  <item>
+    <title>Super-agent 设计探索：迈向更自主的智能体系统 — DeepSeek</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/deepseek-super-agent</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/deepseek-super-agent/</guid>
+    <pubDate>Mon, 02 Nov 2026 06:34:32 -0000</pubDate>
+    <description>DeepSeek Harness 提出五模块 Super-agent 架构，让智能体摆脱人工驱动的单会话，实现连续、高效、主动、持久的自主运行。</description>
+  </item>
   <item>
     <title>CoreWeave, Inc. —424B4 最终招股说明书（IPO） — CoreWeave</title>
     <link>https://aipaper.jasonlin.tech/#/paper/coreweave-424b4-2025</link>
@@ -47,7 +54,7 @@
     <link>https://aipaper.jasonlin.tech/#/paper/arvindnarayanan-the-ai-as-normal-technology-view</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/arvindnarayanan-the-ai-as-normal-technology-view/</guid>
     <pubDate>Sun, 25 Oct 2026 02:25:05 -0000</pubDate>
-    <description>该文认为，AI 控制——沙箱、监控等模型外部干预——是一个尚未解决的问题，需要持续投入与企业问责，而不仅是价值对齐，才能跟上智能体能力的进步。</description>
+    <description></description>
   </item>
   <item>
     <title>AI 存在性风险概率（仍然）过于不可靠，无法为政策提供依据 — AI as Normal Technology</title>
@@ -208,13 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-a-morally-binding-white-house-accord</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-a-morally-binding-white-house-accord/</guid>
     <pubDate>Sun, 11 Oct 2026 04:40:50 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>AI 偏好级联波及更远 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-ai-preference-cascade-reaches</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-ai-preference-cascade-reaches/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:40:34 -0000</pubDate>
     <description></description>
   </item>
 </channel>
