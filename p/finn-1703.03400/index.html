@@ -18,7 +18,17 @@
 <meta name="twitter:title" content="模型无关的元学习：深度网络的快速适应 · 切尔西·芬恩 — AI Paper">
 <meta name="twitter:description" content="｜核心贡献：提出 MAML，一种与任何基于梯度下降训练的模型兼容的模型无关的元学习算法。">
 <meta name="twitter:image" content="https://aipaper.jasonlin.tech/og/p/finn-1703.03400.jpg">
-<script>(function(){if(/bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|headless|lighthouse|bytespider|petalbot|yandex|baidu|sogou|360spider/i.test(navigator.userAgent))return;var q=location.search.replace(/^\?/,'');location.replace("https://aipaper.jasonlin.tech/#/paper/finn-1703.03400"+(q?'?'+q:''));})()</script>
+<script>(function(){if(/bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|headless|lighthouse|bytespider|petalbot|yandex|baidu|sogou|360spider/i.test(navigator.userAgent))return;
+var q=location.search.replace(/^\?/,''),h=location.hash;if(h.indexOf('#/')!==0)h="#/paper/finn-1703.03400"+(q?'?'+q:'');
+window.__SPA_TAKEOVER=1;var st=document.createElement('style');st.textContent='html{visibility:hidden}';document.head.appendChild(st);
+var done=0,fb=function(){if(done)return;done=1;location.replace('/'+h);},t=setTimeout(fb,6000);
+fetch('/',{credentials:'same-origin'}).then(function(r){if(!r.ok)throw 0;return r.text();}).then(function(html){
+var go=function(){if(done)return;done=1;clearTimeout(t);
+/* 外壳 head 里是首页的标题/OG,换成本页的,渲染后再读标签的抓取方也拿到单篇卡片 */
+var keep=[].map.call(document.head.querySelectorAll('title,meta[name=description],meta[property^="og:"],meta[name^="twitter:"],link[rel=canonical],script[type="application/ld+json"]'),function(e){return e.outerHTML;}).join('');
+html=html.replace(/<title>[\s\S]*?<\/title>|<meta (?:name="description"|property="og:[^"]*"|name="twitter:[^"]*")[^>]*>|<link rel="canonical"[^>]*>|<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace(/(<meta charset="utf-8">)/i,'$1'+keep);
+history.replaceState(null,'',location.pathname+h);document.open();document.write(html);document.close();};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();}).catch(fb);})()</script>
 <meta name="keywords" content="切尔西·芬恩,Chelsea Finn,rl,deep-learning,UC Berkeley,arXiv:1703.03400,AI论文,双语论文,deep learning,机器学习">
 <meta name="author" content="Chelsea Finn">
 <meta property="article:published_time" content="2017-03-09">
@@ -53,7 +63,7 @@ document.querySelectorAll('a.cta').forEach(function(a){a.href=h});})()</script>
 <footer>© AI Paper · <a href="https://aipaper.jasonlin.tech/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架(linzheng3535@gmail.com)。</footer>
 </div><script>function shareThis(b){var u=document.querySelector('link[rel=canonical]').href,t=document.title,d=(document.querySelector('meta[name=description]')||{}).content||'';
 if(navigator.share){navigator.share({title:t,text:d,url:u}).catch(function(){});return;}
-try{navigator.clipboard.writeText(u).then(function(){var o=b.textContent;b.textContent='已复制链接';setTimeout(function(){b.textContent=o},1600)})}catch(e){}}</script><script>(function(){try{
+try{navigator.clipboard.writeText(u).then(function(){var o=b.textContent;b.textContent='已复制链接';setTimeout(function(){b.textContent=o},1600)})}catch(e){}}</script><script>if(!window.__SPA_TAKEOVER){(function(){try{
 var UA=navigator.userAgent||'';
 if(/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit/i.test(UA))return;
 var U='https://stats.jasonlin.tech',DWELL=4000,GRACE=800,T0=Date.now();
@@ -88,4 +98,4 @@ function interact(){if(Date.now()-T0<GRACE)return;read();}   /* 起步保护期�
 var evs=['scroll','pointerdown','mousedown','keydown','touchstart'];
 for(var k=0;k<evs.length;k++){try{window.addEventListener(evs[k],interact,true);}catch(_){}}
 vis();
-}catch(_){}})()</script></body></html>
+}catch(_){}})()}</script></body></html>
