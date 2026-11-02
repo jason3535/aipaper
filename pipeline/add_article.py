@@ -111,7 +111,7 @@ def parse_md(md, title_hint=""):
            or re.search(r"twitter\.com/intent|linkedin\.com/share|facebook\.com/sharer|mailto:", s, re.I): continue
         t = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", s)
         t = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", t)          # 链接留文字
-        t = re.sub(r"\*\*|__|`|^#+\s*|^>\s*", "", t).strip()
+        t = re.sub(r"__|`|^#+\s*|^>\s*", "", t).strip()   # 保留 **:列表条目的「粗体标签：」是结构信息(2026-11-02 Super-agent 一篇丢光了),前端 mdHtml 会渲染成 <strong>
         # 上面两条替换会把 Jina 的嵌套图片 `[![](img)](link)` 剥成 `[](link)` —— 锚文本为空,
         # `\[([^\]]+)\]` 匹配不上,而第 98 行的跳过检查在替换之前就跑完了,于是这行带着长 URL
         # 混进正文(len>40 拦不住)。2026-08-23 Raschka 两篇各混进 20+ 段这种壳。

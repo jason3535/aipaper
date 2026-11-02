@@ -1129,7 +1129,7 @@ function mdHtml(src){
     if(/^\s{0,3}([-*_])\1{2,}\s*$/.test(line)){closeL();out.push('<hr class="cmhr">');continue;}
     if(m=line.match(/^\s{0,3}&gt;\s?(.*)$/)){closeL();out.push('<blockquote class="cmq">'+m[1]+'</blockquote>');continue;}
     if(m=line.match(/^\s*[-*+]\s+(.*)$/)){if(list!=='ul'){closeL();out.push('<ul class="cml">');list='ul';}out.push('<li>'+m[1]+'</li>');continue;}
-    if(m=line.match(/^\s*\d+[.)]\s+(.*)$/)){if(list!=='ol'){closeL();out.push('<ol class="cml">');list='ol';}out.push('<li>'+m[1]+'</li>');continue;}
+    if(m=line.match(/^\s*(\d+)[.)]\s+(.*)$/)){if(list!=='ol'){closeL();out.push('<ol class="cml"'+(m[1]!=='1'?' start="'+m[1]+'"':'')+'>');list='ol';}out.push('<li>'+m[2]+'</li>');continue;}  // 带 start:翻译管线按段切,「2. …」「3. …」各自成段,不带 start 全站 1174 段都显示成 1.(2026-11-02)
     closeL();out.push('<p class="cmp">'+line+'</p>');}
   closeL();s=out.join('');
   s=s.replace(/\*\*([^\n]+?)\*\*/g,'<strong>$1</strong>')
@@ -1934,4 +1934,41 @@ document.addEventListener('pointerdown',e=>{
 },true);
 
 document.addEventListener('mouseup',selH);document.addEventListener('touchend',selH);
-addEventListener('hashchange',render);render();
+/* 点图单独查看(2026-11-02):正文 .pfig 图点开全屏;←/→ 切同篇其他图,Esc/点空白/× 关闭;
+   图比屏幕大时点图切 1:1 原尺寸可滚动看细节。手机上隐藏左右按钮,靠左右滑动切换。 */
+let _lbx=null;
+function lbxOpen(img){const imgs=[...document.querySelectorAll('.reader figure.pfig img, figure.pfig img')].filter((v,i,a)=>a.indexOf(v)===i&&v.closest('figure').style.display!=='none');
+  let i=Math.max(0,imgs.indexOf(img));lbxClose();
+  const m=document.createElement('div');m.className='lbx';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');
+  m.innerHTML='<div class="lbx-n"></div><button class="lbx-x" aria-label="关闭">×</button>'+(imgs.length>1?'<button class="lbx-nav lbx-prev" aria-label="上一张">‹</button><button class="lbx-nav lbx-next" aria-label="下一张">›</button>':'')+'<div class="lbx-stage"><img alt="figure"></div><div class="lbx-cap"></div>';
+  const show=k=>{i=(k+imgs.length)%imgs.length;const src=imgs[i],fig=src.closest('figure');m.classList.remove('full');
+    const im=m.querySelector('.lbx-stage img');im.src=src.currentSrc||src.src;
+    const en=fig.querySelector('.lang-en'),zh=fig.querySelector('.lang-zh');
+    m.querySelector('.lbx-cap').innerHTML=(en&&en.textContent?esc(en.textContent):'')+(zh&&zh.textContent?'<span class="z">'+esc(zh.textContent)+'</span>':'');
+    m.querySelector('.lbx-n').textContent=imgs.length>1?(i+1)+' / '+imgs.length:'';};
+  m.addEventListener('click',e=>{const t=e.target;
+    if(t.closest('.lbx-prev')){show(i-1);return;} if(t.closest('.lbx-next')){show(i+1);return;}
+    if(t.tagName==='IMG'){const im=t;if(m.classList.contains('full')||im.naturalWidth>im.clientWidth+4||im.naturalHeight>im.clientHeight+4)m.classList.toggle('full');return;}
+    lbxClose();});
+  let sx=null;m.addEventListener('touchstart',e=>{sx=e.touches.length===1?e.touches[0].clientX:null;},{passive:true});
+  m.addEventListener('touchend',e=>{if(sx==null||m.classList.contains('full'))return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50&&imgs.length>1)show(dx<0?i+1:i-1);sx=null;});
+  document.body.appendChild(m);document.documentElement.style.overflow='hidden';_lbx={m,show:d=>show(i+d)};show(i);
+  try{track&&track('fig_zoom')}catch(_){}}
+function lbxClose(){if(!_lbx)return;_lbx.m.remove();_lbx=null;document.documentElement.style.overflow='';}
+document.addEventListener('click',e=>{const img=e.target&&e.target.closest&&e.target.closest('figure.pfig img');if(img&&!e.target.closest('.lbx')){e.preventDefault();lbxOpen(img);}});
+document.addEventListener('keydown',e=>{if(!_lbx)return;if(e.key==='Escape')lbxClose();else if(e.key==='ArrowLeft')_lbx.show(-1);else if(e.key==='ArrowRight')_lbx.show(1);});
+addEventListener('hashchange',lbxClose);addEventListener('popstate',lbxClose);
+/* 地址栏可直接分享(2026-11-02):详情页把地址栏改写成 /p/<id>/#/paper/<id>。
+   飞书/微信等抓卡片时 # 后面不发给服务器,原来复制地址栏只能抓到首页卡片;改写后抓到的是
+   /p/<id>/ 静态页上的单篇 OG。真人重新打开该地址 → 静态页 <head> 跳回 /#/paper/<id> → 这里再改写。
+   其他路由改回根路径 /。index.html 有 <base href="/">,相对资源不受路径影响;
+   但 <a href="#/x"> 在 /p/<id>/ 下会按 base 解析成 /#/x 触发整页跳转,所以捕获阶段拦下来改成就地改 hash。 */
+function syncPaperPath(){try{const m=/^#\/paper\/([^?\/&]+)/.exec(location.hash);const want=m?'/p/'+m[1]+'/':'/';
+  if(location.pathname!==want)history.replaceState(history.state,'',want+location.search+location.hash);}catch(_){}}
+document.addEventListener('click',e=>{if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  const a=e.target&&e.target.closest&&e.target.closest('a[href^="#/"],a[href="#"]');if(!a||(a.target&&a.target!=='_self'))return;
+  e.preventDefault();const h=a.getAttribute('href');if(h==='#'||h===location.hash)return;location.hash=h;},true);
+// 后退/前进跨越 /p/A/ ↔ /p/B/ 时路径不同,浏览器只发 popstate 不发 hashchange,所以两个都听;
+// 普通改 hash 两个事件都会来,按 hash 去重只渲染一次。
+let _navHash=null;function onNav(){syncPaperPath();if(location.hash===_navHash)return;_navHash=location.hash;render();}
+addEventListener('hashchange',onNav);addEventListener('popstate',onNav);onNav();
