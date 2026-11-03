@@ -7,6 +7,9 @@ const h=fs.readFileSync(path.join(ROOT,'app.js'),'utf8');
 const PAPERS=JSON.parse(h.match(/const PAPERS = (\[[\s\S]*?\]);/)[1]);
 const PEOPLE=eval('('+h.match(/const PEOPLE=(\{[\s\S]*?\n\});/)[1]+')');
 const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+// 人名:中文名与英文名相同或缺失时只显示英文,避免「OpenAI OpenAI」这类重复标题
+const zhOf=pe=>(pe.zh&&pe.zh!==pe.en)?pe.zh:'';
+const nm=pe=>[zhOf(pe),pe.en].filter(Boolean).join(' ');
 const jl=o=>`<script type="application/ld+json">${JSON.stringify(o).replace(/</g,'\\u003c')}</script>`;
 const full=id=>{try{return JSON.parse(fs.readFileSync(path.join(ROOT,'data',id+'.json'),'utf8'));}catch(e){return{};}};
 
@@ -185,20 +188,20 @@ Object.keys(byPid).forEach(pid=>{
   const pe=PEOPLE[pid]||{};if(!pe.en)return;
   const ps=byPid[pid].slice().sort((a,b)=>(b.cites||0)-(a.cites||0));
   const url=`${SITE}/pp/${pid}/`;
-  const title=`${esc(pe.zh||'')} ${esc(pe.en||'')} 的代表论文（${ps.length} 篇）— AI Paper`;
-  const desc=esc(((pe.zh||'')+' '+(pe.en||'')+'：'+(pe.tiZh||pe.tiEn||'')+'。收录 '+ps.length+' 篇双语论文全文——'+(pe.bioZh||'')).slice(0,180));
+  const title=`${esc(nm(pe))} 的代表论文（${ps.length} 篇）— AI Paper`;
+  const desc=esc((nm(pe)+'：'+(pe.tiZh||pe.tiEn||'')+'。收录 '+ps.length+' 篇双语论文全文——'+(pe.bioZh||'')).slice(0,180));
   const body=`<nav class="bc"><a href="${SITE}/">AI Paper</a> › ${esc(pe.zh||pe.en||'')}</nav>
-<h1>${esc(pe.zh||'')} ${esc(pe.en||'')}</h1><p class="en-t">${esc(pe.tiZh||'')} · ${esc(pe.tiEn||'')}</p>
+<h1>${esc(nm(pe))}</h1><p class="en-t">${esc(pe.tiZh||'')} · ${esc(pe.tiEn||'')}</p>
 ${pe.bioZh?`<p class="zh">${esc(pe.bioZh)}</p><p class="en">${esc(pe.bioEn||'')}</p>`:''}
 <a class="cta" href="${SITE}/#/person/${pid}">在 AI Paper 查看 TA 的全部论文 →</a><button class="cta cta-2" onclick="shareThis(this)">分享</button>
 ${xlinksOf(pid)}
 <h2>收录的 ${ps.length} 篇论文（按被引排序）</h2>
 <ul class="p-list">${ps.map(p=>`<li><a href="${SITE}/p/${p.id}/">${esc(p.tZh||p.tEn)}</a> — ${esc(p.org||'')} · ${esc(p.date||'')}${p.cites!=null?` · 被引 ${p.cites}`:''}</li>`).join('')}</ul>`;
-  const ld=[{"@context":"https://schema.org","@type":"ProfilePage",mainEntity:{"@type":"Person",name:pe.en,alternateName:pe.zh,jobTitle:pe.tiEn,description:pe.bioEn,url}},
+  const ld=[{"@context":"https://schema.org","@type":"ProfilePage",mainEntity:{"@type":"Person",name:pe.en,alternateName:zhOf(pe)||undefined,jobTitle:pe.tiEn,description:pe.bioEn,url}},
     {"@context":"https://schema.org","@type":"ItemList",itemListElement:ps.map((p,i)=>({"@type":"ListItem",position:i+1,url:`${SITE}/p/${p.id}/`,name:p.tEn}))},
     {"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"AI Paper",item:SITE+"/"},{"@type":"ListItem",position:2,name:pe.zh||pe.en||'',item:url}]}];
   fs.mkdirSync(path.join(HDIR,pid),{recursive:true});
-  const hkw=[pe.zh,pe.en,pe.tiZh,pe.tiEn,...new Set(ps.flatMap(p=>p.fields||[])),'AI学者','代表论文','researcher','deep learning'].filter(Boolean).join(',');
+  const hkw=[zhOf(pe),pe.en,pe.tiZh,pe.tiEn,...new Set(ps.flatMap(p=>p.fields||[])),'AI学者','代表论文','researcher','deep learning'].filter(Boolean).join(',');
   const hextra=`<meta name="keywords" content="${esc(hkw)}">\n<meta name="author" content="${esc(pe.en||'')}">\n`;
   fs.writeFileSync(path.join(HDIR,pid,'index.html'),page(title,desc,url,'profile',body,ld,hextra,ogFor('pp',pid)));
   pn++;
@@ -213,7 +216,7 @@ fs.writeFileSync(path.join(ROOT,'sitemap.xml'),
   urls.map(([u,d])=>`  <url><loc>${u}</loc><lastmod>${d}</lastmod></url>`).join('\n')+`\n</urlset>\n`);
 // llms.txt
 const scholars=Object.keys(byPid).filter(pid=>PEOPLE[pid]);
-const llms=`# AI Paper · 双语论文阅读站\n\n> 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.\n\n站点: ${SITE}/\n规模: ${scholars.length} 位学者 / ${PAPERS.length} 篇论文\n每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。\n\n## 学者 Scholars\n${scholars.sort((a,b)=>byPid[b].length-byPid[a].length).slice(0,120).map(pid=>{const pe=PEOPLE[pid];return `- [${pe.en}${pe.zh?' / '+pe.zh:''}](${SITE}/pp/${pid}/): ${(pe.tiEn||'').replace(/\n/g,' ')} — ${byPid[pid].length} 篇`;}).join('\n')}\n\n## 高被引论文 Most-cited papers\n${PAPERS.slice().filter(p=>p.cites!=null).sort((a,b)=>(b.cites||0)-(a.cites||0)).slice(0,50).map(p=>{const pe=PEOPLE[p.pid]||{};return `- [${p.tEn}](${SITE}/p/${p.id}/) — ${pe.en||''}, ${p.org||''}, 被引 ${p.cites}`;}).join('\n')}\n\n## 数据接口\n- sitemap: ${SITE}/sitemap.xml\n- 论文检索目录: ${SITE}/data/index.json\n`;
+const llms=`# AI Paper · 双语论文阅读站\n\n> 著名 AI 学者与他们的里程碑论文——逐段中英对照全文 + 图/公式/附录 + 核心贡献 + 被引数 + 论文问答。A bilingual reading site of famous AI scholars and their landmark papers — paragraph-by-paragraph English↔Chinese full text, figures/equations, key contributions, citation counts, and paper Q&A.\n\n站点: ${SITE}/\n规模: ${scholars.length} 位学者 / ${PAPERS.length} 篇论文\n每篇静态页含: 双语摘要、核心贡献、局限、章节;互动版含逐段中英对照全文 + 图/公式 + 单篇/全站问答。\n\n## 学者 Scholars\n${scholars.sort((a,b)=>byPid[b].length-byPid[a].length).slice(0,120).map(pid=>{const pe=PEOPLE[pid];return `- [${pe.en}${zhOf(pe)?' / '+zhOf(pe):''}](${SITE}/pp/${pid}/): ${(pe.tiEn||'').replace(/\n/g,' ')} — ${byPid[pid].length} 篇`;}).join('\n')}\n\n## 高被引论文 Most-cited papers\n${PAPERS.slice().filter(p=>p.cites!=null).sort((a,b)=>(b.cites||0)-(a.cites||0)).slice(0,50).map(p=>{const pe=PEOPLE[p.pid]||{};return `- [${p.tEn}](${SITE}/p/${p.id}/) — ${pe.en||''}, ${p.org||''}, 被引 ${p.cites}`;}).join('\n')}\n\n## 数据接口\n- sitemap: ${SITE}/sitemap.xml\n- 论文检索目录: ${SITE}/data/index.json\n`;
 fs.writeFileSync(path.join(ROOT,'llms.txt'),llms);
 // app.js 内容哈希 → 回填 index.html 的 ?v=,内容一变就让浏览器重新拉(否则老访客吃到缓存的旧 app.js)。
 // 因此本脚本必须是构建链最后一步:之后再动 app.js(如 slim_index),哈希就对不上了。
