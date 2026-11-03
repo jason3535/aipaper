@@ -29,6 +29,8 @@ echo "── 5/8 「接着读」相关度(build_related,带门禁)"
 node pipeline/build_related.js | tail -1
 echo "── 6/8 RSS(gen_feed)"
 python3 pipeline/gen_feed.py | tail -1
+echo "── 6.5/8 Kindle/BOOX「论文」页接口(gen_kindle_api)"
+python3 pipeline/gen_kindle_api.py | tail -1
 echo "── 7/8 头像 WebP(webp_avatars)"
 python3 pipeline/webp_avatars.py | tail -1
 echo "── 7.5/8 站群互链闭环(build_crosslinks,工具在 aipodcast 仓库)"
