@@ -158,7 +158,14 @@ def _dl_fig(base, src, aid, n, figdir):
         return None
     os.makedirs(figdir, exist_ok=True)
     from urllib.parse import urljoin
-    url = src if src.startswith("http") else urljoin(base, src.lstrip("./"))
+    s = src.lstrip("./")
+    if src.startswith("http"):
+        url = src
+    elif re.match(r"\d{4}\.\d{4,5}v\d+/", s):
+        # 图路径自带「<id>v<N>/」前缀:无版本页的 base 是 /html/<id>/,再拼会变成 /html/<id>/<id>vN/x.png → 404 HTML 页
+        url = "https://arxiv.org/html/" + s
+    else:
+        url = urljoin(base, s)
     ext = os.path.splitext(src)[1].lower() or ".png"
     if ext not in (".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"):
         ext = ".png"
@@ -166,11 +173,21 @@ def _dl_fig(base, src, aid, n, figdir):
     try:
         subprocess.run(["curl", "-sL", "--max-time", "40", "-A", UA["User-Agent"], "-o", out, url],
                        check=False)
-        if os.path.exists(out) and os.path.getsize(out) > 800:
+        if os.path.exists(out) and os.path.getsize(out) > 800 and not _is_html(out):
             return f"/assets/paperfigs/{aid_dir(aid, figdir)}/fig{n}{ext}"
     except Exception:
         pass
     return None
+
+
+def _is_html(path):
+    """下载到的是 HTML 错误页而不是图(曾有 22 篇 163 张 .png 实为 arXiv 404 页)。"""
+    with open(path, "rb") as f:
+        head = f.read(512).lstrip().lower()
+    if head.startswith((b"<!doctype html", b"<html")):
+        os.remove(path)
+        return True
+    return False
 
 
 def aid_dir(aid, figdir):

@@ -1023,7 +1023,7 @@ function renderItem(it){
  if(isTblPara(it.en))return `<div class="para"><div class="en">${tblHtml(it.en)}</div><div class="zh">${tblHtml(it.zh)}</div></div>`;
  return `<div class="para${it.q?' q':''}"><div class="en">${mdMath(it.en)}</div><div class="zh">${mdMath(it.zh)}</div></div>`;}
 // 招股书表格段:行用换行、格用「 · 」分隔(filing_parse 产出)→ 真表格;只有一格的行整行跨列(科目小标题/单位说明)
-function isTblPara(t){if(!t||t.indexOf(' · ')<0)return false;const ls=String(t).split('\n');return ls.length>1||ls[0].split(' · ').length>=3;}
+function isTblPara(t){/* 含公式定界符的段不是表格:公式里的 · 是乘号不是格界(全库真表格无一含公式) */if(!t||t.indexOf(' · ')<0||/\\[[(]/.test(t))return false;const ls=String(t).split('\n');return ls.length>1||ls[0].split(' · ').length>=3;}
 function tblHtml(t){
  const rows=String(t||'').split('\n').map(r=>r.split(' · ').map(c=>c.trim()));
  const n=Math.max.apply(null,rows.map(r=>r.length));
