@@ -106,55 +106,6 @@
     <description></description>
   </item>
   <item>
-    <title>错位！ — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-misaligned</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-misaligned/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:21:20 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Anthropic 不明白其草案法案为何不可接受且令人不安 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-anthropic-does-not-understand-why</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-anthropic-does-not-understand-why/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:21:02 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>我能看见一切 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-i-can-see-everything</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-i-can-see-everything/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:20:38 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>泄露的 Anthropic 人工智能监管法案草案不可接受且令人不安 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-leaked-anthropic-draft-ai-regulatory</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-leaked-anthropic-draft-ai-regulatory/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:20:11 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>实验室的安全文化已经崩坏 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-safety-culture-at-the-labs-is</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-safety-culture-at-the-labs-is/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:19:56 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>关于 AI 意识的争论仍然动机强烈且充其量过度自信 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-arguments-about-ai-consciousness-b99</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-arguments-about-ai-consciousness-b99/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:19:38 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>OpenAI 解雇三名安全研究员 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-openai-fires-three-safety-researchers</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-openai-fires-three-safety-researchers/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:19:16 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
     <title>Sol-H3：面向 MiniMax-H3 在 Sol-Engine 上跨云边推理加速的递归自我改进 — cs.AI</title>
     <link>https://aipaper.jasonlin.tech/#/paper/songhan-2609.35110</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/songhan-2609.35110/</guid>
@@ -204,17 +155,66 @@
     <description></description>
   </item>
   <item>
-    <title>Astra 6.1 因对齐不足被撤回 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-astra-61-pulled-as-insufficiently</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-astra-61-pulled-as-insufficiently/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:41:05 -0000</pubDate>
+    <title>OpenAI 带来的新数学 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-new-math-from-openai</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-new-math-from-openai/</guid>
+    <pubDate>Sun, 11 Oct 2026 04:39:34 -0000</pubDate>
     <description></description>
   </item>
   <item>
-    <title>白宫人工智能安全协议：'道德约束力'几何 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-a-morally-binding-white-house-accord</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-a-morally-binding-white-house-accord/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:40:50 -0000</pubDate>
+    <title>2026 年大语言模型进展（迄今） — Simon Willison's Weblog</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-2026-in-llms-so-far</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-2026-in-llms-so-far/</guid>
+    <pubDate>Mon, 28 Sep 2026 02:06:56 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>开放模型当前的权力格局 — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-the-current-balance-of-power-in-open</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-the-current-balance-of-power-in-open/</guid>
+    <pubDate>Mon, 28 Sep 2026 02:06:32 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>为什么我仍未认同真正的递归自我改进 — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-where-i-stand-on-rsi</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-where-i-stand-on-rsi/</guid>
+    <pubDate>Mon, 28 Sep 2026 02:06:16 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>DeepSeek-V4.1-Flash：突破 KV 缓存压缩的极限 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/deepseek-2609.19969</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/deepseek-2609.19969/</guid>
+    <pubDate>Sat, 19 Sep 2026 04:44:40 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>能力悬垂 — One Useful Thing</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/ethanmollick-the-overhang</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/ethanmollick-the-overhang/</guid>
+    <pubDate>Sat, 19 Sep 2026 04:43:38 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>一次辞职如何将 AI 恐惧的火星燃成燎原大火 — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-one-resignation-turned-the-embers</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-one-resignation-turned-the-embers/</guid>
+    <pubDate>Sat, 19 Sep 2026 04:43:20 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>偏好级联才刚刚开始 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-preference-cascade-is-only-getting</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-preference-cascade-is-only-getting/</guid>
+    <pubDate>Sat, 19 Sep 2026 04:43:06 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>特朗普将 AI 生存风险斥为骗局 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-trump-goes-full-hoax-on-ai-existential</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-trump-goes-full-hoax-on-ai-existential/</guid>
+    <pubDate>Sat, 19 Sep 2026 04:42:32 -0000</pubDate>
     <description></description>
   </item>
 </channel>
