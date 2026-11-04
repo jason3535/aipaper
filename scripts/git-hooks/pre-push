@@ -1,0 +1,11 @@
+#!/bin/sh
+# pre-push — 快速门禁 + 对本次推送里改动的论文跑 pipeline/verify_site.py。
+# 安装(一次): git config core.hooksPath scripts/git-hooks
+# 跳过(必须显式): SKIP_VERIFY=1 git push
+set -eu
+cd "$(CDPATH= cd -- "$(dirname "$0")/../.." && pwd)"
+if [ "${SKIP_VERIFY:-}" = "1" ]; then
+  echo "SKIP_VERIFY=1 — 跳过推送前校验"
+  exit 0
+fi
+exec python3 -u pipeline/verify_site.py --pre-push
