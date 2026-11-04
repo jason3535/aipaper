@@ -40,28 +40,12 @@ echo "── 7.6/8 更新提醒(push-latest.json + 浏览器推送)"
 python3 /Users/jason/CascadeProjects/aipodcast/pipeline/push_notify.py --site aipaper --ids "${ids[@]}" || echo "  ⚠ 推送环节失败(不阻断)"
 echo "── 7.7/8 主动推给搜索引擎(IndexNow,工具在 aipodcast 仓库)"
 python3 /Users/jason/CascadeProjects/aipodcast/pipeline/indexnow.py --site aipaper || echo "  ⚠ IndexNow 推送失败(不阻断)"
-echo "── 8/8 app.js 语法门禁"
-# app.js 版本号门禁(2026-09-05,播客站同款):index.html 的 app.js?v=<md5> 必须等于当前 app.js 的 md5,
+echo "── 8/8 app.js 语法 + 版本号 + 静态页埋点(gate_fast)"
+# 版本号门禁(2026-09-05,播客站同款):index.html 的 app.js?v=<md5> 必须等于当前 app.js 的 md5,
 # 否则=改了 app.js 没重建,新内容顶着旧 URL 上线,SW cache-first 会把老版本钉在用户浏览器里。
-node -e 'const c=require("crypto"),f=require("fs");const h=c.createHash("md5").update(f.readFileSync("app.js","utf8")).digest("hex").slice(0,10);const m=f.readFileSync("index.html","utf8").match(/app\.js\?v=([a-f0-9]+)/);if(!m||m[1]!==h){console.error("  ✗ index.html 的 app.js?v="+(m&&m[1])+" ≠ app.js md5 "+h+" —— 跑 node pipeline/build_share_pages.js");process.exit(1);}console.log("  app.js 版本号与内容一致("+h+")")'
-
-node -e 'new Function(require("fs").readFileSync("app.js","utf8")); console.log("app.js 语法 OK")'
+# 埋点门禁:两条流都得在。掉了不会报错、页面照常渲染,只是从此再也分不清爬虫。
+# 这三件套抽到 pipeline/gate_fast.js,verify_site.py / pre-push 走同一份。
+node pipeline/gate_fast.js
 node /Users/jason/CascadeProjects/aipodcast/pipeline/check_es_compat.js app.js
-# 静态页埋点门禁:两条流都得在。掉了不会报错、页面照常渲染,只是从此再也分不清爬虫,
-# 而 p/ 593 + pp/ 239 正是全部 SEO 落地页 —— 正是要盯住的那类静默降级。
-node -e '
-const fs=require("fs");
-const bad=[];
-for(const [dir,n] of [["p",6],["pp",6]]){
-  const ids=fs.readdirSync(dir).filter(x=>fs.existsSync(dir+"/"+x+"/index.html"));
-  const step=Math.max(1,Math.floor(ids.length/n));
-  for(const id of ids.filter((_,i)=>i%step===0).slice(0,n)){
-    const h=fs.readFileSync(dir+"/"+id+"/index.html","utf8");
-    if(!(/stats\.jasonlin\.tech/.test(h)&&/post\(.view.\)/.test(h)&&/post\(.read.\)/.test(h)))bad.push(dir+"/"+id);
-  }
-}
-if(bad.length){console.error("  ✗ 静态页埋点缺失或缺 read 流:"+bad.slice(0,3).join("、")+
-  "\n    → build_share_pages.js 还在读 aipodcast 仓库的 pipeline/beacon.js 吗?");process.exit(1);}
-console.log("  静态页埋点:抽查 12 页,view+read 两条流齐全");'
 
 printf "\n"; echo "✅ postingest 全部通过,可以 git add -A && git commit && git push"

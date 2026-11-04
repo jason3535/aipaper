@@ -3,3 +3,4 @@ __pycache__/
 .DS_Store
 pipeline/.env
 data/.filing_cache/
+verify-shots/
