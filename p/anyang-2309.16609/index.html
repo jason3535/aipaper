@@ -340,7 +340,43 @@ def maxDepth(self, root: TreeNode) -&gt; int:
         res += 1
     return res
 ```
-GPT-4</p><p class="en">你的代码会返回二叉树的节点数量，而不是最大深度。这是 因为你在每次循环中都增加了res的值，而不是只在找到新 的最深节点时增加。你可以通过在找到新的最深节点时才增 加res的值来修复这个问题。以下是修复后的代码： def maxDepth(self, root : TreeNode) −&gt; int: if not root : return 0 queue, res = [ root ], 0 while queue: tmp = [] for node in queue: if node. left : tmp.append(node. left ) if node. right : tmp.append(node. right ) queue = tmp if len(queue) &gt; res : res = len(queue) return res Your code will return the number of nodes in the binary tree, not the maximum depth. This is because you increase the value of ”res” in every loop, instead of only increasing it when a new deepest node is found. You can fix this problem by increasing the value of ”res” only when a new deepest node is found. Here is the modified code: def maxDepth(self, root : TreeNode) −&gt; int: if not root : return 0 queue, res = [ root ], 0 while queue: tmp = [] for node in queue: if node. left : tmp.append(node. left ) if node. right : tmp.append(node. right ) queue = tmp if len(queue) &gt; res : res = len(queue) return res</p><p class="zh">你的代码中有一个错误：在这一行代码 if node.right: tmp.append（node.left）中，你应该将右子节点添加到 tmp 列表中，但你写了 node.left，因此只有左子节点会被添加到 tmp 列表中。正确的代码应该是 node.right。正确的代码如下：def maxDepth(self, root: TreeNode) -&gt; int: if not root: return 0 queue, res = [root], 0 while queue: tmp = [] for node in queue: if node.left: tmp.append(node.left) if node.right: tmp.append(node.right) queue = tmp res += 1 return res 该解法的思路是：在每次迭代中，遍历当前层的所有节点，并将下一层的所有节点加入队列以进行下一次迭代。因此每次迭代后，深度 res 增加 1。继续此过程直到遍历的队列为空，此时的深度就是二叉树的最大深度。</p><p class="en">There is an error in your code: In this line of code if node.right: tmp.append(node.left), you should be adding the right child node to the tmp list, but you wrote node.left instead, so only the left child node will be added to the tmp list. The correct code should be node.right. The correct code is as follows: def maxDepth(self, root: TreeNode) -&gt; int: if not root: return 0 queue, res = [root], 0 while queue: tmp = [] for node in queue: if node.left: tmp.append(node.left) if node.right: tmp.append(node.right) queue = tmp res += 1 return res The idea of this solution is: in each iteration, traverse all the nodes in the current level, and add all the nodes in the next level to the queue for the next iteration. So after each iteration, the depth res is increased by 1. Continue this process until the queue for traversal is empty, and the depth at that time is the maximum depth of the binary tree.</p><p class="zh">这里我们提供一个 Code Llama 与 Qwen-Chat 之间的比较案例。该案例展示了 Qwen-Chat 在处理表格数据和执行复杂任务方面的优势。</p><p class="en">Here we provide a case of comparison between Code Llama and Qwen-Chat. This case demonstrates the advantages of Qwen-Chat in processing tabular data and performing complex tasks.</p></section></div>
+GPT-4</p><p class="zh">你的代码返回的是二叉树的节点数量，而不是最大深度。这是因为你在每次循环中都增加了 res 的值，而不是只在找到新的最深节点时才增加。你可以通过在找到新的最深节点时才增加 res 的值来修复这个问题。以下是修复后的代码：
+
+```python
+def maxDepth(self, root: TreeNode) -&gt; int:
+    if not root:
+        return 0
+    queue, res = [root], 0
+    while queue:
+        tmp = []
+        for node in queue:
+            if node.left:
+                tmp.append(node.left)
+            if node.right:
+                tmp.append(node.right)
+        queue = tmp
+        if len(queue) &gt; res:
+            res = len(queue)
+    return res
+```</p><p class="en">Your code will return the number of nodes in the binary tree, not the maximum depth. This is because you increase the value of &quot;res&quot; in every loop, instead of only increasing it when a new deepest node is found. You can fix this problem by increasing the value of &quot;res&quot; only when a new deepest node is found. Here is the modified code:
+
+```python
+def maxDepth(self, root: TreeNode) -&gt; int:
+    if not root:
+        return 0
+    queue, res = [root], 0
+    while queue:
+        tmp = []
+        for node in queue:
+            if node.left:
+                tmp.append(node.left)
+            if node.right:
+                tmp.append(node.right)
+        queue = tmp
+        if len(queue) &gt; res:
+            res = len(queue)
+    return res
+```</p><p class="zh">你的代码中有一个错误：在这一行代码 if node.right: tmp.append（node.left）中，你应该将右子节点添加到 tmp 列表中，但你写了 node.left，因此只有左子节点会被添加到 tmp 列表中。正确的代码应该是 node.right。正确的代码如下：def maxDepth(self, root: TreeNode) -&gt; int: if not root: return 0 queue, res = [root], 0 while queue: tmp = [] for node in queue: if node.left: tmp.append(node.left) if node.right: tmp.append(node.right) queue = tmp res += 1 return res 该解法的思路是：在每次迭代中，遍历当前层的所有节点，并将下一层的所有节点加入队列以进行下一次迭代。因此每次迭代后，深度 res 增加 1。继续此过程直到遍历的队列为空，此时的深度就是二叉树的最大深度。</p><p class="en">There is an error in your code: In this line of code if node.right: tmp.append(node.left), you should be adding the right child node to the tmp list, but you wrote node.left instead, so only the left child node will be added to the tmp list. The correct code should be node.right. The correct code is as follows: def maxDepth(self, root: TreeNode) -&gt; int: if not root: return 0 queue, res = [root], 0 while queue: tmp = [] for node in queue: if node.left: tmp.append(node.left) if node.right: tmp.append(node.right) queue = tmp res += 1 return res The idea of this solution is: in each iteration, traverse all the nodes in the current level, and add all the nodes in the next level to the queue for the next iteration. So after each iteration, the depth res is increased by 1. Continue this process until the queue for traversal is empty, and the depth at that time is the maximum depth of the binary tree.</p><p class="zh">这里我们提供一个 Code Llama 与 Qwen-Chat 之间的比较案例。该案例展示了 Qwen-Chat 在处理表格数据和执行复杂任务方面的优势。</p><p class="en">Here we provide a case of comparison between Code Llama and Qwen-Chat. This case demonstrates the advantages of Qwen-Chat in processing tabular data and performing complex tasks.</p></section></div>
 <p style="margin-top:26px"><a class="cta" href="https://aipaper.jasonlin.tech/#/paper/anyang-2309.16609">互动版：图/公式 + 针对本篇提问 →</a></p>
 <h2 id="next">接着读 · Read next</h2><ul class="rn"><li><a href="https://aipaper.jasonlin.tech/p/anyang-2409.12186/"><span class="rn-t">Qwen2.5-Coder 技术报告</span><span class="rn-m">杨安 · 2024-09-18 — Qwen2.5-Coder 系列在 10 多个代码基准测试中达到最先进性能，超越更大模型。</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/jinzebai-2308.12966/"><span class="rn-t">Qwen-VL：一个多功能的视觉语言模型，用于理解、定位、文本阅读等</span><span class="rn-m">白金泽 · 2023-08-24 — Qwen-VL 系列在视觉中心基准测试和真实世界对话中创下新纪录。</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/junyanglin-2508.02324/"><span class="rn-t">Qwen-Image 技术报告</span><span class="rn-m">林俊旸 · 2025-08-04 — Qwen-Image 通过全面的数据流水线和渐进式训练策略，在复杂文本渲染和精确图像编辑方面取得了显著进展。</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/junyanglin-2407.10671/"><span class="rn-t">Qwen2 技术报告</span><span class="rn-m">林俊旸 · 2024-07-15 — Qwen2 系列模型参数规模从 0.5B 到 72B，在语言理解、生成、多语言、编程、数学和推理等基准测试中超越大多数开…</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/deepseek-2401.02954/"><span class="rn-t">DeepSeek LLM：以长期主义扩展开源语言模型</span><span class="rn-m">深度求索 · 2024-01-05 — DeepSeek LLM 67B 在代码、数学和推理等基准测试上超越 LLaMA-2 70B，其聊天版本性能优于 GPT…</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/andrewzhao-2505.03335/"><span class="rn-t">绝对零度：零数据下的自我对弈推理</span><span class="rn-m">Andrew Zhao · 2025-05-06 — 绝对零度提出了一种新的 RLVR 范式，模型无需任何外部数据，通过自我生成任务并学习，在编码和数学推理上达到 SOTA。</span></a></li></ul>
 
