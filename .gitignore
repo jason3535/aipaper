@@ -3,3 +3,6 @@ __pycache__/
 .DS_Store
 pipeline/.env
 data/.filing_cache/
+
+# 站点验证产物(verify_site.js 截图/报告)
+pipeline/.verify/
