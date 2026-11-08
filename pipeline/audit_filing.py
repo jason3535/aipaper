@@ -22,7 +22,15 @@ def audit(pid):
     ps = [p for s in j.get('full', []) for p in s.get('paras', []) if isinstance(p, dict)]
     n = max(1, len(ps))
     half = sum(len(re.findall(CJK + r'[,;:](?!\d)', p['zh'])) + len(re.findall(r'\([^()\n]*' + CJK + r'[^()\n]*\)', p['zh'])) for p in ps)
-    low = sum(1 for p in ps if re.match(r'^[a-z]', p['en']) and '\n' not in p['en'] and len(p['en']) > 40)
+    # 小写开头但不是断段的三类(2026-11-08 Zvi/Willison 博客误报):推文署名「roon (OpenAI): …」「j⧉nus: …」、
+    # 小写品牌/工具名(spaCy、iPhone)、命令行(llm -f …)。只认「像句子续写」的:首词纯小写字母且不带冒号署名。
+    def _broken(t):
+        if not re.match(r'^[a-z]', t) or '\n' in t or len(t) <= 40: return False
+        if re.match(r'^\S{1,40}( \([^)]{1,60}\))?:\s', t): return False      # 推文/对话署名
+        w = t.split()[0]
+        if re.search(r'[A-Z]', w) or re.match(r'^[a-z][\w.-]*\s+-{1,2}\w', t): return False   # spaCy/iPhone、命令行
+        return True
+    low = sum(1 for p in ps if _broken(p['en']))
     tbl = [p for p in ps if '\n' in p['en'] or ' · ' in p['en']]
     mis = 0
     for p in tbl:

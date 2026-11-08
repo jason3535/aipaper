@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-11-08</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-11-06</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/deepseek/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/akhiadbercovich/</loc><lastmod>2026-10-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/anthropic/</loc><lastmod>2026-10-26</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-10-23</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-10-20</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-10-20</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-10-17</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/arvindnarayanan/</loc><lastmod>2026-10-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xiaomimimo/</loc><lastmod>2026-10-08</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-09-29</lastmod></url>
@@ -35,7 +36,6 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/wenfengliang/</loc><lastmod>2026-05-20</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/cerebras/</loc><lastmod>2026-05-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/yugao/</loc><lastmod>2026-04-15</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/akhiadbercovich/</loc><lastmod>2026-04-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/lindahua/</loc><lastmod>2026-03-26</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/qiyingyu/</loc><lastmod>2026-03-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/martinwright/</loc><lastmod>2026-03-18</lastmod></url>
@@ -244,7 +244,13 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-gpt-6-astra-covertly-underperforms/</loc><lastmod>2026-11-06</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-qwen-can-interpret-model-weights/</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-super-agent/</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-artificial-analysis-v5-and-the-benchmarkers/</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/akhiadbercovich-2610.38095/</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-vibe-game-development/</loc><lastmod>2026-10-28</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/zvi-anthropic-files-its-s-1/</loc><lastmod>2026-10-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/anthropic-s1-2026/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-the-hackening/</loc><lastmod>2026-10-23</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/ethanmollick-30-months-on-the-exponential-in-charts/</loc><lastmod>2026-10-20</lastmod></url>

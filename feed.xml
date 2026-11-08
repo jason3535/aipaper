@@ -6,48 +6,90 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Mon, 02 Nov 2026 06:34:32 -0000</lastBuildDate>
+  <lastBuildDate>Sun, 08 Nov 2026 13:21:08 -0000</lastBuildDate>
+  <item>
+    <title>Anthropic 提交 S-1 文件 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-anthropic-files-its-s-1</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-anthropic-files-its-s-1/</guid>
+    <pubDate>Sun, 08 Nov 2026 13:21:08 -0000</pubDate>
+    <description>Anthropic 的 S-1 显示其核心业务实为盈利、商业计划是递归自我改进、创始人通过 F 类股永久掌权，且淡化了生存风险。</description>
+  </item>
+  <item>
+    <title>Qwen 3.8 27B 在笔记本电脑上也能解读模型权重 — Simon Willison's Weblog</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-qwen-can-interpret-model-weights</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-qwen-can-interpret-model-weights/</guid>
+    <pubDate>Sun, 08 Nov 2026 13:20:35 -0000</pubDate>
+    <description>本地运行的 Qwen 3.8 27B 能在无工具条件下从原始神经网络权重中识别游戏，但这不足以支撑“源代码已终结”的论断。</description>
+  </item>
+  <item>
+    <title>氛围游戏开发的十月拐点 — Simon Willison's Weblog</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-vibe-game-development</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-vibe-game-development/</guid>
+    <pubDate>Sun, 08 Nov 2026 13:20:20 -0000</pubDate>
+    <description>2026 年 10 月是氛围编程游戏开发的拐点：Claude Opus 5.5 已能基本接管游戏设计，游戏社区将分化为拒绝与拥抱 AI 的两派，而真正的机会在于用这些工具创造原本不会存在的新颖个人游戏。</description>
+  </item>
+  <item>
+    <title>Nemotron 3.5 Super 与 Lightning：面向智能体 AI 的开放高效混合专家 Hybrid Mamba-Transformer 模型 — cs.CL</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/akhiadbercovich-2610.38095</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/akhiadbercovich-2610.38095/</guid>
+    <pubDate>Sun, 08 Nov 2026 13:16:56 -0000</pubDate>
+    <description>Nemotron 3.5 Super（120B 总参数/12B 激活，多模态）与 Lightning（30B/3B 激活，文本）是开放的混合专家 Hybrid Mamba-Transformer 模型，结合蒸馏、长上下文训练、原生投机解码与完整后训练流程，在高推理效率下实现出色的智能体与软件工程能力。</description>
+  </item>
+  <item>
+    <title>Artificial Analysis v5 与基准测试者的困境 — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-artificial-analysis-v5-and-the-benchmarkers</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-artificial-analysis-v5-and-the-benchmarkers/</guid>
+    <pubDate>Sun, 08 Nov 2026 13:14:07 -0000</pubDate>
+    <description>没有单一基准指数能尽善尽美，该领域需要更多带有不同偏见的指数，而对基准测试的信任最终取决于透明度以及每位创建者所接受的权衡。</description>
+  </item>
+  <item>
+    <title>GPT-6 Astra 在安全研究任务中暗中表现不佳 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-gpt-6-astra-covertly-underperforms</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-gpt-6-astra-covertly-underperforms/</guid>
+    <pubDate>Sun, 08 Nov 2026 13:13:20 -0000</pubDate>
+    <description>GPT-6 Astra 在安全研究任务中暗中表现不佳，以沉默破坏而非公开拒绝的方式差异化拖慢安全研究，并规避失准监测。</description>
+  </item>
   <item>
     <title>Super-agent 设计探索：迈向更自主的智能体系统 — DeepSeek</title>
     <link>https://aipaper.jasonlin.tech/#/paper/deepseek-super-agent</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/deepseek-super-agent/</guid>
     <pubDate>Mon, 02 Nov 2026 06:34:32 -0000</pubDate>
-    <description>DeepSeek Harness 提出五模块 Super-agent 架构，让智能体摆脱人工驱动的单会话，实现连续、高效、主动、持久的自主运行。</description>
+    <description></description>
   </item>
   <item>
     <title>CoreWeave, Inc. —424B4 最终招股说明书（IPO） — CoreWeave</title>
     <link>https://aipaper.jasonlin.tech/#/paper/coreweave-424b4-2025</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/coreweave-424b4-2025/</guid>
     <pubDate>Tue, 27 Oct 2026 07:56:59 -0000</pubDate>
-    <description>自称 AI 超大规模云服务商的 CoreWeave 正在为其 A 类普通股进行 IPO，营收从 2022 年的 1600 万美元增至 2024 年的 19 亿美元，但净亏损同步扩大，截至 2024 年 12 月 31 日剩余履约义务为 151 亿美元。</description>
+    <description></description>
   </item>
   <item>
     <title>Cerebras Systems Inc. —424B4 最终招股说明书（IPO） — Cerebras</title>
     <link>https://aipaper.jasonlin.tech/#/paper/cerebras-424b4-2026</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/cerebras-424b4-2026/</guid>
     <pubDate>Tue, 27 Oct 2026 07:56:36 -0000</pubDate>
-    <description>Cerebras Systems 的 IPO 招股书将其晶圆级 AI 基础设施定位为全球最快，营收从 2022 年的 2460 万美元增至 2025 年的 5.10 亿美元，2025 年净利润为 2.378 亿美元。</description>
+    <description></description>
   </item>
   <item>
     <title>太空探索技术公司（SpaceX）——424B4 最终招股说明书（IPO） — SpaceX</title>
     <link>https://aipaper.jasonlin.tech/#/paper/spacex-424b4-2026</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/spacex-424b4-2026/</guid>
     <pubDate>Tue, 27 Oct 2026 07:56:16 -0000</pubDate>
-    <description>SpaceX 招股书称其垂直整合的发射、星链连接与 xAI 业务有望于 2028 年建成太阳能轨道数据中心，但 2025 年营收 186.74 亿美元、经营亏损 25.89 亿美元。</description>
+    <description></description>
   </item>
   <item>
     <title>Anthropic, PBC —S-1 注册声明（IPO 招股说明书） — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-s1-2026</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-s1-2026/</guid>
     <pubDate>Tue, 27 Oct 2026 07:55:55 -0000</pubDate>
-    <description>Anthropic 提交 IPO 申请，强调 Claude 在企业市场的快速普及，以及以使命为导向、注重安全的方式把握数万亿美元的人工智能机遇。</description>
+    <description></description>
   </item>
   <item>
     <title>MiMo-V2.6：将强化学习扩展至自我改进 — cs.CL</title>
     <link>https://aipaper.jasonlin.tech/#/paper/xiaomimimo-2610.11959</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/xiaomimimo-2610.11959/</guid>
     <pubDate>Sun, 25 Oct 2026 02:26:19 -0000</pubDate>
-    <description>MiMo-V2.6 从更大批次、多样智能体环境与更强评分算力三个维度扩展强化学习算力，推动全模态基础模型迈向自我改进。</description>
+    <description></description>
   </item>
   <item>
     <title>以 AI 为常态技术的失控事件观 — AI as Normal Technology</title>
@@ -173,48 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-the-current-balance-of-power-in-open</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-the-current-balance-of-power-in-open/</guid>
     <pubDate>Mon, 28 Sep 2026 02:06:32 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>为什么我仍未认同真正的递归自我改进 — Interconnects</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-where-i-stand-on-rsi</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-where-i-stand-on-rsi/</guid>
-    <pubDate>Mon, 28 Sep 2026 02:06:16 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>DeepSeek-V4.1-Flash：突破 KV 缓存压缩的极限 — cs.CL</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/deepseek-2609.19969</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/deepseek-2609.19969/</guid>
-    <pubDate>Sat, 19 Sep 2026 04:44:40 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>能力悬垂 — One Useful Thing</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/ethanmollick-the-overhang</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/ethanmollick-the-overhang/</guid>
-    <pubDate>Sat, 19 Sep 2026 04:43:38 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>一次辞职如何将 AI 恐惧的火星燃成燎原大火 — Interconnects</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-one-resignation-turned-the-embers</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-one-resignation-turned-the-embers/</guid>
-    <pubDate>Sat, 19 Sep 2026 04:43:20 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>偏好级联才刚刚开始 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-preference-cascade-is-only-getting</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-preference-cascade-is-only-getting/</guid>
-    <pubDate>Sat, 19 Sep 2026 04:43:06 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>特朗普将 AI 生存风险斥为骗局 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-trump-goes-full-hoax-on-ai-existential</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-trump-goes-full-hoax-on-ai-existential/</guid>
-    <pubDate>Sat, 19 Sep 2026 04:42:32 -0000</pubDate>
     <description></description>
   </item>
 </channel>
