@@ -24,8 +24,8 @@ def fetch_md(url):
 
 # 已知坑:deepmind.google 的页面开头会带产品导航菜单(Genie/Gemini/Gemma 连写的短语段),
 # Jina 抓下来像正文。收录 DeepMind 后务必人工检查 full[0] 是否导航垃圾,是则整节删除并重建 absEn/absZh。
-STOP = re.compile(r"^#{1,4}\s+(related|footnotes?|references|acknowledg|read the|share|citation|appendix|more news|sign up|subscribe|policy memo|authors?|contributors?|further reading|explore more|стать|more recent articles|monthly briefing|discussion about this post)", re.I)
-# 后三个:Willison 个人站页脚(近期文章列表/$10 赞助月报)与 Substack 评论区。2026-10-25 全库清出 15 篇带这些节
+STOP = re.compile(r"^#{1,4}\s+(related|footnotes?|references|acknowledg|read the (full|rest|original|paper|report|article|blog|post)\b|share\b|citation|appendix|more news|sign up|subscribe|policy memo|authors?|contributors?|further reading|explore more|стать|more recent articles|monthly briefing|discussion about this post)", re.I)
+# read the 只认「Read the full/paper…」:裸 read the 截断过 Zvi「Read The Message Board」之后全文。share\b:裸 share 会命中「Shares of Many Classes」把 Zvi S-1 后 90% 截掉(2026-11-08)。后三个:Willison 个人站页脚(近期文章列表/$10 赞助月报)与 Substack 评论区。2026-10-25 全库清出 15 篇带这些节
 
 """Substack/Newsletter 站的页面骨架(订阅框、站标图、页脚版权)会被 Jina 当正文抓下来,
    而且往往正好落在第一节 —— 于是 absEn(取首节前 3 段)变成"Discover more from…/
@@ -100,7 +100,12 @@ def parse_md(md, title_hint=""):
         h = None if isq else re.match(r"^(#{1,4})\s+(.+)$", s)
         if h:
             if STOP.match(s): break
-            head = re.sub(r"[*_`\[\]]", "", h.group(2)).strip()
+            # 小标题里的链接先拆掉再判骨架:Willison 每个小标题带 `[#](永久链接)`、Substack 目录型小标题整个是
+            # `[标题](站内锚点)`,以前原样进 sec → CHROME_SEC「标题带 URL=站标」整节丢弃。2026-11-08 Willison
+            # vibe-game 一篇只剩导语 11 段、Zvi S-1 只剩首个小标题前 41 段(原文 ~500 行)。图片链接(含 !)不拆,照旧按骨架处理。
+            hraw = re.sub(r"\[[#¶§]\]\([^)]*\)", "", h.group(2))
+            hraw = re.sub(r"\[([^\[\]!]+)\]\(https?://[^)]*\)", r"\1", hraw)
+            head = re.sub(r"[*_`\[\]]", "", hraw).strip()
             if h.group(1) == "#" and title and head.lower() == title.lower(): continue
             if not title and h.group(1) == "#": title = head; continue
             if cur["paras"]: secs.append(cur)
