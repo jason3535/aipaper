@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-11-08</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-11-06</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/anthropic/</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/deepseek/</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-10-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/akhiadbercovich/</loc><lastmod>2026-10-28</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/anthropic/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/ethanmollick/</loc><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/arvindnarayanan/</loc><lastmod>2026-10-14</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/xiaomimimo/</loc><lastmod>2026-10-08</lastmod></url>
@@ -245,6 +245,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zvi-gpt-6-astra-covertly-underperforms/</loc><lastmod>2026-11-06</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-components-of-agent-memory/</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-qwen-can-interpret-model-weights/</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-super-agent/</loc><lastmod>2026-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/nathanlambert-artificial-analysis-v5-and-the-benchmarkers/</loc><lastmod>2026-10-28</lastmod></url>
@@ -329,6 +330,7 @@
   <url><loc>https://aipaper.jasonlin.tech/p/songhan-2606.04511/</loc><lastmod>2026-06-03</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/yanjunjie-2605.26494/</loc><lastmod>2026-05-26</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/lecun-2605.26379/</loc><lastmod>2026-05-25</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-how-we-contain-claude/</loc><lastmod>2026-05-25</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/alihatamizadeh-2605.22791/</loc><lastmod>2026-05-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/wenfengliang-investor-meeting-2026/</loc><lastmod>2026-05-20</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/cerebras-424b4-2026/</loc><lastmod>2026-05-14</lastmod></url>
@@ -336,7 +338,10 @@
   <url><loc>https://aipaper.jasonlin.tech/p/junyanglin-2604.15804/</loc><lastmod>2026-04-17</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/yugao-2604.14148/</loc><lastmod>2026-04-15</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/akhiadbercovich-2604.12374/</loc><lastmod>2026-04-14</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-managed-agents/</loc><lastmod>2026-04-08</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/lindahua-2603.25040/</loc><lastmod>2026-03-26</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-claude-code-auto-mode/</loc><lastmod>2026-03-25</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-harness-design-long-running-apps/</loc><lastmod>2026-03-24</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/qiyingyu-2603.20633/</loc><lastmod>2026-03-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/martinwright-beware-fast-tools/</loc><lastmod>2026-03-18</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/tridao-2603.15569/</loc><lastmod>2026-03-16</lastmod></url>
@@ -350,11 +355,13 @@
   <url><loc>https://aipaper.jasonlin.tech/p/mattshumer-something-big-is-happening/</loc><lastmod>2026-02-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/martinwright-execution-is-cheap/</loc><lastmod>2026-02-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jianfenggao-2602.05842/</loc><lastmod>2026-02-05</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-building-c-compiler/</loc><lastmod>2026-02-05</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/kaiming-2602.04770/</loc><lastmod>2026-02-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/haifengwang-2602.04705/</loc><lastmod>2026-02-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/zhilinyang-2602.02276/</loc><lastmod>2026-02-02</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/meituan-2601.21204/</loc><lastmod>2026-01-29</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/dario-adolescence-of-technology/</loc><lastmod>2026-01-26</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-demystifying-evals-for-ai-agents/</loc><lastmod>2026-01-09</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/leike-2601.04728/</loc><lastmod>2026-01-08</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xiaomimimo-2601.02780/</loc><lastmod>2026-01-06</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-2025-year-in-llms/</loc><lastmod>2025-12-31</lastmod></url>
@@ -362,10 +369,14 @@
   <url><loc>https://aipaper.jasonlin.tech/p/demis-2512.04797/</loc><lastmod>2025-12-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2512.02556/</loc><lastmod>2025-12-02</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jinzebai-2511.21631/</loc><lastmod>2025-11-26</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-effective-harnesses-for-long-running-agents/</loc><lastmod>2025-11-26</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xingwusun-2511.18870/</loc><lastmod>2025-11-24</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/</loc><lastmod>2025-11-24</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/satya-positive-sum/</loc><lastmod>2025-11-15</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-code-execution-with-mcp/</loc><lastmod>2025-11-04</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/jimfan-2511.00062/</loc><lastmod>2025-10-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/deepseek-2510.18234/</loc><lastmod>2025-10-21</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-equipping-agents-for-the-real-world-with-agent-s/</loc><lastmod>2025-10-16</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/anthropic-context-engineering/</loc><lastmod>2025-09-29</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/xingwusun-2509.23951/</loc><lastmod>2025-09-28</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/yugao-2509.20427/</loc><lastmod>2025-09-24</lastmod></url>
