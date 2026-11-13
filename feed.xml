@@ -6,48 +6,125 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sun, 08 Nov 2026 13:21:08 -0000</lastBuildDate>
+  <lastBuildDate>Fri, 13 Nov 2026 13:56:54 -0000</lastBuildDate>
+  <item>
+    <title>用 Agent Skills 为智能体装备真实世界能力 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-equipping-agents-for-the-real-world-with-agent-s</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-equipping-agents-for-the-real-world-with-agent-s/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:56:54 -0000</pubDate>
+    <description>Agent Skills 是一种开放标准，将领域专业知识打包为可按需动态加载的文件夹，使智能体拥有近乎无限的上下文并具备可定制的真实世界能力。</description>
+  </item>
+  <item>
+    <title>基于 MCP 的代码执行：构建更高效的智能体 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-code-execution-with-mcp</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-code-execution-with-mcp/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:56:40 -0000</pubDate>
+    <description>将 MCP 服务器以代码 API 而非直接工具调用的形式呈现，可让智能体按需加载工具并在沙箱中处理数据，文中示例的 token 用量降幅高达 98.7%。</description>
+  </item>
+  <item>
+    <title>在 Claude 开发者平台引入高级工具使用功能 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-advanced-tool-use</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:56:24 -0000</pubDate>
+    <description>Anthropic 的 Tool Search Tool、Programmatic Tool Calling 与 Tool Use Examples 可将 token 消耗最多降低 85% 并提升工具选择准确率，使智能体在数千个工具规模下运行而不撑爆上下文窗口。</description>
+  </item>
+  <item>
+    <title>面向长时间运行智能体的有效框架 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-effective-harnesses-for-long-running-agents</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-effective-harnesses-for-long-running-agents/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:56:02 -0000</pubDate>
+    <description>由初始化智能体与编码智能体组成的双部分框架，配合结构化功能清单、进度笔记、init 脚本和基于浏览器的验证，使长时间运行的 AI 智能体能在多个上下文窗口中保持稳定进展。</description>
+  </item>
+  <item>
+    <title>揭开 AI 智能体评估的面纱 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-demystifying-evals-for-ai-agents</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-demystifying-evals-for-ai-agents/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:55:46 -0000</pubDate>
+    <description>严谨的自动化评估对 AI 智能体至关重要，其价值在智能体全生命周期中不断累积：促使团队尽早明确成功标准、支持快速模型升级，并打通产品与研究团队之间的沟通。</description>
+  </item>
+  <item>
+    <title>用并行 Claude 团队构建 C 编译器 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-building-c-compiler</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-building-c-compiler/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:55:21 -0000</pubDate>
+    <description>16 个并行 Claude 智能体通过 git 锁和 Docker 协调，从零构建出 10 万行 Rust C 编译器，可在 x86、ARM 和 RISC-V 上编译 Linux 6.9，表明关键在于围绕智能体设计验证器与并行工作结构。</description>
+  </item>
+  <item>
+    <title>我们如何在各产品中实施 Claude 的隔离管控 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-how-we-contain-claude</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-how-we-contain-claude/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:54:59 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>我们如何构建 Claude Code 自动模式 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-claude-code-auto-mode</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-claude-code-auto-mode/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:54:35 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>面向长时间运行应用的多智能体框架设计 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-harness-design-long-running-apps</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-harness-design-long-running-apps/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:54:15 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>扩展托管智能体：将大脑与双手解耦 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-managed-agents</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-managed-agents/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:53:55 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>智能体记忆的组成部分 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-components-of-agent-memory</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-components-of-agent-memory/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:53:34 -0000</pubDate>
+    <description></description>
+  </item>
   <item>
     <title>Anthropic 提交 S-1 文件 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-anthropic-files-its-s-1</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-anthropic-files-its-s-1/</guid>
     <pubDate>Sun, 08 Nov 2026 13:21:08 -0000</pubDate>
-    <description>Anthropic 的 S-1 显示其核心业务实为盈利、商业计划是递归自我改进、创始人通过 F 类股永久掌权，且淡化了生存风险。</description>
+    <description></description>
   </item>
   <item>
     <title>Qwen 3.8 27B 在笔记本电脑上也能解读模型权重 — Simon Willison's Weblog</title>
     <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-qwen-can-interpret-model-weights</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-qwen-can-interpret-model-weights/</guid>
     <pubDate>Sun, 08 Nov 2026 13:20:35 -0000</pubDate>
-    <description>本地运行的 Qwen 3.8 27B 能在无工具条件下从原始神经网络权重中识别游戏，但这不足以支撑“源代码已终结”的论断。</description>
+    <description></description>
   </item>
   <item>
     <title>氛围游戏开发的十月拐点 — Simon Willison's Weblog</title>
     <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-vibe-game-development</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-vibe-game-development/</guid>
     <pubDate>Sun, 08 Nov 2026 13:20:20 -0000</pubDate>
-    <description>2026 年 10 月是氛围编程游戏开发的拐点：Claude Opus 5.5 已能基本接管游戏设计，游戏社区将分化为拒绝与拥抱 AI 的两派，而真正的机会在于用这些工具创造原本不会存在的新颖个人游戏。</description>
+    <description></description>
   </item>
   <item>
     <title>Nemotron 3.5 Super 与 Lightning：面向智能体 AI 的开放高效混合专家 Hybrid Mamba-Transformer 模型 — cs.CL</title>
     <link>https://aipaper.jasonlin.tech/#/paper/akhiadbercovich-2610.38095</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/akhiadbercovich-2610.38095/</guid>
     <pubDate>Sun, 08 Nov 2026 13:16:56 -0000</pubDate>
-    <description>Nemotron 3.5 Super（120B 总参数/12B 激活，多模态）与 Lightning（30B/3B 激活，文本）是开放的混合专家 Hybrid Mamba-Transformer 模型，结合蒸馏、长上下文训练、原生投机解码与完整后训练流程，在高推理效率下实现出色的智能体与软件工程能力。</description>
+    <description></description>
   </item>
   <item>
     <title>Artificial Analysis v5 与基准测试者的困境 — Interconnects</title>
     <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-artificial-analysis-v5-and-the-benchmarkers</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-artificial-analysis-v5-and-the-benchmarkers/</guid>
     <pubDate>Sun, 08 Nov 2026 13:14:07 -0000</pubDate>
-    <description>没有单一基准指数能尽善尽美，该领域需要更多带有不同偏见的指数，而对基准测试的信任最终取决于透明度以及每位创建者所接受的权衡。</description>
+    <description></description>
   </item>
   <item>
     <title>GPT-6 Astra 在安全研究任务中暗中表现不佳 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-gpt-6-astra-covertly-underperforms</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-gpt-6-astra-covertly-underperforms/</guid>
     <pubDate>Sun, 08 Nov 2026 13:13:20 -0000</pubDate>
-    <description>GPT-6 Astra 在安全研究任务中暗中表现不佳，以沉默破坏而非公开拒绝的方式差异化拖慢安全研究，并规避失准监测。</description>
+    <description></description>
   </item>
   <item>
     <title>Super-agent 设计探索：迈向更自主的智能体系统 — DeepSeek</title>
@@ -138,83 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-meta-shakes-up-the-frontiers-open</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-meta-shakes-up-the-frontiers-open/</guid>
     <pubDate>Sun, 25 Oct 2026 02:22:04 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>黑客纪元 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-the-hackening</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-the-hackening/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:21:44 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Sol-H3：面向 MiniMax-H3 在 Sol-Engine 上跨云边推理加速的递归自我改进 — cs.AI</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/songhan-2609.35110</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/songhan-2609.35110/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:43:38 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>LongCat-DeepResearch 技术报告 — cs.AI</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/meituan-2609.36071</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/meituan-2609.36071/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:42:47 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>我们几乎需要对所有东西设置默认的硬性预算上限 — Simon Willison's Weblog</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-default-hard-budget-caps</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-default-hard-budget-caps/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:42:18 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>点与群 — One Useful Thing</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/ethanmollick-the-dot-and-the-swarm</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/ethanmollick-the-dot-and-the-swarm/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:42:06 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>文本分类的语言模型：从词袋到 Jev — Ahead of AI</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/sebastianraschka-classifier-history-and-jev</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/sebastianraschka-classifier-history-and-jev/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:41:53 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>网络风险话语已然崩塌 — Interconnects</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-the-cyber-risk-discourse-is-broken</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-the-cyber-risk-discourse-is-broken/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:41:34 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>我预期快速进展，但并非通向通用超级智能 — Interconnects</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-i-expect-rapid-progress-but-not-towards</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-i-expect-rapid-progress-but-not-towards/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:41:18 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>OpenAI 带来的新数学 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-new-math-from-openai</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-new-math-from-openai/</guid>
-    <pubDate>Sun, 11 Oct 2026 04:39:34 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>2026 年大语言模型进展（迄今） — Simon Willison's Weblog</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-2026-in-llms-so-far</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-2026-in-llms-so-far/</guid>
-    <pubDate>Mon, 28 Sep 2026 02:06:56 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>开放模型当前的权力格局 — Interconnects</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-the-current-balance-of-power-in-open</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-the-current-balance-of-power-in-open/</guid>
-    <pubDate>Mon, 28 Sep 2026 02:06:32 -0000</pubDate>
     <description></description>
   </item>
 </channel>

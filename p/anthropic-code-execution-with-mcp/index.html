@@ -1,0 +1,355 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<title>基于 MCP 的代码执行：构建更高效的智能体 · Anthropic — AI Paper</title>
+<meta name="description" content="将 MCP 服务器以代码 API 而非直接工具调用的形式呈现，可让智能体按需加载工具并在沙箱中处理数据，文中示例的 token 用量降幅高达 98.7%。｜核心贡献：将 MCP 服务器呈现为代码 API，使智能体按需加载工具定义，而非一次性全部加载。">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<link rel="canonical" href="https://aipaper.jasonlin.tech/p/anthropic-code-execution-with-mcp/">
+<link rel="alternate" hreflang="zh" href="https://aipaper.jasonlin.tech/p/anthropic-code-execution-with-mcp/"><link rel="alternate" hreflang="en" href="https://aipaper.jasonlin.tech/p/anthropic-code-execution-with-mcp/"><link rel="alternate" hreflang="x-default" href="https://aipaper.jasonlin.tech/p/anthropic-code-execution-with-mcp/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AI Paper · 双语论文阅读站">
+<meta property="og:locale" content="zh_CN"><meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="基于 MCP 的代码执行：构建更高效的智能体 · Anthropic — AI Paper">
+<meta property="og:description" content="将 MCP 服务器以代码 API 而非直接工具调用的形式呈现，可让智能体按需加载工具并在沙箱中处理数据，文中示例的 token 用量降幅高达 98.7%。｜核心贡献：将 MCP 服务器呈现为代码 API，使智能体按需加载工具定义，而非一次性全部加载。">
+<meta property="og:image" content="https://aipaper.jasonlin.tech/og/p/anthropic-code-execution-with-mcp.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="基于 MCP 的代码执行：构建更高效的智能体 · Anthropic — AI Paper">
+<meta property="og:url" content="https://aipaper.jasonlin.tech/p/anthropic-code-execution-with-mcp/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="基于 MCP 的代码执行：构建更高效的智能体 · Anthropic — AI Paper">
+<meta name="twitter:description" content="将 MCP 服务器以代码 API 而非直接工具调用的形式呈现，可让智能体按需加载工具并在沙箱中处理数据，文中示例的 token 用量降幅高达 98.7%。｜核心贡献：将 MCP 服务器呈现为代码 API，使智能体按需加载工具定义，而非一次性全部加载。">
+<meta name="twitter:image" content="https://aipaper.jasonlin.tech/og/p/anthropic-code-execution-with-mcp.jpg">
+<script>(function(){if(/bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|headless|lighthouse|bytespider|petalbot|yandex|baidu|sogou|360spider/i.test(navigator.userAgent))return;
+var q=location.search.replace(/^\?/,''),h=location.hash;if(h.indexOf('#/')!==0)h="#/paper/anthropic-code-execution-with-mcp"+(q?'?'+q:'');
+window.__SPA_TAKEOVER=1;var st=document.createElement('style');st.textContent='html{visibility:hidden}';document.head.appendChild(st);
+var done=0,fb=function(){if(done)return;done=1;location.replace('/'+h);},t=setTimeout(fb,6000);
+fetch('/',{credentials:'same-origin'}).then(function(r){if(!r.ok)throw 0;return r.text();}).then(function(html){
+var go=function(){if(done)return;done=1;clearTimeout(t);
+/* 外壳 head 里是首页的标题/OG,换成本页的,渲染后再读标签的抓取方也拿到单篇卡片 */
+var keep=[].map.call(document.head.querySelectorAll('title,meta[name=description],meta[property^="og:"],meta[name^="twitter:"],link[rel=canonical],script[type="application/ld+json"]'),function(e){return e.outerHTML;}).join('');
+html=html.replace(/<title>[\s\S]*?<\/title>|<meta (?:name="description"|property="og:[^"]*"|name="twitter:[^"]*")[^>]*>|<link rel="canonical"[^>]*>|<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace(/(<meta charset="utf-8">)/i,'$1'+keep);
+history.replaceState(null,'',location.pathname+h);document.open();document.write(html);document.close();};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();}).catch(fb);})()</script>
+<meta name="keywords" content="Anthropic,Anthropic,nlp,Anthropic,AI论文,双语论文,deep learning,机器学习">
+<meta name="author" content="Anthropic">
+<meta property="article:published_time" content="2025-11-04">
+<meta property="article:author" content="Anthropic">
+<meta property="article:tag" content="nlp">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Code execution with MCP: Building more efficient agents","alternativeHeadline":"基于 MCP 的代码执行：构建更高效的智能体","name":"Code execution with MCP: Building more efficient agents","url":"https://aipaper.jasonlin.tech/p/anthropic-code-execution-with-mcp/","datePublished":"2025-11-04","inLanguage":["en","zh"],"abstract":"The Model Context Protocol (MCP) has become the de-facto standard for connecting AI agents to external tools and data, but as agents connect to hundreds or thousands of tools across dozens of MCP servers, loading all tool definitions upfront and passing intermediate results through the context window slows agents down and increases costs. This article argues that presenting MCP servers as code APIs rather than direct tool calls lets agents write code to interact with them, addressing both challenges: agents can load only the tools they need on demand and process data in the execution environment before passing results back to the model. Presenting tools as a file tree on a filesystem, for example, reduces token usage from 150,000 to 2,000 tokens in the article's Google Drive to Salesforce example, a 98.7% saving, while filtering large datasets in code, executing loops and conditionals in a single step, and keeping intermediate results in the execution environment further improve context efficiency, security, and state persistence. The article concludes that code execution applies established software engineering patterns to agents, but notes that running agent-generated code requires a secure sandboxed environment with resource limits and monitoring, so the benefits of reduced token costs, lower latency, and improved tool composition should be weighed against these implementation costs.","description":"Presenting MCP servers as code APIs instead of direct tool calls lets agents load tools on demand and process data in a sandbox, cutting token usage by up to 98.7% in the article's example.","keywords":"nlp","author":{"@type":"Person","name":"Anthropic","jobTitle":"AI safety lab (Claude); interpretability & alignment","url":"https://aipaper.jasonlin.tech/pp/anthropic/"},"isPartOf":{"@type":"WebSite","name":"AI Paper","url":"https://aipaper.jasonlin.tech"},"sourceOrganization":{"@type":"Organization","name":"Anthropic"},"sameAs":"https://www.anthropic.com/engineering/code-execution-with-mcp"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Paper","item":"https://aipaper.jasonlin.tech/"},{"@type":"ListItem","position":2,"name":"Anthropic","item":"https://aipaper.jasonlin.tech/pp/anthropic/"},{"@type":"ListItem","position":3,"name":"基于 MCP 的代码执行：构建更高效的智能体","item":"https://aipaper.jasonlin.tech/p/anthropic-code-execution-with-mcp/"}]}</script>
+<style>:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}.cta-2{margin-left:8px;background:#fff;color:var(--acc);border:1px solid var(--line);cursor:pointer;font-family:inherit}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}
+/* 全文区。content-visibility 让屏幕外章节跳过渲染,长论文才不卡 */
+.tr{margin-top:8px}.tr blockquote{margin:6px 0 12px;padding:2px 0 2px 14px;border-left:3px solid var(--line)}.tr .sec{content-visibility:auto;contain-intrinsic-size:auto 600px;margin:0 0 10px}
+/* 深色模式(2026-09-05 补):SPA 支持、静态分享页一直纯白,夜里点开分享链接先闪一屏白。 */
+@media (prefers-color-scheme:dark){:root{--ink:#f5f5f7;--sub:#a1a1a6;--line:#2c2c2e;--acc:#2997ff}
+body{background:#000;color:#f5f5f7}.cta-2{background:#1c1c1e;border-color:#3a3a3c}}
+.rn{list-style:none;padding:0;margin:0}.rn li{margin:0;border-top:1px solid var(--line)}.rn li:first-child{border-top:none}.rn a{display:block;padding:12px 0;text-decoration:none;color:var(--ink)}.rn-t{display:block;font-size:15.5px;font-weight:600;line-height:1.4}.rn-m{display:block;font-size:13px;color:var(--sub);margin-top:3px}
+.fab{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:9;padding:9px 15px;border-radius:999px;background:var(--ink);color:var(--bg,#fff);font-size:13px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+@media (prefers-color-scheme:dark){.fab{background:#f5f5f7;color:#000}}
+.tr h3{font-size:15px;margin:26px 0 8px;color:var(--ink);border-top:1px solid var(--line);padding-top:14px}
+.tr p.zh{margin:.2em 0}.tr p.en{margin:.1em 0 .9em}</style></head><body><div class="wrap"><nav class="bc"><a href="https://aipaper.jasonlin.tech/">AI Paper</a> › <a href="https://aipaper.jasonlin.tech/pp/anthropic/">Anthropic</a> › 文章</nav>
+<h1>基于 MCP 的代码执行：构建更高效的智能体</h1><p class="en-t">Code execution with MCP: Building more efficient agents</p>
+<p class="meta"><a href="https://aipaper.jasonlin.tech/pp/anthropic/">Anthropic</a> · 2025-11-04 · <a href="https://www.anthropic.com/engineering/code-execution-with-mcp" rel="nofollow">Anthropic Engineering ↗</a></p>
+<a class="cta" href="https://aipaper.jasonlin.tech/#/paper/anthropic-code-execution-with-mcp">打开互动全文版（逐段中英对照 + 针对本篇提问）→</a><button class="cta cta-2" onclick="shareThis(this)">分享本篇</button>
+<h2>摘要 · Abstract</h2><p class="zh">模型上下文协议（MCP）已成为连接 AI 智能体与外部工具和数据的事实标准，但随着智能体接入数十个 MCP 服务器上的成百上千个工具，预先加载全部工具定义并通过上下文窗口传递中间结果会拖慢智能体速度并增加成本。本文主张，将 MCP 服务器以代码 API 而非直接工具调用的形式呈现，让智能体编写代码与之交互，从而同时解决上述两个难题：智能体可以按需只加载所需的工具，并在执行环境中处理数据后再将结果传回模型。例如，将工具以文件系统上的文件树形式呈现，在文中 Google Drive 到 Salesforce 的示例里可将 token 用量从 150,000 降至 2,000，节省 98.7%；而在代码中过滤大型数据集、在单一步骤中执行循环和条件判断、将中间结果保留在执行环境中，则进一步提升了上下文效率、安全性和状态持久性。文章最后指出，代码执行将成熟的软件工程模式应用于智能体，但运行智能体生成的代码需要具备资源限制和监控的安全沙箱环境，因此 token 成本降低、延迟下降和工具组合能力提升等收益应与这些实现成本相权衡。</p><p class="en">The Model Context Protocol (MCP) has become the de-facto standard for connecting AI agents to external tools and data, but as agents connect to hundreds or thousands of tools across dozens of MCP servers, loading all tool definitions upfront and passing intermediate results through the context window slows agents down and increases costs. This article argues that presenting MCP servers as code APIs rather than direct tool calls lets agents write code to interact with them, addressing both challenges: agents can load only the tools they need on demand and process data in the execution environment before passing results back to the model. Presenting tools as a file tree on a filesystem, for example, reduces token usage from 150,000 to 2,000 tokens in the article's Google Drive to Salesforce example, a 98.7% saving, while filtering large datasets in code, executing loops and conditionals in a single step, and keeping intermediate results in the execution environment further improve context efficiency, security, and state persistence. The article concludes that code execution applies established software engineering patterns to agents, but notes that running agent-generated code requires a secure sandboxed environment with resource limits and monitoring, so the benefits of reduced token costs, lower latency, and improved tool composition should be weighed against these implementation costs.</p>
+<h2>核心贡献 · Key contributions</h2><ul><li><span class="zh">将 MCP 服务器呈现为代码 API，使智能体按需加载工具定义，而非一次性全部加载。</span><br><span class="en">Presenting MCP servers as code APIs lets agents load tool definitions on demand instead of all upfront.</span></li><li><span class="zh">在 Google Drive 到 Salesforce 的示例中，文件系统工具树将 token 用量从 150,000 降至 2,000，节省 98.7%。</span><br><span class="en">Filesystem tool tree cuts token usage from 150,000 to 2,000 in the Google Drive–Salesforce example, a 98.7% saving.</span></li><li><span class="zh">过滤、循环与条件在执行环境中运行，仅显式记录或返回的结果进入上下文窗口。</span><br><span class="en">Filtering, loops, and conditionals run in the execution environment, so only logged or returned results enter context.</span></li><li><span class="zh">中间结果默认留在沙箱中；敏感个人信息可在到达模型前被令牌化。</span><br><span class="en">Intermediate results stay in the sandbox by default; PII can be tokenized before reaching the model.</span></li><li><span class="zh">文件系统访问支持状态持久化，并可将可用代码保存为可复用技能供后续执行。</span><br><span class="en">Filesystem access enables state persistence and saving working code as reusable skills for future executions.</span></li><li><span class="zh">代码执行将成熟的软件工程模式应用于智能体，提升上下文效率、安全性与工具组合能力。</span><br><span class="en">Code execution applies established software engineering patterns to agents, improving context efficiency, security, and tool composition.</span></li></ul>
+<h2>局限 · Limitations</h2><ul><li><span class="zh">运行智能体生成的代码需要具备资源限制与监控的安全沙箱，增加运维开销。</span><br><span class="en">Running agent-generated code requires a secure sandbox with resource limits and monitoring, adding operational overhead.</span></li><li><span class="zh">token 成本、延迟与工具组合收益需与上述实现及安全成本权衡。</span><br><span class="en">Token, latency, and composition benefits must be weighed against these implementation and security costs.</span></li><li><span class="zh">98.7% 的节省来自单一 Google Drive 到 Salesforce 示例，未必适用于所有工作负载。</span><br><span class="en">The 98.7% saving comes from one Google Drive–Salesforce example and may not generalize to all workloads.</span></li><li><span class="zh">直接工具调用无需沙箱基础设施，因此代码执行并非总是更简单的选择。</span><br><span class="en">Direct tool calls avoid sandbox infrastructure, so code execution is not always the simpler choice.</span></li><li><span class="zh">智能体须正确浏览文件系统或搜索工具；发现失败可能阻碍任务完成。</span><br><span class="en">Agents must navigate filesystems or search tools correctly; discovery failures could block task completion.</span></li></ul>
+<h2 id="toc">章节 · Sections（共 12）</h2><ul><li><a href="#s1"><span class="zh">基于 MCP 的代码执行：构建更高效的智能体</span> <span class="en">Code execution with MCP:Building more efficient agents</span></a></li><li><a href="#s2"><span class="zh">工具导致的过度 token 消耗使智能体效率降低</span> <span class="en">Excessive token consumption from tools makes agents less efficient</span></a></li><li><a href="#s3"><span class="zh">1. 工具定义使上下文窗口过载</span> <span class="en">1. Tool definitions overload the context window</span></a></li><li><a href="#s4"><span class="zh">2. 中间工具结果消耗额外 token</span> <span class="en">2. Intermediate tool results consume additional tokens</span></a></li><li><a href="#s5"><span class="zh">基于代码执行的 MCP 上下文效率提升</span> <span class="en">Code execution with MCP improves context efficiency</span></a></li><li><a href="#s6"><span class="zh">使用 MCP 进行代码执行的优势</span> <span class="en">Benefits of code execution with MCP</span></a></li><li><a href="#s7"><span class="zh">渐进式披露</span> <span class="en">Progressive disclosure</span></a></li><li><a href="#s8"><span class="zh">上下文高效的工具结果</span> <span class="en">Context efficient tool results</span></a></li><li><a href="#s9"><span class="zh">更强大且上下文高效的控制流</span> <span class="en">More powerful and context-efficient control flow</span></a></li><li><a href="#s10"><span class="zh">隐私保护操作</span> <span class="en">Privacy-preserving operations</span></a></li><li><a href="#s11"><span class="zh">状态持久化与技能</span> <span class="en">State persistence and skills</span></a></li><li><a href="#s12"><span class="zh">总结</span> <span class="en">Summary</span></a></li></ul>
+<h2>全文 · Full text（逐段中英对照）</h2><div class="tr"><section class="sec"><h3 id="s1">基于 MCP 的代码执行：构建更高效的智能体 <span class="en">Code execution with MCP:Building more efficient agents</span></h3><p class="zh">* 01 工具消耗过多 token 会降低智能体效率</p><p class="en">* 01 Excessive token consumption from tools makes agents less efficient</p><p class="zh">* 02 基于 MCP 的代码执行提升上下文效率</p><p class="en">* 02 Code execution with MCP improves context efficiency</p><p class="zh">* 03 基于 MCP 的代码执行的优势</p><p class="en">* 03 Benefits of code execution with MCP</p><p class="zh">2025 年 11 月 24 日 在 Claude 开发者平台推出高级工具使用功能</p><p class="en">Nov 24, 2025 Introducing advanced tool use on the Claude Developer Platform</p><p class="zh">模型上下文协议（MCP）是连接 AI 智能体与外部系统的开放标准。传统上，将智能体连接到工具和数据需要为每一对连接进行自定义集成，这造成了碎片化和重复工作，使得真正互联的系统难以规模化。MCP 提供了一个通用协议——开发者只需在智能体中实现一次 MCP，即可解锁整个集成生态系统。</p><p class="en">The Model Context Protocol (MCP) is an open standard for connecting AI agents to external systems. Connecting agents to tools and data traditionally requires a custom integration for each pairing, creating fragmentation and duplicated effort that makes it difficult to scale truly connected systems. MCP provides a universal protocol—developers implement MCP once in their agent and it unlocks an entire ecosystem of integrations.</p><p class="zh">自 2024 年 11 月推出 MCP 以来，其采用速度十分迅速：社区已构建了数千个 MCP 服务器，所有主流编程语言均有可用的 SDK，业界也已将 MCP 采纳为连接智能体与工具及数据的事实标准。</p><p class="en">Since launching MCP in November 2024, adoption has been rapid: the community has built thousands of MCP servers, SDKs are available for all major programming languages, and the industry has adopted MCP as the de-facto standard for connecting agents to tools and data.</p><p class="zh">如今，开发者常常构建能够访问数十个 MCP 服务器中数百乃至数千个工具的智能体。然而，随着所连接工具数量的增长，预先加载全部工具定义并通过上下文窗口传递中间结果会拖慢智能体并增加成本。</p><p class="en">Today developers routinely build agents with access to hundreds or thousands of tools across dozens of MCP servers. However, as the number of connected tools grows, loading all tool definitions upfront and passing intermediate results through the context window slows down agents and increases costs.</p><p class="zh">在本篇博客中，我们将探讨代码执行如何使智能体能够更高效地与 MCP 服务器交互，在减少 token 使用量的同时处理更多工具。</p><p class="en">In this blog we'll explore how code execution can enable agents to interact with MCP servers more efficiently, handling more tools while using fewer tokens.</p></section><section class="sec"><h3 id="s2">工具导致的过度 token 消耗使智能体效率降低 <span class="en">Excessive token consumption from tools makes agents less efficient</span></h3><p class="zh">随着 MCP 使用规模的扩大，有两种常见模式会增加智能体的成本与延迟：</p><p class="en">As MCP usage scales, there are two common patterns that can increase agent cost and latency:</p><p class="zh">1. 工具定义使上下文窗口过载；</p><p class="en">1. Tool definitions overload the context window;</p><p class="zh">2. 中间工具结果消耗额外的 token。</p><p class="en">2. Intermediate tool results consume additional tokens.</p></section><section class="sec"><h3 id="s3">1. 工具定义使上下文窗口过载 <span class="en">1. Tool definitions overload the context window</span></h3><p class="zh">大多数 MCP 客户端会预先将所有工具定义直接加载到上下文窗口中，并通过直接的工具调用语法将其暴露给模型。这些工具定义可能如下所示：</p><p class="en">Most MCP clients load all tool definitions upfront directly into context, exposing them to the model using a direct tool-calling syntax. These tool definitions might look like:</p><p class="zh">```
+gdrive.getDocument
+     Description: Retrieves a document from Google Drive
+     Parameters:
+                documentId (required, string): The ID of the document to retrieve
+                fields (optional, string): Specific fields to return
+     Returns: Document object with title, body content, metadata, permissions, etc.
+```</p><p class="en">```
+gdrive.getDocument
+     Description: Retrieves a document from Google Drive
+     Parameters:
+                documentId (required, string): The ID of the document to retrieve
+                fields (optional, string): Specific fields to return
+     Returns: Document object with title, body content, metadata, permissions, etc.
+```</p><p class="zh">```
+salesforce.updateRecord
+    Description: Updates a record in Salesforce
+    Parameters:
+               objectType (required, string): Type of Salesforce object (Lead, Contact,      Account, etc.)
+               recordId (required, string): The ID of the record to update
+               data (required, object): Fields to update with their new values
+     Returns: Updated record object with confirmation
+```</p><p class="en">```
+salesforce.updateRecord
+    Description: Updates a record in Salesforce
+    Parameters:
+               objectType (required, string): Type of Salesforce object (Lead, Contact,      Account, etc.)
+               recordId (required, string): The ID of the record to update
+               data (required, object): Fields to update with their new values
+     Returns: Updated record object with confirmation
+```</p><p class="zh">工具描述会占用更多上下文窗口空间，从而增加响应时间和成本。当智能体连接数千个工具时，它们在读取请求之前就需要处理数十万个 token。</p><p class="en">Tool descriptions occupy more context window space, increasing response time and costs. In cases where agents are connected to thousands of tools, they'll need to process hundreds of thousands of tokens before reading a request.</p></section><section class="sec"><h3 id="s4">2. 中间工具结果消耗额外 token <span class="en">2. Intermediate tool results consume additional tokens</span></h3><p class="zh">大多数 MCP 客户端允许模型直接调用 MCP 工具。例如，你可以要求你的智能体：“从 Google Drive 下载我的会议记录，并将其附加到 Salesforce 线索上。”</p><p class="en">Most MCP clients allow models to directly call MCP tools. For example, you might ask your agent: &quot;Download my meeting transcript from Google Drive and attach it to the Salesforce lead.&quot;</p><p class="zh">```
+TOOL CALL: gdrive.getDocument(documentId: &quot;abc123&quot;)
+        → returns &quot;Discussed Q4 goals...\n[full transcript text]&quot;
+           (loaded into model context)
+
+TOOL CALL: salesforce.updateRecord(
+			objectType: &quot;SalesMeeting&quot;,
+			recordId: &quot;00Q5f000001abcXYZ&quot;,
+  			data: { &quot;Notes&quot;: &quot;Discussed Q4 goals...\n[full transcript text written out]&quot; }
+		)
+		(model needs to write entire transcript into context again)
+```</p><p class="en">```
+TOOL CALL: gdrive.getDocument(documentId: &quot;abc123&quot;)
+        → returns &quot;Discussed Q4 goals...\n[full transcript text]&quot;
+           (loaded into model context)
+
+TOOL CALL: salesforce.updateRecord(
+			objectType: &quot;SalesMeeting&quot;,
+			recordId: &quot;00Q5f000001abcXYZ&quot;,
+  			data: { &quot;Notes&quot;: &quot;Discussed Q4 goals...\n[full transcript text written out]&quot; }
+		)
+		(model needs to write entire transcript into context again)
+```</p><p class="zh">每个中间结果都必须经过模型。在此示例中，完整的调用记录会流经模型两次。对于一场 2 小时的销售会议，这可能意味着要额外处理 50,000 个 token。更大的文档甚至可能超出上下文窗口限制，从而中断工作流。</p><p class="en">Every intermediate result must pass through the model. In this example, the full call transcript flows through twice. For a 2-hour sales meeting, that could mean processing an additional 50,000 tokens. Even larger documents may exceed context window limits, breaking the workflow.</p><p class="zh">对于大型文档或复杂数据结构，模型在工具调用之间复制数据时可能更容易出错。</p><p class="en">With large documents or complex data structures, models may be more likely to make mistakes when copying data between tool calls.</p><p class="zh">MCP 客户端将工具定义加载到模型的上下文窗口中，并编排一个消息循环，其中每次工具调用和结果在操作之间都要经过模型。</p><p class="en">The MCP client loads tool definitions into the model's context window and orchestrates a message loop where each tool call and result passes through the model between operations.</p></section><section class="sec"><h3 id="s5">基于代码执行的 MCP 上下文效率提升 <span class="en">Code execution with MCP improves context efficiency</span></h3><p class="zh">随着代码执行环境在智能体中日益普及，一种解决方案是将 MCP 服务器以代码 API 的形式呈现，而非直接的工具调用。智能体随后可以编写代码与 MCP 服务器交互。这一方法同时应对了两项挑战：智能体可以只加载所需的工具，并在执行环境中处理数据后再将结果传回模型。</p><p class="en">With code execution environments becoming more common for agents, a solution is to present MCP servers as code APIs rather than direct tool calls. The agent can then write code to interact with MCP servers. This approach addresses both challenges: agents can load only the tools they need and process data in the execution environment before passing results back to the model.</p><p class="zh">实现方式有多种。一种方法是为已连接的 MCP 服务器中所有可用工具生成文件树。以下是使用 TypeScript 的实现：</p><p class="en">There are a number of ways to do this. One approach is to generate a file tree of all available tools from connected MCP servers. Here's an implementation using TypeScript:</p><p class="zh">```
+servers
+├── google-drive
+│   ├── getDocument.ts
+│   ├── ... (other tools)
+│   └── index.ts
+├── salesforce
+│   ├── updateRecord.ts
+│   ├── ... (other tools)
+│   └── index.ts
+└── ... (other servers)
+```</p><p class="en">```
+servers
+├── google-drive
+│   ├── getDocument.ts
+│   ├── ... (other tools)
+│   └── index.ts
+├── salesforce
+│   ├── updateRecord.ts
+│   ├── ... (other tools)
+│   └── index.ts
+└── ... (other servers)
+```</p><p class="zh">随后每个工具对应一个文件，大致如下：</p><p class="en">Then each tool corresponds to a file, something like:</p><p class="zh">```
+// ./servers/google-drive/getDocument.ts
+import { callMCPTool } from &quot;../../../client.js&quot;;
+
+interface GetDocumentInput {
+  documentId: string;
+}
+
+interface GetDocumentResponse {
+  content: string;
+}
+
+/* Read a document from Google Drive */
+export async function getDocument(input: GetDocumentInput): Promise&lt;GetDocumentResponse&gt; {
+  return callMCPTool&lt;GetDocumentResponse&gt;('google_drive__get_document', input);
+}
+```</p><p class="en">```
+// ./servers/google-drive/getDocument.ts
+import { callMCPTool } from &quot;../../../client.js&quot;;
+
+interface GetDocumentInput {
+  documentId: string;
+}
+
+interface GetDocumentResponse {
+  content: string;
+}
+
+/* Read a document from Google Drive */
+export async function getDocument(input: GetDocumentInput): Promise&lt;GetDocumentResponse&gt; {
+  return callMCPTool&lt;GetDocumentResponse&gt;('google_drive__get_document', input);
+}
+```</p><p class="zh">上面 Google Drive 到 Salesforce 的示例就变成了如下代码：</p><p class="en">Our Google Drive to Salesforce example above becomes the code:</p><p class="zh">```
+// Read transcript from Google Docs and add to Salesforce prospect
+import * as gdrive from './servers/google-drive';
+import * as salesforce from './servers/salesforce';
+
+const transcript = (await gdrive.getDocument({ documentId: 'abc123' })).content;
+await salesforce.updateRecord({
+  objectType: 'SalesMeeting',
+  recordId: '00Q5f000001abcXYZ',
+  data: { Notes: transcript }
+});
+```</p><p class="en">```
+// Read transcript from Google Docs and add to Salesforce prospect
+import * as gdrive from './servers/google-drive';
+import * as salesforce from './servers/salesforce';
+
+const transcript = (await gdrive.getDocument({ documentId: 'abc123' })).content;
+await salesforce.updateRecord({
+  objectType: 'SalesMeeting',
+  recordId: '00Q5f000001abcXYZ',
+  data: { Notes: transcript }
+});
+```</p><p class="zh">智能体通过浏览文件系统来发现工具：列出 \(./servers/\) 目录以查找可用的服务器（如 \(google-drive\) 和 \(salesforce\)），然后读取它所需的具体工具文件（如 \(getDocument.ts\) 和 \(updateRecord.ts\)）以了解每个工具的接口。这使得智能体只需加载当前任务所需的定义。这将 token 用量从 150,000 个 token 降至 2,000 个 token——节省了 98.7% 的时间与成本。</p><p class="en">The agent discovers tools by exploring the filesystem: listing the \(./servers/\) directory to find available servers (like \(google-drive\) and \(salesforce\)), then reading the specific tool files it needs (like \(getDocument.ts\) and \(updateRecord.ts\)) to understand each tool's interface. This lets the agent load only the definitions it needs for the current task. This reduces the token usage from 150,000 tokens to 2,000 tokens—a time and cost saving of 98.7%.</p><p class="zh">Cloudflare 也发表了类似发现，将使用 MCP 的代码执行称为“Code Mode”。其核心洞见相同：LLM 擅长编写代码，开发者应利用这一优势来构建能更高效地与 MCP 服务器交互的智能体。</p><p class="en">Cloudflare published similar findings, referring to code execution with MCP as &quot;Code Mode.&quot; The core insight is the same: LLMs are adept at writing code, and developers should take advantage of this strength to build agents that interact with MCP servers more efficiently.</p></section><section class="sec"><h3 id="s6">使用 MCP 进行代码执行的优势 <span class="en">Benefits of code execution with MCP</span></h3><p class="zh">借助 MCP 进行代码执行，智能体能够更高效地利用上下文：按需加载工具、在数据进入模型之前进行过滤，并在单一步骤中执行复杂逻辑。采用这种方法还能带来安全性和状态管理方面的优势。</p><p class="en">Code execution with MCP enables agents to use context more efficiently by loading tools on demand, filtering data before it reaches the model, and executing complex logic in a single step. There are also security and state management benefits to using this approach.</p></section><section class="sec"><h3 id="s7">渐进式披露 <span class="en">Progressive disclosure</span></h3><p class="zh">模型非常擅长在文件系统中导航。将工具以代码形式呈现在文件系统上，使模型能够按需读取工具定义，而不是预先一次性读取全部定义。</p><p class="en">Models are great at navigating filesystems. Presenting tools as code on a filesystem allows models to read tool definitions on-demand, rather than reading them all up-front.</p><p class="zh">另一种做法是，在服务器上添加一个 \(search_tools\) 工具来查找相关定义。例如，在使用上文假设的 Salesforce 服务器时，智能体搜索 “salesforce”，只加载当前任务所需的那些工具。在 \(search_tools\) 工具中加入一个细节层级参数，让智能体可以选择所需的细节程度（例如仅名称、名称与描述，或包含 schema 的完整定义），也有助于智能体节省上下文窗口并高效地查找工具。</p><p class="en">Alternatively, a \(search_tools\) tool can be added to the server to find relevant definitions. For example, when working with the hypothetical Salesforce server used above, the agent searches for &quot;salesforce&quot; and loads only those tools that it needs for the current task. Including a detail level parameter in the \(search_tools\) tool that allows the agent to select the level of detail required (such as name only, name and description, or the full definition with schemas) also helps the agent conserve context and find tools efficiently.</p></section><section class="sec"><h3 id="s8">上下文高效的工具结果 <span class="en">Context efficient tool results</span></h3><p class="zh">在处理大型数据集时，智能体可以在返回结果之前先用代码对结果进行过滤和转换。试想获取一个包含 10,000 行的电子表格：</p><p class="en">When working with large datasets, agents can filter and transform results in code before returning them. Consider fetching a 10,000-row spreadsheet:</p><p class="zh">```
+// Without code execution - all rows flow through context
+TOOL CALL: gdrive.getSheet(sheetId: 'abc123')
+        → returns 10,000 rows in context to filter manually
+
+// With code execution - filter in the execution environment
+const allRows = await gdrive.getSheet({ sheetId: 'abc123' });
+const pendingOrders = allRows.filter(row =&gt;
+  row[&quot;Status&quot;] === 'pending'
+);
+console.log(`Found ${pendingOrders.length} pending orders`);
+console.log(pendingOrders.slice(0, 5)); // Only log first 5 for review
+```</p><p class="en">```
+// Without code execution - all rows flow through context
+TOOL CALL: gdrive.getSheet(sheetId: 'abc123')
+        → returns 10,000 rows in context to filter manually
+
+// With code execution - filter in the execution environment
+const allRows = await gdrive.getSheet({ sheetId: 'abc123' });
+const pendingOrders = allRows.filter(row =&gt;
+  row[&quot;Status&quot;] === 'pending'
+);
+console.log(`Found ${pendingOrders.length} pending orders`);
+console.log(pendingOrders.slice(0, 5)); // Only log first 5 for review
+```</p><p class="zh">智能体看到的是五行，而不是 10,000 行。类似的模式也适用于聚合、跨多个数据源的连接，或提取特定字段——所有这些都不会使上下文窗口膨胀。</p><p class="en">The agent sees five rows instead of 10,000. Similar patterns work for aggregations, joins across multiple data sources, or extracting specific fields—all without bloating the context window.</p></section><section class="sec"><h3 id="s9">更强大且上下文高效的控制流 <span class="en">More powerful and context-efficient control flow</span></h3><p class="zh">循环、条件判断和错误处理可以用熟悉的代码模式来完成，而不必逐个串联工具调用。例如，如果你需要在 Slack 中收到部署通知，智能体可以编写：</p><p class="en">Loops, conditionals, and error handling can be done with familiar code patterns rather than chaining individual tool calls. For example, if you need a deployment notification in Slack, the agent can write:</p><p class="zh">```
+let found = false;
+while (!found) {
+  const messages = await slack.getChannelHistory({ channel: 'C123456' });
+  found = messages.some(m =&gt; m.text.includes('deployment complete'));
+  if (!found) await new Promise(r =&gt; setTimeout(r, 5000));
+}
+console.log('Deployment notification received');
+```</p><p class="en">```
+let found = false;
+while (!found) {
+  const messages = await slack.getChannelHistory({ channel: 'C123456' });
+  found = messages.some(m =&gt; m.text.includes('deployment complete'));
+  if (!found) await new Promise(r =&gt; setTimeout(r, 5000));
+}
+console.log('Deployment notification received');
+```</p><p class="zh">这种方法比在智能体循环中交替执行 MCP 工具调用和 sleep 命令更高效。</p><p class="en">This approach is more efficient than alternating between MCP tool calls and sleep commands through the agent loop.</p><p class="zh">此外，能够写出一个会被执行的条件树还能节省“首 token 时间”延迟：智能体无需等待模型来求值一个 if 语句，而是可以让代码执行环境来完成这件事。</p><p class="en">Additionally, being able to write out a conditional tree that gets executed also saves on &quot;time to first token&quot; latency: rather than having to wait for a model to evaluate an if-statement, the agent can let the code execution environment do this.</p></section><section class="sec"><h3 id="s10">隐私保护操作 <span class="en">Privacy-preserving operations</span></h3><p class="zh">当智能体使用带有 MCP 的代码执行时，中间结果默认保留在执行环境中。这样，智能体只能看到你显式记录或返回的内容，这意味着你不希望与模型共享的数据可以在你的工作流中流动，而无需进入模型的上下文。</p><p class="en">When agents use code execution with MCP, intermediate results stay in the execution environment by default. This way, the agent only sees what you explicitly log or return, meaning data you don’t wish to share with the model can flow through your workflow without ever entering the model's context.</p><p class="zh">对于更敏感的工作负载，智能体框架可以自动对敏感数据进行标记化。例如，假设你需要将客户联系详情从电子表格导入 Salesforce。智能体编写：</p><p class="en">For even more sensitive workloads, the agent harness can tokenize sensitive data automatically. For example, imagine you need to import customer contact details from a spreadsheet into Salesforce. The agent writes:</p><p class="zh">```
+const sheet = await gdrive.getSheet({ sheetId: 'abc123' });
+for (const row of sheet.rows) {
+  await salesforce.updateRecord({
+    objectType: 'Lead',
+    recordId: row.salesforceId,
+    data: {
+      Email: row.email,
+      Phone: row.phone,
+      Name: row.name
+    }
+  });
+}
+console.log(`Updated ${sheet.rows.length} leads`);
+```</p><p class="en">```
+const sheet = await gdrive.getSheet({ sheetId: 'abc123' });
+for (const row of sheet.rows) {
+  await salesforce.updateRecord({
+    objectType: 'Lead',
+    recordId: row.salesforceId,
+    data: {
+      Email: row.email,
+      Phone: row.phone,
+      Name: row.name
+    }
+  });
+}
+console.log(`Updated ${sheet.rows.length} leads`);
+```</p><p class="zh">MCP 客户端拦截数据并在数据到达模型之前对 PII 进行标记化：</p><p class="en">The MCP client intercepts the data and tokenizes PII before it reaches the model:</p><p class="zh">```
+// What the agent would see, if it logged the sheet.rows:
+[
+  { salesforceId: '00Q...', email: '[EMAIL_1]', phone: '[PHONE_1]', name: '[NAME_1]' },
+  { salesforceId: '00Q...', email: '[EMAIL_2]', phone: '[PHONE_2]', name: '[NAME_2]' },
+  ...
+]
+```</p><p class="en">```
+// What the agent would see, if it logged the sheet.rows:
+[
+  { salesforceId: '00Q...', email: '[EMAIL_1]', phone: '[PHONE_1]', name: '[NAME_1]' },
+  { salesforceId: '00Q...', email: '[EMAIL_2]', phone: '[PHONE_2]', name: '[NAME_2]' },
+  ...
+]
+```</p><p class="zh">然后，当数据在另一个 MCP 工具调用中共享时，通过 MCP 客户端中的查找进行去标记化。真实的电子邮件地址、电话号码和姓名从 Google Sheets 流向 Salesforce，但从不经过模型。这可以防止智能体意外记录或处理敏感数据。你也可以使用此功能来定义确定性的安全规则，选择数据可以流向何处以及从何处流入。</p><p class="en">Then, when the data is shared in another MCP tool call, it is untokenized via a lookup in the MCP client. The real email addresses, phone numbers, and names flow from Google Sheets to Salesforce, but never through the model. This prevents the agent from accidentally logging or processing sensitive data. You can also use this to define deterministic security rules, choosing where data can flow to and from.</p></section><section class="sec"><h3 id="s11">状态持久化与技能 <span class="en">State persistence and skills</span></h3><p class="zh">借助文件系统访问的代码执行使智能体能够在多次操作之间保持状态。智能体可以将中间结果写入文件，从而能够恢复工作并跟踪进度：</p><p class="en">Code execution with filesystem access allows agents to maintain state across operations. Agents can write intermediate results to files, enabling them to resume work and track progress:</p><p class="zh">```
+const leads = await salesforce.query({
+  query: 'SELECT Id, Email FROM Lead LIMIT 1000'
+});
+const csvData = leads.map(l =&gt; `${l.Id},${l.Email}`).join('\n');
+await fs.writeFile('./workspace/leads.csv', csvData);
+
+// Later execution picks up where it left off
+const saved = await fs.readFile('./workspace/leads.csv', 'utf-8');
+```</p><p class="en">```
+const leads = await salesforce.query({
+  query: 'SELECT Id, Email FROM Lead LIMIT 1000'
+});
+const csvData = leads.map(l =&gt; `${l.Id},${l.Email}`).join('\n');
+await fs.writeFile('./workspace/leads.csv', csvData);
+
+// Later execution picks up where it left off
+const saved = await fs.readFile('./workspace/leads.csv', 'utf-8');
+```</p><p class="zh">智能体还可以将自身的代码持久化为可复用的函数。一旦智能体为某项任务开发出可用的代码，它就可以将该实现保存下来以供未来使用：</p><p class="en">Agents can also persist their own code as reusable functions. Once an agent develops working code for a task, it can save that implementation for future use:</p><p class="zh">```
+// In ./skills/save-sheet-as-csv.ts
+import * as gdrive from './servers/google-drive';
+export async function saveSheetAsCsv(sheetId: string) {
+  const data = await gdrive.getSheet({ sheetId });
+  const csv = data.map(row =&gt; row.join(',')).join('\n');
+  await fs.writeFile(`./workspace/sheet-${sheetId}.csv`, csv);
+  return `./workspace/sheet-${sheetId}.csv`;
+}
+
+// Later, in any agent execution:
+import { saveSheetAsCsv } from './skills/save-sheet-as-csv';
+const csvPath = await saveSheetAsCsv('abc123');
+```</p><p class="en">```
+// In ./skills/save-sheet-as-csv.ts
+import * as gdrive from './servers/google-drive';
+export async function saveSheetAsCsv(sheetId: string) {
+  const data = await gdrive.getSheet({ sheetId });
+  const csv = data.map(row =&gt; row.join(',')).join('\n');
+  await fs.writeFile(`./workspace/sheet-${sheetId}.csv`, csv);
+  return `./workspace/sheet-${sheetId}.csv`;
+}
+
+// Later, in any agent execution:
+import { saveSheetAsCsv } from './skills/save-sheet-as-csv';
+const csvPath = await saveSheetAsCsv('abc123');
+```</p><p class="zh">这与技能（Skills）的概念密切相关：技能是包含可复用指令、脚本和资源的文件夹，用于提升模型在专门任务上的表现。在这些已保存的函数中添加一个 SKILL.md 文件，就能创建一个结构化的技能，供模型引用和使用。随着时间推移，这使你的智能体能够构建一个由更高层能力组成的工具箱，并不断演进其高效工作所需的脚手架。</p><p class="en">This ties in closely to the concept of Skills: folders of reusable instructions, scripts, and resources for models to improve performance on specialized tasks. Adding a SKILL.md file to these saved functions creates a structured skill that models can reference and use. Over time, this allows your agent to build a toolbox of higher-level capabilities, evolving the scaffolding that it needs to work most effectively.</p><p class="zh">需要注意的是，代码执行本身也带来了复杂性。运行智能体生成的代码需要一个安全的执行环境，并配备适当的沙箱隔离、资源限制和监控。这些基础设施要求带来了额外的运维开销和安全考量，而直接工具调用则可避免这些问题。代码执行带来的收益——降低 token 成本、降低延迟以及改进工具组合——应当与这些实现成本进行权衡。</p><p class="en">Note that code execution introduces its own complexity. Running agent-generated code requires a secure execution environment with appropriate sandboxing, resource limits, and monitoring. These infrastructure requirements add operational overhead and security considerations that direct tool calls avoid. The benefits of code execution—reduced token costs, lower latency, and improved tool composition—should be weighed against these implementation costs.</p></section><section class="sec"><h3 id="s12">总结 <span class="en">Summary</span></h3><p class="zh">MCP 为智能体连接众多工具与系统提供了基础协议。然而，一旦连接的服务器过多，工具定义与结果就会消耗过多 token，从而降低智能体的效率。</p><p class="en">MCP provides a foundational protocol for agents to connect to many tools and systems. However, once too many servers are connected, tool definitions and results can consume excessive tokens, reducing agent efficiency.</p><p class="zh">尽管这里的许多问题看似新颖——上下文管理、工具组合、状态持久化——但它们在软件工程中已有已知的解决方案。代码执行将这些成熟模式应用于智能体，使其能够使用熟悉的编程结构更高效地与 MCP 服务器交互。如果你实现了这一方法，我们鼓励你与 MCP 社区分享你的发现。</p><p class="en">Although many of the problems here feel novel—context management, tool composition, state persistence—they have known solutions from software engineering. Code execution applies these established patterns to agents, letting them use familiar programming constructs to interact with MCP servers more efficiently. If you implement this approach, we encourage you to share your findings with the MCP community.</p></section></div>
+<p style="margin-top:26px"><a class="cta" href="https://aipaper.jasonlin.tech/#/paper/anthropic-code-execution-with-mcp">互动版：针对本篇提问 →</a></p>
+<h2 id="next">接着读 · Read next</h2><ul class="rn"><li><a href="https://aipaper.jasonlin.tech/p/anthropic-components-of-agent-memory/"><span class="rn-t">智能体记忆的组成部分</span><span class="rn-m">Anthropic · 2026-11-06 — 有效的智能体记忆来自工作中标记显著事件、事后通过“做梦”反思日志以纠错并构建表征，而无差别记录会导致记忆臃肿并降低性能。</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/anthropic-s1-2026/"><span class="rn-t">Anthropic, PBC —S-1 注册声明（IPO 招股说明书）</span><span class="rn-m">Anthropic · 2026-10-26 — Anthropic 提交 IPO 申请，强调 Claude 在企业市场的快速普及，以及以使命为导向、注重安全的方式把握数…</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/anthropic-how-we-contain-claude/"><span class="rn-t">我们如何在各产品中实施 Claude 的隔离管控</span><span class="rn-m">Anthropic · 2026-05-25 — Anthropic 详述了其智能体产品的三层隔离架构，认为由于模型层防御具有概率性，环境沙箱与出口管控必须承担最主要的防…</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/anthropic-managed-agents/"><span class="rn-t">扩展托管智能体：将大脑与双手解耦</span><span class="rn-m">Anthropic · 2026-04-08 — Anthropic 的托管智能体将 Claude 及其执行框架与沙箱、工具和仅追加的会话日志解耦，使容器成为可替换的“牲…</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/anthropic-claude-code-auto-mode/"><span class="rn-t">我们如何构建 Claude Code 自动模式</span><span class="rn-m">Anthropic · 2026-03-25 — Anthropic 的 Claude Code 自动模式通过服务端提示注入探针与 Sonnet 4.6 转录分类器双重防…</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/anthropic-harness-design-long-running-apps/"><span class="rn-t">面向长时间运行应用的多智能体框架设计</span><span class="rn-m">Anthropic · 2026-03-24 — 将生成智能体与持怀疑态度的评估智能体分离，并配合具体评分标准和上下文管理，可显著提升长时间自主编码中前端设计的主观质量与…</span></a></li></ul>
+
+<script>(function(){var q=location.search.replace(/^\?/,'');var h="https://aipaper.jasonlin.tech/#/paper/anthropic-code-execution-with-mcp"+(q?'?'+q:'');
+document.querySelectorAll('a.cta').forEach(function(a){a.href=h});})()</script>
+<footer>© AI Paper · <a href="https://aipaper.jasonlin.tech/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架(linzheng3535@gmail.com)。</footer>
+</div><script>function shareThis(b){var u=document.querySelector('link[rel=canonical]').href,t=document.title,d=(document.querySelector('meta[name=description]')||{}).content||'';
+if(navigator.share){navigator.share({title:t,text:d,url:u}).catch(function(){});return;}
+try{navigator.clipboard.writeText(u).then(function(){var o=b.textContent;b.textContent='已复制链接';setTimeout(function(){b.textContent=o},1600)})}catch(e){}}</script><script>if(!window.__SPA_TAKEOVER){(function(){try{
+var UA=navigator.userAgent||'';
+if(/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit/i.test(UA))return;
+var U='https://stats.jasonlin.tech',DWELL=4000,GRACE=800,T0=Date.now();
+var LS=null;try{LS=window.localStorage}catch(_){}
+var aid='';
+try{
+  aid=(LS&&LS.aid)||'';
+  if(!aid){var i,n;
+    try{var u=new Uint8Array(10);crypto.getRandomValues(u);
+        for(i=0;i<10;i++){n=u[i].toString(16);aid+=n.length<2?'0'+n:n;}}
+    catch(_){for(i=0;i<20;i++)aid+=Math.floor(Math.random()*16).toString(16);}
+    if(LS)LS.aid=aid;}   /* 与 SPA 共用同一个 aid:先落静态页再点进互动版的人算 1 个 UV */
+}catch(_){aid='';}
+var sid='';try{if(LS&&LS.syncSidFor&&LS.syncSidFor===LS.syncCode)sid=LS.syncSid||'';}catch(_){}
+var ref='';try{ref=(document.referrer||'').replace(/^[a-z]+:\/\//i,'').split('/')[0];}catch(_){}
+var dev=/Mobi|Android|iPhone|iPad|iPod/i.test(UA)?'mobile':'desktop';
+function post(type){
+  try{
+    var body=JSON.stringify({type:type,path:'paper:'+location.pathname.replace(/index\.html$/,''),ua:dev,ref:ref,sid:sid,aid:aid});
+    if(navigator.sendBeacon&&typeof Blob!=='undefined')navigator.sendBeacon(U,new Blob([body],{type:'text/plain'}));
+    else{var x=new XMLHttpRequest();x.open('POST',U,true);x.setRequestHeader('Content-Type','text/plain');x.send(body);}
+  }catch(_){}
+}
+post('view');                                  /* 打开即发,口径不变 */
+var sent=false,acc=0,since=null,timer=null;    /* 以下是 read:攒够可见时长或等到一次交互 */
+function read(){if(sent)return;sent=true;if(timer){clearTimeout(timer);timer=null;}post('read');}
+function pause(){if(since!==null){acc+=Date.now()-since;since=null;}if(timer){clearTimeout(timer);timer=null;}}
+function resume(){if(sent||since!==null)return;since=Date.now();timer=setTimeout(read,Math.max(0,DWELL-acc));}
+function vis(){if(document.visibilityState==='visible')resume();else pause();}
+try{document.addEventListener('visibilitychange',vis);}catch(_){}
+function interact(){if(Date.now()-T0<GRACE)return;read();}   /* 起步保护期内的滚动/点击不算 */
+var evs=['scroll','pointerdown','mousedown','keydown','touchstart'];
+for(var k=0;k<evs.length;k++){try{window.addEventListener(evs[k],interact,true);}catch(_){}}
+vis();
+}catch(_){}})()}</script></body></html>

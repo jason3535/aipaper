@@ -1,0 +1,539 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<title>在 Claude 开发者平台引入高级工具使用功能 · Anthropic — AI Paper</title>
+<meta name="description" content="Anthropic 的 Tool Search Tool、Programmatic Tool Calling 与 Tool Use Examples 可将 token 消耗最多降低 85% 并提升工具选择准确率，使智能体在数千个工具规模下运行而不撑爆上下文窗口。｜核心贡献：Tool Search Tool 支持按需发现工具，token 用量降低约 85%，MCP 准确率从 49% 提升至 74%（Opus 4）。">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<link rel="canonical" href="https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/">
+<link rel="alternate" hreflang="zh" href="https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/"><link rel="alternate" hreflang="en" href="https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/"><link rel="alternate" hreflang="x-default" href="https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AI Paper · 双语论文阅读站">
+<meta property="og:locale" content="zh_CN"><meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="在 Claude 开发者平台引入高级工具使用功能 · Anthropic — AI Paper">
+<meta property="og:description" content="Anthropic 的 Tool Search Tool、Programmatic Tool Calling 与 Tool Use Examples 可将 token 消耗最多降低 85% 并提升工具选择准确率，使智能体在数千个工具规模下运行而不撑爆上下文窗口。｜核心贡献：Tool Search Tool 支持按需发现工具，token 用量降低约 85%，MCP 准确率从 49% 提升至 74%（Opus 4）。">
+<meta property="og:image" content="https://aipaper.jasonlin.tech/og/p/anthropic-advanced-tool-use.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="在 Claude 开发者平台引入高级工具使用功能 · Anthropic — AI Paper">
+<meta property="og:url" content="https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="在 Claude 开发者平台引入高级工具使用功能 · Anthropic — AI Paper">
+<meta name="twitter:description" content="Anthropic 的 Tool Search Tool、Programmatic Tool Calling 与 Tool Use Examples 可将 token 消耗最多降低 85% 并提升工具选择准确率，使智能体在数千个工具规模下运行而不撑爆上下文窗口。｜核心贡献：Tool Search Tool 支持按需发现工具，token 用量降低约 85%，MCP 准确率从 49% 提升至 74%（Opus 4）。">
+<meta name="twitter:image" content="https://aipaper.jasonlin.tech/og/p/anthropic-advanced-tool-use.jpg">
+<script>(function(){if(/bot|crawl|spider|slurp|preview|facebookexternalhit|embedly|headless|lighthouse|bytespider|petalbot|yandex|baidu|sogou|360spider/i.test(navigator.userAgent))return;
+var q=location.search.replace(/^\?/,''),h=location.hash;if(h.indexOf('#/')!==0)h="#/paper/anthropic-advanced-tool-use"+(q?'?'+q:'');
+window.__SPA_TAKEOVER=1;var st=document.createElement('style');st.textContent='html{visibility:hidden}';document.head.appendChild(st);
+var done=0,fb=function(){if(done)return;done=1;location.replace('/'+h);},t=setTimeout(fb,6000);
+fetch('/',{credentials:'same-origin'}).then(function(r){if(!r.ok)throw 0;return r.text();}).then(function(html){
+var go=function(){if(done)return;done=1;clearTimeout(t);
+/* 外壳 head 里是首页的标题/OG,换成本页的,渲染后再读标签的抓取方也拿到单篇卡片 */
+var keep=[].map.call(document.head.querySelectorAll('title,meta[name=description],meta[property^="og:"],meta[name^="twitter:"],link[rel=canonical],script[type="application/ld+json"]'),function(e){return e.outerHTML;}).join('');
+html=html.replace(/<title>[\s\S]*?<\/title>|<meta (?:name="description"|property="og:[^"]*"|name="twitter:[^"]*")[^>]*>|<link rel="canonical"[^>]*>|<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace(/(<meta charset="utf-8">)/i,'$1'+keep);
+history.replaceState(null,'',location.pathname+h);document.open();document.write(html);document.close();};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();}).catch(fb);})()</script>
+<meta name="keywords" content="Anthropic,Anthropic,nlp,Anthropic,AI论文,双语论文,deep learning,机器学习">
+<meta name="author" content="Anthropic">
+<meta property="article:published_time" content="2025-11-24">
+<meta property="article:author" content="Anthropic">
+<meta property="article:tag" content="nlp">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Introducing advanced tool use on the Claude Developer Platform","alternativeHeadline":"在 Claude 开发者平台引入高级工具使用功能","name":"Introducing advanced tool use on the Claude Developer Platform","url":"https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/","datePublished":"2025-11-24","inLanguage":["en","zh"],"abstract":"Anthropic introduces three advanced tool-use features on the Claude Developer Platform to address the limits of conventional tool calling as agents scale to hundreds or thousands of tools. The article argues that loading every tool definition upfront consumes tens of thousands of tokens and causes wrong tool selection and incorrect parameters, while natural language tool invocation forces a full inference pass per call and accumulates intermediate results in context. The Tool Search Tool lets Claude discover tools on demand, cutting token usage by roughly 85 percent and improving MCP evaluation accuracy from 49 to 74 percent for Opus 4 and from 79.5 to 88.1 percent for Opus 4.5. Programmatic Tool Calling lets Claude orchestrate tools through code in a sandboxed environment, reducing token consumption by 37 percent on complex research tasks, eliminating redundant inference passes, and improving accuracy on knowledge retrieval and GIA benchmarks. Tool Use Examples add a standard for demonstrating effective tool usage beyond JSON schemas. The conclusion is that these features open new possibilities for building agents that work across large tool libraries without overloading the context window.","description":"Anthropic's Tool Search Tool, Programmatic Tool Calling, and Tool Use Examples cut token usage by up to 85% and boost tool-selection accuracy, enabling agents to scale to thousands of tools without overloading context.","keywords":"nlp","author":{"@type":"Person","name":"Anthropic","jobTitle":"AI safety lab (Claude); interpretability & alignment","url":"https://aipaper.jasonlin.tech/pp/anthropic/"},"isPartOf":{"@type":"WebSite","name":"AI Paper","url":"https://aipaper.jasonlin.tech"},"sourceOrganization":{"@type":"Organization","name":"Anthropic"},"sameAs":"https://www.anthropic.com/engineering/advanced-tool-use"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Paper","item":"https://aipaper.jasonlin.tech/"},{"@type":"ListItem","position":2,"name":"Anthropic","item":"https://aipaper.jasonlin.tech/pp/anthropic/"},{"@type":"ListItem","position":3,"name":"在 Claude 开发者平台引入高级工具使用功能","item":"https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/"}]}</script>
+<style>:root{--ink:#1d1d1f;--sub:#6e6e73;--line:#e6e6ea;--acc:#0a76e9}*{box-sizing:border-box}body{font-family:-apple-system,"SF Pro Text",system-ui,"PingFang SC",sans-serif;color:var(--ink);background:#fff;margin:0;line-height:1.62}.wrap{max-width:760px;margin:0 auto;padding:34px 22px 80px}nav.bc{font-size:13px;color:var(--sub);margin-bottom:20px}nav.bc a{color:var(--sub);text-decoration:none}h1{font-size:26px;line-height:1.28;margin:.2em 0 .1em;letter-spacing:-.02em}.en-t{font-size:16px;color:var(--sub);margin:0 0 10px}.meta{font-size:14px;color:var(--sub);margin:8px 0 22px}.meta a{color:var(--acc);text-decoration:none}.cta{display:inline-block;margin:6px 0 26px;padding:10px 18px;background:var(--acc);color:#fff;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none}.cta-2{margin-left:8px;background:#fff;color:var(--acc);border:1px solid var(--line);cursor:pointer;font-family:inherit}h2{font-size:16px;margin:30px 0 10px;padding-top:8px;border-top:1px solid var(--line)}.zh{margin:.35em 0}.en{margin:.15em 0 1em;color:var(--sub);font-size:14.5px}ul{padding-left:1.1em}li{margin:.5em 0}.p-list a{color:var(--ink)}footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}footer a{color:var(--sub)}
+/* 全文区。content-visibility 让屏幕外章节跳过渲染,长论文才不卡 */
+.tr{margin-top:8px}.tr blockquote{margin:6px 0 12px;padding:2px 0 2px 14px;border-left:3px solid var(--line)}.tr .sec{content-visibility:auto;contain-intrinsic-size:auto 600px;margin:0 0 10px}
+/* 深色模式(2026-09-05 补):SPA 支持、静态分享页一直纯白,夜里点开分享链接先闪一屏白。 */
+@media (prefers-color-scheme:dark){:root{--ink:#f5f5f7;--sub:#a1a1a6;--line:#2c2c2e;--acc:#2997ff}
+body{background:#000;color:#f5f5f7}.cta-2{background:#1c1c1e;border-color:#3a3a3c}}
+.rn{list-style:none;padding:0;margin:0}.rn li{margin:0;border-top:1px solid var(--line)}.rn li:first-child{border-top:none}.rn a{display:block;padding:12px 0;text-decoration:none;color:var(--ink)}.rn-t{display:block;font-size:15.5px;font-weight:600;line-height:1.4}.rn-m{display:block;font-size:13px;color:var(--sub);margin-top:3px}
+.fab{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:9;padding:9px 15px;border-radius:999px;background:var(--ink);color:var(--bg,#fff);font-size:13px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+@media (prefers-color-scheme:dark){.fab{background:#f5f5f7;color:#000}}
+.tr h3{font-size:15px;margin:26px 0 8px;color:var(--ink);border-top:1px solid var(--line);padding-top:14px}
+.tr p.zh{margin:.2em 0}.tr p.en{margin:.1em 0 .9em}</style></head><body><div class="wrap"><nav class="bc"><a href="https://aipaper.jasonlin.tech/">AI Paper</a> › <a href="https://aipaper.jasonlin.tech/pp/anthropic/">Anthropic</a> › 文章</nav>
+<h1>在 Claude 开发者平台引入高级工具使用功能</h1><p class="en-t">Introducing advanced tool use on the Claude Developer Platform</p>
+<p class="meta"><a href="https://aipaper.jasonlin.tech/pp/anthropic/">Anthropic</a> · 2025-11-24 · <a href="https://www.anthropic.com/engineering/advanced-tool-use" rel="nofollow">Anthropic Engineering ↗</a></p>
+<a class="cta" href="https://aipaper.jasonlin.tech/#/paper/anthropic-advanced-tool-use">打开互动全文版（逐段中英对照 + 针对本篇提问）→</a><button class="cta cta-2" onclick="shareThis(this)">分享本篇</button>
+<h2>摘要 · Abstract</h2><p class="zh">Anthropic 在 Claude 开发者平台上推出三项高级工具使用功能，以解决智能体扩展到数百乃至数千个工具时传统工具调用方式的局限。文章指出，预先加载全部工具定义会消耗数万个 token，并导致工具选择错误和参数错误；而自然语言工具调用则每次调用都需完整推理，并在上下文中累积中间结果。Tool Search Tool 让 Claude 按需发现工具，将 token 用量降低约 85%，并将 MCP 评测准确率从 49% 提升至 74%（Opus 4）、从 79.5% 提升至 88.1%（Opus 4.5）。Programmatic Tool Calling 让 Claude 在沙箱环境中通过代码编排工具，在复杂研究任务上减少 37% 的 token 消耗，消除冗余推理，并提升知识检索与 GIA 基准的准确率。Tool Use Examples 则新增一项标准，用于在 JSON schema 之外演示有效的工具用法。结论是，这些功能为构建可跨大型工具库工作、又不会使上下文窗口过载的智能体开辟了新的可能。</p><p class="en">Anthropic introduces three advanced tool-use features on the Claude Developer Platform to address the limits of conventional tool calling as agents scale to hundreds or thousands of tools. The article argues that loading every tool definition upfront consumes tens of thousands of tokens and causes wrong tool selection and incorrect parameters, while natural language tool invocation forces a full inference pass per call and accumulates intermediate results in context. The Tool Search Tool lets Claude discover tools on demand, cutting token usage by roughly 85 percent and improving MCP evaluation accuracy from 49 to 74 percent for Opus 4 and from 79.5 to 88.1 percent for Opus 4.5. Programmatic Tool Calling lets Claude orchestrate tools through code in a sandboxed environment, reducing token consumption by 37 percent on complex research tasks, eliminating redundant inference passes, and improving accuracy on knowledge retrieval and GIA benchmarks. Tool Use Examples add a standard for demonstrating effective tool usage beyond JSON schemas. The conclusion is that these features open new possibilities for building agents that work across large tool libraries without overloading the context window.</p>
+<h2>核心贡献 · Key contributions</h2><ul><li><span class="zh">Tool Search Tool 支持按需发现工具，token 用量降低约 85%，MCP 准确率从 49% 提升至 74%（Opus 4）。</span><br><span class="en">Tool Search Tool enables on-demand tool discovery, cutting token usage ~85% and raising MCP accuracy from 49% to 74% (Opus 4).</span></li><li><span class="zh">Programmatic Tool Calling 让 Claude 通过沙盒代码编排工具，token 减少 37%，并消除冗余推理过程。</span><br><span class="en">Programmatic Tool Calling lets Claude orchestrate tools via sandboxed code, reducing tokens 37% and eliminating redundant inference passes.</span></li><li><span class="zh">Tool Use Examples 在 JSON schema 之外提供具体调用示例，将复杂参数处理准确率从 72% 提升至 90%。</span><br><span class="en">Tool Use Examples add concrete sample calls beyond JSON schemas, improving complex parameter handling accuracy from 72% to 90%.</span></li><li><span class="zh">通过 defer_loading 延迟加载，将延迟工具完全排除在初始提示之外，从而保留提示缓存。</span><br><span class="en">Deferred loading via defer_loading preserves prompt caching by excluding deferred tools from the initial prompt entirely.</span></li><li><span class="zh">三项功能互补，分别针对发现、执行效率与调用正确性三个不同瓶颈。</span><br><span class="en">The three features are complementary, each targeting a distinct bottleneck: discovery, execution efficiency, and invocation correctness.</span></li><li><span class="zh">内部测试表明，这些模式支撑了 Claude for Excel 等产品处理数千行数据而不过载上下文窗口。</span><br><span class="en">Internal testing shows these patterns enable products like Claude for Excel handling thousands of rows without overloading the context window.</span></li></ul>
+<h2>局限 · Limitations</h2><ul><li><span class="zh">工具搜索在调用前增加搜索步骤，仅当上下文节省足够大时收益才超过额外延迟。</span><br><span class="en">Tool Search adds a search step before invocation, so benefits only outweigh added latency when context savings are large.</span></li><li><span class="zh">程序化工具调用增加代码执行步骤，仅对大数据集或多步依赖工作流才划算。</span><br><span class="en">Programmatic Tool Calling adds a code execution step, paying off only for large datasets or multi-step dependent workflows.</span></li><li><span class="zh">工具使用示例在定义中消耗额外 token，仅当准确率收益超过额外成本时才有价值。</span><br><span class="en">Tool Use Examples consume extra tokens in definitions, valuable only when accuracy gains outweigh the added cost.</span></li><li><span class="zh">工具搜索仅匹配名称与描述，因此质量差或含糊的工具定义会降低发现准确率。</span><br><span class="en">Tool search matches only names and descriptions, so poor or ambiguous tool definitions degrade discovery accuracy.</span></li><li><span class="zh">所有功能仍处于 beta 阶段，结果来自 Anthropic 内部评估而非独立基准测试。</span><br><span class="en">All features remain in beta, and results come from internal Anthropic evaluations rather than independent benchmarks.</span></li></ul>
+<h2 id="toc">章节 · Sections（共 22）</h2><ul><li><a href="#s1"><span class="zh">工具搜索工具</span> <span class="en">01 Tool Search Tool</span></a></li><li><a href="#s2"><span class="zh">挑战</span> <span class="en">The challenge</span></a></li><li><a href="#s3"><span class="zh">我们的解决方案</span> <span class="en">Our solution</span></a></li><li><a href="#s4"><span class="zh">工具搜索工具的工作原理</span> <span class="en">How the Tool Search Tool works</span></a></li><li><a href="#s5"><span class="zh">何时使用工具搜索工具</span> <span class="en">When to use the Tool Search Tool</span></a></li><li><a href="#s6"><span class="zh">挑战</span> <span class="en">The challenge</span></a></li><li><a href="#s7"><span class="zh">我们的解决方案</span> <span class="en">Our solution</span></a></li><li><a href="#s8"><span class="zh">示例：预算合规检查</span> <span class="en">Example: Budget compliance check</span></a></li><li><a href="#s9"><span class="zh">1. 将工具标记为可从代码调用</span> <span class="en">1. Mark tools as callable from code</span></a></li><li><a href="#s10"><span class="zh">2. Claude 编写编排代码</span> <span class="en">2. Claude writes orchestration code</span></a></li><li><a href="#s11"><span class="zh">3. 工具执行不占用 Claude 的上下文窗口</span> <span class="en">3. Tools execute without hitting Claude's context</span></a></li><li><a href="#s12"><span class="zh">4. 只有最终输出进入上下文</span> <span class="en">4. Only final output enters context</span></a></li><li><a href="#s13"><span class="zh">何时使用程序化工具调用</span> <span class="en">When to use Programmatic Tool Calling</span></a></li><li><a href="#s14"><span class="zh">挑战</span> <span class="en">The challenge</span></a></li><li><a href="#s15"><span class="zh">我们的解决方案</span> <span class="en">Our solution</span></a></li><li><a href="#s16"><span class="zh">何时使用工具使用示例</span> <span class="en">When to use Tool Use Examples</span></a></li><li><a href="#s17"><span class="zh">最佳实践</span> <span class="en">Best practices</span></a></li><li><a href="#s18"><span class="zh">分层策略性地使用功能</span> <span class="en">Layer features strategically</span></a></li><li><a href="#s19"><span class="zh">设置工具搜索工具以提升发现能力</span> <span class="en">Set up Tool Search Tool for better discovery</span></a></li><li><a href="#s20"><span class="zh">为正确执行设置程序化工具调用</span> <span class="en">Set up Programmatic Tool Calling for correct execution</span></a></li><li><a href="#s21"><span class="zh">为参数准确性设置工具使用示例</span> <span class="en">Set up Tool Use Examples for parameter accuracy</span></a></li><li><a href="#s22"><span class="zh">入门</span> <span class="en">Getting started</span></a></li></ul>
+<h2>全文 · Full text（逐段中英对照）</h2><div class="tr"><section class="sec"><h3 id="s1">工具搜索工具 <span class="en">01 Tool Search Tool</span></h3><p class="zh">2026 年 5 月 18 日：Anthropic 收购 Stainless</p><p class="en">May 18, 2026: Anthropic acquires Stainless</p><p class="zh">AI 智能体的未来，是模型能够在数百乃至数千个工具之间无缝协作。一个 IDE 助手可以集成 git 操作、文件操作、包管理器、测试框架和部署流水线。一个运维协调器可以同时连接 Slack、GitHub、Google Drive、Jira、公司数据库以及数十个 MCP 服务器。</p><p class="en">The future of AI agents is one where models work seamlessly across hundreds or thousands of tools. An IDE assistant that integrates git operations, file manipulation, package managers, testing frameworks, and deployment pipelines. An operations coordinator that connects Slack, GitHub, Google Drive, Jira, company databases, and dozens of MCP servers simultaneously.</p><p class="zh">要构建有效的智能体，它们需要能够使用无限的工具库，而不必事先把每个工具定义都塞进上下文窗口。我们关于在 MCP 中使用代码执行的博客文章讨论了：工具结果和定义有时会在智能体读取请求之前就消耗 50,000+ 个 token。智能体应当按需发现并加载工具，只保留与当前任务相关的内容。</p><p class="en">To build effective agents, they need to work with unlimited tool libraries without stuffing every definition into context upfront. Our blog article on using code execution with MCP discussed how tool results and definitions can sometimes consume 50,000+ tokens before an agent reads a request. Agents should discover and load tools on-demand, keeping only what's relevant for the current task.</p><p class="zh">智能体还需要具备从代码中调用工具的能力。使用自然语言进行工具调用时，每次调用都需要一次完整的推理过程，而且无论中间结果是否有用，它们都会在上下文窗口中堆积。代码天然适合承载编排逻辑，例如循环、条件分支和数据转换。智能体需要能够根据手头任务，在代码执行与推理之间灵活选择。</p><p class="en">Agents also need the ability to call tools from code. When using natural language tool calling, each invocation requires a full inference pass, and intermediate results pile up in context whether they're useful or not. Code is a natural fit for orchestration logic, such as loops, conditionals, and data transformations. Agents need the flexibility to choose between code execution and inference based on the task at hand.</p><p class="zh">智能体还需要从示例中学习正确的工具用法，而不仅仅是依赖 schema 定义。JSON schema 定义了结构上什么是合法的，但无法表达使用模式：何时应包含可选参数、哪些参数组合是合理的，或者你的 API 期望遵循哪些约定。</p><p class="en">Agents also need to learn correct tool usage from examples, not just schema definitions. JSON schemas define what's structurally valid, but can't express usage patterns: when to include optional parameters, which combinations make sense, or what conventions your API expects.</p><p class="zh">今天，我们发布了三项功能来实现这一点：</p><p class="en">Today, we're releasing three features that make this possible:</p><p class="zh">*   **工具搜索工具**，它允许 Claude 使用搜索工具来访问数千个工具，而不会消耗其上下文窗口</p><p class="en">*   **Tool Search Tool**, which allows Claude to use search tools to access thousands of tools without consuming its context window</p><p class="zh">*   **程序化工具调用**，它允许 Claude 在代码执行环境中调用工具，从而减少对模型上下文窗口的影响</p><p class="en">*   **Programmatic Tool Calling**, which allows Claude to invoke tools in a code execution environment reducing the impact on the model's context window</p><p class="zh">*   **工具使用示例**，它提供了一个通用标准，用于演示如何有效使用给定工具</p><p class="en">*   **Tool Use Examples**, which provides a universal standard for demonstrating how to effectively use a given tool</p><p class="zh">在内部测试中，我们发现这些功能帮助我们构建了传统工具使用模式无法实现的东西。例如，**Claude for Excel** 使用程序化工具调用来读取和修改具有数千行的电子表格，而不会使模型的上下文窗口过载。</p><p class="en">In internal testing, we've found these features have helped us build things that wouldn't have been possible with conventional tool use patterns. For example, **Claude for Excel** uses Programmatic Tool Calling to read and modify spreadsheets with thousands of rows without overloading the model's context window.</p><p class="zh">基于我们的经验，我们相信这些功能为使用 Claude 构建应用开辟了新的可能性。</p><p class="en">Based on our experience, we believe these features open up new possibilities for what you can build with Claude.</p></section><section class="sec"><h3 id="s2">挑战 <span class="en">The challenge</span></h3><p class="zh">MCP 工具定义提供了重要的上下文，但随着接入的服务器增多，这些 token 会不断累积。考虑一个五服务器配置：</p><p class="en">MCP tool definitions provide important context, but as more servers connect, those tokens can add up. Consider a five-server setup:</p><p class="zh">这意味着在对话尚未开始之前，58 个工具就已消耗约 55K token。再接入 Jira 等更多服务器（仅 Jira 一项就占用约 17K token），token 开销很快就会逼近 100K 以上。在 Anthropic，我们曾见过工具定义在优化前消耗 134K token。</p><p class="en">That's 58 tools consuming approximately 55K tokens before the conversation even starts. Add more servers like Jira (which alone uses ~17K tokens) and you're quickly approaching 100K+ token overhead. At Anthropic, we've seen tool definitions consume 134K tokens before optimization.</p><p class="zh">但 token 成本并非唯一问题。最常见的失败是工具选择错误和参数错误，尤其是当工具名称相似时，例如 notification-send-user 与 notification-send-channel。</p><p class="en">But token cost isn't the only issue. The most common failures are wrong tool selection and incorrect parameters, especially when tools have similar names like notification-send-user vs. notification-send-channel.</p></section><section class="sec"><h3 id="s3">我们的解决方案 <span class="en">Our solution</span></h3><p class="zh">Tool Search Tool 不再预先加载全部工具定义，而是按需发现工具。Claude 只会看到当前任务实际需要的工具。</p><p class="en">Instead of loading all tool definitions upfront, the Tool Search Tool discovers tools on-demand. Claude only sees the tools it actually needs for the current task.</p><p class="zh">与 Claude 的传统方法相比，Tool Search Tool 可保留 191,300 个 token 的上下文，而传统方法仅保留 122,800 个。</p><p class="en">Tool Search Tool preserves 191,300 tokens of context compared to 122,800 with Claude's traditional approach.</p><p class="zh">*   所有工具定义均预先加载（50+ 个 MCP 工具约需 72K 个 token）</p><p class="en">*   All tool definitions loaded upfront (~72K tokens for 50+ MCP tools)</p><p class="zh">*   对话历史与系统提示词争夺剩余空间</p><p class="en">*   Conversation history and system prompt compete for remaining space</p><p class="zh">*   在任何工作开始之前，上下文总消耗已达约 77K 个 token</p><p class="en">*   Total context consumption: ~77K tokens before any work begins</p><p class="zh">*   仅预先加载 Tool Search Tool（约 500 个 token）</p><p class="en">*   Only the Tool Search Tool loaded upfront (~500 tokens)</p><p class="zh">*   按需发现工具（3-5 个相关工具，约 3K 个 token）</p><p class="en">*   Tools discovered on-demand as needed (3-5 relevant tools, ~3K tokens)</p><p class="zh">*   总上下文消耗：约 8.7K 个 token，保留 95% 的上下文窗口</p><p class="en">*   Total context consumption: ~8.7K tokens, preserving 95% of context window</p><p class="zh">这意味着在保持对完整工具库访问的同时，token 使用量减少了 85%。内部测试表明，在处理大型工具库时，MCP 评估的准确率显著提升。启用 Tool Search Tool 后，Opus 4 从 49% 提升至 74%，Opus 4.5 从 79.5% 提升至 88.1%。</p><p class="en">This represents an 85% reduction in token usage while maintaining access to your full tool library. Internal testing showed significant accuracy improvements on MCP evaluations when working with large tool libraries. Opus 4 improved from 49% to 74%, and Opus 4.5 improved from 79.5% to 88.1% with Tool Search Tool enabled.</p></section><section class="sec"><h3 id="s4">工具搜索工具的工作原理 <span class="en">How the Tool Search Tool works</span></h3><p class="zh">工具搜索工具让 Claude 动态发现工具，而不是预先加载所有定义。你把所有工具定义都提供给 API，但将工具标记为 `defer_loading: true`，使其可按需被发现。延迟加载的工具最初不会加载到 Claude 的上下文窗口中。Claude 只能看到工具搜索工具本身，以及任何标记为 `defer_loading: false` 的工具（即最关键、最常用的工具）。</p><p class="en">The Tool Search Tool lets Claude dynamically discover tools instead of loading all definitions upfront. You provide all your tool definitions to the API, but mark tools with `defer_loading: true` to make them discoverable on-demand. Deferred tools aren't loaded into Claude's context initially. Claude only sees the Tool Search Tool itself plus any tools with `defer_loading: false` (your most critical, frequently-used tools).</p><p class="zh">当 Claude 需要特定能力时，它会搜索相关工具。工具搜索工具返回匹配工具的引用，这些引用会在 Claude 的上下文窗口中展开为完整定义。</p><p class="en">When Claude needs specific capabilities, it searches for relevant tools. The Tool Search Tool returns references to matching tools, which get expanded into full definitions in Claude's context.</p><p class="zh">例如，如果 Claude 需要与 GitHub 交互，它会搜索“github”，此时只会加载 `github.createPullRequest` 和 `github.listIssues`，而不会加载你在 Slack、Jira 和 Google Drive 中的其他 50 多个工具。</p><p class="en">For example, if Claude needs to interact with GitHub, it searches for &quot;github,&quot; and only `github.createPullRequest` and `github.listIssues` get loaded—not your other 50+ tools from Slack, Jira, and Google Drive.</p><p class="zh">这样一来，Claude 既能访问你的完整工具库，又只需为它实际需要的工具支付 token 成本。</p><p class="en">This way, Claude has access to your full tool library while only paying the token cost for tools it actually needs.</p><p class="zh">**提示缓存说明：** 工具搜索工具不会破坏提示缓存，因为延迟加载的工具完全被排除在初始提示之外。它们只有在 Claude 搜索之后才会被添加到上下文中，因此你的系统提示和核心工具定义仍然可缓存。</p><p class="en">**Prompt caching note:** The Tool Search Tool doesn't break prompt caching because deferred tools are excluded from the initial prompt entirely. They're only added to context after Claude searches for them, so your system prompt and core tool definitions remain cacheable.</p><p class="zh">```
+{
+  &quot;tools&quot;: [
+    // Include a tool search tool (regex, BM25, or custom)
+    {&quot;type&quot;: &quot;tool_search_tool_regex_20251119&quot;, &quot;name&quot;: &quot;tool_search_tool_regex&quot;},
+
+    // Mark tools for on-demand discovery
+    {
+      &quot;name&quot;: &quot;github.createPullRequest&quot;,
+      &quot;description&quot;: &quot;Create a pull request&quot;,
+      &quot;input_schema&quot;: {...},
+      &quot;defer_loading&quot;: true
+    }
+    // ... hundreds more deferred tools with defer_loading: true
+  ]
+}
+```</p><p class="en">```
+{
+  &quot;tools&quot;: [
+    // Include a tool search tool (regex, BM25, or custom)
+    {&quot;type&quot;: &quot;tool_search_tool_regex_20251119&quot;, &quot;name&quot;: &quot;tool_search_tool_regex&quot;},
+
+    // Mark tools for on-demand discovery
+    {
+      &quot;name&quot;: &quot;github.createPullRequest&quot;,
+      &quot;description&quot;: &quot;Create a pull request&quot;,
+      &quot;input_schema&quot;: {...},
+      &quot;defer_loading&quot;: true
+    }
+    // ... hundreds more deferred tools with defer_loading: true
+  ]
+}
+```</p><p class="zh">对于 MCP 服务器，你可以推迟加载整个服务器，同时保持特定的高频使用工具处于已加载状态：</p><p class="en">For MCP servers, you can defer loading entire servers while keeping specific high-use tools loaded:</p><p class="zh">```
+{
+  &quot;type&quot;: &quot;mcp_toolset&quot;,
+  &quot;mcp_server_name&quot;: &quot;google-drive&quot;,
+  &quot;default_config&quot;: {&quot;defer_loading&quot;: true}, # defer loading the entire server
+  &quot;configs&quot;: {
+    &quot;search_files&quot;: {
+&quot;defer_loading&quot;: false
+    }  // Keep most used tool loaded
+  }
+}
+```</p><p class="en">```
+{
+  &quot;type&quot;: &quot;mcp_toolset&quot;,
+  &quot;mcp_server_name&quot;: &quot;google-drive&quot;,
+  &quot;default_config&quot;: {&quot;defer_loading&quot;: true}, # defer loading the entire server
+  &quot;configs&quot;: {
+    &quot;search_files&quot;: {
+&quot;defer_loading&quot;: false
+    }  // Keep most used tool loaded
+  }
+}
+```</p><p class="zh">Claude 开发者平台开箱即用地提供了基于正则表达式和基于 BM25 的搜索工具，但你也可以使用嵌入或其他策略实现自定义搜索工具。</p><p class="en">The Claude Developer Platform provides regex-based and BM25-based search tools out of the box, but you can also implement custom search tools using embeddings or other strategies.</p></section><section class="sec"><h3 id="s5">何时使用工具搜索工具 <span class="en">When to use the Tool Search Tool</span></h3><p class="zh">与任何架构决策一样，启用工具搜索工具（Tool Search Tool）都涉及权衡。该功能在工具调用之前增加了一个搜索步骤，因此只有当上下文节省和准确率提升超过额外延迟时，它才能带来最佳 ROI。</p><p class="en">Like any architectural decision, enabling the Tool Search Tool involves trade-offs. The feature adds a search step before tool invocation, so it delivers the best ROI when the context savings and accuracy improvements outweigh additional latency.</p><p class="zh">*   工具定义消耗超过 10K tokens</p><p class="en">*   Tool definitions consuming &gt;10K tokens</p><p class="zh">*   遇到工具选择准确率问题</p><p class="en">*   Experiencing tool selection accuracy issues</p><p class="zh">*   构建由 MCP 驱动、包含多个服务器的系统</p><p class="en">*   Building MCP-powered systems with multiple servers</p><p class="zh">*   所有工具在每个会话中都被频繁使用</p><p class="en">*   All tools used frequently in every session</p></section><section class="sec"><h3 id="s6">挑战 <span class="en">The challenge</span></h3><p class="zh">随着工作流变得更加复杂，传统的工具调用产生了两个根本问题：</p><p class="en">Traditional tool calling creates two fundamental problems as workflows become more complex:</p><p class="zh">*   **中间结果导致的上下文污染**：当 Claude 分析一个 10MB 的日志文件以寻找错误模式时，整个文件都会进入其上下文窗口，尽管 Claude 只需要错误频率的摘要。当从多个表中获取客户数据时，每条记录无论是否相关都会累积在上下文中。这些中间结果消耗了大量的 token 预算，并可能将重要信息完全挤出上下文窗口。</p><p class="en">*   **Context pollution from intermediate results**: When Claude analyzes a 10MB log file for error patterns, the entire file enters its context window, even though Claude only needs a summary of error frequencies. When fetching customer data across multiple tables, every record accumulates in context regardless of relevance. These intermediate results consume massive token budgets and can push important information out of the context window entirely.</p><p class="zh">*   **推理开销与手动综合**：每次工具调用都需要完整的模型推理过程。收到结果后，Claude 必须“目测”数据以提取相关信息，推理各部分如何组合，并决定下一步做什么——所有这些都通过自然语言处理完成。一个包含五个工具的工作流意味着五次推理过程，加上 Claude 解析每个结果、比较值并综合结论。这既慢又容易出错。</p><p class="en">*   **Inference overhead and manual synthesis**: Each tool call requires a full model inference pass. After receiving results, Claude must &quot;eyeball&quot; the data to extract relevant information, reason about how pieces fit together, and decide what to do next—all through natural language processing. A five tool workflow means five inference passes plus Claude parsing each result, comparing values, and synthesizing conclusions. This is both slow and error-prone.</p></section><section class="sec"><h3 id="s7">我们的解决方案 <span class="en">Our solution</span></h3><p class="zh">程序化工具调用（Programmatic Tool Calling）使 Claude 能够通过代码而非逐次 API 往返来编排工具。Claude 不再一次请求一个工具、并将每个结果返回其上下文，而是编写代码来调用多个工具、处理它们的输出，并控制哪些信息真正进入其上下文窗口。</p><p class="en">Programmatic Tool Calling enables Claude to orchestrate tools through code rather than through individual API round-trips. Instead of Claude requesting tools one at a time with each result being returned to its context, Claude writes code that calls multiple tools, processes their outputs, and controls what information actually enters its context window.</p><p class="zh">Claude 擅长编写代码；通过让它用 Python 而非自然语言工具调用来表达编排逻辑，可以获得更可靠、更精确的控制流。循环、条件、数据转换和错误处理都在代码中显式表达，而非隐含在 Claude 的推理之中。</p><p class="en">Claude excels at writing code, and by letting it express orchestration logic in Python rather than through natural language tool invocations, you get more reliable, precise control flow. Loops, conditionals, data transformations, and error handling are all explicit in code rather than implicit in Claude's reasoning.</p></section><section class="sec"><h3 id="s8">示例：预算合规检查 <span class="en">Example: Budget compliance check</span></h3><p class="zh">考虑一个常见的业务任务：“哪些团队成员超出了他们的第三季度差旅预算？”</p><p class="en">Consider a common business task: &quot;Which team members exceeded their Q3 travel budget?&quot;</p><p class="zh">*   get_team_members(department) - 返回团队成员列表，包含 ID 和级别</p><p class="en">*   get_team_members(department) - Returns team member list with IDs and levels</p><p class="zh">*   get_expenses(user_id, quarter) - 返回某个用户的费用明细项</p><p class="en">*   get_expenses(user_id, quarter) - Returns expense line items for a user</p><p class="zh">*   get_budget_by_level(level) - 返回某个员工级别的预算限额</p><p class="en">*   get_budget_by_level(level) - Returns budget limits for an employee level</p><p class="zh">*   对每个人，获取其第三季度费用 → 20 次工具调用，每次返回 50-100 个明细项（航班、酒店、餐饮、收据）</p><p class="en">*   For each person, fetch their Q3 expenses → 20 tool calls, each returning 50-100 line items (flights, hotels, meals, receipts)</p><p class="zh">* 按员工级别获取预算限额</p><p class="en">* 按员工级别获取预算限额</p><p class="zh">* 所有这些都进入 Claude 的上下文：2,000+ 条费用明细项（50 KB+）</p><p class="en">* 所有这些都进入 Claude 的上下文：2,000+ 条费用明细项（50 KB+）</p><p class="zh">* Claude 手动汇总每个人的费用，查找他们的预算，将费用与预算限额进行比较</p><p class="en">* Claude 手动汇总每个人的费用，查找他们的预算，将费用与预算限额进行比较</p><p class="zh">* 更多与模型的往返交互，显著的上下文消耗</p><p class="en">* 更多与模型的往返交互，显著的上下文消耗</p><p class="zh">每个工具结果不再返回给 Claude，而是由 Claude 编写一个 Python 脚本来编排整个工作流。该脚本在代码执行工具（一个沙盒环境）中运行，当需要从你的工具获取结果时暂停。当你通过 API 返回工具结果时，这些结果由脚本处理，而不是由模型消耗。脚本继续执行，Claude 只看到最终输出。</p><p class="en">每个工具结果不再返回给 Claude，而是由 Claude 编写一个 Python 脚本来编排整个工作流。该脚本在代码执行工具（一个沙盒环境）中运行，当需要从你的工具获取结果时暂停。当你通过 API 返回工具结果时，这些结果由脚本处理，而不是由模型消耗。脚本继续执行，Claude 只看到最终输出。</p><p class="zh">程序化工具调用使 Claude 能够通过代码而非单个 API 往返来编排工具，从而支持并行工具执行。</p><p class="en">Programmatic Tool Calling enables Claude to orchestrate tools through code rather than through individual API round-trips, allowing for parallel tool execution.</p><p class="zh">以下是 Claude 在预算合规任务中的编排代码示例：</p><p class="en">Here's what Claude's orchestration code looks like for the budget compliance task:</p><p class="zh">```
+team = await get_team_members(&quot;engineering&quot;)
+
+# Fetch budgets for each unique level
+levels = list(set(m[&quot;level&quot;] for m in team))
+budget_results = await asyncio.gather(*[
+    get_budget_by_level(level) for level in levels
+])
+
+# Create a lookup dictionary: {&quot;junior&quot;: budget1, &quot;senior&quot;: budget2, ...}
+budgets = {level: budget for level, budget in zip(levels, budget_results)}
+
+# Fetch all expenses in parallel
+expenses = await asyncio.gather(*[
+    get_expenses(m[&quot;id&quot;], &quot;Q3&quot;) for m in team
+])
+
+# Find employees who exceeded their travel budget
+exceeded = []
+for member, exp in zip(team, expenses):
+    budget = budgets[member[&quot;level&quot;]]
+    total = sum(e[&quot;amount&quot;] for e in exp)
+    if total &gt; budget[&quot;travel_limit&quot;]:
+        exceeded.append({
+            &quot;name&quot;: member[&quot;name&quot;],
+            &quot;spent&quot;: total,
+            &quot;limit&quot;: budget[&quot;travel_limit&quot;]
+        })
+
+print(json.dumps(exceeded))
+```</p><p class="en">```
+team = await get_team_members(&quot;engineering&quot;)
+
+# Fetch budgets for each unique level
+levels = list(set(m[&quot;level&quot;] for m in team))
+budget_results = await asyncio.gather(*[
+    get_budget_by_level(level) for level in levels
+])
+
+# Create a lookup dictionary: {&quot;junior&quot;: budget1, &quot;senior&quot;: budget2, ...}
+budgets = {level: budget for level, budget in zip(levels, budget_results)}
+
+# Fetch all expenses in parallel
+expenses = await asyncio.gather(*[
+    get_expenses(m[&quot;id&quot;], &quot;Q3&quot;) for m in team
+])
+
+# Find employees who exceeded their travel budget
+exceeded = []
+for member, exp in zip(team, expenses):
+    budget = budgets[member[&quot;level&quot;]]
+    total = sum(e[&quot;amount&quot;] for e in exp)
+    if total &gt; budget[&quot;travel_limit&quot;]:
+        exceeded.append({
+            &quot;name&quot;: member[&quot;name&quot;],
+            &quot;spent&quot;: total,
+            &quot;limit&quot;: budget[&quot;travel_limit&quot;]
+        })
+
+print(json.dumps(exceeded))
+```</p><p class="zh">Claude 的上下文仅接收最终结果：两到三名超出预算的人员。2000 多个行项目、中间求和以及预算查找均不会影响 Claude 的上下文，从而将消耗从 200KB 的原始支出数据减少到仅 1KB 的结果。</p><p class="en">Claude's context receives only the final result: the two to three people who exceeded their budget. The 2,000+ line items, the intermediate sums, and the budget lookups do not affect Claude's context, reducing consumption from 200KB of raw expense data to just 1KB of results.</p><p class="zh">*   **Token 节省**：通过将中间结果排除在 Claude 的上下文之外，PTC 大幅降低了 token 消耗。在复杂研究任务中，平均使用量从 43,588 个 token 降至 27,297 个 token，减少了 37%。</p><p class="en">*   **Token savings**: By keeping intermediate results out of Claude's context, PTC dramatically reduces token consumption. Average usage dropped from 43,588 to 27,297 tokens, a 37% reduction on complex research tasks.</p><p class="zh">*   **降低延迟**：每次 API 往返都需要模型推理（数百毫秒到数秒）。当 Claude 在单个代码块中编排 20 多次工具调用时，可消除 19 次以上的推理过程。API 处理工具执行，无需每次都返回模型。</p><p class="en">*   **Reduced latency**: Each API round-trip requires model inference (hundreds of milliseconds to seconds). When Claude orchestrates 20+ tool calls in a single code block, you eliminate 19+ inference passes. The API handles tool execution without returning to the model each time.</p><p class="zh">*   **更高的准确率**：通过编写显式的编排逻辑，Claude 的错误比用自然语言同时处理多个工具结果时更少。内部知识检索从 25.6% 提升到 28.5%；GIA 基准从 46.5% 提升到 51.2%。</p><p class="en">*   **Improved accuracy**: By writing explicit orchestration logic, Claude makes fewer errors than when juggling multiple tool results in natural language. Internal knowledge retrieval improved from 25.6% to 28.5%; GIA benchmarks from 46.5% to 51.2%.</p><p class="zh">生产工作流涉及杂乱数据、条件逻辑以及需要规模化的操作。Programmatic Tool Calling 让 Claude 以编程方式处理这种复杂性，同时将注意力集中在可执行的结果上，而非原始数据处理。</p><p class="en">Production workflows involve messy data, conditional logic, and operations that need to scale. Programmatic Tool Calling lets Claude handle that complexity programmatically while keeping its focus on actionable results rather than raw data processing.</p></section><section class="sec"><h3 id="s9">1. 将工具标记为可从代码调用 <span class="en">1. Mark tools as callable from code</span></h3><p class="zh">将 `code_execution` 添加到 tools 中，并将 `allowed_callers` 设置为选择启用的工具，以便进行程序化执行：</p><p class="en">Add `code_execution` to tools, and set `allowed_callers` to opt-in tools for programmatic execution:</p><p class="zh">```
+{
+  &quot;tools&quot;: [
+    {
+      &quot;type&quot;: &quot;code_execution_20250825&quot;,
+      &quot;name&quot;: &quot;code_execution&quot;
+    },
+    {
+      &quot;name&quot;: &quot;get_team_members&quot;,
+      &quot;description&quot;: &quot;Get all members of a department...&quot;,
+      &quot;input_schema&quot;: {...},
+      &quot;allowed_callers&quot;: [&quot;code_execution_20250825&quot;] # opt-in to programmatic tool calling
+    },
+    {
+      &quot;name&quot;: &quot;get_expenses&quot;,
+ 	...
+    },
+    {
+      &quot;name&quot;: &quot;get_budget_by_level&quot;,
+	...
+    }
+  ]
+}
+```</p><p class="en">```
+{
+  &quot;tools&quot;: [
+    {
+      &quot;type&quot;: &quot;code_execution_20250825&quot;,
+      &quot;name&quot;: &quot;code_execution&quot;
+    },
+    {
+      &quot;name&quot;: &quot;get_team_members&quot;,
+      &quot;description&quot;: &quot;Get all members of a department...&quot;,
+      &quot;input_schema&quot;: {...},
+      &quot;allowed_callers&quot;: [&quot;code_execution_20250825&quot;] # opt-in to programmatic tool calling
+    },
+    {
+      &quot;name&quot;: &quot;get_expenses&quot;,
+ 	...
+    },
+    {
+      &quot;name&quot;: &quot;get_budget_by_level&quot;,
+	...
+    }
+  ]
+}
+```</p><p class="zh">API 会将这些工具定义转换为 Claude 可以调用的 Python 函数。</p><p class="en">The API converts these tool definitions into Python functions that Claude can call.</p></section><section class="sec"><h3 id="s10">2. Claude 编写编排代码 <span class="en">2. Claude writes orchestration code</span></h3><p class="zh">Claude 不再逐个请求工具，而是生成 Python 代码：</p><p class="en">Instead of requesting tools one at a time, Claude generates Python code:</p><p class="zh">```
+{
+  &quot;type&quot;: &quot;server_tool_use&quot;,
+  &quot;id&quot;: &quot;srvtoolu_abc&quot;,
+  &quot;name&quot;: &quot;code_execution&quot;,
+  &quot;input&quot;: {
+    &quot;code&quot;: &quot;team = get_team_members('engineering')\n...&quot; # the code example above
+  }
+}
+```</p><p class="en">```
+{
+  &quot;type&quot;: &quot;server_tool_use&quot;,
+  &quot;id&quot;: &quot;srvtoolu_abc&quot;,
+  &quot;name&quot;: &quot;code_execution&quot;,
+  &quot;input&quot;: {
+    &quot;code&quot;: &quot;team = get_team_members('engineering')\n...&quot; # the code example above
+  }
+}
+```</p></section><section class="sec"><h3 id="s11">3. 工具执行不占用 Claude 的上下文窗口 <span class="en">3. Tools execute without hitting Claude's context</span></h3><p class="zh">当代码调用 get_expenses() 时，你会收到一个带有 caller 字段的工具请求：</p><p class="en">When the code calls get_expenses(), you receive a tool request with a caller field:</p><p class="zh">```
+{
+  &quot;type&quot;: &quot;tool_use&quot;,
+  &quot;id&quot;: &quot;toolu_xyz&quot;,
+  &quot;name&quot;: &quot;get_expenses&quot;,
+  &quot;input&quot;: {&quot;user_id&quot;: &quot;emp_123&quot;, &quot;quarter&quot;: &quot;Q3&quot;},
+  &quot;caller&quot;: {
+    &quot;type&quot;: &quot;code_execution_20250825&quot;,
+    &quot;tool_id&quot;: &quot;srvtoolu_abc&quot;
+  }
+}
+```</p><p class="en">```
+{
+  &quot;type&quot;: &quot;tool_use&quot;,
+  &quot;id&quot;: &quot;toolu_xyz&quot;,
+  &quot;name&quot;: &quot;get_expenses&quot;,
+  &quot;input&quot;: {&quot;user_id&quot;: &quot;emp_123&quot;, &quot;quarter&quot;: &quot;Q3&quot;},
+  &quot;caller&quot;: {
+    &quot;type&quot;: &quot;code_execution_20250825&quot;,
+    &quot;tool_id&quot;: &quot;srvtoolu_abc&quot;
+  }
+}
+```</p><p class="zh">你提供结果，该结果在代码执行环境中处理，而不是在 Claude 的上下文窗口中处理。对于代码中的每次工具调用，这个请求-响应循环都会重复。</p><p class="en">You provide the result, which is processed in the Code Execution environment rather than Claude's context. This request-response cycle repeats for each tool call in the code.</p></section><section class="sec"><h3 id="s12">4. 只有最终输出进入上下文 <span class="en">4. Only final output enters context</span></h3><p class="zh">当代码运行结束后，只有代码的运行结果会被返回给 Claude：</p><p class="en">When the code finishes running, only the results of the code are returned to Claude:</p><p class="zh">```
+{
+  &quot;type&quot;: &quot;code_execution_tool_result&quot;,
+  &quot;tool_use_id&quot;: &quot;srvtoolu_abc&quot;,
+  &quot;content&quot;: {
+    &quot;stdout&quot;: &quot;[{\&quot;name\&quot;: \&quot;Alice\&quot;, \&quot;spent\&quot;: 12500, \&quot;limit\&quot;: 10000}...]&quot;
+  }
+}
+```</p><p class="en">```
+{
+  &quot;type&quot;: &quot;code_execution_tool_result&quot;,
+  &quot;tool_use_id&quot;: &quot;srvtoolu_abc&quot;,
+  &quot;content&quot;: {
+    &quot;stdout&quot;: &quot;[{\&quot;name\&quot;: \&quot;Alice\&quot;, \&quot;spent\&quot;: 12500, \&quot;limit\&quot;: 10000}...]&quot;
+  }
+}
+```</p><p class="zh">这就是 Claude 所看到的全部内容，而不是处理过程中涉及的 2000 多条费用明细。</p><p class="en">This is all Claude sees, not the 2000+ expense line items processed along the way.</p></section><section class="sec"><h3 id="s13">何时使用程序化工具调用 <span class="en">When to use Programmatic Tool Calling</span></h3><p class="zh">程序化工具调用会在你的工作流中增加一个代码执行步骤。当 token 节省、延迟改善和准确率提升都相当可观时，这一额外开销是值得的。</p><p class="en">Programmatic Tool Calling adds a code execution step to your workflow. This extra overhead pays off when the token savings, latency improvements, and accuracy gains are substantial.</p><p class="zh">*   处理大型数据集，且你只需要聚合结果或摘要</p><p class="en">*   Processing large datasets where you only need aggregates or summaries</p><p class="zh">*   运行包含三个或更多相互依赖的工具调用的多步工作流</p><p class="en">*   Running multi-step workflows with three or more dependent tool calls</p><p class="zh">*   在 Claude 看到工具结果之前对其进行过滤、排序或转换</p><p class="en">*   Filtering, sorting, or transforming tool results before Claude sees them</p><p class="zh">*   处理中间数据不应影响 Claude 推理的任务</p><p class="en">*   Handling tasks where intermediate data shouldn't influence Claude's reasoning</p><p class="zh">* 在大量条目上运行并行操作（例如检查 50 个端点）</p><p class="en">* Running parallel operations across many items (for example, checking 50 endpoints)</p><p class="zh">* 进行简单的单工具调用</p><p class="en">* Making simple single-tool invocations</p><p class="zh">* 处理需要 Claude 查看并推理所有中间结果的任务</p><p class="en">* Working on tasks where Claude should see and reason about all intermediate results</p><p class="zh">* 运行响应较小的快速查询</p><p class="en">* Running quick lookups with small responses</p></section><section class="sec"><h3 id="s14">挑战 <span class="en">The challenge</span></h3><p class="zh">JSON Schema 擅长定义结构——类型、必需字段、允许的枚举值——但它无法表达使用模式：何时包含可选参数、哪些组合有意义，或者你的 API 期望什么约定。</p><p class="en">JSON Schema excels at defining structure—types, required fields, allowed enums—but it can't express usage patterns: when to include optional parameters, which combinations make sense, or what conventions your API expects.</p><p class="zh">```
+{
+  &quot;name&quot;: &quot;create_ticket&quot;,
+  &quot;input_schema&quot;: {
+    &quot;properties&quot;: {
+      &quot;title&quot;: {&quot;type&quot;: &quot;string&quot;},
+      &quot;priority&quot;: {&quot;enum&quot;: [&quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;]},
+      &quot;labels&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;}},
+      &quot;reporter&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;id&quot;: {&quot;type&quot;: &quot;string&quot;},
+          &quot;name&quot;: {&quot;type&quot;: &quot;string&quot;},
+          &quot;contact&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+              &quot;email&quot;: {&quot;type&quot;: &quot;string&quot;},
+              &quot;phone&quot;: {&quot;type&quot;: &quot;string&quot;}
+            }
+          }
+        }
+      },
+      &quot;due_date&quot;: {&quot;type&quot;: &quot;string&quot;},
+      &quot;escalation&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;level&quot;: {&quot;type&quot;: &quot;integer&quot;},
+          &quot;notify_manager&quot;: {&quot;type&quot;: &quot;boolean&quot;},
+          &quot;sla_hours&quot;: {&quot;type&quot;: &quot;integer&quot;}
+        }
+      }
+    },
+    &quot;required&quot;: [&quot;title&quot;]
+  }
+}
+```</p><p class="en">```
+{
+  &quot;name&quot;: &quot;create_ticket&quot;,
+  &quot;input_schema&quot;: {
+    &quot;properties&quot;: {
+      &quot;title&quot;: {&quot;type&quot;: &quot;string&quot;},
+      &quot;priority&quot;: {&quot;enum&quot;: [&quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;]},
+      &quot;labels&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;}},
+      &quot;reporter&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;id&quot;: {&quot;type&quot;: &quot;string&quot;},
+          &quot;name&quot;: {&quot;type&quot;: &quot;string&quot;},
+          &quot;contact&quot;: {
+            &quot;type&quot;: &quot;object&quot;,
+            &quot;properties&quot;: {
+              &quot;email&quot;: {&quot;type&quot;: &quot;string&quot;},
+              &quot;phone&quot;: {&quot;type&quot;: &quot;string&quot;}
+            }
+          }
+        }
+      },
+      &quot;due_date&quot;: {&quot;type&quot;: &quot;string&quot;},
+      &quot;escalation&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;level&quot;: {&quot;type&quot;: &quot;integer&quot;},
+          &quot;notify_manager&quot;: {&quot;type&quot;: &quot;boolean&quot;},
+          &quot;sla_hours&quot;: {&quot;type&quot;: &quot;integer&quot;}
+        }
+      }
+    },
+    &quot;required&quot;: [&quot;title&quot;]
+  }
+}
+```</p><p class="zh">模式定义了什么是有效的，但留下了关键问题未解答：</p><p class="en">The schema defines what's valid, but leaves critical questions unanswered:</p><p class="zh">*   **格式歧义：** due_date 应该使用 “2024-11-06”、“Nov 6, 2024”还是 “2024-11-06T00:00:00Z”？</p><p class="en">*   **Format ambiguity:** Should due_date use &quot;2024-11-06&quot;, &quot;Nov 6, 2024&quot;, or &quot;2024-11-06T00:00:00Z&quot;?</p><p class="zh">*   **ID 约定：** reporter.id 是 UUID、“USR-12345”还是只是 “12345”？</p><p class="en">*   **ID conventions:** Is reporter.id a UUID, &quot;USR-12345&quot;, or just &quot;12345&quot;?</p><p class="zh">*   **嵌套结构使用：** Claude 何时应该填充 reporter.contact？</p><p class="en">*   **Nested structure usage:** When should Claude populate reporter.contact?</p><p class="zh">*   **参数相关性：** escalation.level 与 escalation.sla_hours 如何与 priority 相关联？</p><p class="en">*   **Parameter correlations:** How do escalation.level and escalation.sla_hours relate to priority?</p><p class="zh">这些歧义可能导致工具调用格式错误以及参数使用不一致。</p><p class="en">These ambiguities can lead to malformed tool calls and inconsistent parameter usage.</p></section><section class="sec"><h3 id="s15">我们的解决方案 <span class="en">Our solution</span></h3><p class="zh">工具使用示例允许您直接在工具定义中提供示例工具调用。您无需仅依赖模式，而是向 Claude 展示具体的使用模式：</p><p class="en">Tool Use Examples let you provide sample tool calls directly in your tool definitions. Instead of relying on schema alone, you show Claude concrete usage patterns:</p><p class="zh">```
+{
+    &quot;name&quot;: &quot;create_ticket&quot;,
+    &quot;input_schema&quot;: { /* same schema as above */ },
+    &quot;input_examples&quot;: [
+      {
+        &quot;title&quot;: &quot;Login page returns 500 error&quot;,
+        &quot;priority&quot;: &quot;critical&quot;,
+        &quot;labels&quot;: [&quot;bug&quot;, &quot;authentication&quot;, &quot;production&quot;],
+        &quot;reporter&quot;: {
+          &quot;id&quot;: &quot;USR-12345&quot;,
+          &quot;name&quot;: &quot;Jane Smith&quot;,
+          &quot;contact&quot;: {
+            &quot;email&quot;: &quot;jane@acme.com&quot;,
+            &quot;phone&quot;: &quot;+1-555-0123&quot;
+          }
+        },
+        &quot;due_date&quot;: &quot;2024-11-06&quot;,
+        &quot;escalation&quot;: {
+          &quot;level&quot;: 2,
+          &quot;notify_manager&quot;: true,
+          &quot;sla_hours&quot;: 4
+        }
+      },
+      {
+        &quot;title&quot;: &quot;Add dark mode support&quot;,
+        &quot;labels&quot;: [&quot;feature-request&quot;, &quot;ui&quot;],
+        &quot;reporter&quot;: {
+          &quot;id&quot;: &quot;USR-67890&quot;,
+          &quot;name&quot;: &quot;Alex Chen&quot;
+        }
+      },
+      {
+        &quot;title&quot;: &quot;Update API documentation&quot;
+      }
+    ]
+  }
+```</p><p class="en">```
+{
+    &quot;name&quot;: &quot;create_ticket&quot;,
+    &quot;input_schema&quot;: { /* same schema as above */ },
+    &quot;input_examples&quot;: [
+      {
+        &quot;title&quot;: &quot;Login page returns 500 error&quot;,
+        &quot;priority&quot;: &quot;critical&quot;,
+        &quot;labels&quot;: [&quot;bug&quot;, &quot;authentication&quot;, &quot;production&quot;],
+        &quot;reporter&quot;: {
+          &quot;id&quot;: &quot;USR-12345&quot;,
+          &quot;name&quot;: &quot;Jane Smith&quot;,
+          &quot;contact&quot;: {
+            &quot;email&quot;: &quot;jane@acme.com&quot;,
+            &quot;phone&quot;: &quot;+1-555-0123&quot;
+          }
+        },
+        &quot;due_date&quot;: &quot;2024-11-06&quot;,
+        &quot;escalation&quot;: {
+          &quot;level&quot;: 2,
+          &quot;notify_manager&quot;: true,
+          &quot;sla_hours&quot;: 4
+        }
+      },
+      {
+        &quot;title&quot;: &quot;Add dark mode support&quot;,
+        &quot;labels&quot;: [&quot;feature-request&quot;, &quot;ui&quot;],
+        &quot;reporter&quot;: {
+          &quot;id&quot;: &quot;USR-67890&quot;,
+          &quot;name&quot;: &quot;Alex Chen&quot;
+        }
+      },
+      {
+        &quot;title&quot;: &quot;Update API documentation&quot;
+      }
+    ]
+  }
+```</p><p class="zh">从这三个示例中，Claude 学习到：</p><p class="en">From these three examples, Claude learns:</p><p class="zh">*   **格式约定**：日期使用 YYYY-MM-DD，用户 ID 遵循 USR-XXXXX，标签使用 kebab-case</p><p class="en">*   **Format conventions**: Dates use YYYY-MM-DD, user IDs follow USR-XXXXX, labels use kebab-case</p><p class="zh">*   **嵌套结构模式**：如何构造带有嵌套 contact 对象的 reporter 对象</p><p class="en">*   **Nested structure patterns**: How to construct the reporter object with its nested contact object</p><p class="zh">*   **可选参数关联**：关键 bug 具有完整的联系信息 + 具有严格 SLA 的升级；功能请求有 reporter 但没有联系/升级；内部任务只有标题</p><p class="en">*   **Optional parameter correlations**: Critical bugs have full contact info + escalation with tight SLAs; feature requests have reporter but no contact/escalation; internal tasks have title only</p><p class="zh">在我们自己的内部测试中，工具使用示例将复杂参数处理上的准确率从 72% 提升到了 90%。</p><p class="en">In our own internal testing, tool use examples improved accuracy from 72% to 90% on complex parameter handling.</p></section><section class="sec"><h3 id="s16">何时使用工具使用示例 <span class="en">When to use Tool Use Examples</span></h3><p class="zh">工具使用示例会为工具定义增加 token，因此当准确率提升的收益超过额外成本时，它们最具价值。</p><p class="en">Tool Use Examples add tokens to your tool definitions, so they're most valuable when accuracy improvements outweigh the additional cost.</p><p class="zh">*   复杂的嵌套结构：合法的 JSON 并不代表用法正确</p><p class="en">*   Complex nested structures where valid JSON doesn't imply correct usage</p><p class="zh">*   具有大量可选参数、且参数包含模式很重要的工具</p><p class="en">*   Tools with many optional parameters and inclusion patterns matter</p><p class="zh">*   具有 schema 未能涵盖的领域特定约定的 API</p><p class="en">*   APIs with domain-specific conventions not captured in schemas</p><p class="zh">*   相似工具：示例可说明应使用哪一个（例如 create_ticket 与 create_incident）</p><p class="en">*   Similar tools where examples clarify which one to use (e.g., create_ticket vs create_incident)</p><p class="zh">*   用法显而易见的简单单参数工具</p><p class="en">*   Simple single-parameter tools with obvious usage</p><p class="zh">*   Claude 已经理解的标准格式，如 URL 或电子邮件</p><p class="en">*   Standard formats like URLs or emails that Claude already understands</p><p class="zh">*   更适合由 JSON Schema 约束处理的校验问题</p><p class="en">*   Validation concerns better handled by JSON Schema constraints</p></section><section class="sec"><h3 id="s17">最佳实践 <span class="en">Best practices</span></h3><p class="zh">构建能够执行真实世界动作的智能体，意味着要同时应对规模、复杂性与精度三方面的挑战。这三项特性协同作用，以解决工具使用工作流中的不同瓶颈。以下说明如何有效地将它们结合起来。</p><p class="en">Building agents that take real-world actions means handling scale, complexity, and precision simultaneously. These three features work together to solve different bottlenecks in tool use workflows. Here's how to combine them effectively.</p></section><section class="sec"><h3 id="s18">分层策略性地使用功能 <span class="en">Layer features strategically</span></h3><p class="zh">并非每个智能体在处理给定任务时都需要使用全部三项功能。请从你最大的瓶颈入手：</p><p class="en">Not every agent needs to use all three features for a given task. Start with your biggest bottleneck:</p><p class="zh">*   工具定义导致的上下文膨胀 → Tool Search Tool</p><p class="en">*   Context bloat from tool definitions → Tool Search Tool</p><p class="zh">*   大型中间结果污染上下文 → Programmatic Tool Calling</p><p class="en">*   Large intermediate results polluting context → Programmatic Tool Calling</p><p class="zh">*   参数错误与格式错误的调用 → Tool Use Examples</p><p class="en">*   Parameter errors and malformed calls → Tool Use Examples</p><p class="zh">这种聚焦式方法让你能够针对限制智能体性能的具体约束加以解决，而不是一开始就增加复杂性。</p><p class="en">This focused approach lets you address the specific constraint limiting your agent's performance, rather than adding complexity upfront.</p><p class="zh">然后按需分层添加额外功能。这些功能相互补充：Tool Search Tool 确保找到正确的工具，Programmatic Tool Calling 确保高效执行，而 Tool Use Examples 确保正确调用。</p><p class="en">Then layer additional features as needed. They're complementary: Tool Search Tool ensures the right tools are found, Programmatic Tool Calling ensures efficient execution, and Tool Use Examples ensure correct invocation.</p></section><section class="sec"><h3 id="s19">设置工具搜索工具以提升发现能力 <span class="en">Set up Tool Search Tool for better discovery</span></h3><p class="zh">工具搜索会依据名称和描述进行匹配，因此清晰、具有描述性的定义能提升发现的准确性。</p><p class="en">Tool search matches against names and descriptions, so clear, descriptive definitions improve discovery accuracy.</p><p class="zh">```
+// Good
+{
+    &quot;name&quot;: &quot;search_customer_orders&quot;,
+    &quot;description&quot;: &quot;Search for customer orders by date range, status, or total amount. Returns order details including items, shipping, and payment info.&quot;
+}
+
+// Bad
+{
+    &quot;name&quot;: &quot;query_db_orders&quot;,
+    &quot;description&quot;: &quot;Execute order query&quot;
+}
+```</p><p class="en">```
+// Good
+{
+    &quot;name&quot;: &quot;search_customer_orders&quot;,
+    &quot;description&quot;: &quot;Search for customer orders by date range, status, or total amount. Returns order details including items, shipping, and payment info.&quot;
+}
+
+// Bad
+{
+    &quot;name&quot;: &quot;query_db_orders&quot;,
+    &quot;description&quot;: &quot;Execute order query&quot;
+}
+```</p><p class="zh">添加系统提示词指引，让 Claude 知道有哪些可用工具：</p><p class="en">Add system prompt guidance so Claude knows what's available:</p><p class="zh">```
+You have access to tools for Slack messaging, Google Drive file management,
+Jira ticket tracking, and GitHub repository operations. Use the tool search
+to find specific capabilities.
+```</p><p class="en">```
+You have access to tools for Slack messaging, Google Drive file management,
+Jira ticket tracking, and GitHub repository operations. Use the tool search
+to find specific capabilities.
+```</p><p class="zh">将你最常用的三到五个工具始终保持加载，其余工具则延迟加载。这样既能为常见操作提供即时访问，又能对其余所有工具按需发现。</p><p class="en">Keep your three to five most-used tools always loaded, and defer the rest. This balances immediate access for common operations with on-demand discovery for everything else.</p></section><section class="sec"><h3 id="s20">为正确执行设置程序化工具调用 <span class="en">Set up Programmatic Tool Calling for correct execution</span></h3><p class="zh">由于 Claude 会编写代码来解析工具输出，因此应清晰地记录返回格式。这有助于 Claude 编写正确的解析逻辑：</p><p class="en">Since Claude writes code to parse tool outputs, document return formats clearly. This helps Claude write correct parsing logic:</p><p class="zh">```
+{
+    &quot;name&quot;: &quot;get_orders&quot;,
+    &quot;description&quot;: &quot;Retrieve orders for a customer.
+Returns:
+    List of order objects, each containing:
+    - id (str): Order identifier
+    - total (float): Order total in USD
+    - status (str): One of 'pending', 'shipped', 'delivered'
+    - items (list): Array of {sku, quantity, price}
+    - created_at (str): ISO 8601 timestamp&quot;
+}
+```</p><p class="en">```
+{
+    &quot;name&quot;: &quot;get_orders&quot;,
+    &quot;description&quot;: &quot;Retrieve orders for a customer.
+Returns:
+    List of order objects, each containing:
+    - id (str): Order identifier
+    - total (float): Order total in USD
+    - status (str): One of 'pending', 'shipped', 'delivered'
+    - items (list): Array of {sku, quantity, price}
+    - created_at (str): ISO 8601 timestamp&quot;
+}
+```</p><p class="zh">以下是可以受益于程序化编排的可选工具：</p><p class="en">See below for opt-in tools that benefit from programmatic orchestration:</p><p class="zh">* 可并行运行的工具（独立操作）</p><p class="en">* Tools that can run in parallel (independent operations)</p><p class="zh">* 可安全重试的操作（幂等）</p><p class="en">* Operations safe to retry (idempotent)</p></section><section class="sec"><h3 id="s21">为参数准确性设置工具使用示例 <span class="en">Set up Tool Use Examples for parameter accuracy</span></h3><p class="zh">*   使用真实数据（真实城市名、合理价格，而非 “string”或 “value”）</p><p class="en">*   Use realistic data (real city names, plausible prices, not &quot;string&quot; or &quot;value&quot;)</p><p class="zh">*   通过最小、部分和完整规格模式展示多样性</p><p class="en">*   Show variety with minimal, partial, and full specification patterns</p><p class="zh">*   保持简洁：每个工具 1-5 个示例</p><p class="en">*   Keep it concise: 1-5 examples per tool</p><p class="zh">*   聚焦歧义（仅在正确用法无法从 schema 中明显看出时添加示例）</p><p class="en">*   Focus on ambiguity (only add examples where correct usage isn't obvious from schema)</p></section><section class="sec"><h3 id="s22">入门 <span class="en">Getting started</span></h3><p class="zh">这些功能目前处于 beta 阶段。要启用它们，请添加 beta 请求头并包含你需要的工具：</p><p class="en">These features are available in beta. To enable them, add the beta header and include the tools you need:</p><p class="zh">```
+client.beta.messages.create(
+    betas=[&quot;advanced-tool-use-2025-11-20&quot;],
+    model=&quot;claude-sonnet-4-5-20250929&quot;,
+    max_tokens=4096,
+    tools=[
+        {&quot;type&quot;: &quot;tool_search_tool_regex_20251119&quot;, &quot;name&quot;: &quot;tool_search_tool_regex&quot;},
+        {&quot;type&quot;: &quot;code_execution_20250825&quot;, &quot;name&quot;: &quot;code_execution&quot;},
+        # Your tools with defer_loading, allowed_callers, and input_examples
+    ]
+)
+```</p><p class="en">```
+client.beta.messages.create(
+    betas=[&quot;advanced-tool-use-2025-11-20&quot;],
+    model=&quot;claude-sonnet-4-5-20250929&quot;,
+    max_tokens=4096,
+    tools=[
+        {&quot;type&quot;: &quot;tool_search_tool_regex_20251119&quot;, &quot;name&quot;: &quot;tool_search_tool_regex&quot;},
+        {&quot;type&quot;: &quot;code_execution_20250825&quot;, &quot;name&quot;: &quot;code_execution&quot;},
+        # Your tools with defer_loading, allowed_callers, and input_examples
+    ]
+)
+```</p><p class="zh">有关详细的 API 文档和 SDK 示例，请参阅我们的：</p><p class="en">For detailed API documentation and SDK examples, see our:</p><p class="zh">* Tool Search Tool 的文档与 cookbook</p><p class="en">* Documentation and cookbook for Tool Search Tool</p><p class="zh">* Programmatic Tool Calling 的文档与 cookbook</p><p class="en">* Documentation and cookbook for Programmatic Tool Calling</p><p class="zh">这些功能将工具使用从简单的函数调用推向智能编排。随着智能体处理跨越数十个工具和大型数据集的更复杂工作流，动态发现、高效执行和可靠调用变得至关重要。</p><p class="en">These features move tool use from simple function calling toward intelligent orchestration. As agents tackle more complex workflows spanning dozens of tools and large datasets, dynamic discovery, efficient execution, and reliable invocation become foundational.</p></section></div>
+<p style="margin-top:26px"><a class="cta" href="https://aipaper.jasonlin.tech/#/paper/anthropic-advanced-tool-use">互动版：针对本篇提问 →</a></p>
+<h2 id="next">接着读 · Read next</h2><ul class="rn"><li><a href="https://aipaper.jasonlin.tech/p/anthropic-components-of-agent-memory/"><span class="rn-t">智能体记忆的组成部分</span><span class="rn-m">Anthropic · 2026-11-06 — 有效的智能体记忆来自工作中标记显著事件、事后通过“做梦”反思日志以纠错并构建表征，而无差别记录会导致记忆臃肿并降低性能。</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/anthropic-s1-2026/"><span class="rn-t">Anthropic, PBC —S-1 注册声明（IPO 招股说明书）</span><span class="rn-m">Anthropic · 2026-10-26 — Anthropic 提交 IPO 申请，强调 Claude 在企业市场的快速普及，以及以使命为导向、注重安全的方式把握数…</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/anthropic-how-we-contain-claude/"><span class="rn-t">我们如何在各产品中实施 Claude 的隔离管控</span><span class="rn-m">Anthropic · 2026-05-25 — Anthropic 详述了其智能体产品的三层隔离架构，认为由于模型层防御具有概率性，环境沙箱与出口管控必须承担最主要的防…</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/anthropic-managed-agents/"><span class="rn-t">扩展托管智能体：将大脑与双手解耦</span><span class="rn-m">Anthropic · 2026-04-08 — Anthropic 的托管智能体将 Claude 及其执行框架与沙箱、工具和仅追加的会话日志解耦，使容器成为可替换的“牲…</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/anthropic-claude-code-auto-mode/"><span class="rn-t">我们如何构建 Claude Code 自动模式</span><span class="rn-m">Anthropic · 2026-03-25 — Anthropic 的 Claude Code 自动模式通过服务端提示注入探针与 Sonnet 4.6 转录分类器双重防…</span></a></li><li><a href="https://aipaper.jasonlin.tech/p/anthropic-harness-design-long-running-apps/"><span class="rn-t">面向长时间运行应用的多智能体框架设计</span><span class="rn-m">Anthropic · 2026-03-24 — 将生成智能体与持怀疑态度的评估智能体分离，并配合具体评分标准和上下文管理，可显著提升长时间自主编码中前端设计的主观质量与…</span></a></li></ul>
+<a class="fab" href="#toc" aria-label="回到目录">目录</a>
+<script>(function(){var q=location.search.replace(/^\?/,'');var h="https://aipaper.jasonlin.tech/#/paper/anthropic-advanced-tool-use"+(q?'?'+q:'');
+document.querySelectorAll('a.cta').forEach(function(a){a.href=h});})()</script>
+<footer>© AI Paper · <a href="https://aipaper.jasonlin.tech/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架(linzheng3535@gmail.com)。</footer>
+</div><script>function shareThis(b){var u=document.querySelector('link[rel=canonical]').href,t=document.title,d=(document.querySelector('meta[name=description]')||{}).content||'';
+if(navigator.share){navigator.share({title:t,text:d,url:u}).catch(function(){});return;}
+try{navigator.clipboard.writeText(u).then(function(){var o=b.textContent;b.textContent='已复制链接';setTimeout(function(){b.textContent=o},1600)})}catch(e){}}</script><script>if(!window.__SPA_TAKEOVER){(function(){try{
+var UA=navigator.userAgent||'';
+if(/bot|crawl|spider|slurp|headless|lighthouse|bingpreview|facebookexternalhit/i.test(UA))return;
+var U='https://stats.jasonlin.tech',DWELL=4000,GRACE=800,T0=Date.now();
+var LS=null;try{LS=window.localStorage}catch(_){}
+var aid='';
+try{
+  aid=(LS&&LS.aid)||'';
+  if(!aid){var i,n;
+    try{var u=new Uint8Array(10);crypto.getRandomValues(u);
+        for(i=0;i<10;i++){n=u[i].toString(16);aid+=n.length<2?'0'+n:n;}}
+    catch(_){for(i=0;i<20;i++)aid+=Math.floor(Math.random()*16).toString(16);}
+    if(LS)LS.aid=aid;}   /* 与 SPA 共用同一个 aid:先落静态页再点进互动版的人算 1 个 UV */
+}catch(_){aid='';}
+var sid='';try{if(LS&&LS.syncSidFor&&LS.syncSidFor===LS.syncCode)sid=LS.syncSid||'';}catch(_){}
+var ref='';try{ref=(document.referrer||'').replace(/^[a-z]+:\/\//i,'').split('/')[0];}catch(_){}
+var dev=/Mobi|Android|iPhone|iPad|iPod/i.test(UA)?'mobile':'desktop';
+function post(type){
+  try{
+    var body=JSON.stringify({type:type,path:'paper:'+location.pathname.replace(/index\.html$/,''),ua:dev,ref:ref,sid:sid,aid:aid});
+    if(navigator.sendBeacon&&typeof Blob!=='undefined')navigator.sendBeacon(U,new Blob([body],{type:'text/plain'}));
+    else{var x=new XMLHttpRequest();x.open('POST',U,true);x.setRequestHeader('Content-Type','text/plain');x.send(body);}
+  }catch(_){}
+}
+post('view');                                  /* 打开即发,口径不变 */
+var sent=false,acc=0,since=null,timer=null;    /* 以下是 read:攒够可见时长或等到一次交互 */
+function read(){if(sent)return;sent=true;if(timer){clearTimeout(timer);timer=null;}post('read');}
+function pause(){if(since!==null){acc+=Date.now()-since;since=null;}if(timer){clearTimeout(timer);timer=null;}}
+function resume(){if(sent||since!==null)return;since=Date.now();timer=setTimeout(read,Math.max(0,DWELL-acc));}
+function vis(){if(document.visibilityState==='visible')resume();else pause();}
+try{document.addEventListener('visibilitychange',vis);}catch(_){}
+function interact(){if(Date.now()-T0<GRACE)return;read();}   /* 起步保护期内的滚动/点击不算 */
+var evs=['scroll','pointerdown','mousedown','keydown','touchstart'];
+for(var k=0;k<evs.length;k++){try{window.addEventListener(evs[k],interact,true);}catch(_){}}
+vis();
+}catch(_){}})()}</script></body></html>

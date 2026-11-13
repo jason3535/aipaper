@@ -86,7 +86,18 @@ def parse_md(md, title_hint=""):
     idx = md.find("Markdown Content:")
     body = md[idx + len("Markdown Content:"):] if idx >= 0 else md
     secs = []; cur = {"sec": "Overview", "paras": [], "q": []}
+    code = None   # 围栏代码块:整块作为一段 "```\n…\n```"(前端 mdHtml 渲染成 <pre>),不翻译。
+    # 以前逐行当正文:短行被 40 字门槛丢掉、长行各成一段并被翻译,
+    # 2026-11-13 Anthropic code-execution-with-mcp 一篇 31 段代码碎片(audit_filing 小写开头 FAIL)。
     for ln in body.split("\n"):
+        if code is not None:
+            if ln.strip().startswith("```"):
+                txt = "\n".join(code).strip("\n")
+                if txt.strip(): cur["paras"].append("```\n" + txt + "\n```"); cur["q"].append(0)
+                code = None
+            else: code.append(ln.rstrip())
+            continue
+        if ln.strip().startswith("```"): code = []; continue
         s = ln.strip()
         if not s: continue
         # 引用块(> …)以前整行丢弃 —— Zvi 这类评论型文章一半以上是引文(推文/论文/新闻摘录),
@@ -189,7 +200,14 @@ def main():
     if sum(len(s["paras"]) for s in secs) < 3:
         sys.exit("  ✗ 正文过短,抓取可能失败,放弃")
     print(f"[2/4] 逐段翻译{'(中→英 反向)' if a.reverse else '(英→中)'}", file=sys.stderr)
-    tf = translate_section_rev if a.reverse else translate_section
+    _tf = translate_section_rev if a.reverse else translate_section
+    def tf(sec):   # 代码段不送翻译,原样回填 en=zh
+        isc = [str(x).startswith("```") for x in sec["paras"]]
+        if not any(isc): return _tf(sec)
+        r = _tf({**sec, "paras": [x for x, c in zip(sec["paras"], isc) if not c]})
+        it = iter(r["paras"])
+        r["paras"] = [{"en": x, "zh": x} if c else next(it) for x, c in zip(sec["paras"], isc)]
+        return r
     full = [None] * len(secs)
     with ThreadPoolExecutor(max_workers=5) as ex:
         futs = {ex.submit(tf, s): i for i, s in enumerate(secs)}
