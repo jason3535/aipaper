@@ -1164,6 +1164,7 @@ function mdHtml(src){
   closeL();s=out.join('');
   s=s.replace(/\*\*([^\n]+?)\*\*/g,'<strong>$1</strong>')
      .replace(/(^|[^*\w])\*([^*\n]+?)\*(?!\w)/g,'$1<em>$2</em>')
+     .replace(/(^|[^\w_\\/=])_([^_\n<>]+?)_(?![\w_])/g,'$1<em>$2</em>')   // 博客原文的 _斜体_(Jina 保留下划线写法),词内下划线 snake_case 不动
      .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="nofollow noopener">$1</a>');
   return s.replace(/\u0000(\d+)\u0000/g,(_,i)=>blocks[+i]);
 }

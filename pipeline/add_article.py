@@ -82,6 +82,28 @@ FIGREPO = Path.home() / "CascadeProjects" / "aipaper-figs"   # 与 add_paper/bac
 FIGHOST = "https://figs.jasonlin.tech/"
 CAP_SYS = """把下面 JSON 数组里的英文图注逐条译成简洁准确的中文,等长一一对应。专有名词/模型名保留英文。只输出 JSON:{"zh":["..."]}"""
 
+JUNK_URL = re.compile(r"avatar|logo|icon|wordmark|headshot|favicon|/badge|_store_|thumbnail|_preview\.|\.html?$|/gif$|-mobile[-.]|video_poster|transcoded-\d+\.png|type=javascript|resize:fill:\d{2,3}:\d{2,3}/", re.I)
+JUNK_CAP = re.compile(r"^(share|subscribe|follow|play video|discover more\b.*|home ?archive|.*reply rules|video \d+|- \[[x ]\])$|\[\]\(|^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]* \d{1,2}, \d{4}$|^launching version|→\s*$|\blikes?\s*∙|product hunt|subscribe via|^rss!|× dall·e|^podcast:|newsguard", re.I)
+def junk_fig(src, cap):
+    """博客页里的非正文图:作者头像/评论区头像、站点 logo、RSS/分类小图标、分享/订阅按钮、商店广告、题图预览。
+    2026-11-14 存量补图第一轮混进 ~30 张(Mollick/Lambert/Fadell 头像、ai-2027 分类 svg、WBW T 恤广告…)。"""
+    if JUNK_URL.search(src or "") or JUNK_CAP.search(cap or ""): return True
+    if re.search(r"_(\d{3,4})x\1\.", src or "") and len((cap or "").split()) <= 6 and not re.search(r"[.:;!?]$", cap or ""): return True   # Substack 方形图 + 短名(含「A and B」)= 头像
+    if (src or "").lower().endswith(".svg") and len((cap or "").split()) <= 2: return True          # 单词图注的 svg = 分类图标
+    if cap and len(cap.split()) <= 3 and cap.strip().lower() in PEOPLE_NAMES: return True            # 图注就是人名 = 作者头像
+    if cap and len(cap.split()) <= 7 and re.fullmatch(r"[A-Z][\w.'-]+(?: [A-Z][\w.'-]+)* (?:and|&) [A-Z][\w.'-]+(?: [A-Z][\w.'-]+)*", cap.strip()): return True   # 「A and B」合著者头像
+    if (cap or "").strip().lower() in ("work", "about", "contact", "home", "menu"): return True       # 个人站导航图
+    return False
+
+def _people_names():
+    try:
+        h = HTML.read_text(encoding="utf-8")
+        i = h.find("const PEOPLE={"); j = h.find("\n};", i)
+        return {m.lower() for m in re.findall(r"\{en:'([^']{3,40})'", h[i:j])}
+    except Exception:
+        return set()
+PEOPLE_NAMES = _people_names() | {"ethan mollick", "nathan lambert", "tony fadell", "interconnects", "andrej karpathy blog"}
+
 def is_fig(p):
     t = p if isinstance(p, str) else (p.get("en") or "")
     return t.startswith(FIG_TAG)
@@ -160,7 +182,7 @@ def parse_md(md, title_hint=""):
         if not s: continue
         # 图片:`![alt](src)` 或 Jina 的嵌套 `[![alt](src)](link)`,紧跟的下一行短文字 = 图注。
         # 以前图片行一律丢弃、图注当普通段落 —— 博客类文章(Anthropic Engineering 一篇 16 张图)全变成纯文字。
-        mi = re.match(r"^\[?!\[([^\]]*)\]\((\S+?)(?:\s+\"[^\"]*\")?\)(?:\]\([^)]*\))?$", s)
+        mi = re.match(r"^\[?!\[([^\]]*)\]\(([^\s)]+)(?:\s+\"[^\"]*\")?\)(?:\]\([^)]*\))?", s)
         if mi and not s.startswith(">"):
             fig_pending = {"src": mi.group(2), "alt": re.sub(r"^Image\s*\d+\s*:\s*", "", mi.group(1)).strip()}
             continue
@@ -168,6 +190,9 @@ def parse_md(md, title_hint=""):
             f, fig_pending = fig_pending, None
             if not re.match(r"^(#{1,6}\s|!\[|\[!\[|---|\*\*\*|>)", s) and len(s) < 700 and not re.match(r"^(Published|Posted|Updated)\b", s, re.I):
                 cap = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", s).strip("*_ ")
+                if cap in ("#", "¶", "§", "[]"): cap = ""          # Willison 幻灯片下一行是 [#](永久链接),不是图注
+                if junk_fig(f["src"], cap):
+                    continue                                       # 头像/logo/图标/分享按钮:不收,这一行(多为按钮文字)也丢弃
                 cur["paras"].append(FIG_TAG + json.dumps({"src": f["src"], "cap": cap, "alt": f["alt"]}, ensure_ascii=False)); cur["q"].append(0)
                 continue
             # 没有图注(多为题图/装饰插画)→ 不收,这一行按正文继续处理
