@@ -102,6 +102,18 @@ def process(pid, d):
                 if sim(anchor, b[2]) >= 0.6: pos = (b[0], b[1])
         if pos is None and best_c and cap_zh:
             pos = (best_c[0], best_c[1])       # 没有可靠锚点时,放在原图注段的位置
+        if pos is None and f["cap"] and rows:
+            # 再退一步:前一段在清洗/翻译里变了样配不上,就按「图后面那段」定位,插在它前面
+            cands = [r for r in rows if (r[0], r[1]) >= last and (r[0], r[1]) not in drop]
+            if cands:
+                b = max(cands, key=lambda r: sim(f["cap"], r[2]))
+                if sim(f["cap"], b[2]) >= 0.6: pos = (b[0], b[1] - 1)
+        if pos is None and not placed and rows:
+            pos = (rows[0][0], -1)             # 开头几张都配不上(多为文首主图):放在正文最前
+            print(f"    ↳ 近似定位(文首):{(f['cap'] or f['alt'])[:60]}")
+        if pos is None and placed:
+            pos = last                         # 实在配不上:紧跟上一张已定位的图,保持原文顺序、位置相邻
+            print(f"    ↳ 近似定位(跟随上一张图):{(f['cap'] or f['alt'])[:60]}")
         if pos is None:
             print(f"    ⚠ 定位失败:{(f['cap'] or f['alt'])[:70]}"); continue
         item = {"t": "fig", "src": f["src"], "origSrc": f["src"], "capEn": f["cap"] or f["alt"], "capZh": cap_zh}
@@ -141,10 +153,41 @@ def process(pid, d):
     return len(figs), placed
 
 
+def clean(pid, d):
+    """第一轮补图后的清洗:删非正文图(头像/logo/图标/按钮)、[#] 永久链接图注置空、修嵌套链接吞进 src 的 URL;
+    按新版过滤规则重抓原文,重算 srcFigs(只数正文图)。"""
+    removed = fixed = 0
+    for s in d["full"]:
+        if "items" not in s: continue
+        keep = []
+        for it in s["items"]:
+            if it.get("t") == "fig":
+                o = it.get("origSrc") or it.get("src") or ""
+                if ")](" in o:
+                    o = o.split(")](")[0]; it["origSrc"] = o
+                    if not it["src"].startswith(A.FIGHOST): it["src"] = o
+                    fixed += 1
+                if (it.get("capEn") or "").strip() in ("#", "¶", "§", "[]"):
+                    it["capEn"] = ""; it["capZh"] = ""; fixed += 1
+                if A.junk_fig(o, it.get("capEn") or ""):
+                    removed += 1; continue
+            keep.append(it)
+        s["items"] = keep
+    try: n = len(src_figs(d["srcUrl"]))
+    except Exception as e: print(f"  ⚠ {pid} 重抓失败,srcFigs 不改: {e}"); n = d.get("srcFigs", 0)
+    d["srcFigs"] = n
+    json.dump(d, open(DATA / f"{pid}.json", "w", encoding="utf-8"), ensure_ascii=False)
+    print(f"  {pid}: 删非正文图 {removed},修 {fixed},原文正文图 {n},现有 {nfigs(d)}", flush=True)
+
+
 def main():
     args = sys.argv[1:]
     if not args: sys.exit(__doc__)
     arts = dict(articles())
+    if args[0] == "--clean":
+        for pid, d in arts.items():
+            if "srcFigs" in d: clean(pid, d)
+        return
     if args[0] == "--scan":
         tot = 0
         for pid, d in arts.items():
