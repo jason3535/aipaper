@@ -12,35 +12,35 @@
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-equipping-agents-for-the-real-world-with-agent-s</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-equipping-agents-for-the-real-world-with-agent-s/</guid>
     <pubDate>Fri, 13 Nov 2026 13:56:54 -0000</pubDate>
-    <description>Agent Skills 是一种开放标准，将领域专业知识打包为可按需动态加载的文件夹，使智能体拥有近乎无限的上下文并具备可定制的真实世界能力。</description>
+    <description></description>
   </item>
   <item>
     <title>基于 MCP 的代码执行：构建更高效的智能体 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-code-execution-with-mcp</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-code-execution-with-mcp/</guid>
     <pubDate>Fri, 13 Nov 2026 13:56:40 -0000</pubDate>
-    <description>将 MCP 服务器以代码 API 而非直接工具调用的形式呈现，可让智能体按需加载工具并在沙箱中处理数据，文中示例的 token 用量降幅高达 98.7%。</description>
+    <description></description>
   </item>
   <item>
     <title>在 Claude 开发者平台引入高级工具使用功能 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-advanced-tool-use</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/</guid>
     <pubDate>Fri, 13 Nov 2026 13:56:24 -0000</pubDate>
-    <description>Anthropic 的 Tool Search Tool、Programmatic Tool Calling 与 Tool Use Examples 可将 token 消耗最多降低 85% 并提升工具选择准确率，使智能体在数千个工具规模下运行而不撑爆上下文窗口。</description>
+    <description></description>
   </item>
   <item>
     <title>面向长时间运行智能体的有效框架 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-effective-harnesses-for-long-running-agents</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-effective-harnesses-for-long-running-agents/</guid>
     <pubDate>Fri, 13 Nov 2026 13:56:02 -0000</pubDate>
-    <description>由初始化智能体与编码智能体组成的双部分框架，配合结构化功能清单、进度笔记、init 脚本和基于浏览器的验证，使长时间运行的 AI 智能体能在多个上下文窗口中保持稳定进展。</description>
+    <description></description>
   </item>
   <item>
     <title>揭开 AI 智能体评估的面纱 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-demystifying-evals-for-ai-agents</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-demystifying-evals-for-ai-agents/</guid>
     <pubDate>Fri, 13 Nov 2026 13:55:46 -0000</pubDate>
-    <description>严谨的自动化评估对 AI 智能体至关重要，其价值在智能体全生命周期中不断累积：促使团队尽早明确成功标准、支持快速模型升级，并打通产品与研究团队之间的沟通。</description>
+    <description></description>
   </item>
   <item>
     <title>用并行 Claude 团队构建 C 编译器 — Anthropic</title>
@@ -54,35 +54,35 @@
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-how-we-contain-claude</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-how-we-contain-claude/</guid>
     <pubDate>Fri, 13 Nov 2026 13:54:59 -0000</pubDate>
-    <description></description>
+    <description>Anthropic 详述了其智能体产品的三层隔离架构，认为由于模型层防御具有概率性，环境沙箱与出口管控必须承担最主要的防护作用。</description>
   </item>
   <item>
     <title>我们如何构建 Claude Code 自动模式 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-claude-code-auto-mode</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-claude-code-auto-mode/</guid>
     <pubDate>Fri, 13 Nov 2026 13:54:35 -0000</pubDate>
-    <description></description>
+    <description>Anthropic 的 Claude Code 自动模式通过服务端提示注入探针与 Sonnet 4.6 转录分类器双重防护，在拦截危险操作的同时放行常规操作，以低维护成本实现高自主性。</description>
   </item>
   <item>
     <title>面向长时间运行应用的多智能体框架设计 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-harness-design-long-running-apps</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-harness-design-long-running-apps/</guid>
     <pubDate>Fri, 13 Nov 2026 13:54:15 -0000</pubDate>
-    <description></description>
+    <description>将生成智能体与持怀疑态度的评估智能体分离，并配合具体评分标准和上下文管理，可显著提升长时间自主编码中前端设计的主观质量与全栈软件的可验证成果。</description>
   </item>
   <item>
     <title>扩展托管智能体：将大脑与双手解耦 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-managed-agents</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-managed-agents/</guid>
     <pubDate>Fri, 13 Nov 2026 13:53:55 -0000</pubDate>
-    <description></description>
+    <description>Anthropic 的托管智能体将 Claude 及其执行框架与沙箱、工具和仅追加的会话日志解耦，使容器成为可替换的“牲口”、支持从框架故障中恢复、隔离凭证，并将 p50 首 token 时间缩短约 60%、p95 缩短逾 90%。</description>
   </item>
   <item>
     <title>智能体记忆的组成部分 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-components-of-agent-memory</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-components-of-agent-memory/</guid>
     <pubDate>Fri, 13 Nov 2026 13:53:34 -0000</pubDate>
-    <description></description>
+    <description>有效的智能体记忆来自工作中标记显著事件、事后通过“做梦”反思日志以纠错并构建表征，而无差别记录会导致记忆臃肿并降低性能。</description>
   </item>
   <item>
     <title>Anthropic 提交 S-1 文件 — Don't Worry About the Vase</title>
