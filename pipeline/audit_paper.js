@@ -53,6 +53,16 @@ for (const id of ids) {
       const refs = new Set((paras.map(x => x.en || "").join(" ").match(/\b(?:Figure|Fig\.)\s*\d+/g) || []).map(x => x.replace(/\D/g, ""))).size;
       if (!figs && refs >= 3) ws.push(`正文引用 ${refs} 张图但 0 图,可 python3 pipeline/backfill_figures.py ${id}`);
     }
+    // 2026-11-14:博客/长文以前收录时图片一律丢弃(Anthropic Engineering 一篇 16 张图全没了)。
+    // add_article 现在记 srcFigs = 原文带图注的图片数;收进来的 fig 少于它 = 丢图。
+    if (d.srcFigs !== undefined) {
+      const figs = full.reduce((n, s) => n + (s.items || []).filter(it => it.t === "fig").length, 0);
+      if ((d.srcFigs || 0) > figs) errs.push(`原文 ${d.srcFigs} 张图,只收进 ${figs} 张(丢图)`);
+      const bad = full.reduce((n, s) => n + (s.items || []).filter(it => it.t === "fig" && !/^https:\/\/figs\.jasonlin\.tech\//.test(it.src || "")).length, 0);
+      if (bad) ws.push(`${bad} 张图没上图床,仍引用原站(可能失效)`);
+      const noZh = full.reduce((n, s) => n + (s.items || []).filter(it => it.t === "fig" && it.capEn && !(it.capZh || "").trim()).length, 0);
+      if (noZh) ws.push(`${noZh} 条图注缺中文`);
+    }
     const sEn = (p && p.sEn) || (SUMM[id] || {}).sEn || d.sEn;
     if (!(sEn || "").trim()) errs.push("一句话摘要 sEn 缺失(搜索/MCP 会吃空值)");
   }

@@ -19,7 +19,8 @@ CJK = r'[一-鿿]'
 
 def audit(pid):
     j = json.loads((ROOT / 'data' / f'{pid}.json').read_text())
-    ps = [p for s in j.get('full', []) for p in s.get('paras', []) if isinstance(p, dict)]
+    # items 结构(论文 / 带图文章)只取 t==para 的段;图、公式不参与半角标点/断段检查
+    ps = [p for s in j.get('full', []) for p in (s.get('items') or s.get('paras') or []) if isinstance(p, dict) and p.get('t', 'para') == 'para']
     n = max(1, len(ps))
     half = sum(len(re.findall(CJK + r'[,;:](?!\d)', p['zh'])) + len(re.findall(r'\([^()\n]*' + CJK + r'[^()\n]*\)', p['zh'])) for p in ps)
     # 小写开头但不是断段的三类(2026-11-08 Zvi/Willison 博客误报):推文署名「roon (OpenAI): …」「j⧉nus: …」、

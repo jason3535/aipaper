@@ -11,6 +11,7 @@
 注意:--pid 必须已在 PEOPLE 中(openai/anthropic/deepseek 等机构号已存在)。需 DEEPSEEK_API_KEY。
 """
 import argparse, json, re, sys, gzip, urllib.request
+from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from add_paper import call, translate_section, INS_SYS, meta_zh, load_papers, ROOT, HTML, OPX
 from zh_space import space_obj
@@ -70,10 +71,66 @@ def pick_abs(full):
     for s in full:
         for p in s["paras"]:
             t = _ptext(p).strip()
+            if t.startswith(FIG_TAG): continue
             if len(t) >= 120 and not toc.match(t):
                 out.append(t)
                 if len(out) == 3: return " ".join(out)[:1200]
     return (" ".join(out) or " ".join(p["en"] for p in full[0]["paras"][:3]))[:1200]
+
+FIG_TAG = "\u2063FIG"   # 解析期图片占位(带图注);不送翻译,写盘前转成 items 里的 {t:"fig"}
+FIGREPO = Path.home() / "CascadeProjects" / "aipaper-figs"   # 与 add_paper/backfill_figures 同一图床仓库
+FIGHOST = "https://figs.jasonlin.tech/"
+CAP_SYS = """把下面 JSON 数组里的英文图注逐条译成简洁准确的中文,等长一一对应。专有名词/模型名保留英文。只输出 JSON:{"zh":["..."]}"""
+
+def is_fig(p):
+    t = p if isinstance(p, str) else (p.get("en") or "")
+    return t.startswith(FIG_TAG)
+
+def host_fig(src):
+    """下载原图 → 最长边 1400px、q86 WebP 写进图床仓库,文件名 md5(原图 URL)[:16](与论文图同规则)。失败返回 None(前端用 origSrc 兜底)。"""
+    import hashlib, io
+    try:
+        from PIL import Image
+        name = hashlib.md5(src.encode()).hexdigest()[:16] + ".webp"
+        out = FIGREPO / name
+        if not out.exists():
+            raw = OPX.open(urllib.request.Request(src, headers={"User-Agent": "Mozilla/5.0"}), timeout=60).read()
+            im = Image.open(io.BytesIO(raw))
+            if getattr(im, "is_animated", False): im.seek(0)
+            im = im.convert("RGBA") if im.mode in ("P", "LA", "RGBA") else im.convert("RGB")
+            if im.mode == "RGBA":   # 透明底图垫白,深色模式下也看得清
+                bg = Image.new("RGB", im.size, (255, 255, 255)); bg.paste(im, mask=im.split()[3]); im = bg
+            if max(im.size) > 1400: im.thumbnail((1400, 1400))
+            im.save(out, "WEBP", quality=86)
+        return FIGHOST + name
+    except Exception as e:
+        print(f"   ⚠️ 图片下载失败 {src[:80]}: {e}", file=sys.stderr)
+        return None
+
+def to_items(full):
+    """含图的节转成 items 结构(与论文同构:para / fig);不含图的节保持 paras。图注批量译中文。"""
+    figs = [json.loads(p["en"][len(FIG_TAG):]) for s in full for p in s["paras"] if is_fig(p)]
+    if not figs: return full, 0, 0
+    caps = [f["cap"] or f["alt"] for f in figs]
+    zh = []
+    for i in range(0, len(caps), 10):
+        ch = caps[i:i + 10]
+        z = ((call(CAP_SYS, json.dumps(ch, ensure_ascii=False), 6000) or {}).get("zh") or [])
+        zh += (z + [""] * len(ch))[:len(ch)]
+    with ThreadPoolExecutor(max_workers=4) as ex:
+        hosted = list(ex.map(lambda f: host_fig(f["src"]), figs))
+    k = 0; ok = 0
+    for s in full:
+        if not any(is_fig(p) for p in s["paras"]): continue
+        items = []
+        for p in s["paras"]:
+            if is_fig(p):
+                f = figs[k]; h = hosted[k]; ok += bool(h)
+                items.append({"t": "fig", "src": h or f["src"], "origSrc": f["src"], "capEn": caps[k], "capZh": zh[k]}); k += 1
+            else:
+                items.append({"t": "para", **p})
+        s["items"] = items; del s["paras"]
+    return full, len(figs), ok
 
 def parse_md(md, title_hint=""):
     pub = ""
@@ -86,6 +143,7 @@ def parse_md(md, title_hint=""):
     idx = md.find("Markdown Content:")
     body = md[idx + len("Markdown Content:"):] if idx >= 0 else md
     secs = []; cur = {"sec": "Overview", "paras": [], "q": []}
+    fig_pending = None
     code = None   # 围栏代码块:整块作为一段 "```\n…\n```"(前端 mdHtml 渲染成 <pre>),不翻译。
     # 以前逐行当正文:短行被 40 字门槛丢掉、长行各成一段并被翻译,
     # 2026-11-13 Anthropic code-execution-with-mcp 一篇 31 段代码碎片(audit_filing 小写开头 FAIL)。
@@ -100,6 +158,19 @@ def parse_md(md, title_hint=""):
         if ln.strip().startswith("```"): code = []; continue
         s = ln.strip()
         if not s: continue
+        # 图片:`![alt](src)` 或 Jina 的嵌套 `[![alt](src)](link)`,紧跟的下一行短文字 = 图注。
+        # 以前图片行一律丢弃、图注当普通段落 —— 博客类文章(Anthropic Engineering 一篇 16 张图)全变成纯文字。
+        mi = re.match(r"^\[?!\[([^\]]*)\]\((\S+?)(?:\s+\"[^\"]*\")?\)(?:\]\([^)]*\))?$", s)
+        if mi and not s.startswith(">"):
+            fig_pending = {"src": mi.group(2), "alt": re.sub(r"^Image\s*\d+\s*:\s*", "", mi.group(1)).strip()}
+            continue
+        if fig_pending is not None:
+            f, fig_pending = fig_pending, None
+            if not re.match(r"^(#{1,6}\s|!\[|\[!\[|---|\*\*\*|>)", s) and len(s) < 700 and not re.match(r"^(Published|Posted|Updated)\b", s, re.I):
+                cap = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", s).strip("*_ ")
+                cur["paras"].append(FIG_TAG + json.dumps({"src": f["src"], "cap": cap, "alt": f["alt"]}, ensure_ascii=False)); cur["q"].append(0)
+                continue
+            # 没有图注(多为题图/装饰插画)→ 不收,这一行按正文继续处理
         # 引用块(> …)以前整行丢弃 —— Zvi 这类评论型文章一半以上是引文(推文/论文/新闻摘录),
         # 只收进原文 20–45%,读起来像在回应看不见的东西。现在每个非空 > 行作为一段收进来,标 q=1,
         # 前端渲染成左边线引用样式。嵌套 > > 一并剥掉;引文里的 # 不当节标题。
@@ -202,7 +273,7 @@ def main():
     print(f"[2/4] 逐段翻译{'(中→英 反向)' if a.reverse else '(英→中)'}", file=sys.stderr)
     _tf = translate_section_rev if a.reverse else translate_section
     def tf(sec):   # 代码段不送翻译,原样回填 en=zh
-        isc = [str(x).startswith("```") for x in sec["paras"]]
+        isc = [str(x).startswith("```") or str(x).startswith(FIG_TAG) for x in sec["paras"]]
         if not any(isc): return _tf(sec)
         r = _tf({**sec, "paras": [x for x, c in zip(sec["paras"], isc) if not c]})
         it = iter(r["paras"])
@@ -217,21 +288,23 @@ def main():
     if a.keep_meta:
         if not old_path.exists(): sys.exit(f"  ✗ --keep-meta 但 data/{pid_id}.json 不存在")
         old = json.load(open(old_path, encoding="utf-8"))
-        ctx = old.get("tEn", title) + "\n" + (old.get("absEn") or "") + "\n" + " ".join(p["en"] for s in full for p in s["paras"])[:60000]
+        ctx = old.get("tEn", title) + "\n" + (old.get("absEn") or "") + "\n" + " ".join(p["en"] for s in full for p in s["paras"] if not is_fig(p))[:60000]
         old["insights"] = call(INS_SYS, ctx, mx=6000) or old.get("insights")
+        full, nf, okf = to_items(full); old["srcFigs"] = nf
+        if nf: print(f"   图片 {nf} 张(上图床 {okf})", file=sys.stderr)
         space_obj(full); old["full"] = full
         json.dump(old, open(old_path, "w"), ensure_ascii=False)
-        print(f"完成(keep-meta): {pid_id} | {len(secs)} 节 / {sum(len(s['paras']) for s in full)} 段", file=sys.stderr)
+        print(f"完成(keep-meta): {pid_id} | {len(secs)} 节 / {sum(len(s.get('paras') or s.get('items') or []) for s in full)} 段", file=sys.stderr)
         return
     print(f"[3/4] 贡献/局限 + 元信息", file=sys.stderr)
     # 摘要:优先让模型基于正文写一段(启发式取前几段被 Substack 骨架/目录坑过两次),
     # 失败再退回 pick_abs 的"前几段散文"。
-    _body = " ".join(p["en"] for s in full for p in s["paras"])[:12000]
+    _body = " ".join(p["en"] for s in full for p in s["paras"] if not is_fig(p))[:12000]
     try:
         absEn = (call(ABS_SYS, title + "\n" + _body, mx=1200).get("absEn") or "").strip() or pick_abs(full)
     except Exception:
         absEn = pick_abs(full)
-    ctx = title + "\n" + absEn + "\n" + " ".join(p["en"] for s in full for p in s["paras"])[:60000]
+    ctx = title + "\n" + absEn + "\n" + " ".join(p["en"] for s in full for p in s["paras"] if not is_fig(p))[:60000]
     ins = call(INS_SYS, ctx, mx=6000)
     fields = [x.strip() for x in a.fields.split(",") if x.strip()]
     if a.reverse:   # 中文原生:title 是中文,tEn 需生成,absZh=中文原文
@@ -246,9 +319,11 @@ def main():
              "absZh": absZh if a.reverse else m.get("absZh", ""),
              "insights": ins, "srcUrl": url, "srcLabel": a.label or a.org or "Article",
              "addedAt": __import__("time").strftime("%Y-%m-%dT%H:%M:%SZ", __import__("time").gmtime())}
+    full, nf, okf = to_items(full)
+    if nf: print(f"   图片 {nf} 张(上图床 {okf})", file=sys.stderr)
     space_obj(paper); space_obj(full)   # 中英文之间补空格(盘古之白),写盘/内联前统一做
     print(f"[4/4] 写 data/{pid_id}.json + index.html", file=sys.stderr)
-    json.dump({**paper, "authors": [a.org] if a.org else [], "full": full},
+    json.dump({**paper, "authors": [a.org] if a.org else [], "srcFigs": nf, "full": full},
               open(ROOT / "data" / f"{pid_id}.json", "w"), ensure_ascii=False)
     h = HTML.read_text(encoding="utf-8")
     if f"'{a.pid}'" not in h: print(f"  ⚠️ PEOPLE 里没有 '{a.pid}'", file=sys.stderr)
