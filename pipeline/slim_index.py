@@ -41,7 +41,10 @@ for p in papers:
         p.pop(k, None)
 
 # ---- sEn/sZh 抽到 data/summaries.json,只保留最新几篇内联(首页 hero 要用) ----
-keep = {p['id'] for p in sorted(papers, key=lambda x: x.get('addedAt') or '', reverse=True)[:KEEP_SUMM]}
+# 排序必须与 app.js vHome 的 byAdded 一致(addedAt 取到「天」,同一天再按 date 降序)。
+# 以前按完整 addedAt 时间戳取,同一天批量收 11 篇时两边选出的不是同一批 →
+# 首页 hero 那篇的 sEn 已被抽走,引语只剩一对空引号(2026-11-14 anthropic-components-of-agent-memory)。
+keep = {p['id'] for p in sorted(papers, key=lambda x: ((x.get('addedAt') or '')[:10], x.get('date') or ''), reverse=True)[:KEEP_SUMM]}
 summ_path = os.path.join(ROOT, 'data', 'summaries.json')
 try:
     summ = json.load(open(summ_path, encoding='utf-8'))
@@ -50,6 +53,9 @@ except Exception:
 moved = 0
 for p in papers:
     if p['id'] in keep:
+        # 进入保留集的旧条目:之前被抽走的摘要要放回内联,否则 hero 仍是空引号
+        for k, v in (summ.get(p['id']) or {}).items():
+            if k in SUMM and not p.get(k): p[k] = v
         continue
     got = {k: p.pop(k) for k in SUMM if p.get(k)}
     if got:
