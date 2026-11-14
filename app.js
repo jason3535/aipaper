@@ -1078,7 +1078,7 @@ function vPaper(id){
  const ord=document.body.dataset.order==='zh'?'译文在前':'原文在前';
  const rcol=`
   <h1 style="font-size:33px;margin:0 0 3px;letter-spacing:-.02em;line-height:1.14">${esc(p.tEn)}</h1>
-  <div class="sub" style="font-size:19px;color:var(--ink);margin-bottom:15px">${esc(p.tZh)}</div>
+  <div class="sub ptitle-zh" style="font-size:19px;color:var(--ink);margin-bottom:15px">${esc(p.tZh)}</div>
   <div class="info">
    <span class="who" onclick="go('#/person/${p.pid}')">${av(p.pid,'av-xs')}<span>${esc(pe.en||'')}${pe.zh&&pe.zh!==pe.en?' · '+esc(pe.zh):''}</span></span>
    ${(p.org&&pe.en!==p.org&&pe.zh!==p.org)?`<span class="sep">·</span>${orgChip(p.org)}`:''}
@@ -1178,7 +1178,7 @@ async function ask(payload,box){
  if(!CHAT_PROXY){box.textContent="（问答未配置）";return;}
  if(_asking)return;_asking=true;
  box.textContent="思考中…";
- try{const r=await fetch(CHAT_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+ try{const r=await fetch(CHAT_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({lang:document.body.dataset.lang==='en'?'en':'zh'},payload))});
   if(!r.ok){box.textContent="出错："+r.status+" "+(await r.text());return;}
   const reader=r.body.getReader(),dec=new TextDecoder();let buf="";box.textContent="";box.classList.add('md');
   for(;;){const{done,value}=await reader.read();if(done)break;buf+=dec.decode(value,{stream:true});box.innerHTML=citeLinks(mdHtml(buf));}
@@ -1201,7 +1201,7 @@ async function askPaper(id){
  const refresh=()=>{if(thread){thread.innerHTML=renderPThread(id);thread.scrollTop=thread.scrollHeight;}};
  refresh();_asking=true;
  try{
-  const r=await fetch(CHAT_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:'paper',q:q.slice(0,500),id,title:p.tEn,history:hist})});
+  const r=await fetch(CHAT_PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:'paper',q:q.slice(0,500),id,title:p.tEn,history:hist,lang:document.body.dataset.lang==='en'?'en':'zh'})});
   if(!r.ok){PCHAT[id][ai].content='出错：'+r.status;refresh();return;}
   const reader=r.body.getReader(),dec=new TextDecoder();let buf='';
   for(;;){const{done,value}=await reader.read();if(done)break;buf+=dec.decode(value,{stream:true});PCHAT[id][ai].content=buf;refresh();}
@@ -1279,7 +1279,219 @@ function updateMeta(parts){
  document.title=title;
  const m=document.querySelector('meta[name="description"]');if(m)m.setAttribute('content',desc);
 }
-function setLang(l){keepAnchor(()=>{document.body.dataset.lang=l;});localStorage.lang=l;syncSeg();}
+/* ===================== 全站英文模式(2026-11-14) =====================
+   Jason:团队有美国同事,选英文时每个板块都只出英文、不留中文。
+   做法是「渲染后翻译层」,不去改几百处模板:
+    1) 首次访问按浏览器语言默认(中文系统 → 双语,其余 → en);手动切换后记住 localStorage.lang。
+    2) en 模式下遍历页面文本节点与 placeholder/title/aria-label,依次查:
+       精确词典 EN_UI(界面文字)→ 正则 EN_PAT(带数字的句子)→ 内容反查(数据里中文标题/人名/头衔/领域 → 英文原版)
+       → 子串替换(人名、领域名嵌在句中)。
+    3) MutationObserver 接住之后动态插入的内容(搜索结果、问答、懒加载);切回中文时按日志还原原文。
+    4) 与英文并排的中文副行用 EN_HIDE 选择器直接隐藏(也不再遍历)。
+   覆盖率:scratch 脚本逐页在 EN 模式列出仍可见的中文,补词典到清零。
+   ⚠️ 兼容性红线同上:不用 ?. ?? 等 ES2020+ 语法。 */
+const I18N={on:false,exact:null,subRe:null,subMap:null,nameRe:null,nameMap:null,log:[],obs:null,titleOrig:null};
+const I18N_HAN=/[㐀-鿿]/;
+const I18N_SKIP_TAG=/^(SCRIPT|STYLE|TEXTAREA|CODE|PRE|NOSCRIPT)$/;
+/* 盘古之白:页面渲染时会在中英文之间补空格,数据里有的有、有的没有 —— 匹配前统一去掉中英交界处的空格 */
+function i18nNorm(s){   // 全角标点归半角;空白只在两侧都是字母数字时保留(数据与渲染后的盘古之白、全/半角不一致)
+  s=s.replace(/（/g,'(').replace(/）/g,')').replace(/；/g,';').replace(/，/g,',').replace(/：/g,':');
+  return s.replace(/\s+/g,function(m,i,str){const a=str.charAt(i-1),b=str.charAt(i+m.length);return /[A-Za-z0-9]/.test(a)&&/[A-Za-z0-9]/.test(b)?' ':'';});}
+function i18nEsc(k){return k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+function i18nInit(force){
+  if(I18N.exact&&!force)return;
+  const ex=Object.assign({},EN_UI),sub=Object.assign({},EN_SUB||{});
+  try{i18nContent(ex,sub);}catch(e){}
+  Object.keys(ex).forEach(function(k){const n=i18nNorm(k);if(n!==k&&ex[n]==null)ex[n]=ex[k];});
+  Object.keys(sub).forEach(function(k){const n=i18nNorm(k);if(n!==k&&sub[n]==null)sub[n]=sub[k];});
+  I18N.exact=ex;I18N.subMap=sub;
+  const ks=Object.keys(sub).filter(k=>k.length>=2&&I18N_HAN.test(k)).sort((a,b)=>b.length-a.length).map(i18nEsc);
+  I18N.subRe=ks.length?new RegExp(ks.join('|'),'g'):null;
+  // 两三字的中文名:只在两侧都不是汉字时替换(「唐杰 · 2023」可以,「任意论文」里的「任意」不行)
+  const nm=EN_NAMES||{};I18N.nameMap=nm;
+  const nk=Object.keys(nm).sort((a,b)=>b.length-a.length).map(i18nEsc);
+  I18N.nameRe=nk.length?new RegExp('(^|[^\\u3400-\\u9fff])('+nk.join('|')+')(?=$|[^\\u3400-\\u9fff])','g'):null;
+  if(!document.getElementById('i18nHideCss')&&EN_HIDE){const st=document.createElement('style');st.id='i18nHideCss';
+    st.textContent=EN_HIDE.split(',').map(x=>'body[data-lang="en"] '+x.trim()).join(',')+'{display:none!important}';document.head.appendChild(st);}
+}
+function i18nPunct(s){
+  return s.replace(/（/g,' (').replace(/）/g,')').replace(/，/g,', ').replace(/：/g,': ').replace(/；/g,'; ')
+    .replace(/。/g,'. ').replace(/！/g,'! ').replace(/？/g,'? ').replace(/、/g,', ').replace(/[「」“”]/g,'"')
+    .replace(/[『』]/g,"'").replace(/…/g,'…').replace(/\s{2,}/g,' ').replace(/\(\s+/g,'(').replace(/\s+([,.:;!?)])/g,'$1').trim();
+}
+function i18nStr(t){
+  if(!t||!I18N_HAN.test(t))return null;
+  const s=t.trim();let r=I18N.exact[s];if(r==null)r=I18N.exact[i18nNorm(s)];
+  if(r==null){for(let i=0;i<EN_PAT.length;i++){const p=EN_PAT[i];if(p[0].test(s)){r=s.replace(p[0],p[1]);break;}}}
+  let u=r==null?s:r;
+  if(I18N_HAN.test(u)&&I18N.subRe){u=u.replace(I18N.subRe,m=>I18N.subMap[m]);if(I18N_HAN.test(u)){const v=i18nNorm(u).replace(I18N.subRe,m=>I18N.subMap[m]);if(v!==i18nNorm(u))u=v;}}
+  if(I18N_HAN.test(u)&&I18N.nameRe)u=u.replace(I18N.nameRe,(m,a,b)=>a+I18N.nameMap[b]);
+  if(u===s)return null;
+  r=u.replace(/\b([A-Z][\w.'-]*(?: [A-Z][\w.'-]*){0,4}) \1\b/g,'$1');
+  const dm=r.match(/^(.+?) · \1$/);if(dm)r=dm[1];          // 「英文 · 中文」两半译完相同 → 只留一份
+  r=r.replace(/(^|[|·]\s*)([A-Z][^·|]*?) · \2(?=\s*(?:[|·]|$))/g,'$1$2');   // 句中的「Max Jaderberg · Max Jaderberg | No Priors」   // 「何恺明 Kaiming He」替换后成「Kaiming He Kaiming He」→ 去重
+  r=i18nPunct(r);
+  const lead=t.match(/^\s*/)[0],tail=t.match(/\s*$/)[0];
+  return lead+r+tail;
+}
+function i18nText(n){
+  const v=n.nodeValue;const r=i18nStr(v);
+  if(r!=null&&r!==v){I18N.log.push([n,null,v]);n.nodeValue=r;}
+}
+const I18N_ATTRS=['placeholder','title','aria-label'];
+function i18nAttrs(el){
+  for(let i=0;i<I18N_ATTRS.length;i++){const a=I18N_ATTRS[i];const v=el.getAttribute&&el.getAttribute(a);
+    if(v){const r=i18nStr(v);if(r!=null&&r!==v){I18N.log.push([el,a,v]);el.setAttribute(a,r);}}}
+}
+function i18nSkipEl(el){
+  return I18N_SKIP_TAG.test(el.nodeName)||el.hasAttribute('data-noi18n')||(EN_HIDE&&el.matches&&el.matches(EN_HIDE));
+}
+function i18nWalk(root){
+  if(!root)return;
+  if(root.nodeType===3){const p=root.parentElement;if(p&&!(p.closest&&p.closest('[data-noi18n]')))i18nText(root);return;}
+  if(root.nodeType!==1||i18nSkipEl(root))return;
+  i18nAttrs(root);
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT,{acceptNode:function(n){
+    if(n.nodeType===1){if(i18nSkipEl(n))return NodeFilter.FILTER_REJECT;i18nAttrs(n);return NodeFilter.FILTER_SKIP;}
+    return NodeFilter.FILTER_ACCEPT;}});
+  let n;while((n=w.nextNode()))i18nText(n);
+  const ss=document.getElementById('sizeSeg');   // 字号「小/中/大」的「中」与语言「中」同字,只能按位置区分
+  if(ss&&ss.children[1]&&ss.children[1].textContent==='中'){const t=ss.children[1].firstChild;if(t&&t.nodeType===3){I18N.log.push([t,null,t.nodeValue]);t.nodeValue='M';}}
+}
+function i18nTitle(){
+  if(!I18N.on)return;const t=i18nStr(document.title);
+  if(t&&t!==document.title){I18N.titleOrig=document.title;document.title=t;}
+}
+function i18nApply(){
+  const en=document.body.dataset.lang==='en';
+  document.documentElement.lang=en?'en':'zh-CN';
+  if(en){
+    i18nInit();I18N.on=true;i18nWalk(document.body);i18nTitle();
+    if(!I18N.obs)I18N.obs=new MutationObserver(function(ms){
+      if(!I18N.on)return;
+      for(let i=0;i<ms.length;i++){const m=ms[i];
+        if(m.type==='characterData'){const p=m.target.parentElement;if(p&&!(p.closest&&p.closest('[data-noi18n]'))&&!(EN_HIDE&&p.closest&&p.closest(EN_HIDE)))i18nText(m.target);}
+        else if(m.target&&m.target.nodeName==='TITLE')i18nTitle();
+        else for(let j=0;j<m.addedNodes.length;j++){const a=m.addedNodes[j];if(a.nodeType===1&&a.closest&&a.parentElement&&a.parentElement.closest(EN_HIDE||'[data-x-none]'))continue;i18nWalk(a);}
+      }
+      if(I18N.log.length>8000)I18N.log=I18N.log.filter(x=>x[0].isConnected);
+    });
+    I18N.obs.observe(document.body,{childList:true,subtree:true,characterData:true});
+    const te=document.querySelector('title');if(te)I18N.obs.observe(te,{childList:true,characterData:true,subtree:true});
+  }else if(I18N.on){
+    I18N.on=false;if(I18N.obs)I18N.obs.disconnect();
+    for(let i=I18N.log.length-1;i>=0;i--){const x=I18N.log[i];if(!x[0].isConnected)continue;if(x[1])x[0].setAttribute(x[1],x[2]);else x[0].nodeValue=x[2];}
+    I18N.log=[];if(I18N.titleOrig){document.title=I18N.titleOrig;I18N.titleOrig=null;}
+  }
+}
+/* 导航栏的全站语言开关:中文界面显示「EN」,英文界面显示「中文」;从英文切回时回到上次的中文模式(中 / 双语) */
+function toggleSiteLang(){
+  const cur=document.body.dataset.lang||'both';
+  if(cur==='en')setLang(localStorage.langPrev||'both');
+  else{localStorage.langPrev=cur;setLang('en');}
+}
+function i18nDefaultLang(){
+  if(localStorage.lang)return localStorage.lang;
+  const nl=(navigator.languages&&navigator.languages[0])||navigator.language||'';
+  return /^zh/i.test(nl)?'both':'en';
+}
+/* ---- 本站(AI Paper)的英文模式配置:词典、句式、内容反查、要隐藏的中文副行 ---- */
+const EN_HIDE='.para .zh,.lang-zh,.ptz,.nz,.sz,.quote-zh,.me-zh,.hero-ten,.ptitle-zh,.atz';
+const EN_UI={
+ '学者':'Scholars','论文':'Papers','机构':'Organizations','问 AI':'Ask AI','我的':'Me','文章':'Article',
+ '搜索 ( / )':'Search ( / )','搜索':'Search','深色 / 浅色':'Dark / Light','主题':'Theme','回到顶部':'Back to top',
+ '搜索论文、学者或机构…':'Search papers, scholars or organizations…','AI 学者图谱':'AI Researcher Graph',
+ '接入 AI 助手 · MCP':'Use with AI assistants · MCP','复制':'Copy','姊妹站':'Sister sites',
+ '— 同一批人物，三种读法：':'— the same people, three ways to read:','（他们的访谈，双语全文）·':'(their interviews, bilingual) ·',
+ '（谁和谁共事、师承、合创）。另有':'(who worked with, trained and co-founded with whom). Plus',
+ '硬件':'hardware','投资':'investors','设计':'design','三个姊妹图谱。阅读记录用同一个同步码互通。':'— three more graphs. Reading history syncs across them with one code.',
+ '多设备同步':'Sync across devices','— 一个匿名同步码，跨设备同步已读、稍后读与阅读进度。无账号、无 Cookie。同一个码也可在姊妹站 AI Podcast 使用。':'— one anonymous code syncs read history, read-later and progress across devices. No account, no cookies. The same code works on AI Podcast.',
+ '开启同步':'Turn on sync','或':'or','加入':'Join','输入同步码':'Enter sync code','AI Paper · AI 论文':'AI Paper',
+ '— 知名 AI 学者的论文与长文，双语阅读。':'— papers and essays by leading AI researchers, read bilingually.','📡 RSS 订阅':'📡 RSS',
+ '版权归原作者、arXiv 及各机构；双语全文为 AI 翻译，仅供学习研究，以原文为准。权利人如需下架：':'Copyright belongs to the original authors, arXiv and the institutions; translations are AI-generated for learning only, and the original is authoritative. Rights holders can request removal at',
+ '，即刻处理。':'and it will be handled promptly.','译文 AI 生成，偶有瑕疵；照片来自':'AI translations may contain errors. Photos from',
+ '及本人公开主页、机构标识仅作识别；匿名统计，无 Cookie。领域分类来自':'and public profiles, logos for identification only. Anonymous analytics, no cookies. Field taxonomy from',
+ '全部':'All','Scholars · 学者':'Scholars','← 学者':'← Scholars','← 机构':'← Organizations','研究脉络 · Research arc':'Research arc',
+ '中':'中','双语':'Both','小':'S','大':'L','分享':'Share','已读 ✓':'Read ✓','已读':'Read','稍后读':'Read later','已加待读':'Saved','目录 · Contents':'Contents','目录':'Contents',
+ '核心贡献 · Key Contributions':'Key contributions','局限与边界 · Limitations':'Limitations','摘要 · Abstract':'Abstract',
+ '针对这篇论文问 AI':'Ask AI about this paper','一句话总结这篇论文':'Summarize this paper in one sentence','它的核心方法是什么':'What is its core method?','有哪些局限':'What are its limitations?',
+ '发送':'Send','全文 · 逐段中英对照':'Full text','Up next · 接着读':'Up next','问关于这篇论文的任何问题':'Ask anything about this paper',
+ 'AI 学者的里程碑论文 · 中英对照全文':'Landmark papers by AI researchers · full bilingual text','最新收录 · Latest':'Latest','读双语全文':'Read full text',
+ '问全站':'Ask all','Start here · 新手入门':'Start here','第一次来？从这里开始':'New here? Start with these',
+ '不知道读什么，先挑一篇打开——奠基之作看脉络，近期必读看当下。':'Not sure what to read? Pick one — foundational papers for the big picture, recent must-reads for where things are now.',
+ 'Latest · 最新收录':'Latest','最新论文':'Latest papers','By field · 按领域浏览':'By field','按研究领域浏览论文':'Browse papers by field',
+ 'By org · 按机构浏览':'By organization','按机构浏览论文':'Browse papers by organization','全部机构 →':'All organizations →','查看全部学者':'See all scholars',
+ 'AI Paper · 双语论文阅读站':'AI Paper · bilingual paper reader','AI 学者':'AI scholars','全部学者 — AI Paper':'All scholars — AI Paper',
+ 'Papers · 论文':'Papers','类型':'Type','排序':'Sort','最新收录':'Newest','被引最多':'Most cited','投资人会议实录':'Investor meeting transcript',
+ '全部论文 — AI Paper':'All papers — AI Paper','Organizations · 机构':'Organizations','按机构看论文':'Papers by organization','按机构浏览 — AI Paper':'Organizations — AI Paper',
+ '暂无':'None yet','在关系图谱中查看':'View in the relationship graph','次被引用 ·':'citations ·','学术影响力(Semantic Scholar)':'Academic impact (Semantic Scholar)',
+ 'Ask · 问 AI':'Ask AI','问遍全站论文':'Ask across all papers','提问':'Ask','例如：注意力机制是怎么提出的？':'e.g. How was the attention mechanism proposed?','问全站 — AI Paper':'Ask — AI Paper',
+ 'My Space · 我的':'My space','我的数据':'My data','已读论文':'Papers read','累计小时':'Hours','连续天数':'Day streak','覆盖学者':'Scholars covered',
+ '阅读热力图':'Reading heatmap','少':'Less','多 · 每日阅读分钟数':'More · minutes read per day','学者排行 · 我读得最多的':'Top scholars · who I read most',
+ '更新提醒':'Update alerts','本站的通知权限被浏览器屏蔽了，需要在地址栏的站点设置里恢复。或者':'Notifications are blocked for this site; re-enable them in the address bar site settings. Or',
+ '订阅 RSS':'subscribe via RSS','（任何网络都能用）。':'(works on any network).','生成长图并分享':'Create a share image','我的待读':'Reading list',
+ '还没有待读论文。在论文页点「稍后读」即可收藏到这里。':'No saved papers yet. Tap "Read later" on a paper to save it here.','我的 — AI Paper':'Me — AI Paper',
+ '读完第一篇，今天这格就会亮起':'Finish your first paper and today\'s square lights up','从这里开始':'Start here','我的待读 · 标记':'Reading list · Highlights','示例':'Example',
+ '在论文页点「稍后读」收进待读；选中一句话点「标记」收进标记。读完会自动记进上面的统计。':'Tap "Read later" on a paper to save it; select a sentence and tap "Highlight" to keep it. Finished papers count toward the stats above.',
+ '设置':'Settings','检查中…':'Checking…','思考中…':'Thinking…','我的标记':'My highlights','标记':'Highlight','朗读':'Read aloud','看译文':'Show translation','复制链接':'Copy link',
+ '这个浏览器不支持网页推送。':'This browser does not support web push.','开启更新提醒':'Turn on update alerts','关闭更新提醒':'Turn off update alerts','已开启':'On',
+ '覆盖人物':'People covered','★ 待读':'★ Saved','✓ 已读':'✓ Read','Read later · 稍后读':'Read later','Continue · 继续阅读':'Continue','上次看到':'Pick up where you left off',
+ '改变 AI 走向的里程碑，每篇都值得完整读一遍。':'Milestones that changed the course of AI — each worth reading in full.','Recently added · 最近上新':'Recently added','最近收录':'Recently added'
+};
+const EN_SUB={'被引':'Cited'};
+const EN_NAMES={};
+const WAN=function(x){const n=parseFloat(String(x).replace(/,/g,''));return /万/.test(x)?(n>=10?Math.round(n*10)+'K':(n*10).toFixed(0)+'K'):String(x);};
+const PL=function(n,w){return n+' '+w+(+n===1?'':'s');};
+const EN_PAT=[
+ [/^出错了?[:：]\s*(.*)$/,'Error: $1'],
+ [/^（(问答未配置)）$/,'(Q&A not configured)'],
+ [/^(\d+) 篇论文$/,function(_,n){return PL(n,'paper');}],
+ [/^被引 ([\d.,]+万?)$/,function(_,n){return 'Cited '+WAN(n);}],
+ [/^([\d.]+万)$/,function(_,n){return WAN(n);}],
+ [/^(\d+) 章$/,function(_,n){return PL(n,'chapter');}],
+ [/^另 (\d+) 篇$/,'+$1 more'],
+ [/^(\d+)月$/,function(_,m){return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m-1]||m;}],
+ [/^(\d{4}-\d\d-\d\d) · (\d+) 分钟$/,'$1 · $2 min'],
+ [/^代表论文 · (\d+)$/,'Selected papers · $1'],
+ [/^奠基之作 · (\d+) 篇$/,'Foundational · $1'],
+ [/^近期必读 · (\d+) 篇$/,'Recent must-reads · $1'],
+ [/^论文与文章 · (\d+)$/,'Papers & articles · $1'],
+ [/^(\d+) 位学者$/,'$1 scholars'],
+ [/^共 (\d+) 位 →$/,'All $1 →'],
+ [/^(\d+) 篇 · (\d+) 位学者$/,'$1 papers · $2 scholars'],
+ [/^最长 (\d+) 天$/,'Longest: $1 days'],
+ [/^我读完了 (\d+) 篇论文$/,function(_,n){return 'I have read '+PL(n,'paper');}],
+ [/^累计约 ([\d.]+) 小时 · 覆盖 (\d+) 位学者$/,'About $1 hours · $2 scholars'],
+ [/^(\d+) 篇$/,function(_,n){return PL(n,'paper');}],
+ [/^显示全部 (\d+) 篇$/,'Show all $1'],
+ [/^(\d+) 家机构 · (\d+) 篇论文，看每家产出的代表作。$/,'$1 organizations · $2 papers — see each one\'s key work.'],
+ [/^(\d+) 篇论文 · 按被引排序$/,function(_,n){return PL(n,'paper')+' · by citations';}],
+ [/^(.+) 的论文 — AI Paper$/,'Papers by $1 — AI Paper'],
+ [/^(\d{4}) → (\d{4}) · 由早及近$/,'$1 → $2 · oldest first'],
+ [/^论文 · (\d+)$/,'Papers · $1'],
+ [/^学者 · (\d+)$/,'Scholars · $1'],
+ [/^机构 · (\d+)$/,'Organizations · $1'],
+ [/^站点地图 · Sitemap（(\d+) 位学者 · (\d+) 篇）$/,'Sitemap ($1 scholars · $2 papers)'],
+ [/^基于站内 (\d+) 篇论文的内容回答[,，] ?并标注引用来源[.。] ?进入任意论文页也可单篇提问[.。]$/,'Answers draw on all $1 papers on the site, with cited sources. You can also ask about a single paper from its page.'],
+ [/^— 全站 (\d+) 篇论文与长文双语全文，可接入 Claude、Cursor 等做问答。只读、免费、无需 key。$/,'— all $1 bilingual papers and essays, usable from Claude, Cursor and other assistants. Read-only, free, no key needed.'],
+ [/^问关于 AI 论文的任何问题 —— 综合 (\d+) 位学者、(\d+) 篇论文的内容回答$/,'Ask anything about AI papers — answers draw on $1 scholars and $2 papers'],
+ [/^(\d+) 篇 · (\d+) 位学者$/,'$1 papers · $2 scholars'],
+ [/^读到 (\d+)\/(\d+) 章$/,'Ch. $1/$2'],
+ [/^我的待读 · (\d+)$/,'Reading list · $1'],
+ [/^第一次来？从这 (\d+) 篇开始$/,'New here? Start with these $1'],
+ [/^(\d+) 期$/,'$1 episodes']
+];
+function i18nContent(ex,sub){
+  PAPERS.forEach(function(p){if(p.tZh&&p.tEn){ex[p.tZh.trim()]=p.tEn;if(p.tZh.length>=6)sub[p.tZh.trim()]=p.tEn;}if(p.sZh&&p.sEn)ex[p.sZh.trim()]=p.sEn;});
+  Object.keys(SUMM).forEach(function(k){const s=SUMM[k];if(s&&s.sZh&&s.sEn)ex[s.sZh.trim()]=s.sEn;});
+  Object.keys(PEOPLE).forEach(function(k){const p=PEOPLE[k];
+    if(p.zh&&p.en&&p.zh!==p.en){ex[p.zh]=p.en;if(p.zh.length>=4||p.zh.indexOf('·')>=0)sub[p.zh]=p.en;else EN_NAMES[p.zh]=p.en;}
+    if(p.tiZh&&p.tiEn&&p.tiZh.length>=4)sub[p.tiZh.trim()]=p.tiEn;   // 两三字的中文名(任意、韩松…)只做整句匹配,子串替换会误伤普通词
+    if(p.tiZh&&p.tiEn)ex[p.tiZh.trim()]=p.tiEn;
+    if(p.bioZh&&p.bioEn)ex[p.bioZh.trim()]=p.bioEn;});
+  Object.keys(FIELDS).forEach(function(k){const f=FIELDS[k];if(f.zh&&f.en)sub[f.zh]=f.en;});
+}
+function setLang(l){keepAnchor(()=>{document.body.dataset.lang=l;});localStorage.lang=l;syncSeg();i18nApply();}
 function setSize(s){keepAnchor(()=>{document.body.dataset.size=s;});localStorage.size=s;syncSeg();}
 function rbToggle(ev){if(ev)ev.stopPropagation();const b=document.querySelector('.read-bar');if(b)b.classList.toggle('rb-open');}
 addEventListener('click',e=>{const b=document.querySelector('.read-bar.rb-open');if(b&&!b.contains(e.target))b.classList.remove('rb-open');});
@@ -1945,10 +2157,11 @@ if(localStorage.theme)document.documentElement.dataset.theme=localStorage.theme;
   };
   new MutationObserver(upd).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
   upd();})();
-if(localStorage.lang)document.body.dataset.lang=localStorage.lang;
+document.body.dataset.lang=i18nDefaultLang();   // 首次访问按浏览器语言:中文系统 → 双语,其余 → 英文
 if(localStorage.size)document.body.dataset.size=localStorage.size;
 if(localStorage.order)document.body.dataset.order=localStorage.order;
 syncSeg();
+i18nApply();
 const selH=()=>setTimeout(selCheck,10);
 
 /* 点空白处清掉文字选区。浏览器原生并不总会清(移动端 Safari 尤其明显),会出现

@@ -39,17 +39,18 @@ export default { async fetch(req,env){
   let b; try{ b=await req.json(); }catch{ return jerr('bad json',400,co); }
   const q=(b.q||b.question||'').toString().slice(0,MAX_Q).trim();
   const mode=b.mode==='all'?'all':'paper';
-  if(!q)return jerr('缺少 q',400,co);
+  const en=b.lang==='en';const M=(zh,e)=>en?e:zh;   // 站点英文模式:回答与报错都用英文
+  if(!q)return jerr(M('缺少 q','Missing question'),400,co);
   let sys;
   if(mode==='paper'){
     const p=await getJSON(`${(b.id||'').replace(/[^a-z0-9.\-]/gi,'')}.json`);
-    if(!p)return jerr('论文不存在',404,co);
+    if(!p)return jerr(M('论文不存在','Paper not found'),404,co);
     sys=`你是「AI Paper」单篇论文问答助手。下面是论文《${p.tEn||''}》的摘要与正文,每节前有 [#序号]。
 规则:只据这篇论文回答,不编造;关键论断后用 [#序号] 标注出处;论文没讲到就说「这篇论文没有涉及」;用提问语言、简洁、先给结论。
 论文:
 ${paperContext(p)}`;
   } else {
-    const idx=await getJSON('index.json'); if(!idx)return jerr('目录不可用',503,co);
+    const idx=await getJSON('index.json'); if(!idx)return jerr(M('目录不可用','Catalog unavailable'),503,co);
     const ps=idx.papers||[]; const catalog=ps.map(e=>`${e.id} | ${e.person} | ${e.tEn} | ${e.sEn||''}`).join('\n');
     let picked=[];
     try{ const sel=await dsOnce(env,[{role:'system',content:`下面是论文目录(id | 作者 | 标题 | 一句话). 据问题挑最相关≤6篇,只输出 JSON {"ids":["..."]}。\n${catalog}`},{role:'user',content:q}],400);
@@ -62,10 +63,11 @@ ${paperContext(p)}`;
 材料:
 ${ctx}`;
   }
+  if(en)sys+='\n语言:用户在英文模式,无论提问语言如何,一律用英文回答。Always answer in English.';
   const msgs=[{role:'system',content:sys},{role:'user',content:q}];
   const{readable,writable}=new TransformStream(); const w=writable.getWriter(),enc=new TextEncoder();
   (async()=>{ try{ await dsStream(env,msgs,t=>w.write(enc.encode(t))); }
-    catch(e){ try{ await w.write(enc.encode('（出错:'+(e.message||e)+'）')); }catch(_){} }
+    catch(e){ try{ await w.write(enc.encode(M('（出错:','(Error: ')+(e.message||e)+M('）',')'))); }catch(_){} }
     finally{ try{ w.close(); }catch(_){} } })();
   return new Response(readable,{headers:{...co,'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'}});
 } };

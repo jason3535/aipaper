@@ -604,6 +604,15 @@ mjx-container[display="true"],.mjx-container{max-width:100%!important;overflow-x
   .grid:not(.ppl-grid){grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
+/* 全站语言开关(导航栏) */
+.langbtn{font:600 12.5px/1 var(--ui,system-ui);letter-spacing:.02em;color:var(--sub);background:none;border:1px solid var(--line);border-radius:980px;padding:6px 11px;cursor:pointer;margin-right:4px}
+.langbtn:hover{color:var(--ink);border-color:var(--sub2)}
+body[data-lang="en"] .lb-en,body:not([data-lang="en"]) .lb-zh{display:none}
+/* 英文模式:与英文并排的中文副行全部隐藏 */
+body[data-lang="en"] .ptz,body[data-lang="en"] .nz,body[data-lang="en"] .sz{display:none!important}
+
+@media(max-width:600px){.langbtn{padding:4px 8px;font-size:11.5px;margin-right:0}}
+
 </style>
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],macros:{bm:['\\boldsymbol{#1}',1],argmin:['\\operatorname*{arg\\,min}'],argmax:['\\operatorname*{arg\\,max}'],bx:'\\mathbf{x}',mathsfit:['\\mathsf{#1}',1]}},svg:{fontCache:'global'},options:{enableMenu:false}};</script>
 <script>
@@ -638,6 +647,7 @@ window.typesetIfMath=function(el,done){
   <div class="links"><a href="#/people">学者</a><a href="#/papers">论文</a><a href="#/orgs">机构</a><a href="#/ask">问 AI</a><a href="#/mine">我的</a></div>
   <div class="navspace"></div>
   <div class="navtools">
+    <button class="langbtn" id="langBtn" data-noi18n onclick="toggleSiteLang()" title="Switch language / 切换语言"><span class="lb-en">EN</span><span class="lb-zh">中文</span></button>
     <button class="icon" title="搜索 ( / )" aria-label="搜索" onclick="openSearch()"><svg viewBox="0 0 18 18" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="8" r="5"/><line x1="11.6" y1="11.6" x2="15.5" y2="15.5"/></svg></button>
     <button class="icon" title="深色 / 浅色" aria-label="主题" onclick="toggleTheme()"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="6"/><path d="M9 3a6 6 0 000 12z" fill="currentColor" stroke="none"/></svg></button>
   </div>
@@ -656,7 +666,7 @@ window.typesetIfMath=function(el,done){
 <button class="totop" id="toTop" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l6-6 6 6"/></svg></button>
 <div id="app"></div>
 <div id="selBar" class="sel-bar" onmousedown="event.preventDefault()"><button class="sel-btn sel-ask" onclick="askSel()">问一问</button><button class="sel-btn" onclick="markSel()">标记</button><button class="sel-btn" id="shareSelBtn" onclick="shareSel()">分享</button></div>
-<script src="app.js?v=9126af0641" defer></script>
+<script src="app.js?v=1beaad95f0" defer></script>
 <script>/* SW 只在生产域名注册:本地预览(http/127.0.0.1)不注册,避免把 localhost 缓存搞混 */
 if('serviceWorker' in navigator&&/jasonlin\.tech$/.test(location.hostname))addEventListener('load',function(){navigator.serviceWorker.register('/sw.js')});</script>
 <!--SITE_INDEX_START--><details class="site-index"><summary>站点地图 · Sitemap（243 位学者 · 637 篇）</summary>
