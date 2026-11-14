@@ -731,9 +731,39 @@ function mineLaterHtml(){
   if(!ids.length)return `<div class="st-h2" style="margin-top:52px">我的待读</div><div class="st-empty">还没有待读论文。在论文页点「稍后读」即可收藏到这里。</div>`;
   return `<div class="st-h2" style="margin-top:52px">我的待读 · ${ids.length}</div><div class="grid" style="margin-top:14px">${ids.map(paperCard).join('')}</div>`;
 }
+/* 「我的」页空状态(2026-11-14,与播客站同构):预览卡(0 值 + 空热力图,今天一格在呼吸)+ 3 篇入门 + 待读/标记示例 + 设置卡。
+   桌面两栏、手机单栏;读完 ≥1 篇后走 vMine 原有布局。 */
+const IC_BELL='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>';
+function mineEmptyHtml(){
+  setTimeout(pushPanelRefresh,0);
+  const d=new Date();const COLS=22,todayIdx=(COLS-1)*7+d.getDay();
+  let cells='';for(let k=0;k<COLS*7;k++)cells+=k>todayIdx?'<i class="fut"></i>':k===todayIdx?'<i class="on"></i>':'<i></i>';
+  const st=STARTERS.map(id=>PAPERS.find(p=>p.id===id)).filter(Boolean).slice(0,3);
+  const rows=st.map(p=>{const pp=PEOPLE[p.pid];return `<a class="me-ep" href="#/paper/${p.id}">${av(p.pid,'av me-av')}<div class="me-ep-t"><b>${esc(p.tZh||p.tEn)}</b><span>${pp?esc(pp.zh||pp.en):''}${p.venue?' · '+esc(p.venue):''}${p.date&&!(p.venue||'').includes(p.date.slice(0,4))?' · '+p.date.slice(0,4):''}</span></div><span class="me-go" aria-hidden="true">›</span></a>`;}).join('');
+  return `<div class="wrap me-wrap"><section style="padding:30px 0 0">
+    <div class="eyebrow">My Space · 我的</div><h2 class="title">我的</h2>
+    <div class="me-grid">
+      <div class="me-col">
+        <div class="me-card">
+          <div class="me-tiles"><div><b>0</b><span>已读论文</span></div><div><b>0</b><span>累计小时</span></div><div><b>0</b><span>连续天数</span></div><div><b>0</b><span>覆盖学者</span></div></div>
+          <div class="me-hm" aria-hidden="true">${cells}</div>
+          <div class="me-foot"><div class="me-avs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><span>读完第一篇，今天这格就会亮起</span></div>
+        </div>
+        ${rows?`<div class="st-h3 me-h3">从这里开始</div><div class="me-list">${rows}</div>`:''}
+      </div>
+      <div class="me-col">
+        <div class="st-h3 me-h3 me-h3-top">我的待读 · 标记</div>
+        <div class="me-demo"><span class="me-chip">示例</span>
+          <div class="me-later"><span class="me-bm" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span><b>Attention Is All You Need</b></div>
+          <div class="me-q">“The Transformer is the first transduction model relying entirely on self-attention.”<span class="me-zh">Transformer 是第一个完全依赖自注意力的转导模型。</span></div>
+          <div class="me-demo-s">在论文页点「稍后读」收进待读；选中一句话点「标记」收进标记。读完会自动记进上面的统计。</div></div>
+        <div class="st-h3 me-h3">设置</div>
+        <div class="me-setcard"><span class="me-ic" aria-hidden="true">${IC_BELL}</span><div class="me-set-tx"><b>更新提醒</b><div id="pushPanel"><div class="st-empty">检查中…</div></div></div></div>
+      </div>
+    </div></section></div>`;}
 function vMine(){
   const st=readStats();
-  if(!st.ps.length)return `<div class="wrap"><section style="min-height:50vh;padding:30px 0"><div class="eyebrow">My Space · 我的</div><h2 class="title">我的</h2><div class="st-h2">我的数据</div><div class="st-empty">还没有读完的论文——打开一篇读到底会自动标记已读，统计从此开始累计。</div>${pushPanelHtml()}${mineLaterHtml()}${mineMarksHtml()}</section></div>`;
+  if(!st.ps.length)return mineEmptyHtml();
   const hrs=Math.round(st.totalMin/6)/10;
   const g=rlogGet();const day=86400000;const today=new Date();today.setHours(0,0,0,0);
   const end=today.getTime()+(6-today.getDay())*day;
