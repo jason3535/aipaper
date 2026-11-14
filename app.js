@@ -699,9 +699,14 @@ function recoInner(p){const ns=nextReads(p);
 function recoBlock(p,full){if(!full)return "<div id=\"readEnd\" aria-hidden=\"true\"></div>";
  ensureRelated();
  return `<div id="recoBox" data-pid="${p.id}">${recoInner(p)}</div><div id="readEnd" aria-hidden="true"></div>`;}
+/* 卡片阅读状态:放在标题上方的独立一行(2026-11-14 重做)。
+   原来是右上角绝对定位的胶囊,长标题会钻到它底下、两者重叠;改成文档流里的一行,永不重叠。 */
+function pcStatus(p,prog){
+ const b=readHas(p.id)?'<span class="read-badge">✓ 已读</span>':prog||(laterHas(p.id)?'<span class="later-badge">★ 待读</span>':(isNew(p)?'<span class="new-badge">NEW</span>':''));
+ return `<div class="pc-status">${b}</div>`;} /* 空的也占位:同排卡片标题对齐 */
 function paperCard(p){const pe=PEOPLE[p.pid]||{};const isOrg=pe.en&&p.org&&(pe.en===p.org||pe.zh===p.org);
  const rp=!readHas(p.id)&&readPosGet()[p.id];const prog=(rp&&rp.s>0&&rp.n)?`<span class="prog-badge">读到 ${Math.min(rp.s+1,rp.n)}/${rp.n} 章</span>`:'';
- return `<a class="paper-card${readHas(p.id)?' read':''}${laterHas(p.id)?' later':''}" data-id="${p.id}" href="#/paper/${p.id}"><span class="cover-badges">${readHas(p.id)?'<span class="read-badge">✓ 已读</span>':prog||(laterHas(p.id)?'<span class="later-badge">★ 待读</span>':(isNew(p)?'<span class="new-badge">NEW</span>':''))}</span><div class="pt">${esc(p.tEn)}</div><div class="ptz">${esc(p.tZh)}</div>
+ return `<a class="paper-card${readHas(p.id)?' read':''}${laterHas(p.id)?' later':''}" data-id="${p.id}" href="#/paper/${p.id}">${pcStatus(p,prog)}<div class="pt">${esc(p.tEn)}</div><div class="ptz">${esc(p.tZh)}</div>
    <div class="meta">${isOrg?'':`<span>${esc(pe.zh||'')}</span>`}${p.arxiv?`<span>arXiv:${p.arxiv}</span>`:`<span class="artbadge">文章</span><span>${esc(p.srcLabel||'PDF')}</span>`}<span>${p.date}</span>${isOrg?orgChip(p.org):orgChip(p.org)}${p.cites!=null?`<span class="citeico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M16 8h5v5"/></svg>被引 ${fmtCites(p.cites)}</span>`:''}${(p.fields||[]).map(ftag).join('')}</div></a>`;}
 
 

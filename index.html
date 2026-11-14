@@ -454,12 +454,16 @@ footer b{color:var(--sub)}
 
 /* 阅读状态 + 我的页(对齐 AI Podcast) */
 .paper-card{position:relative}
-.cover-badges{position:absolute;top:12px;right:12px;display:flex;gap:6px;z-index:2}
-.read-badge,.later-badge,.new-badge,.prog-badge{display:inline-flex;align-items:center;font-size:11px;font-weight:600;border-radius:999px;padding:3px 9px;line-height:1.5;color:#fff}
-.read-badge{background:rgba(20,140,90,.94)}
-.later-badge{background:rgba(255,159,10,.95)}
-.new-badge{background:var(--acc)}
-.prog-badge{background:rgba(0,113,227,.92)}
+/* 状态行在标题上方、文档流内,长标题不会再被盖住 */
+.pc-status{display:flex;gap:6px;margin:0 0 10px;min-height:22px}
+.read-badge,.later-badge,.new-badge,.prog-badge{display:inline-flex;align-items:center;font-size:11.5px;font-weight:600;border-radius:999px;padding:2px 9px;line-height:1.6;letter-spacing:.01em}
+.read-badge{background:rgba(20,140,90,.12);color:#0a7d4a}
+.later-badge{background:rgba(255,159,10,.15);color:#a85f0c}
+.new-badge{background:var(--acc);color:#fff}
+.prog-badge{background:rgba(0,113,227,.11);color:#0060c0}
+[data-theme="dark"] .read-badge{background:rgba(48,209,140,.16);color:#4fd69c}
+[data-theme="dark"] .later-badge{background:rgba(255,179,64,.16);color:#ffb340}
+[data-theme="dark"] .prog-badge{background:rgba(64,156,255,.16);color:#6cb2ff}
 .paper-card.read .pt{opacity:.72}
 .rd-actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
 .rd-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:13.5px;font-family:inherit;cursor:pointer;min-height:38px}
