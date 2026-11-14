@@ -783,7 +783,7 @@ function vMine(){
     const pid=Object.keys(PEOPLE).find(k=>(PEOPLE[k].zh===name||PEOPLE[k].en===name));
     const ic=(pid&&typeof PHOTOS!=='undefined'&&PHOTOS.has(pid))?`<img class="rk-logo" src="assets/people/${pid}.webp" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/people/${pid}.jpg'">`:`<span class="rk-ini">${(name||'?').slice(0,2)}</span>`;
     return `<div class="rk-row">${ic}<span class="rk-name">${esc(name)}</span><span class="rk-bar" style="width:${Math.round(n/mx*220)}px"></span><span class="rk-n">${n} 篇</span></div>`;}).join('');
-  return `<div class="wrap"><section style="padding:30px 0">
+  return `<div class="wrap me-wrap"><section style="padding:30px 0">
     <div class="eyebrow">My Space · 我的</div><h2 class="title">我的</h2>
     <div class="st-h2">我的数据</div>
     <div class="st-tiles">
