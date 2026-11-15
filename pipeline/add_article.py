@@ -25,7 +25,7 @@ def fetch_md(url):
 
 # 已知坑:deepmind.google 的页面开头会带产品导航菜单(Genie/Gemini/Gemma 连写的短语段),
 # Jina 抓下来像正文。收录 DeepMind 后务必人工检查 full[0] 是否导航垃圾,是则整节删除并重建 absEn/absZh。
-STOP = re.compile(r"^#{1,4}\s+(related|footnotes?|references|acknowledg|read the (full|rest|original|paper|report|article|blog|post)\b|share\b|citation|appendix|more news|sign up|subscribe|policy memo|authors?|contributors?|further reading|explore more|стать|more recent articles|monthly briefing|discussion about this post)", re.I)
+STOP = re.compile(r"^#{1,4}\s+(related|footnotes?|references|acknowledg|read the (full|rest|original|paper|report|article|blog|post)\b|share\b|citation|appendix|more news|sign up|subscribe|policy memo|authors?|contributors?|further reading|explore more|стать|more recent articles|monthly briefing|discussion about this post|our mission\b|log in\s*$)", re.I)
 # read the 只认「Read the full/paper…」:裸 read the 截断过 Zvi「Read The Message Board」之后全文。share\b:裸 share 会命中「Shares of Many Classes」把 Zvi S-1 后 90% 截掉(2026-11-08)。后三个:Willison 个人站页脚(近期文章列表/$10 赞助月报)与 Substack 评论区。2026-10-25 全库清出 15 篇带这些节
 
 """Substack/Newsletter 站的页面骨架(订阅框、站标图、页脚版权)会被 Jina 当正文抓下来,
@@ -35,6 +35,9 @@ CHROME_SEC = re.compile(
     r"^\s*!?\[?Image\b|substackcdn\.com|substack-post-media|^\s*Ready for more\?\s*$|"
     r"^\s*Discover more from\b|\(https?://",   # 标题里带 URL 的一律是站标/订阅框(正文小标题不会这样)
     re.I)
+# 2026-11 anthropic.com 改版:正文里夹「相关文章」卡片 →「Nov 6, 2026 Teaching AI to build scientific models」
+# 这种「日期 + 别篇标题」的短行(无句读、≤140 字)。整行匹配,真正以日期开头的正文句子有句读/更长,不受影响。
+RELATED_CARD = re.compile(r"^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{1,2}, \d{4} [A-Z][^.!?。]{3,120}$")
 CHROME_PARA = re.compile(
     r"^\s*(Discover more from\b|By subscribing,? you agree\b|Thanks for reading\b|Share this post\b|"
     r"Subscribe\s*$|Continue reading\b|©\s*\d{4}[^\n]{0,80}(Privacy|Terms|Substack)|"
@@ -52,7 +55,7 @@ def strip_chrome(secs):
         if CHROME_SEC.search(s.get("sec") or ""):
             continue
         qs = s.get("q") or [0] * len(s["paras"])
-        keep = [(p, q) for p, q in zip(s["paras"], qs) if not CHROME_PARA.match(_ptext(p).strip())]
+        keep = [(p, q) for p, q in zip(s["paras"], qs) if not CHROME_PARA.match(_ptext(p).strip()) and not RELATED_CARD.match(_ptext(p).strip())]
         if keep:
             s = {**s, "paras": [p for p, _ in keep]}
             if "q" in s: s["q"] = [q for _, q in keep]
@@ -161,7 +164,8 @@ def parse_md(md, title_hint=""):
     title = title_hint
     if not title:
         m = re.search(r"^Title:\s*(.+)$", md, re.M)
-        if m: title = re.sub(r"\s*[|\-–—]\s*(OpenAI|Anthropic|Transformer Circuits).*$", "", m.group(1)).strip()
+        # 2026-11 anthropic.com 改版后标题分隔符是反斜杠「… \\ Anthropic」
+        if m: title = re.sub(r"\s*[|\-–—\\]\s*(OpenAI|Anthropic|Transformer Circuits).*$", "", m.group(1)).strip()
     idx = md.find("Markdown Content:")
     body = md[idx + len("Markdown Content:"):] if idx >= 0 else md
     secs = []; cur = {"sec": "Overview", "paras": [], "q": []}
