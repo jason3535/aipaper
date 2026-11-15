@@ -9,3 +9,4 @@ pipeline/.verify/
 
 # Anthropic 自动收录的运行日志(状态文件 anthropic_watch_state.json 要提交,记录失败次数)
 pipeline/anthropic_watch.log
+pipeline/launchd.log

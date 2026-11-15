@@ -33,7 +33,7 @@ FIELD_BY_CAT = {"Engineering": ["nlp"], "Alignment": ["safety"], "Interpretabili
 
 def log(msg):
     line = f"[{datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%MZ')}] {msg}"
-    print(line, flush=True)
+    if sys.stdout.isatty(): print(line, flush=True)   # cron 下 stdout 已重定向进同一个日志,别写两遍
     with open(LOG, "a", encoding="utf-8") as f: f.write(line + "\n")
 
 
