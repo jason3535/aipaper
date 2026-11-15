@@ -152,6 +152,16 @@ def main():
         git(["commit", "-q", "-m", msg + "(门禁未通过,待人工修)", "-m", bad[-1500:]])
         git(["checkout", "-q", "master"])
         log(f"✗ 门禁未通过,成果在分支 {br}:\n{bad}"); notify("AI Paper · Anthropic", f"{len(new_ids)} 篇已收但门禁没过,见分支 {br}"); return
+    # 配图写在图床仓库(add_article.host_fig),它不会自己提交 —— 不先推,线上文章的图全是 404(2026-11-15 首轮漏过)
+    figs = Path.home() / "CascadeProjects" / "aipaper-figs"
+    pre = ["git", "-C", str(figs), "-c", f"user.email={EMAIL}", "-c", "user.name=jason3535"]
+    if run(pre + ["status", "--porcelain"])[1].strip():
+        run(pre + ["add", "-A"]); run(pre + ["commit", "-q", "-m", f"figs: Anthropic 自动收录 {len(new_ids)} 篇配图"])
+        rc, out = run(pre + (["-c", f"http.proxy={CLASH}"] if clash_up() else []) + ["push", "-q", "origin", "HEAD"], timeout=600)
+        if rc:
+            log("✗ 图床 push 失败,文章先不上线(本地已提交,下次运行前需人工推):" + out[-200:])
+            notify("AI Paper · Anthropic", "图床 push 失败,文章未上线"); return
+        log("  ✓ 图床已推送")
     git(["add", "-A"])
     git(["commit", "-q", "-m", msg, "-m", "由 pipeline/anthropic_watch.py 自动收录"])
     rc, out = git(["push", "-q", "origin", "master"], net=True)
