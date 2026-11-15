@@ -1,0 +1,46 @@
+{
+ "claude-discovers-novel-enzyme-system": {
+  "tries": 1,
+  "ok": "anthropic-claude-discovers-novel-enzyme-system"
+ },
+ "claude-shaped-science": {
+  "tries": 1,
+  "ok": "anthropic-claude-shaped-science"
+ },
+ "investigating-unintended-model-actions": {
+  "tries": 1,
+  "ok": "anthropic-investigating-unintended-model-actions"
+ },
+ "ai-expectations-gap": {
+  "tries": 1,
+  "ok": "anthropic-ai-expectations-gap"
+ },
+ "employment-at-anthropic": {
+  "tries": 1,
+  "ok": "anthropic-employment-at-anthropic"
+ },
+ "expectations-for-the-future": {
+  "tries": 1,
+  "ok": "anthropic-expectations-for-the-future"
+ },
+ "designing-efficient-quantum-circuits": {
+  "tries": 1,
+  "ok": "anthropic-designing-efficient-quantum-circuits"
+ },
+ "claude-scorpion-toxin-binder-design": {
+  "tries": 1,
+  "ok": "anthropic-claude-scorpion-toxin-binder-design"
+ },
+ "alignment-assessment-ukaisi": {
+  "tries": 1,
+  "ok": "anthropic-alignment-assessment-ukaisi"
+ },
+ "investigating-vault-particles-with-claude": {
+  "tries": 1,
+  "ok": "anthropic-investigating-vault-particles-with-claude"
+ },
+ "teaching-ai-to-build-scientific-models": {
+  "tries": 1,
+  "ok": "anthropic-teaching-ai-to-build-scientific-models"
+ }
+}

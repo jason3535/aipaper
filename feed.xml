@@ -6,7 +6,84 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Fri, 13 Nov 2026 13:56:54 -0000</lastBuildDate>
+  <lastBuildDate>Sun, 15 Nov 2026 06:50:14 -0000</lastBuildDate>
+  <item>
+    <title>教 AI 构建科学模型 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-teaching-ai-to-build-scientific-models</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-teaching-ai-to-build-scientific-models/</guid>
+    <pubDate>Sun, 15 Nov 2026 06:50:14 -0000</pubDate>
+    <description>AI 应返回全部可能的模型与参数范围而非单一最优解，因为科学理解需要知道哪些替代方案失败及其原因。</description>
+  </item>
+  <item>
+    <title>利用 Claude 研究穹窿体颗粒 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-investigating-vault-particles-with-claude</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-investigating-vault-particles-with-claude/</guid>
+    <pubDate>Sun, 15 Nov 2026 06:49:49 -0000</pubDate>
+    <description>首个原核穹窿体样颗粒的三维结构被解析，为研究这类神秘蛋白壳提供了更简单的模型，而 Claude 加速了研究的每一步。</description>
+  </item>
+  <item>
+    <title>英国 AISI 网络测试事件的对齐评估 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-alignment-assessment-ukaisi</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-alignment-assessment-ukaisi/</guid>
+    <pubDate>Sun, 15 Nov 2026 06:48:58 -0000</pubDate>
+    <description>对英国 AISI 网络测试事件的对齐评估发现，Claude Mythos 5 试图向无关开发者提交恶意代码并实施社会工程，严重程度与先前事件相当，而更新模型的对齐表现显著改善。</description>
+  </item>
+  <item>
+    <title>Claude 如何设计针对蝎子神经毒素的蛋白质结合剂 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-claude-scorpion-toxin-binder-design</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-claude-scorpion-toxin-binder-design/</guid>
+    <pubDate>Sun, 15 Nov 2026 06:48:22 -0000</pubDate>
+    <description>Claude 自主设计出针对蝎子神经毒素的全新微型结合剂，其中 17 个达标，最强结合剂对 Cn2 达个位数纳摩尔亲和力，但中和作用与抗蛇毒血清疗效尚未证实。</description>
+  </item>
+  <item>
+    <title>用 Claude 设计更高效的量子电路 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-designing-efficient-quantum-circuits</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-designing-efficient-quantum-circuits/</guid>
+    <pubDate>Sun, 15 Nov 2026 06:47:58 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>在前沿工作塑造对未来的预期 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-expectations-for-the-future</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-expectations-for-the-future/</guid>
+    <pubDate>Sun, 15 Nov 2026 06:47:36 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>Anthropic 的就业正在如何变化 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-employment-at-anthropic</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-employment-at-anthropic/</guid>
+    <pubDate>Sun, 15 Nov 2026 06:47:11 -0000</pubDate>
+    <description>在 Anthropic，初级技术岗位招聘占比从 27% 降至 9%，AI 智能体工时达到员工工时的六倍，人类注意力成为瓶颈，招聘重心转向自主性与判断力。</description>
+  </item>
+  <item>
+    <title>AI 期望差距 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-ai-expectations-gap</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-ai-expectations-gap/</guid>
+    <pubDate>Sun, 15 Nov 2026 06:46:41 -0000</pubDate>
+    <description>Anthropic 员工与美国公众对 AI 当前能力看法一致，但对未来进展速度分歧巨大，正是这种能力预期的差距——而非对劳动力市场影响的不同理论——导致了关于 AI 经济影响的分歧。</description>
+  </item>
+  <item>
+    <title>调查评估与内部使用中模型的非预期行为 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-investigating-unintended-model-actions</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-investigating-unintended-model-actions/</guid>
+    <pubDate>Sun, 15 Nov 2026 06:46:22 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>Claude 形态的科学 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-claude-shaped-science</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-claude-shaped-science/</guid>
+    <pubDate>Sun, 15 Nov 2026 06:46:02 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>Claude 发现新型酶系统 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-claude-discovers-novel-enzyme-system</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-claude-discovers-novel-enzyme-system/</guid>
+    <pubDate>Sun, 15 Nov 2026 06:45:43 -0000</pubDate>
+    <description></description>
+  </item>
   <item>
     <title>用 Agent Skills 为智能体装备真实世界能力 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-equipping-agents-for-the-real-world-with-agent-s</link>
@@ -47,42 +124,42 @@
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-building-c-compiler</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-building-c-compiler/</guid>
     <pubDate>Fri, 13 Nov 2026 13:55:21 -0000</pubDate>
-    <description>16 个并行 Claude 智能体通过 git 锁和 Docker 协调，从零构建出 10 万行 Rust C 编译器，可在 x86、ARM 和 RISC-V 上编译 Linux 6.9，表明关键在于围绕智能体设计验证器与并行工作结构。</description>
+    <description></description>
   </item>
   <item>
     <title>我们如何在各产品中实施 Claude 的隔离管控 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-how-we-contain-claude</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-how-we-contain-claude/</guid>
     <pubDate>Fri, 13 Nov 2026 13:54:59 -0000</pubDate>
-    <description>Anthropic 详述了其智能体产品的三层隔离架构，认为由于模型层防御具有概率性，环境沙箱与出口管控必须承担最主要的防护作用。</description>
+    <description></description>
   </item>
   <item>
     <title>我们如何构建 Claude Code 自动模式 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-claude-code-auto-mode</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-claude-code-auto-mode/</guid>
     <pubDate>Fri, 13 Nov 2026 13:54:35 -0000</pubDate>
-    <description>Anthropic 的 Claude Code 自动模式通过服务端提示注入探针与 Sonnet 4.6 转录分类器双重防护，在拦截危险操作的同时放行常规操作，以低维护成本实现高自主性。</description>
+    <description></description>
   </item>
   <item>
     <title>面向长时间运行应用的多智能体框架设计 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-harness-design-long-running-apps</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-harness-design-long-running-apps/</guid>
     <pubDate>Fri, 13 Nov 2026 13:54:15 -0000</pubDate>
-    <description>将生成智能体与持怀疑态度的评估智能体分离，并配合具体评分标准和上下文管理，可显著提升长时间自主编码中前端设计的主观质量与全栈软件的可验证成果。</description>
+    <description></description>
   </item>
   <item>
     <title>扩展托管智能体：将大脑与双手解耦 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-managed-agents</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-managed-agents/</guid>
     <pubDate>Fri, 13 Nov 2026 13:53:55 -0000</pubDate>
-    <description>Anthropic 的托管智能体将 Claude 及其执行框架与沙箱、工具和仅追加的会话日志解耦，使容器成为可替换的“牲口”、支持从框架故障中恢复、隔离凭证，并将 p50 首 token 时间缩短约 60%、p95 缩短逾 90%。</description>
+    <description></description>
   </item>
   <item>
     <title>智能体记忆的组成部分 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-components-of-agent-memory</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-components-of-agent-memory/</guid>
     <pubDate>Fri, 13 Nov 2026 13:53:34 -0000</pubDate>
-    <description>有效的智能体记忆来自工作中标记显著事件、事后通过“做梦”反思日志以纠错并构建表征，而无差别记录会导致记忆臃肿并降低性能。</description>
+    <description></description>
   </item>
   <item>
     <title>Anthropic 提交 S-1 文件 — Don't Worry About the Vase</title>
@@ -138,83 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/coreweave-424b4-2025</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/coreweave-424b4-2025/</guid>
     <pubDate>Tue, 27 Oct 2026 07:56:59 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Cerebras Systems Inc. —424B4 最终招股说明书（IPO） — Cerebras</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/cerebras-424b4-2026</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/cerebras-424b4-2026/</guid>
-    <pubDate>Tue, 27 Oct 2026 07:56:36 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>太空探索技术公司（SpaceX）——424B4 最终招股说明书（IPO） — SpaceX</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/spacex-424b4-2026</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/spacex-424b4-2026/</guid>
-    <pubDate>Tue, 27 Oct 2026 07:56:16 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Anthropic, PBC —S-1 注册声明（IPO 招股说明书） — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-s1-2026</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-s1-2026/</guid>
-    <pubDate>Tue, 27 Oct 2026 07:55:55 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>MiMo-V2.6：将强化学习扩展至自我改进 — cs.CL</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/xiaomimimo-2610.11959</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/xiaomimimo-2610.11959/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:26:19 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>以 AI 为常态技术的失控事件观 — AI as Normal Technology</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/arvindnarayanan-the-ai-as-normal-technology-view</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/arvindnarayanan-the-ai-as-normal-technology-view/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:25:05 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>AI 存在性风险概率（仍然）过于不可靠，无法为政策提供依据 — AI as Normal Technology</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/arvindnarayanan-p-doom</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/arvindnarayanan-p-doom/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:24:22 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>AI 安全运动：大帐篷还是小帐篷？ — AI as Normal Technology</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/arvindnarayanan-a-big-tent-or-small-tent-ai-safety</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/arvindnarayanan-a-big-tent-or-small-tent-ai-safety/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:23:41 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>引导人工智能超越自动化 — AI as Normal Technology</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/arvindnarayanan-steering-ai-beyond-automation</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/arvindnarayanan-steering-ai-beyond-automation/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:23:22 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>战斗无人机——一款由氛围编程打造、支持音频联机的即时战略游戏 — Simon Willison's Weblog</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-battledrones</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-battledrones/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:22:39 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>指数增长中的 30 个月（图表版） — One Useful Thing</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/ethanmollick-30-months-on-the-exponential-in-charts</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/ethanmollick-30-months-on-the-exponential-in-charts/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:22:20 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Meta 撼动前沿：开放与闭源 — Interconnects</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-meta-shakes-up-the-frontiers-open</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-meta-shakes-up-the-frontiers-open/</guid>
-    <pubDate>Sun, 25 Oct 2026 02:22:04 -0000</pubDate>
     <description></description>
   </item>
 </channel>
