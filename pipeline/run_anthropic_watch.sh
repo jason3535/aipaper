@@ -4,6 +4,8 @@
 export PATH="$HOME/.local/py314bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$HOME/.npm-global/bin"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT" || exit 1
+# 推送固定用 jason3535(两站仓库的属主)。gh 的 git 凭证默认取「当前活跃账号」,活跃账号被切到 jasonlin3535 时 push 403——2026-11-19 收的 6 期因此没上线
+export GH_TOKEN="$(gh auth token --user jason3535 2>/dev/null)"
 ENVF="$HOME/CascadeProjects/aipodcast/pipeline/.env"
 [ -f "$ENVF" ] && { set -a; . "$ENVF"; set +a; }
 # 播客站自动保鲜(09:17)还在跑就等它:DeepSeek 同 key 双进程并发会大面积空响应(paper-ingest 硬规则 #2)
