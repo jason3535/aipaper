@@ -42,5 +42,13 @@
  "teaching-ai-to-build-scientific-models": {
   "tries": 1,
   "ok": "anthropic-teaching-ai-to-build-scientific-models"
+ },
+ "provable-inference": {
+  "tries": 1,
+  "ok": "anthropic-provable-inference"
+ },
+ "coordinated-vulnerability-disclosure-timelines": {
+  "tries": 1,
+  "ok": "anthropic-coordinated-vulnerability-disclosure-timelines"
  }
 }

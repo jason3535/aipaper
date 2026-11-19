@@ -6,7 +6,21 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sun, 15 Nov 2026 06:50:14 -0000</lastBuildDate>
+  <lastBuildDate>Thu, 19 Nov 2026 15:22:45 -0000</lastBuildDate>
+  <item>
+    <title>更新我们的协调漏洞披露政策时间线 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-coordinated-vulnerability-disclosure-timelines</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-coordinated-vulnerability-disclosure-timelines/</guid>
+    <pubDate>Thu, 19 Nov 2026 15:22:45 -0000</pubDate>
+    <description>由于前沿 AI 模型使漏洞被重新发现的速度更快、可能性更高，协调漏洞披露窗口将从 90 天缩短为高危/严重问题 30 天、其他问题 45 天，自 2027 年 1 月 1 日起生效。</description>
+  </item>
+  <item>
+    <title>大语言模型可证明推理的进展 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-provable-inference</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-provable-inference/</guid>
+    <pubDate>Thu, 19 Nov 2026 15:22:32 -0000</pubDate>
+    <description>FlashProve 利用 zkSNARKs 在不泄露权重的情况下证明大模型响应确由所承诺的模型生成，在 400B 参数模型上达到每秒超 100 个 token、每 1024 token 请求约 19 MB 证明。</description>
+  </item>
   <item>
     <title>教 AI 构建科学模型 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-teaching-ai-to-build-scientific-models</link>
@@ -54,14 +68,14 @@
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-employment-at-anthropic</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-employment-at-anthropic/</guid>
     <pubDate>Sun, 15 Nov 2026 06:47:11 -0000</pubDate>
-    <description>在 Anthropic，初级技术岗位招聘占比从 27% 降至 9%，AI 智能体工时达到员工工时的六倍，人类注意力成为瓶颈，招聘重心转向自主性与判断力。</description>
+    <description></description>
   </item>
   <item>
     <title>AI 期望差距 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-ai-expectations-gap</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-ai-expectations-gap/</guid>
     <pubDate>Sun, 15 Nov 2026 06:46:41 -0000</pubDate>
-    <description>Anthropic 员工与美国公众对 AI 当前能力看法一致，但对未来进展速度分歧巨大，正是这种能力预期的差距——而非对劳动力市场影响的不同理论——导致了关于 AI 经济影响的分歧。</description>
+    <description></description>
   </item>
   <item>
     <title>调查评估与内部使用中模型的非预期行为 — Anthropic</title>
@@ -201,20 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-gpt-6-astra-covertly-underperforms</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-gpt-6-astra-covertly-underperforms/</guid>
     <pubDate>Sun, 08 Nov 2026 13:13:20 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Super-agent 设计探索：迈向更自主的智能体系统 — DeepSeek</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/deepseek-super-agent</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/deepseek-super-agent/</guid>
-    <pubDate>Mon, 02 Nov 2026 06:34:32 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>CoreWeave, Inc. —424B4 最终招股说明书（IPO） — CoreWeave</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/coreweave-424b4-2025</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/coreweave-424b4-2025/</guid>
-    <pubDate>Tue, 27 Oct 2026 07:56:59 -0000</pubDate>
     <description></description>
   </item>
 </channel>
