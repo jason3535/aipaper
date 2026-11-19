@@ -1146,7 +1146,7 @@ function footer(){return `<footer><div class="wrap">
     ${syncPanelInner()}
   </div>
   <b>AI Paper · AI 论文</b> — 知名 AI 学者的论文与长文，双语阅读。<a href="https://feed.jasonlin.tech/aipaper.xml">📡 RSS 订阅</a><br>
-  版权归原作者、arXiv 及各机构；双语全文为 AI 翻译，仅供学习研究，以原文为准。权利人如需下架：<a href="mailto:?subject=AI%20Paper%20Takedown"></a>，即刻处理。<br>
+  版权归原作者、arXiv 及各机构；双语全文为 AI 翻译，仅供学习研究，以原文为准。应权利人要求即下架。<br>
   译文 AI 生成，偶有瑕疵；照片来自 <a href="https://commons.wikimedia.org" target="_blank">Wikimedia</a> 及本人公开主页、机构标识仅作识别；匿名统计，无 Cookie。领域分类来自 <a href="https://ai.jasonlin.tech" target="_blank">AI 学者图谱</a>。
  </div></footer>`;}
 

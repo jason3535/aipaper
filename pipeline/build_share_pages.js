@@ -95,7 +95,7 @@ const page=(title,desc,url,ogtype,bodyHtml,ld,extra='',og=`${SITE}/assets/og.png
 <meta name="twitter:image" content="${og}">
 ${extra}${ld.map(jl).join('\n')}
 <style>${CSS}</style></head><body><div class="wrap">${bodyHtml}
-<footer>© AI Paper · <a href="${SITE}/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架()。</footer>
+<footer>© AI Paper · <a href="${SITE}/">aipaper.jasonlin.tech</a> — 著名 AI 学者的代表论文,逐段中英对照。论文正文/摘要版权归原作者与 arXiv,译文 AI 生成仅供参考,应权利人要求即下架。</footer>
 </div><script>function shareThis(b){var u=document.querySelector('link[rel=canonical]').href,t=document.title,d=(document.querySelector('meta[name=description]')||{}).content||'';
 if(navigator.share){navigator.share({title:t,text:d,url:u}).catch(function(){});return;}
 try{navigator.clipboard.writeText(u).then(function(){var o=b.textContent;b.textContent='已复制链接';setTimeout(function(){b.textContent=o},1600)})}catch(e){}}</script>${BEACON}</body></html>`;
