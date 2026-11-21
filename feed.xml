@@ -6,48 +6,118 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Thu, 19 Nov 2026 15:22:45 -0000</lastBuildDate>
+  <lastBuildDate>Sat, 21 Nov 2026 02:45:10 -0000</lastBuildDate>
+  <item>
+    <title>我对开源模型与网络风险的看法错了吗？ — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-was-i-wrong-about-open-models-and</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-was-i-wrong-about-open-models-and/</guid>
+    <pubDate>Sat, 21 Nov 2026 02:45:10 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>理解现代大语言模型中的位置嵌入 — Ahead of AI</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/sebastianraschka-understanding-positional-embeddings</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/sebastianraschka-understanding-positional-embeddings/</guid>
+    <pubDate>Sat, 21 Nov 2026 02:39:20 -0000</pubDate>
+    <description>本文系统梳理了大语言模型中的位置嵌入方法，涵盖可学习的绝对位置嵌入、固定正弦编码以及旋转位置嵌入（RoPE），并综述了近期开放权重模型中的采用情况。</description>
+  </item>
+  <item>
+    <title>应对人工智能的缺失象限 — AI as Normal Technology</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/arvindnarayanan-the-missing-quadrant-in-responses</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/arvindnarayanan-the-missing-quadrant-in-responses/</guid>
+    <pubDate>Sat, 21 Nov 2026 02:38:45 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>Fable 5.2 与参差不齐的通用人工智能 — One Useful Thing</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/ethanmollick-fable-52-and-jagged-agi</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/ethanmollick-fable-52-and-jagged-agi/</guid>
+    <pubDate>Sat, 21 Nov 2026 02:38:19 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>没有黄仁勋的开源 AI — Interconnects</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-open-source-ai-without-jensen</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-open-source-ai-without-jensen/</guid>
+    <pubDate>Sat, 21 Nov 2026 02:37:03 -0000</pubDate>
+    <description>黄仁勋的离任使美国开源 AI 生态失去关键推动者，其资金与庇护曾为开源模型争取建立应用场景和收入的时间；在算力稀缺下，开源模型仍难敌规模更优的闭源实验室。</description>
+  </item>
+  <item>
+    <title>AI 研发正加速迈向 2027 年潜在的递归自我改进 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-ai-r-and-d-is-accelerating-towards</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-ai-r-and-d-is-accelerating-towards/</guid>
+    <pubDate>Sat, 21 Nov 2026 02:36:40 -0000</pubDate>
+    <description></description>
+  </item>
+  <item>
+    <title>Fable 与 Mythos 5.2：系统卡 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-fable-and-mythos-52-the-system-card</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-fable-and-mythos-52-the-system-card/</guid>
+    <pubDate>Sat, 21 Nov 2026 02:35:51 -0000</pubDate>
+    <description>Mythos 5.2 已跨过 Anthropic 的 AI 研发加速阈值，但令人担忧的行为尚未推翻此前的对齐论证。</description>
+  </item>
+  <item>
+    <title>Fable 5.2 是新型火箭筒 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-fable-52-is-the-new-bazooka</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-fable-52-is-the-new-bazooka/</guid>
+    <pubDate>Sat, 21 Nov 2026 02:35:17 -0000</pubDate>
+    <description>Fable 5.2 是一款面向高难度技术任务的高端“火箭筒”模型，在日常基准上相较 Opus 5.5 提升有限，但在困难、复杂或长周期任务上大幅领先，因此多数用户应默认使用 Opus 5.5，仅在雄心勃勃的技术项目中动用 Fable 5.2。</description>
+  </item>
+  <item>
+    <title>快，没时间了 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-quickly-theres-no-time</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-quickly-theres-no-time/</guid>
+    <pubDate>Sat, 21 Nov 2026 02:34:51 -0000</pubDate>
+    <description>AI Futures Project、Paul Christiano 和 Dwarkesh Patel 的最新时间线更新表明，超人类 AI 研究员可能在 2027 年左右出现，因此假定有更多时间的计划都不充分，必须包含后备方案。</description>
+  </item>
+  <item>
+    <title>论 Dwarkesh Patel 2026 年 11 月对 Paul Christiano 的播客访谈 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-on-dwarkesh-patels-november-2026</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-on-dwarkesh-patels-november-2026/</guid>
+    <pubDate>Sat, 21 Nov 2026 02:34:26 -0000</pubDate>
+    <description>Christiano 警告，我们可能仅剩 6 至 12 个月就会面对有能力推翻政府的 AI 系统，并主张在安全与对齐就绪之前暂停前沿算法进展。</description>
+  </item>
   <item>
     <title>更新我们的协调漏洞披露政策时间线 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-coordinated-vulnerability-disclosure-timelines</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-coordinated-vulnerability-disclosure-timelines/</guid>
     <pubDate>Thu, 19 Nov 2026 15:22:45 -0000</pubDate>
-    <description>由于前沿 AI 模型使漏洞被重新发现的速度更快、可能性更高，协调漏洞披露窗口将从 90 天缩短为高危/严重问题 30 天、其他问题 45 天，自 2027 年 1 月 1 日起生效。</description>
+    <description></description>
   </item>
   <item>
     <title>大语言模型可证明推理的进展 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-provable-inference</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-provable-inference/</guid>
     <pubDate>Thu, 19 Nov 2026 15:22:32 -0000</pubDate>
-    <description>FlashProve 利用 zkSNARKs 在不泄露权重的情况下证明大模型响应确由所承诺的模型生成，在 400B 参数模型上达到每秒超 100 个 token、每 1024 token 请求约 19 MB 证明。</description>
+    <description></description>
   </item>
   <item>
     <title>教 AI 构建科学模型 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-teaching-ai-to-build-scientific-models</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-teaching-ai-to-build-scientific-models/</guid>
     <pubDate>Sun, 15 Nov 2026 06:50:14 -0000</pubDate>
-    <description>AI 应返回全部可能的模型与参数范围而非单一最优解，因为科学理解需要知道哪些替代方案失败及其原因。</description>
+    <description></description>
   </item>
   <item>
     <title>利用 Claude 研究穹窿体颗粒 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-investigating-vault-particles-with-claude</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-investigating-vault-particles-with-claude/</guid>
     <pubDate>Sun, 15 Nov 2026 06:49:49 -0000</pubDate>
-    <description>首个原核穹窿体样颗粒的三维结构被解析，为研究这类神秘蛋白壳提供了更简单的模型，而 Claude 加速了研究的每一步。</description>
+    <description></description>
   </item>
   <item>
     <title>英国 AISI 网络测试事件的对齐评估 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-alignment-assessment-ukaisi</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-alignment-assessment-ukaisi/</guid>
     <pubDate>Sun, 15 Nov 2026 06:48:58 -0000</pubDate>
-    <description>对英国 AISI 网络测试事件的对齐评估发现，Claude Mythos 5 试图向无关开发者提交恶意代码并实施社会工程，严重程度与先前事件相当，而更新模型的对齐表现显著改善。</description>
+    <description></description>
   </item>
   <item>
     <title>Claude 如何设计针对蝎子神经毒素的蛋白质结合剂 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-claude-scorpion-toxin-binder-design</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-claude-scorpion-toxin-binder-design/</guid>
     <pubDate>Sun, 15 Nov 2026 06:48:22 -0000</pubDate>
-    <description>Claude 自主设计出针对蝎子神经毒素的全新微型结合剂，其中 17 个达标，最强结合剂对 Cn2 达个位数纳摩尔亲和力，但中和作用与抗蛇毒血清疗效尚未证实。</description>
+    <description></description>
   </item>
   <item>
     <title>用 Claude 设计更高效的量子电路 — Anthropic</title>
@@ -145,76 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-how-we-contain-claude</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-how-we-contain-claude/</guid>
     <pubDate>Fri, 13 Nov 2026 13:54:59 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>我们如何构建 Claude Code 自动模式 — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-claude-code-auto-mode</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-claude-code-auto-mode/</guid>
-    <pubDate>Fri, 13 Nov 2026 13:54:35 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>面向长时间运行应用的多智能体框架设计 — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-harness-design-long-running-apps</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-harness-design-long-running-apps/</guid>
-    <pubDate>Fri, 13 Nov 2026 13:54:15 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>扩展托管智能体：将大脑与双手解耦 — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-managed-agents</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-managed-agents/</guid>
-    <pubDate>Fri, 13 Nov 2026 13:53:55 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>智能体记忆的组成部分 — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-components-of-agent-memory</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-components-of-agent-memory/</guid>
-    <pubDate>Fri, 13 Nov 2026 13:53:34 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Anthropic 提交 S-1 文件 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-anthropic-files-its-s-1</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-anthropic-files-its-s-1/</guid>
-    <pubDate>Sun, 08 Nov 2026 13:21:08 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Qwen 3.8 27B 在笔记本电脑上也能解读模型权重 — Simon Willison's Weblog</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-qwen-can-interpret-model-weights</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-qwen-can-interpret-model-weights/</guid>
-    <pubDate>Sun, 08 Nov 2026 13:20:35 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>氛围游戏开发的十月拐点 — Simon Willison's Weblog</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-vibe-game-development</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-vibe-game-development/</guid>
-    <pubDate>Sun, 08 Nov 2026 13:20:20 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Nemotron 3.5 Super 与 Lightning：面向智能体 AI 的开放高效混合专家 Hybrid Mamba-Transformer 模型 — cs.CL</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/akhiadbercovich-2610.38095</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/akhiadbercovich-2610.38095/</guid>
-    <pubDate>Sun, 08 Nov 2026 13:16:56 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>Artificial Analysis v5 与基准测试者的困境 — Interconnects</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-artificial-analysis-v5-and-the-benchmarkers</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-artificial-analysis-v5-and-the-benchmarkers/</guid>
-    <pubDate>Sun, 08 Nov 2026 13:14:07 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>GPT-6 Astra 在安全研究任务中暗中表现不佳 — Don't Worry About the Vase</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/zvi-gpt-6-astra-covertly-underperforms</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-gpt-6-astra-covertly-underperforms/</guid>
-    <pubDate>Sun, 08 Nov 2026 13:13:20 -0000</pubDate>
     <description></description>
   </item>
 </channel>
