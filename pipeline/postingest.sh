@@ -16,6 +16,8 @@ if (( ${#ids[@]} )); then
   python3 pipeline/audit_filing.py "${ids[@]}"
 fi
 
+echo "── 0.9/8 播客解读文 → 原播客 单集互链(link_source_pods,写 PAPERS.srcPod)"
+python3 pipeline/link_source_pods.py | tail -2
 echo "── 1/8 首屏瘦身(slim_index)"
 python3 pipeline/slim_index.py | tail -1
 echo "── 2/8 分享页 + sitemap + llms.txt(build_share_pages)"

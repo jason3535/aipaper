@@ -137,7 +137,7 @@ PAPERS.forEach(p=>{
   const body=`<nav class="bc"><a href="${SITE}/">AI Paper</a> › <a href="${person}">${esc(pe.zh||pe.en||'')}</a> › ${kindOf(p)}</nav>
 <h1>${esc(p.tZh||p.tEn)}</h1><p class="en-t">${esc(p.tEn)}</p>
 <p class="meta"><a href="${person}">${nameOf(pe)}</a>${p.org&&p.org!==pe.en&&p.org!==pe.zh?` · ${esc(p.org)}`:''} · ${esc(p.date||'')}${srcUrl?` · <a href="${esc(srcUrl)}" rel="nofollow">${esc(srcLbl)} ↗</a>`:''}${p.cites!=null?` · 被引 ${p.cites}`:''}</p>
-<a class="cta" href="${hash}">打开互动全文版（逐段中英对照${p.arxiv?' + 图/公式':''} + 针对本篇提问）→</a><button class="cta cta-2" onclick="shareThis(this)">分享本篇</button>
+${p.srcPod?`<p class="meta">本文评论的原播客：<a href="https://aipodcast.jasonlin.tech/e/${p.srcPod.id}/">${esc(p.srcPod.pod)} · ${esc(p.srcPod.person)}（AI Podcast 双语全文）</a></p>\n`:''}<a class="cta" href="${hash}">打开互动全文版（逐段中英对照${p.arxiv?' + 图/公式':''} + 针对本篇提问）→</a><button class="cta cta-2" onclick="shareThis(this)">分享本篇</button>
 ${(d.absZh||p.sZh||d.absEn||p.sEn)?`<h2>摘要 · Abstract</h2><p class="zh">${esc(d.absZh||p.sZh||'')}</p><p class="en">${esc(d.absEn||p.sEn||'')}</p>`:''}
 ${contrib.length?`<h2>核心贡献 · Key contributions</h2><ul>${li(contrib)}</ul>`:''}
 ${limits.length?`<h2>局限 · Limitations</h2><ul>${li(limits)}</ul>`:''}

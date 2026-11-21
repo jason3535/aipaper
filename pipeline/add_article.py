@@ -49,7 +49,38 @@ def _ptext(p):
     而当时的回归验证拿的是翻译后的数据,形态不对等于没验)。"""
     return p if isinstance(p, str) else (p.get("en") or "")
 
-def strip_chrome(secs):
+_NAME = lambda x: re.sub(r"\s+", " ", (x or "").replace("’", "'").strip().lower())
+TOC_SEC = re.compile(r"^\s*(table of )?contents\s*$", re.I)
+TOC_LINE = re.compile(r"^\s*\d+[.)]\s.{0,160}$")
+
+def strip_masthead(secs, org_names=()):
+    """2026-11-21:Substack 新版页头 = 「# 刊名」+ 一句刊物口号(Zvi「A world made of gears…」、
+    Mollick「Trying to understand the implications of AI…」),后面没跟订阅框,CHROME_PARA 认不出,
+    于是首节标题成了刊名、首段是口号(Zvi 5 篇 + Mollick 1 篇上线后才发现)。
+    规则:首节标题 == 刊名(--org/--label,撇号归一)→ 标题改回 Overview,首段 <300 字就丢(口号)。
+    另:整节全是「1. xxx」编号行的「Table of Contents」节丢掉 —— 阅读页自带章节导航,目录是重复的。
+    非纯编号的 Contents 节(Dario/Thariq/Narayanan 的目录里混着正文或要点)不动。"""
+    names = {_NAME(n) for n in org_names if n}
+    out = []
+    for i, s in enumerate(secs):
+        key = "paras" if "paras" in s else "items"
+        ps = s.get(key) or []
+        txt = [_ptext(p).strip() for p in ps if not (isinstance(p, dict) and p.get("t") == "fig") and not str(_ptext(p)).startswith(FIG_TAG)]
+        if TOC_SEC.match(s.get("sec") or "") and txt and all(TOC_LINE.match(t) for t in txt):
+            continue
+        if not out and names and _NAME(s.get("sec")) in names:
+            s = {**s, "sec": "Overview"}
+            if "secZh" in s: s["secZh"] = "概述"
+            if ps and len(_ptext(ps[0])) < 300:
+                if len(ps) == 1 and i + 1 < len(secs): continue   # 整节只有口号(Mollick)→ 整节丢
+                if len(ps) > 1:
+                    s[key] = ps[1:]
+                    if "q" in s: s["q"] = s["q"][1:]
+        out.append(s)
+    return out or secs
+
+def strip_chrome(secs, org_names=()):
+    secs = strip_masthead(secs, org_names)
     cleaned = []   # (标题是不是站标/订阅框, 剥过段落的节)
     for s in secs:
         qs = s.get("q") or [0] * len(s["paras"])
@@ -303,7 +334,7 @@ def main():
         md = fetch_md(url)
     title, pub, secs = parse_md(md, a.title)
     n0 = sum(len(s["paras"]) for s in secs)
-    secs = strip_chrome(secs)
+    secs = strip_chrome(secs, (a.org, a.label))
     n1 = sum(len(s["paras"]) for s in secs)
     if n1 < n0: print(f"   剥掉订阅框/页脚等骨架 {n0-n1} 段", file=sys.stderr)
     if pub and not re.match(r"^\d{4}-\d{2}-\d{2}$", pub):
