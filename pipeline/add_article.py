@@ -50,17 +50,30 @@ def _ptext(p):
     return p if isinstance(p, str) else (p.get("en") or "")
 
 def strip_chrome(secs):
-    out = []
+    cleaned = []   # (标题是不是站标/订阅框, 剥过段落的节)
     for s in secs:
-        if CHROME_SEC.search(s.get("sec") or ""):
-            continue
         qs = s.get("q") or [0] * len(s["paras"])
-        keep = [(p, q) for p, q in zip(s["paras"], qs) if not CHROME_PARA.match(_ptext(p).strip()) and not RELATED_CARD.match(_ptext(p).strip())]
+        pairs = list(zip(s["paras"], qs))
+        drop = set()
+        for i, (p, _) in enumerate(pairs):
+            t = _ptext(p).strip()
+            if CHROME_PARA.match(t) or RELATED_CARD.match(t):
+                drop.add(i)
+                # Substack 订阅框上方那句刊物口号(「The cutting edge of AI… Read by leading engineers…」)一起去掉
+                if re.match(r"By subscribing", t, re.I) and i > 0 and i <= 3 and len(_ptext(pairs[i - 1][0])) < 300:
+                    drop.add(i - 1)
+        keep = [pq for i, pq in enumerate(pairs) if i not in drop]
         if keep:
             s = {**s, "paras": [p for p, _ in keep]}
             if "q" in s: s["q"] = [q for _, q in keep]
-            out.append(s)
-    return out or secs   # 全被剥光说明规则误伤,宁可原样返回
+            cleaned.append((bool(CHROME_SEC.search(s.get("sec") or "")), s))
+    body = [s for chrome, s in cleaned if not chrome]
+    if body: return body
+    # 2026-11-21:Interconnects 单节文章整篇正文挂在站标标题「!Image 2: Interconnects AI(…)」下 ——
+    # 以前整节丢弃 → 全被剥光 → 原样返回,订阅框跟着上线(audit 拦下)。现在保留内容、清掉假标题。
+    # 标题不能留空:空标题行高度为 0,阅读页没有可见的节标题(verify_site 判渲染失败)
+    if cleaned: return [{**s, "sec": "Main text"} for _, s in cleaned]
+    return secs   # 全被剥光说明规则误伤,宁可原样返回
 
 ABS_SYS = """你是技术编辑。基于给定文章正文,写一段英文摘要(abstract),3-5 句、120-200 词:
 说清文章讲了什么、核心论点、给读者的结论。只依据正文,不杜撰,不写元评论,不用 markdown。
