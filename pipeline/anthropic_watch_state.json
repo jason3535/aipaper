@@ -50,5 +50,9 @@
  "coordinated-vulnerability-disclosure-timelines": {
   "tries": 1,
   "ok": "anthropic-coordinated-vulnerability-disclosure-timelines"
+ },
+ "working-with-ai": {
+  "tries": 1,
+  "ok": "anthropic-working-with-ai"
  }
 }

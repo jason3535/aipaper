@@ -6,7 +6,14 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Sat, 21 Nov 2026 02:45:10 -0000</lastBuildDate>
+  <lastBuildDate>Tue, 24 Nov 2026 03:23:39 -0000</lastBuildDate>
+  <item>
+    <title>与 AI 协作 — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-working-with-ai</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-working-with-ai/</guid>
+    <pubDate>Tue, 24 Nov 2026 03:23:39 -0000</pubDate>
+    <description>企业 AI 的价值主要来自产出提升而非成本削减，AI 导致的裁员尚少，但招聘减少和海外外包收缩已现端倪，最高价值的部署需要持续重组工作流程。</description>
+  </item>
   <item>
     <title>我对开源模型与网络风险的看法错了吗？ — Interconnects</title>
     <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-was-i-wrong-about-open-models-and</link>
@@ -54,7 +61,7 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-fable-and-mythos-52-the-system-card</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-fable-and-mythos-52-the-system-card/</guid>
     <pubDate>Sat, 21 Nov 2026 02:35:51 -0000</pubDate>
-    <description>Mythos 5.2 已跨过 Anthropic 的 AI 研发加速阈值，但令人担忧的行为尚未推翻此前的对齐论证。</description>
+    <description></description>
   </item>
   <item>
     <title>Fable 5.2 是新型火箭筒 — Don't Worry About the Vase</title>
@@ -208,13 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-building-c-compiler</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-building-c-compiler/</guid>
     <pubDate>Fri, 13 Nov 2026 13:55:21 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>我们如何在各产品中实施 Claude 的隔离管控 — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-how-we-contain-claude</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-how-we-contain-claude/</guid>
-    <pubDate>Fri, 13 Nov 2026 13:54:59 -0000</pubDate>
     <description></description>
   </item>
 </channel>
