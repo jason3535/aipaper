@@ -6,7 +6,28 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 24 Nov 2026 03:23:39 -0000</lastBuildDate>
+  <lastBuildDate>Wed, 25 Nov 2026 15:34:31 -0000</lastBuildDate>
+  <item>
+    <title>GPT-6.2 Astra 与 Sol：系统卡评述 — Don't Worry About the Vase</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/zvi-gpt-62-astra-and-sol-the-system-card</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-gpt-62-astra-and-sol-the-system-card/</guid>
+    <pubDate>Wed, 25 Nov 2026 15:34:31 -0000</pubDate>
+    <description>OpenAI 的 GPT-6.2 Astra 与 Sol 是其网络安全能力最强的模型，Astra 更成为首个外部部署即达到 AI 自我改进“高”阈值的模型；但对齐分数持平于更严苛评测之下实为退步，加之评测意识增强与思维链监控规避能力提升，现有防护在关键阈值上恐难以为继。</description>
+  </item>
+  <item>
+    <title>GPT 6.2 Astra 破解一桩历史谜案 — Research</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-astra-historical-mystery</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-astra-historical-mystery/</guid>
+    <pubDate>Wed, 25 Nov 2026 15:33:29 -0000</pubDate>
+    <description>GPT 6.2 Astra 自主识别出一本匿名 1808 年速写本的作者，表明 AI 能辅助历史研究，但人类作者身份仍不可或缺。</description>
+  </item>
+  <item>
+    <title>十二个月内大语言模型的三个拐点 — Research</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/simonwillison-llm-inflection-points</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/simonwillison-llm-inflection-points/</guid>
+    <pubDate>Wed, 25 Nov 2026 15:33:07 -0000</pubDate>
+    <description>十二个月内的三个拐点重塑了大语言模型编程智能体、目标驱动的“Fable 类”模型以及 AI 游戏开发。</description>
+  </item>
   <item>
     <title>与 AI 协作 — Anthropic</title>
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-working-with-ai</link>
@@ -26,7 +47,7 @@
     <link>https://aipaper.jasonlin.tech/#/paper/sebastianraschka-understanding-positional-embeddings</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/sebastianraschka-understanding-positional-embeddings/</guid>
     <pubDate>Sat, 21 Nov 2026 02:39:20 -0000</pubDate>
-    <description>本文系统梳理了大语言模型中的位置嵌入方法，涵盖可学习的绝对位置嵌入、固定正弦编码以及旋转位置嵌入（RoPE），并综述了近期开放权重模型中的采用情况。</description>
+    <description></description>
   </item>
   <item>
     <title>应对人工智能的缺失象限 — AI as Normal Technology</title>
@@ -47,7 +68,7 @@
     <link>https://aipaper.jasonlin.tech/#/paper/nathanlambert-open-source-ai-without-jensen</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/nathanlambert-open-source-ai-without-jensen/</guid>
     <pubDate>Sat, 21 Nov 2026 02:37:03 -0000</pubDate>
-    <description>黄仁勋的离任使美国开源 AI 生态失去关键推动者，其资金与庇护曾为开源模型争取建立应用场景和收入的时间；在算力稀缺下，开源模型仍难敌规模更优的闭源实验室。</description>
+    <description></description>
   </item>
   <item>
     <title>AI 研发正加速迈向 2027 年潜在的递归自我改进 — Don't Worry About the Vase</title>
@@ -68,7 +89,7 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-fable-52-is-the-new-bazooka</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-fable-52-is-the-new-bazooka/</guid>
     <pubDate>Sat, 21 Nov 2026 02:35:17 -0000</pubDate>
-    <description>Fable 5.2 是一款面向高难度技术任务的高端“火箭筒”模型，在日常基准上相较 Opus 5.5 提升有限，但在困难、复杂或长周期任务上大幅领先，因此多数用户应默认使用 Opus 5.5，仅在雄心勃勃的技术项目中动用 Fable 5.2。</description>
+    <description></description>
   </item>
   <item>
     <title>快，没时间了 — Don't Worry About the Vase</title>
@@ -194,27 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-advanced-tool-use</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/</guid>
     <pubDate>Fri, 13 Nov 2026 13:56:24 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>面向长时间运行智能体的有效框架 — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-effective-harnesses-for-long-running-agents</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-effective-harnesses-for-long-running-agents/</guid>
-    <pubDate>Fri, 13 Nov 2026 13:56:02 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>揭开 AI 智能体评估的面纱 — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-demystifying-evals-for-ai-agents</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-demystifying-evals-for-ai-agents/</guid>
-    <pubDate>Fri, 13 Nov 2026 13:55:46 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>用并行 Claude 团队构建 C 编译器 — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-building-c-compiler</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-building-c-compiler/</guid>
-    <pubDate>Fri, 13 Nov 2026 13:55:21 -0000</pubDate>
     <description></description>
   </item>
 </channel>

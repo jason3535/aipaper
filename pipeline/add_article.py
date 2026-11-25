@@ -41,7 +41,8 @@ RELATED_CARD = re.compile(r"^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a
 CHROME_PARA = re.compile(
     r"^\s*(Discover more from\b|By subscribing,? you agree\b|Thanks for reading\b|Share this post\b|"
     r"Subscribe\s*$|Continue reading\b|©\s*\d{4}[^\n]{0,80}(Privacy|Terms|Substack)|"
-    r"This site requires JavaScript|Type your email|Already have an account\?|Posted \d{1,2}(st|nd|rd|th) \w+ \d{4} at )", re.I)   # 末项:Willison 文末「Posted … · Follow me on Mastodon」
+    r"This site requires JavaScript|Type your email|Already have an account\?|Posted \d{1,2}(st|nd|rd|th) \w+ \d{4} at |"
+    r"([a-z][\w.-]* \d[\d,]*,? ){2,}[a-z][\w.-]* \d[\d,]*\s*$)", re.I)   # 倒数第二项:Willison 文末「Posted … · Follow me on Mastodon」;末项:Willison 标签计数行「history 42, ai 2,339, …」
 
 def _ptext(p):
     """paras 在翻译前是纯字符串、翻译后是 {en,zh} dict —— strip_chrome 两个阶段都会被调,
