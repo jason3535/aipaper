@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/pp/anthropic/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/simonwillison/</loc><lastmod>2026-11-24</lastmod></url>
-  <url><loc>https://aipaper.jasonlin.tech/pp/anthropic/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/zvi/</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/sebastianraschka/</loc><lastmod>2026-11-15</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/nathanlambert/</loc><lastmod>2026-11-14</lastmod></url>
@@ -244,6 +244,7 @@
   <url><loc>https://aipaper.jasonlin.tech/pp/hopfield/</loc><lastmod>1982-04-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/rosenblatt/</loc><lastmod>1958-11-01</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/pp/mcculloch/</loc><lastmod>1943-12-01</lastmod></url>
+  <url><loc>https://aipaper.jasonlin.tech/p/anthropic-migrating-api-to-rust/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-llm-inflection-points/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/simonwillison-astra-historical-mystery/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://aipaper.jasonlin.tech/p/anthropic-working-with-ai/</loc><lastmod>2026-11-23</lastmod></url>

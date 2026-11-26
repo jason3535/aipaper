@@ -6,7 +6,14 @@
   <atom:link href="https://aipaper.jasonlin.tech/feed.xml" rel="self" type="application/rss+xml"/>
   <description>著名 AI 学者的代表论文与长文，逐段中英对照 · 核心贡献 · 论文问答</description>
   <language>zh-cn</language>
-  <lastBuildDate>Wed, 25 Nov 2026 15:34:31 -0000</lastBuildDate>
+  <lastBuildDate>Thu, 26 Nov 2026 03:23:37 -0000</lastBuildDate>
+  <item>
+    <title>将我们的 Messages API 迁移至 Rust — Anthropic</title>
+    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-migrating-api-to-rust</link>
+    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-migrating-api-to-rust/</guid>
+    <pubDate>Thu, 26 Nov 2026 03:23:37 -0000</pubDate>
+    <description>Anthropic 将生产环境的 Messages API 从 Python 迁移到 Rust，每请求 CPU 占用降低约 70%，首 token 中位时间缩短约 20%，而真正的瓶颈在于对线上流量的验证而非代码生成。</description>
+  </item>
   <item>
     <title>GPT-6.2 Astra 与 Sol：系统卡评述 — Don't Worry About the Vase</title>
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-gpt-62-astra-and-sol-the-system-card</link>
@@ -96,7 +103,7 @@
     <link>https://aipaper.jasonlin.tech/#/paper/zvi-quickly-theres-no-time</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/zvi-quickly-theres-no-time/</guid>
     <pubDate>Sat, 21 Nov 2026 02:34:51 -0000</pubDate>
-    <description>AI Futures Project、Paul Christiano 和 Dwarkesh Patel 的最新时间线更新表明，超人类 AI 研究员可能在 2027 年左右出现，因此假定有更多时间的计划都不充分，必须包含后备方案。</description>
+    <description></description>
   </item>
   <item>
     <title>论 Dwarkesh Patel 2026 年 11 月对 Paul Christiano 的播客访谈 — Don't Worry About the Vase</title>
@@ -208,13 +215,6 @@
     <link>https://aipaper.jasonlin.tech/#/paper/anthropic-code-execution-with-mcp</link>
     <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-code-execution-with-mcp/</guid>
     <pubDate>Fri, 13 Nov 2026 13:56:40 -0000</pubDate>
-    <description></description>
-  </item>
-  <item>
-    <title>在 Claude 开发者平台引入高级工具使用功能 — Anthropic</title>
-    <link>https://aipaper.jasonlin.tech/#/paper/anthropic-advanced-tool-use</link>
-    <guid isPermaLink="false">https://aipaper.jasonlin.tech/p/anthropic-advanced-tool-use/</guid>
-    <pubDate>Fri, 13 Nov 2026 13:56:24 -0000</pubDate>
     <description></description>
   </item>
 </channel>
